@@ -1,0 +1,145 @@
+    <h1>Salle</h1>
+<form >
+  <div class="form-group">
+    <label for="two">Entrer Type</label><br/>
+ 
+    <input [(ngModel)]="mesSalles.type" type="text" name="type" id="two" class="form-control" placeholder="Entrer Type" ><br/>
+  </div>
+
+<div class="form-group">
+  <label for="one">Entrer Num</label><br/>
+  <input [(ngModel)]="mesSalles.num" type="text" name="num" id="one" class="form-control" placeholder="Enter Num" ><br/>
+</div>
+
+
+
+  <div class="form-group">
+    <label for="three">Entrer Nombre postes</label><br/>
+
+    <input [(ngModel)]="mesSalles.nbposte" type="text" name="nbpostes" id="three" class="form-control" placeholder="Entrer Nombre postes" ><br/>
+  </div>
+  
+
+  <div class="form-group">
+    <label for="four">Entrer pourcentagePres</label> <br/>
+    <input [(ngModel)]="mesSalles.pourcentagePres"  type="text" name="pourcentagePres" id="four" class="form-control" placeholder="Entrer pourcentagePres" ><br/>
+  </div>
+
+  <button (click)="addSalle()" type="button" class="btn btn-primary btn-block" >
+    Add
+    </button>
+  
+</form>
+
+<table class="table table-success">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">type</th>
+      <th scope="col">num</th>
+      <th scope="col">nombre de postes</th>
+      <th scope="col">pourcentage presence (%)</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let s of myArray">
+      <td>{{s.id}}</td>
+      <td>{{s.type}}</td>
+      <td>{{s.num}}</td>
+      <td>{{s.nbposte}}</td>
+      <td>{{s.pourcentagePres}}</td>
+      <td>
+        <button (click)="ondeleteSalle(s.id)" type="button"  class="btn btn-danger" >
+        Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="container" id="main-container">
+  <div class="row">
+    <div *ngFor="let salle of salles" class="col-md-6 col-xl-3">
+       <div class="card m-b-30">
+          <div class="card-body row">
+             <div class="col-6 card-title align-self-center mb-0">
+                <h5>{{salle?.type}}</h5>
+                <p class="m-0">{{salle?.num}}</p>
+             </div>
+          </div>
+          <ul class="list-group list-group-flush">
+           <li class="list-group-item"><i class="fa fa-envelope float-right"></i>nombre poste : {{salle?.nbposte}}</li>
+             <li class="list-group-item"><i class="fa fa-envelope float-right"></i>pourcentage de presence :{{salle?.pourcentagePres}}</li>
+          </ul>
+          <div class="card-body">
+             <div class="float-right btn-group btn-group-sm">
+                <a (click)="onOpenModal(salle, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                <a (click)="onOpenModal(salle, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+  <!-- Edit Modal -->
+<div class="modal fade" id="updateSalleModal" tabindex="-1" role="dialog" aria-labelledby="salleEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="salleEmployeeModalLabel">Edit salle {{editSalle?.num}}</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <form #editForm="ngForm">
+              <div class="form-group">
+                 <label for="type">Type</label>
+                 <input type="text" ngModel="{{editSalle?.type}}" name="type" class="form-control" id="type" aria-describedby="emailHelp" placeholder="Type">
+              </div>
+              <input type="hidden" ngModel="{{editSalle?.id}}" name="id" class="form-control" id="id" placeholder="Email">
+              <div class="form-group">
+                 <label for="num">Num</label>
+                 <input type="number" ngModel="{{editSalle?.num}}" name="num" class="form-control" id="num" placeholder="Num">
+              </div>
+              <div class="form-group">
+                 <label for="nbposte">Nombre poste</label>
+                 <input type="number" ngModel="{{editSalle?.nbposte}}" name="nbposte" class="form-control" id="nbposte" placeholder="nbposte">
+              </div>
+              <div class="form-group">
+                 <label for="pourcentagePres">Pourcentage de presence</label>
+                 <input type="number" ngModel="{{editSalle?.pourcentagePres}}" name="pourcentagePres" class="form-control" id="pourcentagePres" name="pourcentagePres" placeholder="pourcentagePres">
+              </div>
+              
+           
+              <div class="modal-footer">
+                 <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                 <button (click)="onUpdateSalle(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+              </div>
+           </form>
+        </div>
+     </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteSalleModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="deleteModelLabel">Delete Salle</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <p>Are you sure you want to delete salle {{deleteSalle?.num}}?</p>
+           <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+              <button (click)="ondeleteSalle(deleteSalle?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+</div>
