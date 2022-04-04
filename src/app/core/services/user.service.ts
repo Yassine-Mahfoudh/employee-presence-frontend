@@ -19,7 +19,7 @@ export class UserService {
   public login(loginData){
     return this.httpclient.post(this.PATH_API+'/authenticate',loginData,{headers:this.requestHeader});
   }
-/*
+
   public forUser(){
     return this.httpclient.get(this.PATH_API+'/utilisateur/forUser',{
       responseType:'text'
@@ -31,7 +31,7 @@ export class UserService {
       responseType:'text'
       });
   }
-*/
+
   public roleMatch(allowedRoles) : boolean | undefined{
     let isMatch=false;
     const userRoles : any=this.authService.getRoles();
