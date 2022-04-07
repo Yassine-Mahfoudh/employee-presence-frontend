@@ -1,0 +1,57 @@
+<!--<div class="modal-header bg-primary text-white">
+    <h4 class="modal-title" id="modal-basic-title">Update Salle</h4>
+</div>
+<div class="modal-body">
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="editForm">
+        <div class="form-group row d-flex justify-content-center align-items-center">
+            <label for="type" class="col-form-label col-sm-2 text-right">Type : </label>
+            <div class="col-sm-5">
+                <input type="text" formControlName="type" class="form-control" />
+                <div *ngIf="editFormData.firstName.invalid && (editFormData.type.dirty || editFormData.type.touched)"
+                    class="alert-danger">
+                    <span>Type  is required!</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row d-flex justify-content-center align-items-center">
+            <label for="num" class="col-form-label col-sm-2 text-right">Numero</label>
+            <div class="col-sm-5">
+                <input type="text" formControlName="num" class="form-control" />
+                <div *ngIf="editFormData.num.invalid && (editFormData.num.dirty || editFormData.lastName.touched)"
+                    class="alert-danger">
+                    <span>Numero  is required!</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row d-flex justify-content-center align-items-center">
+            <label for="nbposte" class="col-form-label col-sm-2 text-right">Nombre de postes</label>
+            <div class="col-sm-5">
+                <input type="text" formControlName="nbposte" class="form-control" />
+                <div *ngIf="editFormData.nbposte.invalid && (editFormData.nbposte.dirty || editFormData.nbposte.touched)"
+                    class="alert-danger">
+                    <span *ngIf="editFormData.email.errors.required">nbposte is required!</span>
+                    <span *ngIf="editFormData.email.errors.email">nbposte must be a valid !</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row d-flex justify-content-center align-items-center">
+            <label for="pourcentagePres" class="col-form-label col-sm-2 text-right">Pourcentage de presence :</label>
+            <div class="col-sm-5">
+                <input type="text" formControlName="pourcentagePres" class="form-control" />
+                <div *ngIf="editFormData.pourcentagePres.invalid && (editFormData.pourcentagePres.dirty || editFormData.pourcentagePres.touched)"
+                    class="alert-danger">
+                    <span>pourcentagePres  is required!</span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="isLoading" class="btn btn-primary mr-2" (click)="modal.close('Cancel')">Cancel</button>
+            <button [disabled]="isLoading" class="btn btn-primary mr-2">Update</button>
+        </div>
+
+    </form>
+</div>-->
+<!-- <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark"  (click)="modal.close('Yes')">Update</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+</div> -->

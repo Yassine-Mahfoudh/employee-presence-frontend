@@ -6,6 +6,9 @@ import { LogAccessComponent } from './log-access/log-access.component';
 import { LogDataComponent } from './log-data/log-data.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SalleComponent } from './salle/salle.component';
+
 
 
 @NgModule({
@@ -13,11 +16,14 @@ import { UsersComponent } from './users/users.component';
     LogAccessComponent,
     LogDataComponent,
     ProfileComponent,
-    UsersComponent
+    UsersComponent,
+    SalleComponent
   ],
   imports: [
     CommonModule,
-    AdministrationRoutingModule
+    AdministrationRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdministrationModule { }

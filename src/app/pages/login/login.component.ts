@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   login(loginForm:NgForm){
 
     this.userService.login(loginForm.value).subscribe(
@@ -28,9 +27,9 @@ export class LoginComponent implements OnInit {
 
         const type = response.utilisateur.profils[0].type;
         if (type === 'ADMIN') {
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/dashboard']);
         } else {
-          this.router.navigate(['/user']);
+          this.router.navigate(['/home']);
         }
       },
       (error)=>{

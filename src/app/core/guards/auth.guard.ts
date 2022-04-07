@@ -37,12 +37,14 @@ export class AuthGuard implements CanActivate {
          if(match){
            return true;
          } else {
+           console.log("ici");
            this.router.navigate(['/forbidden']);
            return false;
          }
         }
       }
 
+      console.log("there");
       this.router.navigate(['/login']);
       return false;
   }

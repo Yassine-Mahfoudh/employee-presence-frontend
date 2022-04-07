@@ -1,7 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Salle } from 'src/app/models/salle';
 import { SalleService } from 'src/app/services/salle.service';
+import { EditSalleComponent } from './edit-salle/edit-salle.component';
 @Component({
   selector: 'app-salle',
   templateUrl: './salle.component.html',
@@ -9,8 +13,13 @@ import { SalleService } from 'src/app/services/salle.service';
 })
 export class SalleComponent implements OnInit {
 
-  constructor(private salleService : SalleService) { }
+  constructor(private salleService : SalleService,
+    private router: Router,
+     private modalService: NgbModal ) { }
   public salles!: Salle[];
+
+  //sallesList: Array<Salle> = [];
+
 
   
   myArray : any = [];
@@ -48,7 +57,7 @@ ondeleteSalle(id){
 
 //Methode Post
 
-addSalle(){
+onAddSalle(addForm: NgForm){
   this.salleService.add(this.mesSalles)
   .subscribe((s)=>{
     this.myArray = [s, ...this.myArray];
@@ -70,6 +79,29 @@ videInput(){
 
 
 //Methode Update
+
+editItem(salleModel: Salle) {
+  // this.router.navigateByUrl(`EditUser/${userModel.id}`);
+
+  const ref = this.modalService.open(EditSalleComponent, { centered: true });
+  ref.componentInstance.selectedUser = salleModel;
+
+  ref.result.then((yes) => {
+    console.log("Yes Click");
+
+    this.setSallesList();
+  },
+    (cancel) => {
+      console.log("Cancel Click");
+
+    })
+}
+
+private setSallesList() {
+  this.salleService.getAll().subscribe(x => {
+    this.salles = x;
+  })
+}
 
 
 

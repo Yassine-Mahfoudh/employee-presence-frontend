@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Salle } from '../models/salle';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +14,8 @@ export class SalleService {
 //CRUD
 // Methode Get
 
-getAll(){
-  return this.http.get<Salle>(this.urlApi);
+getAll() : Observable<Salle[]>{
+  return this.http.get<Salle[]>(this.urlApi);
 }
 
 //Methode Delete
@@ -34,4 +35,7 @@ public update(salle: Salle) {
   return this.http.put<Salle>(`${this.urlApi}/update`,salle);
 }
 
+getSalleById(id: number): Observable<Salle> {
+  return this.http.get<Salle>(`${this.urlApi}/find/${id}`)
+}
 }
