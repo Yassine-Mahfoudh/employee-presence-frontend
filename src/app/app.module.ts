@@ -24,7 +24,6 @@ import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
 import { SharedModule } from './shared/shared.module';
-import { AdministrationModule } from './pages/administration/administration.module';
 import { PagesModule } from './pages/pages.module';
 
 

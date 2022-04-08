@@ -1,154 +1,155 @@
 <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">salle manager </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addsalle" type="submit">add salle</button>
-          </div>
-        </div>
-      </nav>
-      
-     
-      <!-- getsalles -->
-      <div class="table-responsive">
-        <table class="table align-items-center table-flush">
-          <thead class="thead-light">
-            <tr >
-              <th scope="col">Id</th>
-              <th scope="col">Type</th>
-              <th scope="col">Number</th>
-              <th scope="col">number of places</th>
-              <th scope="col">attendance percentage </th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let salle of salleList | paginate: { id:'listing_paginationS',
-            itemsPerPage:4,
-            currentPage:page,
-            totalItems:totalRec} ">
-              <td scope="row">
-                <div class="media align-items-center">
-                  <div class="media-body">
-                    <span class="mb-0 text-sm">{{salle.id}}</span>
-                  </div>
-                </div>
-              </td>
-              <td>
-                {{salle.type}}
-              </td>
-              <td>
-                {{salle.num}}
-              </td>
-              <td>
-                {{salle.nbposte}}
-              </td>
-              <td>
-                {{salle.pourcentagePres}}%
-              </td>
-              <td class="text-right">
-                <div ngbDropdown placement="bottom-right">
-                  <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                    <i class="fas fa-ellipsis-v"></i>
-                  </a>
-                  <div >
-                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"  data-bs-target="#editsalle" (click)="editSalle(salle)">edit</button>
-                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-dismiss="modal"  (click)="confirmDeleteS(salle)">delete</button>
-                  </div>
-                </div>
-              </td>
-            </tr>
-         </tbody>
-        </table>
-          <div>
-            <pagination-controls  id="listing_paginationS"
-              (pageChange)="page=$event"  
-         >
-    </pagination-controls>
-      
-          </div>
-    </div>
-    
-      <!-- addsalle -->
-      <div class="modal fade" id="addsalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">salle</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="card-body">
-                <form [formGroup]="salleDetail">
-                  <h6 class="heading-small text-muted mb-4">salle information</h6>
-                  <div class="pl-lg-4">
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="form-group">
-                          <label class="form-control-label" for="input-type">type</label>
-                          <input type="text" formControlName="type" id="input-type" class="form-control form-control-alternative" placeholder="salle type" value="">
-                          <label class="form-control-label" for="input-num">number</label>
-                          <input type="text" formControlName="num" id="input-num" class="form-control form-control-alternative" placeholder="salle number" value="">
-                          <label class="form-control-label" for="input-nbposte">number of places</label>
-                          <input type="text" formControlName="nbposte" id="input-nbposte" class="form-control form-control-alternative" placeholder="number of places" value="">
-                          <label class="form-control-label" for="input-pourcentagePres">attendance percentage</label>
-                          <input type="text" formControlName="pourcentagePres" id="input-pourcentagePres" class="form-control form-control-alternative" placeholder="attendance percentage" value="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                  <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="addSalle()" >addsalle</button></div>
-                </form>
-            
-          </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">salle manager </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addsalle" type="submit">add salle</button>
         </div>
       </div>
+    </nav>
+    
+   
+    <!-- getsalles -->
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr >
+            <th scope="col">Id</th>
+            <th scope="col">Type</th>
+            <th scope="col">Number</th>
+            <th scope="col">number of places</th>
+            <th scope="col">attendance percentage </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let salle of salleList | paginate: { id:'listing_paginationS',
+          itemsPerPage:4,
+          currentPage:page,
+          totalItems:totalRec} ">
+            <td scope="row">
+              <div class="media align-items-center">
+                <div class="media-body">
+                  <span class="mb-0 text-sm">{{salle.id}}</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              {{salle.type}}
+            </td>
+            <td>
+              {{salle.num}}
+            </td>
+            <td>
+              {{salle.nbposte}}
+            </td>
+            <td>
+              {{salle.pourcentagePres}}%
+            </td>
+            <td class="text-right">
+              <div ngbDropdown placement="bottom-right">
+                <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                  <i class="fas fa-ellipsis-v"></i>
+                </a>
+                <div >
+                  <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"  data-bs-target="#editsalle" (click)="editSalle(salle)">edit</button>
+                  <button type="button" class="btn btn-sm btn-outline-danger" data-bs-dismiss="modal"  (click)="confirmDeleteS(salle)">delete</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+       </tbody>
+      </table>
+        <div>
+          <pagination-controls  id="listing_paginationS"
+            (pageChange)="page=$event"  
+          >
+          </pagination-controls>
+    
+        </div>
       </div>
-    
-     
-    
-      <!-- editsalle -->
-      <div class="modal fade" id="editsalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content" >
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">update salle details</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="card-body">
-              <form [formGroup]="salleDetail" >
+  
+</div>
+
+    <!-- addsalle -->
+    <div class="modal fade" id="addsalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">salle</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="card-body">
+              <form [formGroup]="salleDetail">
                 <h6 class="heading-small text-muted mb-4">salle information</h6>
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-type">type</label>
-                        <input type="text" formControlName="type" id="input-type" class="form-control form-control-alternative" placeholder="profil type" >
+                        <input type="text" formControlName="type" id="input-type" class="form-control form-control-alternative" placeholder="salle type" value="">
                         <label class="form-control-label" for="input-num">number</label>
-                        <input type="text" formControlName="num" id="input-num" class="form-control form-control-alternative" placeholder="salle number" >
+                        <input type="text" formControlName="num" id="input-num" class="form-control form-control-alternative" placeholder="salle number" value="">
                         <label class="form-control-label" for="input-nbposte">number of places</label>
-                        <input type="text" formControlName="nbposte" id="input-nbposte" class="form-control form-control-alternative" placeholder="number of places" >
+                        <input type="text" formControlName="nbposte" id="input-nbposte" class="form-control form-control-alternative" placeholder="number of places" value="">
                         <label class="form-control-label" for="input-pourcentagePres">attendance percentage</label>
-                        <input type="text" formControlName="pourcentagePres" id="input-pourcentagePres" class="form-control form-control-alternative" placeholder="attendance percentage" >
+                        <input type="text" formControlName="pourcentagePres" id="input-pourcentagePres" class="form-control form-control-alternative" placeholder="attendance percentage" value="">
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="modal-footer"   >
+                <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-sm btn-primary" (click)="updateSalle()" data-bs-dismiss="modal">update</button>
-          </div>
+            <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="addSalle()" >addsalle</button></div>
               </form>
-            </div>
+          
+        </div>
+      </div>
+    </div>
+    </div>
+  
+   
+  
+    <!-- editsalle -->
+    <div class="modal fade" id="editsalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content" >
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">update salle details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="salleDetail" >
+              <h6 class="heading-small text-muted mb-4">salle information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-type">type</label>
+                      <input type="text" formControlName="type" id="input-type" class="form-control form-control-alternative" placeholder="profil type" >
+                      <label class="form-control-label" for="input-num">number</label>
+                      <input type="text" formControlName="num" id="input-num" class="form-control form-control-alternative" placeholder="salle number" >
+                      <label class="form-control-label" for="input-nbposte">number of places</label>
+                      <input type="text" formControlName="nbposte" id="input-nbposte" class="form-control form-control-alternative" placeholder="number of places" >
+                      <label class="form-control-label" for="input-pourcentagePres">attendance percentage</label>
+                      <input type="text" formControlName="pourcentagePres" id="input-pourcentagePres" class="form-control form-control-alternative" placeholder="attendance percentage" >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer"   >
+              <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-sm btn-primary" (click)="updateSalle()" data-bs-dismiss="modal">update</button>
+        </div>
+            </form>
           </div>
         </div>
       </div>
-    
-      
-    
-    
     </div>
+  
+    
+  
+  

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { LogAccessComponent } from './log-access/log-access.component';
@@ -10,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SalleComponent } from './salle/salle.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-
+import {MatDialogModule} from '@angular/material/dialog'
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ]
 })
 export class AdministrationModule { }

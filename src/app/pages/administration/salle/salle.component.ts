@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Salle } from 'src/app/core/models/salle';
 import { SalleService } from 'src/app/core/services/salle.service';
@@ -15,7 +15,6 @@ export class SalleComponent implements OnInit {
   salleList:Salle[] = [];
   totalRec!: string;
   page:number=1
-
   constructor(private formBuilder1 : FormBuilder, private salleService: SalleService) { }
 
   ngOnInit(): void {
@@ -45,6 +44,7 @@ export class SalleComponent implements OnInit {
 
 
 }
+
 
 getSalles(){
   this.salleService.getSalles().subscribe(res=>{
