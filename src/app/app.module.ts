@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PostComponent } from './components/post/post.component';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { SalleComponent } from './components/salle/salle.component';
 import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 import { AuthGuard } from './core/guards/auth.guard';
 import { UserService } from './core/services/user.service';
@@ -25,6 +24,8 @@ import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
 import { SharedModule } from './shared/shared.module';
+import { AdministrationModule } from './pages/administration/administration.module';
+import { PagesModule } from './pages/pages.module';
 
 
 
@@ -33,7 +34,6 @@ import { SharedModule } from './shared/shared.module';
   declarations: [
     AppComponent,
     PostComponent,
-    SalleComponent,
     EditSalleComponent,
 
     HeaderComponent,
@@ -41,6 +41,7 @@ import { SharedModule } from './shared/shared.module';
     DashboardComponent,
     SidenavComponent,
     ForbiddenComponent,
+    
 
   ],
   imports: [
@@ -50,6 +51,8 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     NgbModule,
     SharedModule,
+    //AdministrationModule,
+    PagesModule,
       
 
         // * MATERIAL IMPORTS

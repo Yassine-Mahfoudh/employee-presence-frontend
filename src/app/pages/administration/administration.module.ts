@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SalleComponent } from './salle/salle.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -17,13 +18,14 @@ import { SalleComponent } from './salle/salle.component';
     LogDataComponent,
     ProfileComponent,
     UsersComponent,
-    SalleComponent
+    SalleComponent,
   ],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
   ]
 })
 export class AdministrationModule { }
