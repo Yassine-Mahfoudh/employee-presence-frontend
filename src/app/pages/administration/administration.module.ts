@@ -8,10 +8,16 @@ import { LogDataComponent } from './log-data/log-data.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SalleComponent } from './salle/salle.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
-import {MatDialogModule} from '@angular/material/dialog'
+import {MatCardModule} from '@angular/material/card';
+import { SalleComponent } from './salles/salle/salle.component';
+import { SalleListComponent } from './salles/salle-list/salle-list.component';
+import { SallesComponent } from './salles/salles.component';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +26,8 @@ import {MatDialogModule} from '@angular/material/dialog'
     ProfileComponent,
     UsersComponent,
     SalleComponent,
+    SalleListComponent,
+    SallesComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +36,9 @@ import {MatDialogModule} from '@angular/material/dialog'
     ReactiveFormsModule,
     NgxPaginationModule,
     MatDialogModule,
+    MatCardModule,
+    MatIconModule,
+    MatToolbarModule,
     BrowserAnimationsModule
   ]
 })

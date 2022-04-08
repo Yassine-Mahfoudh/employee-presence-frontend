@@ -3,12 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PostComponent } from './components/post/post.component';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 import { AuthGuard } from './core/guards/auth.guard';
 import { UserService } from './core/services/user.service';
-import { EditSalleComponent } from './components/salle/edit-salle/edit-salle.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import{MatSidenavModule} from '@angular/material/sidenav';
@@ -27,14 +25,12 @@ import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 
 
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostComponent,
-    EditSalleComponent,
-
     HeaderComponent,
     HomeComponent,
     DashboardComponent,
@@ -52,7 +48,6 @@ import { PagesModule } from './pages/pages.module';
     SharedModule,
     //AdministrationModule,
     PagesModule,
-      
 
         // * MATERIAL IMPORTS
     MatSidenavModule,
@@ -61,6 +56,9 @@ import { PagesModule } from './pages/pages.module';
     MatIconModule,
     MatDividerModule,
     MatListModule,
+    MatCardModule,
+    MatIconModule,
+    MatToolbarModule,
 
 
 
