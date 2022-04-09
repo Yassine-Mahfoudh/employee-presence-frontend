@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SalleListComponent } from './salle-list.component';
+import { ModalFormComponentComponent } from './modal-form-component.component';
 
-describe('SalleListComponent', () => {
-  let component: SalleListComponent;
-  let fixture: ComponentFixture<SalleListComponent>;
+describe('ModalFormComponentComponent', () => {
+  let component: ModalFormComponentComponent;
+  let fixture: ComponentFixture<ModalFormComponentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SalleListComponent ]
+      declarations: [ ModalFormComponentComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SalleListComponent);
+    fixture = TestBed.createComponent(ModalFormComponentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

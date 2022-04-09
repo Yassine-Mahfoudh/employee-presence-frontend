@@ -14,10 +14,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import {MatCardModule} from '@angular/material/card';
-import { SalleComponent } from './salles/salle/salle.component';
-import { SalleListComponent } from './salles/salle-list/salle-list.component';
-import { SallesComponent } from './salles/salles.component';
+import { SalleComponent } from './salle/salle.component';
+import { ModalFormComponentComponent } from './modal-form-component/modal-form-component.component';
 
+
+import { ModalModule } from "ngx-bootstrap/modal";
 
 @NgModule({
   declarations: [
@@ -26,8 +27,8 @@ import { SallesComponent } from './salles/salles.component';
     ProfileComponent,
     UsersComponent,
     SalleComponent,
-    SalleListComponent,
-    SallesComponent
+    ModalFormComponentComponent,
+ 
   ],
   imports: [
     CommonModule,
@@ -35,11 +36,13 @@ import { SallesComponent } from './salles/salles.component';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    MatDialogModule,
-    MatCardModule,
-    MatIconModule,
-    MatToolbarModule,
-    BrowserAnimationsModule
+
+    ModalModule.forRoot(),
+    //MatDialogModule,
+    //MatCardModule,
+   // MatIconModule,
+    //MatToolbarModule,
+    BrowserAnimationsModule,
   ]
 })
 export class AdministrationModule { }

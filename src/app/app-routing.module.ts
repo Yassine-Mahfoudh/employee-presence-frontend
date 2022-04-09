@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
-import { SalleListComponent } from './pages/administration/salles/salle-list/salle-list.component';
-import { SallesComponent } from './pages/administration/salles/salles.component';
+import { ModalFormComponentComponent } from './pages/administration/modal-form-component/modal-form-component.component';
+import { SalleComponent } from './pages/administration/salle/salle.component';
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -23,7 +23,10 @@ const routes: Routes = [
   { path: 'dashboard', component:DashboardComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']}},
   { path: 'home', component:HomeComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
   { path: 'forbidden',component:ForbiddenComponent },
-  { path: 'salle',component:SalleListComponent },
+  { path: 'salle',component:SalleComponent },
+  { path: 'modal',component:ModalFormComponentComponent },
+
+  
 
 ];
 
