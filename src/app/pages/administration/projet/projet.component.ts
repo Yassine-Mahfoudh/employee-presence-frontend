@@ -31,11 +31,11 @@ projetList:Projet[] = [];
     this.getProjets();
     this.projetDetail = this.formBuilder2.group({
       id: [''],
-      nom:[''],
+      name:[''],
       priorite:[''],
       description:[''],
-      datedebut:[''],
-      datefin:['']
+      startdate:[''],
+      enddate:['']
     });
   }
 
@@ -53,11 +53,11 @@ projetList:Projet[] = [];
 
     console.log(this.projetDetail);
     this.projetobj.id=this.projetDetail.value.id;
-    this.projetobj.nom=this.projetDetail.value.nom;
+    this.projetobj.name=this.projetDetail.value.name;
     this.projetobj.priorite=this.projetDetail.value.priorite;
     this.projetobj.description=this.projetDetail.value.description;
-    this.projetobj.datedebut=this.projetDetail.value.datedebut;
-    this.projetobj.datefin=this.projetDetail.value.datefin;
+    this.projetobj.startdate=this.projetDetail.value.startdate;
+    this.projetobj.enddate=this.projetDetail.value.enddate;
     this.projetService.addProjet(this.projetobj).subscribe(res=>{
       console.log(res);
       this.getProjets();
@@ -75,11 +75,11 @@ getProjets(){
 
 editProjet(projet : Projet){
   this.projetDetail.controls['id'].setValue(projet.id);
-  this.projetDetail.controls['nom'].setValue(projet.nom);
+  this.projetDetail.controls['name'].setValue(projet.name);
   this.projetDetail.controls['priorite'].setValue(projet.priorite);
   this.projetDetail.controls['description'].setValue(projet.description);
-  this.projetDetail.controls['datedebut'].setValue(projet.datedebut);
-  this.projetDetail.controls['datefin'].setValue(projet.datefin);
+  this.projetDetail.controls['startdate'].setValue(projet.startdate);
+  this.projetDetail.controls['enddate'].setValue(projet.enddate);
 
 }
 
@@ -96,11 +96,11 @@ deleteProjet(projet : Projet){
 
 updateProjet(){
   this.projetobj.id=this.projetDetail.value.id;
-  this.projetobj.nom=this.projetDetail.value.nom;
+  this.projetobj.name=this.projetDetail.value.name;
   this.projetobj.priorite=this.projetDetail.value.priorite;
   this.projetobj.description=this.projetDetail.value.description;
-  this.projetobj.datedebut=this.projetDetail.value.datedebut;
-  this.projetobj.datefin=this.projetDetail.value.datefin;
+  this.projetobj.startdate=this.projetDetail.value.startdate;
+  this.projetobj.enddate=this.projetDetail.value.enddate;
   this.projetService.updateProjet(this.projetobj).subscribe(res=>{
     console.log(res);
     this.getProjets();
@@ -110,7 +110,7 @@ updateProjet(){
 }
 
 confirmDelete(projet: Projet) {
-  if(confirm("Are you sure you want to delete projet "+projet.nom)) {
+  if(confirm("Are you sure you want to delete projet "+projet.name)) {
      this.deleteProjet(projet);
   }
 }

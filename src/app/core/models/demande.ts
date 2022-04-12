@@ -1,7 +1,7 @@
 export class Demande {
     id:number=0;
-    nom:string='';
-    motif:string='';
-    datedebut:string='';
-    datefin:string='';
+    name:string='';
+    motive:string='';
+    startdate:string='';
+    enddate:string='';
 }

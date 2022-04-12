@@ -28,7 +28,7 @@ export class ProfilComponent implements OnInit {
     this.getProfils();
     this.profilDetail = this.formBuilder.group({
       id: [''],
-      type:['']
+      name:['']
     });
   }
 
@@ -44,7 +44,7 @@ export class ProfilComponent implements OnInit {
 
     console.log(this.profilDetail);
     this.profilobj.id=this.profilDetail.value.id;
-    this.profilobj.type=this.profilDetail.value.type;
+    this.profilobj.name=this.profilDetail.value.name;
     this.profilService.addProfil(this.profilobj).subscribe(res=>{
       console.log(res);
       this.getProfils();
@@ -62,7 +62,7 @@ getProfils(){
 
 editProfil(profil : Profil){
   this.profilDetail.controls['id'].setValue(profil.id);
-  this.profilDetail.controls['type'].setValue(profil.type);
+  this.profilDetail.controls['name'].setValue(profil.name);
 
 }
 
@@ -79,7 +79,7 @@ deleteProfil(profil : Profil){
 
 updateProfil(){
   this.profilobj.id=this.profilDetail.value.id;
-  this.profilobj.type=this.profilDetail.value.type;
+  this.profilobj.name=this.profilDetail.value.name;
   this.profilService.updateProfil(this.profilobj).subscribe(res=>{
     console.log(res);
     this.getProfils();
@@ -89,7 +89,7 @@ updateProfil(){
 }
 
 confirmDelete(profil: Profil) {
-  if(confirm("Are you sure you want to delete this profil : "+profil.type)) {
+  if(confirm("Are you sure you want to delete this profil : "+profil.name)) {
      this.deleteProfil(profil);
   }
 }

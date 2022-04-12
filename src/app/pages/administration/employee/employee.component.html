@@ -15,19 +15,19 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <h6 class="heading-small text-muted mb-4">Employee information</h6>
-                    <label class="form-control-label" for="input-nom">name</label>
-                    <input type="text" formControlName="nom" id="input-nom" class="form-control form-control-alternative" placeholder="Employee name" value="">
-                    <label class="form-control-label" for="input-prenom">prenom</label>
-                    <input type="text" formControlName="prenom" id="input-prenom" class="form-control form-control-alternative" placeholder="Employee prenom" value="">
+                    <h6 class="heading-small text-muted mb-4">Employee informations</h6>
+                    <label class="form-control-label" for="input-lastname">lastname</label>
+                    <input type="text" formControlName="lastname" id="input-lastname" class="form-control form-control-alternative" placeholder="Employee lastname" value="">
+                    <label class="form-control-label" for="input-firstname">firstname</label>
+                    <input type="text" formControlName="firstname" id="input-firstname" class="form-control form-control-alternative" placeholder="Employee firstname" value="">
                     <label class="form-control-label" for="input-role">role</label>
                     <input type="text" formControlName="role" id="input-role" class="form-control form-control-alternative" placeholder="Employee role" value="">
-                    <label class="form-control-label" for="input-etat">etat</label>
-                    <input type="text" formControlName="etat" id="input-etat" class="form-control form-control-alternative" placeholder="Employee etat" value="">
-                    <label class="form-control-label" for="input-datenaiss">datenaiss</label>
-                    <input type="text" formControlName="datenaiss" id="input-datenaiss" class="form-control form-control-alternative" placeholder="Employee datenaiss" value="">
-                    <label class="form-control-label" for="input-adresse">adresse</label>
-                    <input type="text" formControlName="adresse" id="input-adresse" class="form-control form-control-alternative" placeholder="Employee adresse" value="">
+                    <label class="form-control-label" for="input-status">status</label>
+                    <input type="text" formControlName="status" id="input-status" class="form-control form-control-alternative" placeholder="Employee status" value="">
+                    <label class="form-control-label" for="input-birthdate">birthdate</label>
+                    <input type="text" formControlName="birthdate" id="input-birthdate" class="form-control form-control-alternative" placeholder="Employee birthdate" value="">
+                    <label class="form-control-label" for="input-address">address</label>
+                    <input type="text" formControlName="address" id="input-address" class="form-control form-control-alternative" placeholder="Employee address" value="">
                   
                 </div>
                 </div>
@@ -55,19 +55,20 @@
               <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label class="form-control-label" for="input-nom">name</label>
-                        <input type="text" formControlName="nom" id="input-nom" class="form-control form-control-alternative" placeholder="Employee name" value="">
-                        <label class="form-control-label" for="input-prenom">prenom</label>
-                        <input type="text" formControlName="prenom" id="input-prenom" class="form-control form-control-alternative" placeholder="Employee prenom" value="">
-                        <label class="form-control-label" for="input-role">role</label>
-                        <input type="text" formControlName="role" id="input-role" class="form-control form-control-alternative" placeholder="Employee role" value="">
-                        <label class="form-control-label" for="input-etat">etat</label>
-                        <input type="text" formControlName="etat" id="input-etat" class="form-control form-control-alternative" placeholder="Employee etat" value="">
-                        <label class="form-control-label" for="input-datenaiss">datenaiss</label>
-                        <input type="text" formControlName="datenaiss" id="input-datenaiss" class="form-control form-control-alternative" placeholder="Employee datenaiss" value="">
-                        <label class="form-control-label" for="input-adresse">adresse</label>
-                        <input type="text" formControlName="adresse" id="input-adresse" class="form-control form-control-alternative" placeholder="Employee adresse" value="">
-                      </div>
+                      <h6 class="heading-small text-muted mb-4">Employee informations</h6>
+                      <label class="form-control-label" for="input-lastname">lastname</label>
+                      <input type="text" formControlName="lastname" id="input-lastname" class="form-control form-control-alternative" placeholder="Employee lastname" value="">
+                      <label class="form-control-label" for="input-firstname">firstname</label>
+                      <input type="text" formControlName="firstname" id="input-firstname" class="form-control form-control-alternative" placeholder="Employee firstname" value="">
+                      <label class="form-control-label" for="input-role">role</label>
+                      <input type="text" formControlName="role" id="input-role" class="form-control form-control-alternative" placeholder="Employee role" value="">
+                      <label class="form-control-label" for="input-status">status</label>
+                      <input type="text" formControlName="status" id="input-status" class="form-control form-control-alternative" placeholder="Employee status" value="">
+                      <label class="form-control-label" for="input-birthdate">birthdate</label>
+                      <input type="text" formControlName="birthdate" id="input-birthdate" class="form-control form-control-alternative" placeholder="Employee birthdate" value="">
+                      <label class="form-control-label" for="input-address">address</label>
+                      <input type="text" formControlName="address" id="input-address" class="form-control form-control-alternative" placeholder="Employee address" value="">
+                    </div>
                 </div>
               </div>
             </div>
@@ -97,10 +98,10 @@
           <thead class="thead-light">
             <tr >
               <th scope="col">Id</th>
-              <th scope="col">nom</th>
-              <th scope="col">prenom</th>
+              <th scope="col">lastname</th>
+              <th scope="col">firstname</th>
               <th scope="col">role</th>
-              <th scope="col">etat</th>
+              <th scope="col">status</th>
               <th scope="col">birthdate</th>
               <th scope="col">address</th>
     
@@ -120,22 +121,22 @@
                 </div>
               </td>
               <td>
-                {{employee.nom}}
+                {{employee.lastname}}
               </td>
               <td>
-                {{employee.prenom}}
+                {{employee.firstname}}
               </td>
               <td>
                 {{employee.role}}
               </td>
               <td>
-                {{employee.etat}}
+                {{employee.status}}
               </td>
               <td>
-                {{employee.datenaiss}}
+                {{employee.birthdate}}
               </td>
               <td>
-                {{employee.adresse}}
+                {{employee.address}}
               </td>
               <td class="text-right">
                 <div ngbDropdown placement="bottom-right">

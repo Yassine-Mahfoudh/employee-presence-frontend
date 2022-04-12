@@ -31,10 +31,10 @@ export class DemandeComponent implements OnInit {
     this.getDemandes();
     this.demandeDetail = this.formBuilder.group({
       id: [''],
-      nom:[''],
-      motif:[''],
-      datedebut:[''],
-      datefin:['']
+      name:[''],
+      motive:[''],
+      startdate:[''],
+      enddate:['']
     });
   }
 
@@ -52,10 +52,10 @@ export class DemandeComponent implements OnInit {
 
     console.log(this.demandeDetail);
     this.demandeobj.id=this.demandeDetail.value.id;
-    this.demandeobj.nom=this.demandeDetail.value.nom;
-    this.demandeobj.motif=this.demandeDetail.value.motif;
-    this.demandeobj.datedebut=this.demandeDetail.value.datedebut;
-    this.demandeobj.datefin=this.demandeDetail.value.datefin;
+    this.demandeobj.name=this.demandeDetail.value.name;
+    this.demandeobj.motive=this.demandeDetail.value.motive;
+    this.demandeobj.startdate=this.demandeDetail.value.startdate;
+    this.demandeobj.enddate=this.demandeDetail.value.enddate;
     this.demandeService.addDemande(this.demandeobj).subscribe(res=>{
       console.log(res);
       this.getDemandes();
@@ -73,10 +73,10 @@ getDemandes(){
 
 editDemande(demande : Demande){
   this.demandeDetail.controls['id'].setValue(demande.id);
-  this.demandeDetail.controls['nom'].setValue(demande.nom);
-  this.demandeDetail.controls['motif'].setValue(demande.motif);
-  this.demandeDetail.controls['datedebut'].setValue(demande.datedebut);
-  this.demandeDetail.controls['datefin'].setValue(demande.datefin);
+  this.demandeDetail.controls['name'].setValue(demande.name);
+  this.demandeDetail.controls['motive'].setValue(demande.motive);
+  this.demandeDetail.controls['startdate'].setValue(demande.startdate);
+  this.demandeDetail.controls['enddate'].setValue(demande.enddate);
 
 }
 
@@ -93,10 +93,10 @@ deleteDemande(demande : Demande){
 
 updateDemande(){
   this.demandeobj.id=this.demandeDetail.value.id;
-  this.demandeobj.nom=this.demandeDetail.value.nom;
-  this.demandeobj.motif=this.demandeDetail.value.motif;
-  this.demandeobj.datedebut=this.demandeDetail.value.datedebut;
-  this.demandeobj.datefin=this.demandeDetail.value.datefin;
+  this.demandeobj.name=this.demandeDetail.value.name;
+  this.demandeobj.motive=this.demandeDetail.value.motive;
+  this.demandeobj.startdate=this.demandeDetail.value.startdate;
+  this.demandeobj.enddate=this.demandeDetail.value.enddate;
   this.demandeService.updateDemande(this.demandeobj).subscribe(res=>{
     console.log(res);
     this.getDemandes();
@@ -106,7 +106,7 @@ updateDemande(){
 }
 
 confirmDelete(demande: Demande) {
-  if(confirm("Are you sure you want to delete demande "+demande.nom)) {
+  if(confirm("Are you sure you want to delete demande "+demande.name)) {
      this.deleteDemande(demande);
   }
 }

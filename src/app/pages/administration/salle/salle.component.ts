@@ -83,7 +83,7 @@ deleteSalle(salle : Salle){
 
     this.salleService.deleteSalle(salle).subscribe(res=>{
       console.log(res);
-      alert("profil deleted successfully");
+      alert("salle deleted successfully");
       this.getSalles();
     }
     );

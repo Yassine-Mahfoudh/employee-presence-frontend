@@ -1,8 +1,8 @@
 export class Projet {
     id:number=0;
-    nom:string='';
+    name:string='';
     priorite:number=0;
     description:string='';
-    datedebut:string='';
-    datefin:string='';
+    startdate:string='';
+    enddate:string='';
 }

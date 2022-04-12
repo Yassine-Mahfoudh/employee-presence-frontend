@@ -5,10 +5,10 @@
         <tr >
           <th scope="col">Id</th>
           <th scope="col">name</th>
-          <th scope="col">priorite</th>
+          <th scope="col">priority</th>
           <th scope="col">description</th>
-          <th scope="col">datedebut</th>
-          <th scope="col">datefin</th>
+          <th scope="col">startdate</th>
+          <th scope="col">enddate</th>
 
           <th scope="col"></th>
         </tr>
@@ -26,19 +26,19 @@
             </div>
           </td>
           <td>
-            {{projet.nom}}
+            {{projet.name}}
           </td>
           <td>
-            {{projet.priorite}}
+            {{projet.priority}}
           </td>
           <td>
             {{projet.description}}
           </td>
           <td>
-            {{projet.datedebut}}
+            {{projet.startdate}}
           </td>
           <td>
-            {{projet.datefin}}
+            {{projet.enddate}}
           </td>
           <td class="text-right">
             <div ngbDropdown placement="bottom-right">

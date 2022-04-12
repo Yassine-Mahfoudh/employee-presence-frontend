@@ -31,7 +31,7 @@ export class FonctionaliteComponent implements OnInit {
     this.getFonctionalites();
     this.fonctionaliteDetail = this.formBuilder.group({
       id: [''],
-      nom:[''],
+      name:[''],
       designation:['']
     });
   }
@@ -50,7 +50,7 @@ export class FonctionaliteComponent implements OnInit {
 
     console.log(this.fonctionaliteDetail);
     this.fonctionaliteobj.id=this.fonctionaliteDetail.value.id;
-    this.fonctionaliteobj.nom=this.fonctionaliteDetail.value.nom;
+    this.fonctionaliteobj.name=this.fonctionaliteDetail.value.name;
     this.fonctionaliteobj.designation=this.fonctionaliteDetail.value.designation;
     this.fonctionaliteService.addFonctionalite(this.fonctionaliteobj).subscribe(res=>{
       console.log(res);
@@ -69,7 +69,7 @@ getFonctionalites(){
 
 editFonctionalite(fonctionalite : Fonctionalite){
   this.fonctionaliteDetail.controls['id'].setValue(fonctionalite.id);
-  this.fonctionaliteDetail.controls['nom'].setValue(fonctionalite.nom);
+  this.fonctionaliteDetail.controls['name'].setValue(fonctionalite.name);
   this.fonctionaliteDetail.controls['designation'].setValue(fonctionalite.designation);
  
 
@@ -88,7 +88,7 @@ deleteFonctionalite(fonctionalite : Fonctionalite){
 
   updateFonctionalite(){
   this.fonctionaliteobj.id=this.fonctionaliteDetail.value.id;
-  this.fonctionaliteobj.nom=this.fonctionaliteDetail.value.nom;
+  this.fonctionaliteobj.name=this.fonctionaliteDetail.value.name;
   this.fonctionaliteobj.designation=this.fonctionaliteDetail.value.designation;
   this.fonctionaliteService.updateFonctionalite(this.fonctionaliteobj).subscribe(res=>{
     console.log(res);
@@ -98,7 +98,7 @@ deleteFonctionalite(fonctionalite : Fonctionalite){
 }
 
 confirmDelete(fonctionalite: Fonctionalite) {
-  if(confirm("Are you sure you want to delete demande "+fonctionalite.nom)) {
+  if(confirm("Are you sure you want to delete demande "+fonctionalite.name)) {
      this.deleteFonctionalite(fonctionalite);
   }
 }

@@ -30,8 +30,7 @@ import { LogaccessComponent } from './logaccess/logaccess.component';
 import { UsersComponent } from './users/users.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 
 @NgModule({
@@ -54,7 +53,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     EmployeeListComponent,
     FonctionaliteComponent,
     FonctionaliteListComponent,
-    
+    LogaccessComponent,
+    MyaccountComponent
  
   ],
   imports: [

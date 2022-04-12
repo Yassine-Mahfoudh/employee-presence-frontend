@@ -4,10 +4,10 @@
       <thead class="thead-light">
         <tr >
           <th scope="col">Id</th>
-          <th scope="col">nom</th>
-          <th scope="col">prenom</th>
+          <th scope="col">lastname</th>
+          <th scope="col">firstname</th>
           <th scope="col">role</th>
-          <th scope="col">etat</th>
+          <th scope="col">status</th>
           <th scope="col">birthdate</th>
           <th scope="col">address</th>
 
@@ -27,22 +27,22 @@
             </div>
           </td>
           <td>
-            {{employee.nom}}
+            {{employee.lastname}}
           </td>
           <td>
-            {{employee.prenom}}
+            {{employee.firstname}}
           </td>
           <td>
             {{employee.role}}
           </td>
           <td>
-            {{employee.etat}}
+            {{employee.status}}
           </td>
           <td>
-            {{employee.datenaiss}}
+            {{employee.birthdate}}
           </td>
           <td>
-            {{employee.adresse}}
+            {{employee.address}}
           </td>
           <td class="text-right">
             <div ngbDropdown placement="bottom-right">

@@ -30,7 +30,7 @@ export class DepartementComponent implements OnInit {
     this.getDepartements();
     this.departementDetail = this.formBuilder.group({
       id: [''],
-      nom:[''],
+      name:[''],
       nbsalles:['']
     });
   }
@@ -47,7 +47,7 @@ export class DepartementComponent implements OnInit {
 
     console.log(this.departementDetail);
     this.departementobj.id=this.departementDetail.value.id;
-    this.departementobj.nom=this.departementDetail.value.nom;
+    this.departementobj.name=this.departementDetail.value.name;
     this.departementobj.nbsalles=this.departementDetail.value.nbsalles;
     this.departementService.addDepartement(this.departementobj).subscribe(res=>{
       console.log(res);
@@ -66,7 +66,7 @@ getDepartements(){
 
 editDepartement(departement : Departement){
   this.departementDetail.controls['id'].setValue(departement.id);
-  this.departementDetail.controls['nom'].setValue(departement.nom);
+  this.departementDetail.controls['name'].setValue(departement.name);
   this.departementDetail.controls['nbsalles'].setValue(departement.nbsalles);
 
 }
@@ -84,7 +84,7 @@ deleteDepartement(departement : Departement){
 
   updateDepartement(){
     this.departementobj.id=this.departementDetail.value.id;
-    this.departementobj.nom=this.departementDetail.value.nom;
+    this.departementobj.name=this.departementDetail.value.name;
     this.departementobj.nbsalles=this.departementDetail.value.nbsalles;
   this.departementService.updateDepartement(this.departementobj).subscribe(res=>{
     console.log(res);
@@ -95,7 +95,7 @@ deleteDepartement(departement : Departement){
 }
 
 confirmDelete(departement: Departement) {
-  if(confirm("Are you sure you want to delete this profil : "+departement.nom)) {
+  if(confirm("Are you sure you want to delete this profil : "+departement.name)) {
      this.deleteDepartement(departement);
   }
 }
