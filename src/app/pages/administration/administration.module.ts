@@ -54,8 +54,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     EmployeeListComponent,
     FonctionaliteComponent,
     FonctionaliteListComponent,
-    LogaccessComponent,
-    MyaccountComponent,
+    
  
   ],
   imports: [
@@ -72,8 +71,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     //MatToolbarModule,
     BrowserAnimationsModule,
     MatTabsModule,
-    MatCardModule,
-    MatFormFieldModule
+   
   ]
 })
 export class AdministrationModule { }
