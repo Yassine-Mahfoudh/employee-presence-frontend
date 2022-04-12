@@ -26,6 +26,7 @@ import { PagesModule } from './pages/pages.module';
 
 
 import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import {MatCardModule} from '@angular/material/card';
     MatCardModule,
     MatIconModule,
     MatToolbarModule,
+    MatTabsModule
 
 
 

@@ -1,0 +1,46 @@
+  <!-- getprofils -->
+  <div class="table-responsive">
+    <table class="table align-items-center table-flush">
+      <thead class="thead-light">
+        <tr >
+          <th scope="col">Id</th>
+          <th scope="col">User name</th>
+          <!--<th scope="col">Password</th>-->
+          <th scope="col">email</th>
+
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let users of usersList | paginate: { id:'listing_pagination',
+        itemsPerPage:4,
+        currentPage:page,
+        totalItems:totalRec} ">
+          <td scope="row">
+            <div class="media align-items-center">
+              <div class="media-body">
+                <span class="mb-0 text-sm">{{users.id}}</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            {{users.userName}}
+          </td>
+          <td>
+              {{users.userPassword}
+            </td>
+            <td>
+              {{users.email}}
+            </td>
+          
+        </tr>
+     </tbody>
+    </table>
+      <div>
+        <pagination-controls  id="listing_pagination"
+          (pageChange)="page=$event"  
+     >
+</pagination-controls>
+  
+      </div>
+</div>

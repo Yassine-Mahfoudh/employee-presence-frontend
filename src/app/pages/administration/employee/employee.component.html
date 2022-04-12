@@ -1,0 +1,163 @@
+
+    
+      <!-- adddEmployee -->
+
+  
+    
+      <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Add Employee </h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="employeeDetail">
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <h6 class="heading-small text-muted mb-4">Employee information</h6>
+                    <label class="form-control-label" for="input-nom">name</label>
+                    <input type="text" formControlName="nom" id="input-nom" class="form-control form-control-alternative" placeholder="Employee name" value="">
+                    <label class="form-control-label" for="input-prenom">prenom</label>
+                    <input type="text" formControlName="prenom" id="input-prenom" class="form-control form-control-alternative" placeholder="Employee prenom" value="">
+                    <label class="form-control-label" for="input-role">role</label>
+                    <input type="text" formControlName="role" id="input-role" class="form-control form-control-alternative" placeholder="Employee role" value="">
+                    <label class="form-control-label" for="input-etat">etat</label>
+                    <input type="text" formControlName="etat" id="input-etat" class="form-control form-control-alternative" placeholder="Employee etat" value="">
+                    <label class="form-control-label" for="input-datenaiss">datenaiss</label>
+                    <input type="text" formControlName="datenaiss" id="input-datenaiss" class="form-control form-control-alternative" placeholder="Employee datenaiss" value="">
+                    <label class="form-control-label" for="input-adresse">adresse</label>
+                    <input type="text" formControlName="adresse" id="input-adresse" class="form-control form-control-alternative" placeholder="Employee adresse" value="">
+                  
+                </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" (click)="close(content)" >Close</button>
+        <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="addEmployee()" (click)="c('Save click')">addEmployee</button></div>
+          </form>
+        </div>
+       
+      </ng-template>
+    
+      <!-- editEmployee -->
+    
+
+      <ng-template #contentUpdate let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">update Employee details </h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="employeeDetail">
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-nom">name</label>
+                        <input type="text" formControlName="nom" id="input-nom" class="form-control form-control-alternative" placeholder="Employee name" value="">
+                        <label class="form-control-label" for="input-prenom">prenom</label>
+                        <input type="text" formControlName="prenom" id="input-prenom" class="form-control form-control-alternative" placeholder="Employee prenom" value="">
+                        <label class="form-control-label" for="input-role">role</label>
+                        <input type="text" formControlName="role" id="input-role" class="form-control form-control-alternative" placeholder="Employee role" value="">
+                        <label class="form-control-label" for="input-etat">etat</label>
+                        <input type="text" formControlName="etat" id="input-etat" class="form-control form-control-alternative" placeholder="Employee etat" value="">
+                        <label class="form-control-label" for="input-datenaiss">datenaiss</label>
+                        <input type="text" formControlName="datenaiss" id="input-datenaiss" class="form-control form-control-alternative" placeholder="Employee datenaiss" value="">
+                        <label class="form-control-label" for="input-adresse">adresse</label>
+                        <input type="text" formControlName="adresse" id="input-adresse" class="form-control form-control-alternative" placeholder="Employee adresse" value="">
+                      </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" (click)="close(contentUpdate)">Close</button>
+        <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="updateEmployee()" (click)="c('Save click')">updateEmployee</button></div>
+          </form>
+        </div>
+      </ng-template>
+
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Employee manager </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <button class="btn btn-outline-primary" data-bs-toggle="modal" (click)="open(content)" >add Employee</button>
+              </div>
+            </div>
+          </nav>
+        </div>
+     <!-- getdemandes -->
+     <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr >
+              <th scope="col">Id</th>
+              <th scope="col">nom</th>
+              <th scope="col">prenom</th>
+              <th scope="col">role</th>
+              <th scope="col">etat</th>
+              <th scope="col">birthdate</th>
+              <th scope="col">address</th>
+    
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of employeeList | paginate: { id:'listing_pagination',
+            itemsPerPage:4,
+            currentPage:page,
+            totalItems:totalRec} ">
+              <td scope="row">
+                <div class="media align-items-center">
+                  <div class="media-body">
+                    <span class="mb-0 text-sm">{{employee.id}}</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                {{employee.nom}}
+              </td>
+              <td>
+                {{employee.prenom}}
+              </td>
+              <td>
+                {{employee.role}}
+              </td>
+              <td>
+                {{employee.etat}}
+              </td>
+              <td>
+                {{employee.datenaiss}}
+              </td>
+              <td>
+                {{employee.adresse}}
+              </td>
+              <td class="text-right">
+                <div ngbDropdown placement="bottom-right">
+                  <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                    <i class="fas fa-ellipsis-v"></i>
+                  </a>
+                  <div >
+                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"  data-bs-target="#editEmployee" (click)="editEmployee(employee)" (click)="open(contentUpdate)">edit</button>
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-dismiss="modal"  (click)="confirmDelete(employee)">delete</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+         </tbody>
+        </table>
+          <div>
+            <pagination-controls  id="listing_pagination"
+              (pageChange)="page=$event"  
+         >
+    </pagination-controls>
+      
+          </div>
+    </div>
+    
+   

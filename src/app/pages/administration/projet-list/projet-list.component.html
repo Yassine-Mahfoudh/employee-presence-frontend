@@ -1,0 +1,60 @@
+<!-- getprojects -->
+<div class="table-responsive">
+    <table class="table align-items-center table-flush">
+      <thead class="thead-light">
+        <tr >
+          <th scope="col">Id</th>
+          <th scope="col">name</th>
+          <th scope="col">priorite</th>
+          <th scope="col">description</th>
+          <th scope="col">datedebut</th>
+          <th scope="col">datefin</th>
+
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let projet of projetList | paginate: { id:'listing_pagination',
+        itemsPerPage:4,
+        currentPage:page,
+        totalItems:totalRec} ">
+          <td scope="row">
+            <div class="media align-items-center">
+              <div class="media-body">
+                <span class="mb-0 text-sm">{{projet.id}}</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            {{projet.nom}}
+          </td>
+          <td>
+            {{projet.priorite}}
+          </td>
+          <td>
+            {{projet.description}}
+          </td>
+          <td>
+            {{projet.datedebut}}
+          </td>
+          <td>
+            {{projet.datefin}}
+          </td>
+          <td class="text-right">
+            <div ngbDropdown placement="bottom-right">
+              <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                <i class="fas fa-ellipsis-v"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+     </tbody>
+    </table>
+      <div>
+        <pagination-controls  id="listing_pagination"
+          (pageChange)="page=$event"  
+     >
+</pagination-controls>
+  
+      </div>
+</div>

@@ -1,0 +1,66 @@
+ <!-- getdemandes -->
+ <div class="table-responsive">
+    <table class="table align-items-center table-flush">
+      <thead class="thead-light">
+        <tr >
+          <th scope="col">Id</th>
+          <th scope="col">nom</th>
+          <th scope="col">prenom</th>
+          <th scope="col">role</th>
+          <th scope="col">etat</th>
+          <th scope="col">birthdate</th>
+          <th scope="col">address</th>
+
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employeeList | paginate: { id:'listing_pagination',
+        itemsPerPage:4,
+        currentPage:page,
+        totalItems:totalRec} ">
+          <td scope="row">
+            <div class="media align-items-center">
+              <div class="media-body">
+                <span class="mb-0 text-sm">{{employee.id}}</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            {{employee.nom}}
+          </td>
+          <td>
+            {{employee.prenom}}
+          </td>
+          <td>
+            {{employee.role}}
+          </td>
+          <td>
+            {{employee.etat}}
+          </td>
+          <td>
+            {{employee.datenaiss}}
+          </td>
+          <td>
+            {{employee.adresse}}
+          </td>
+          <td class="text-right">
+            <div ngbDropdown placement="bottom-right">
+              <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                <i class="fas fa-ellipsis-v"></i>
+              </a>
+             
+            </div>
+          </td>
+        </tr>
+     </tbody>
+    </table>
+      <div>
+        <pagination-controls  id="listing_pagination"
+          (pageChange)="page=$event"  
+     >
+</pagination-controls>
+  
+      </div>
+</div>
+

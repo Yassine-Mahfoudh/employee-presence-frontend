@@ -19,10 +19,19 @@ export class AuthService {
     localStorage.setItem('jwtToken', jwtToken);
   }
 
+  public getUsername(): string {
+    return localStorage.getItem('userName')||'null'||'{}';
+  }
+
+  public setUsername(userName: string) {
+    localStorage.setItem('userName', userName);
+  }
+
   public getToken(): string {
     return localStorage.getItem('jwtToken')||'null'||'{}';
   }
 
+  
   public clear() {
     localStorage.clear();
   }
@@ -30,4 +39,5 @@ export class AuthService {
   public isLoggedIn() {
     return this.getRoles() && this.getToken();
   }
+  
 }

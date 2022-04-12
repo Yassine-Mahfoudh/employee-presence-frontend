@@ -12,8 +12,9 @@
             class="user mt-2 d-flex align-items-center"
           >
             <img src="./assets/user.jpg" alt="" class="user-image mr-1 p-2" />
-
-            User Name
+            <li>
+            {{authService.getUsername()}}
+          </li>
             <mat-icon class="user-image-icon ml-1"
               >keyboard_arrow_down</mat-icon
             >
@@ -22,6 +23,10 @@
             <button mat-menu-item (click)="logout()">
               <mat-icon>exit_to_app</mat-icon>
               Logout
+            </button>
+          <button mat-menu-item routerLink="/myAccount">
+              <mat-icon>account_circle</mat-icon>
+              My account
             </button>
           </mat-menu>
         </li>

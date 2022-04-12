@@ -1,0 +1,56 @@
+ <!-- getdemandes -->
+ <div class="table-responsive">
+    <table class="table align-items-center table-flush">
+      <thead class="thead-light">
+        <tr >
+          <th scope="col">Id</th>
+          <th scope="col">nom</th>
+          <th scope="col">motif</th>
+          <th scope="col">datedebut</th>
+          <th scope="col">datefin</th>
+
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let demande of demandeList | paginate: { id:'listing_pagination',
+        itemsPerPage:4,
+        currentPage:page,
+        totalItems:totalRec} ">
+          <td scope="row">
+            <div class="media align-items-center">
+              <div class="media-body">
+                <span class="mb-0 text-sm">{{demande.id}}</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            {{demande.nom}}
+          </td>
+          <td>
+            {{demande.motif}}
+          </td>
+          <td>
+            {{demande.datedebut}}
+          </td>
+          <td>
+            {{demande.datefin}}
+          </td>
+          <td class="text-right">
+            <div ngbDropdown placement="bottom-right">
+              <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                <i class="fas fa-ellipsis-v"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+     </tbody>
+    </table>
+      <div>
+        <pagination-controls  id="listing_pagination"
+          (pageChange)="page=$event"  
+     >
+</pagination-controls>
+  
+      </div>
+</div>

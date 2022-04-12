@@ -3,31 +3,59 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AdministrationRoutingModule } from './administration-routing.module';
-import { LogAccessComponent } from './log-access/log-access.component';
 import { LogDataComponent } from './log-data/log-data.component';
-import { ProfileComponent } from './profile/profile.component';
-import { UsersComponent } from './users/users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
 
-import {MatCardModule} from '@angular/material/card';
 import { SalleComponent } from './salle/salle.component';
 import { ModalFormComponentComponent } from './modal-form-component/modal-form-component.component';
 
 
 import { ModalModule } from "ngx-bootstrap/modal";
+import { ProfilComponent } from './profil/profil.component';
+import { ProfilListComponent } from './profil-list/profil-list.component';
+import { SalleListComponent } from './salle-list/salle-list.component';
+import { ProjetComponent } from './projet/projet.component';
+import { ProjetListComponent } from './projet-list/projet-list.component';
+import { DepartementComponent } from './departement/departement.component';
+import { DepartementListComponent } from './departement-list/departement-list.component';
+import { DemandeComponent } from './demande/demande.component';
+import { DemandeListComponent } from './demande-list/demande-list.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { FonctionaliteComponent } from './fonctionalite/fonctionalite.component';
+import { FonctionaliteListComponent } from './fonctionalite-list/fonctionalite-list.component';
+import { LogaccessComponent } from './logaccess/logaccess.component';
+import { UsersComponent } from './users/users.component';
+import { MyaccountComponent } from './myaccount/myaccount.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 @NgModule({
   declarations: [
-    LogAccessComponent,
     LogDataComponent,
-    ProfileComponent,
+    ProfilComponent,
     UsersComponent,
     SalleComponent,
     ModalFormComponentComponent,
+    ProfilListComponent,
+    SalleListComponent,
+    ProjetComponent,
+    ProjetListComponent,
+    DepartementComponent,
+    DepartementListComponent,
+    DemandeComponent,
+    DemandeListComponent,
+    UsersListComponent,
+    EmployeeComponent,
+    EmployeeListComponent,
+    FonctionaliteComponent,
+    FonctionaliteListComponent,
+    LogaccessComponent,
+    MyaccountComponent,
  
   ],
   imports: [
@@ -43,6 +71,9 @@ import { ModalModule } from "ngx-bootstrap/modal";
    // MatIconModule,
     //MatToolbarModule,
     BrowserAnimationsModule,
+    MatTabsModule,
+    MatCardModule,
+    MatFormFieldModule
   ]
 })
 export class AdministrationModule { }
