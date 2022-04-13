@@ -42,7 +42,7 @@ export class UserService {
       {
         for(let j=0;j<allowedRoles.length;j++)
         {
-          if(userRoles[i].type === allowedRoles[j])
+          if(userRoles[i].name === allowedRoles[j])
           {
             isMatch=true;
             return isMatch;

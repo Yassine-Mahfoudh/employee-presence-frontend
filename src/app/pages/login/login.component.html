@@ -1,3 +1,4 @@
+<!--
 <div class="container mt-5">
     <div class="card" style="padding: 20px;">
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
@@ -23,3 +24,34 @@
         </form>
     </div>
 </div>
+-->
+<html>
+    <body>
+        <div class="wrapper">
+            <form class="login" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+              <p class="title">Log in</p>
+              <input type="text" placeholder="Username" autofocus  ngModel 
+              name="userName"
+              id="userName"
+              />
+              <i class="fab fa fa-user"></i>
+              <input type="password" placeholder="Password" ngModel
+              name="userPassword"
+              id="userPassword" />
+              <i class="fab fa fa-key"></i>
+              <a href="#">Forgot your password?  <i class="fa fa-ambulance" aria-hidden="true"></i></a>
+              <button>
+                <i class="spinner"></i>
+                <span class="state" type="submit"
+                value="Login"
+                >Log in</span>
+              </button>
+            </form>
+            <footer><a target="blank" href="http://www.st2i.com.tn/">ST2i.com</a></footer>
+          </div>
+          
+
+
+        
+    </body>
+</html>

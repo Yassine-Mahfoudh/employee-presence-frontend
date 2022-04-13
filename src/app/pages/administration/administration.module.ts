@@ -31,6 +31,9 @@ import { UsersComponent } from './users/users.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import {MatTabsModule} from '@angular/material/tabs';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+
+import{MatIconModule} from '@angular/material/icon'
 
 
 @NgModule({
@@ -71,6 +74,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     //MatToolbarModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    FontAwesomeModule,
+    MatIconModule
    
   ]
 })
