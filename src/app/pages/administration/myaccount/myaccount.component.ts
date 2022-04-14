@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from 'src/app/core/models/employee';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { MyaccountService } from 'src/app/shared/service/account/myaccount.service';
 
 @Component({
   selector: 'app-myaccount',
@@ -11,25 +10,18 @@ import { MyaccountService } from 'src/app/shared/service/account/myaccount.servi
 export class MyaccountComponent implements OnInit {
 
   account:Employee;
+  lastname:any;
 
   //myaccount:Employee;
 
-  constructor(private myaccountService:MyaccountService,
-    private authService:AuthService) { }
+  constructor(public authService:AuthService) { }
 
   ngOnInit() {
     console.log("sallllllllllllllut")
-    this.getMyaccount(this.username);
-  }
+    console.log(this.authService.getUserEmployee().lastname)
 
-  username=this.authService.getUsername()
+    this.lastname=this.authService.getUserEmployee().lastname
 
-myaccount=this.getMyaccount(this.username) ;
-  getMyaccount(name){
-    this.myaccountService.getMyaccount(name).subscribe(res=>{
-      this.account=res;
-      console.log(this.account);
-    })
   }
   
 }

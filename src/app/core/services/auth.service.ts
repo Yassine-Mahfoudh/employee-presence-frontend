@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Employee } from '../models/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,9 @@ export class AuthService {
   public setToken(jwtToken: string) {
     localStorage.setItem('jwtToken', jwtToken);
   }
+  public getToken(): string {
+    return localStorage.getItem('jwtToken')||'null'||'{}';
+  }
 
   public getUsername(): string {
     return localStorage.getItem('userName')||'null'||'{}';
@@ -27,9 +31,17 @@ export class AuthService {
     localStorage.setItem('userName', userName);
   }
 
-  public getToken(): string {
-    return localStorage.getItem('jwtToken')||'null'||'{}';
+ 
+
+  public setUserEmployee(employee: []) {
+    /* This is storing the emloyee in local storage. */
+    localStorage.setItem('employee', JSON.stringify(employee));
   }
+  public getUserEmployee(): Employee {
+    return JSON.parse(localStorage.getItem('employee')|| 'null' || '{}');
+  }
+
+
 
   
   public clear() {

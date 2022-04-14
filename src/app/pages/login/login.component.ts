@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         this.authService.setRoles(response.utilisateur.profils);
         this.authService.setToken(response.jwtToken);
         this.authService.setUsername(response.utilisateur.userName)
-
+        this.authService.setUserEmployee(response.utilisateur.employee)
         const type = response.utilisateur.profils[0].name;
         if (type === 'ADMIN') {
           this.router.navigate(['/dashboard']);
