@@ -38,6 +38,6 @@ export class EmployeeService {
 
     updateEmployee(employee : Employee):Observable<Employee>
     {
-      return this.http.put<Employee>(this.updateemployeeurl,employee);   
+      return this.http.put<Employee>(this.updateemployeeurl+'/'+employee.id,employee);   
     }
 }

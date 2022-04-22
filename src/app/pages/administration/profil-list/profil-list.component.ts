@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Profil } from 'src/app/core/models/profil';
-import { ProfilListService } from 'src/app/core/services/profil-list.service';
+import { ProfilService } from 'src/app/core/services/profil.service';
 
 @Component({
   selector: 'app-profil-list',
@@ -13,7 +13,7 @@ export class ProfilListComponent implements OnInit {
   totalRec!: string;
   page:number=1
 
-  constructor( private profillistService: ProfilListService,  config: NgbModalConfig,
+  constructor( private profilService: ProfilService,  config: NgbModalConfig,
     private modalService: NgbModal) {  
        // customize default values of modals used by this component tree
       config.backdrop = 'static';
@@ -30,7 +30,7 @@ export class ProfilListComponent implements OnInit {
     this.modalService.dismissAll(content);
   }
   getProfil(){
-    this.profillistService.getlistProfils().subscribe(res=>{
+    this.profilService.getProfils().subscribe(res=>{
       this.profiList1=res;
     })
   }

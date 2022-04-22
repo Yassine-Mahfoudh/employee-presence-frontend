@@ -20,18 +20,6 @@ export class UserService {
     return this.httpclient.post(this.PATH_API+'/authenticate',loginData,{headers:this.requestHeader});
   }
 
-  public forUser(){
-    return this.httpclient.get(this.PATH_API+'/utilisateur/forUser',{
-      responseType:'text'
-      });
-  }
-  
-  public forAdmin(){
-    return this.httpclient.get(this.PATH_API+'/utilisateur/forAmin',{
-      responseType:'text'
-      });
-  }
-
   public roleMatch(allowedRoles) : boolean | undefined{
     let isMatch=false;
     const userRoles : any=this.authService.getRoles();
@@ -56,5 +44,13 @@ export class UserService {
     }
     //throw new Error("Role not found")
   }
+
+  public forgotPassword(email:any){
+    return this.httpclient.post(this.PATH_API+'/utilisateur/forgotPassword',email,
+    {headers:this.requestHeader});
+  // {headers : new HttpHeaders().set('Content-Type',"application/json")});
+  }
+
+
   
 }

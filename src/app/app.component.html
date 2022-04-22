@@ -1,6 +1,5 @@
 <app-login *ngIf="! isLoggedIn()"></app-login>
 
-
 <mat-drawer-container *ngIf="isLoggedIn()">
     <mat-drawer mode="side" [opened]="sideBarOpen">
       <!-- <mat-drawer mode="side" opened="true"> -->
@@ -11,3 +10,4 @@
       <router-outlet></router-outlet>
     </mat-drawer-content>
   </mat-drawer-container>
+<ngx-ui-loader></ngx-ui-loader>

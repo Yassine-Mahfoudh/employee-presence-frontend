@@ -36,7 +36,7 @@ export class UsersService {
 
     updateUsers(users : Users):Observable<Users>
     {
-      return this.http.put<Users>(this.updateUserslurl,users);   
+      return this.http.put<Users>(this.updateUserslurl+'/'+users.id,users);   
     }
 
 }

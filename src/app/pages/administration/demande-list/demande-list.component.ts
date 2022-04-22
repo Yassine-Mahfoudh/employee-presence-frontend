@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Demande } from 'src/app/core/models/demande';
-import { DemandeListService } from 'src/app/core/services/demande-list.service';
+import { DemandeService } from 'src/app/core/services/demande.service';
 
 @Component({
   selector: 'app-demande-list',
@@ -15,7 +15,7 @@ export class DemandeListComponent implements OnInit {
   page:number=1
 
   constructor(
-     private demandeListService: DemandeListService,
+     private demandeService: DemandeService,
      config: NgbModalConfig,
       private modalService: NgbModal
      ) {
@@ -37,7 +37,7 @@ export class DemandeListComponent implements OnInit {
     this.modalService.dismissAll(content);
   }
   getDemandes(){
-    this.demandeListService.getDemandes().subscribe(res=>{
+    this.demandeService.getDemandes().subscribe(res=>{
       this.demandeList=res;
     })
   }

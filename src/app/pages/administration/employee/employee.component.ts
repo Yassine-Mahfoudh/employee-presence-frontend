@@ -104,7 +104,7 @@ updateEmployee(){
   this.employeeobj.role=this.employeeDetail.value.role;
   this.employeeobj.status=this.employeeDetail.value.status;
   this.employeeobj.birthdate=this.employeeDetail.value.birthdate;
-  this.employeeobj.address=this.employeeDetail.value.adresse;
+  this.employeeobj.address=this.employeeDetail.value.address;
   this.employeeService.updateEmployee(this.employeeobj).subscribe(res=>{
     console.log(res);
     this.getEmployees();

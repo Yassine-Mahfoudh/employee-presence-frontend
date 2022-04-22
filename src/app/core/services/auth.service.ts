@@ -33,7 +33,7 @@ export class AuthService {
 
  
 
-  public setUserEmployee(employee: []) {
+  public setUserEmployee(employee: Employee) {
     /* This is storing the emloyee in local storage. */
     localStorage.setItem('employee', JSON.stringify(employee));
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Users } from 'src/app/core/models/users';
-import { UsersListService } from 'src/app/core/services/users-list.service';
+import { UsersService } from 'src/app/core/services/users.service';
 
 @Component({
   selector: 'app-users-list',
@@ -12,7 +12,7 @@ export class UsersListComponent implements OnInit {
   usersList:Users[] = [];
   totalRec!: string;
   page:number=1
-  constructor( private usersListService: UsersListService,  config: NgbModalConfig,
+  constructor( private usersService: UsersService,  config: NgbModalConfig,
     private modalService: NgbModal) {  
        // customize default values of modals used by this component tree
       config.backdrop = 'static';
@@ -30,7 +30,7 @@ export class UsersListComponent implements OnInit {
     this.modalService.dismissAll(content);
   }
   getUsers(){
-    this.usersListService.getUsers().subscribe(res=>{
+    this.usersService.getUsers().subscribe(res=>{
       this.usersList=res;
     })
   }

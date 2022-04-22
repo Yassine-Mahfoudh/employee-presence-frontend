@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Departement } from 'src/app/core/models/departement';
-import { DepartementListService } from 'src/app/core/services/departement-list.service';
+import { DepartementService } from 'src/app/core/services/departement.service';
 
 @Component({
   selector: 'app-departement-list',
@@ -15,7 +15,7 @@ export class DepartementListComponent implements OnInit {
   page:number=1
 
   constructor(config: NgbModalConfig,
-    private modalService: NgbModal, private departementListService: DepartementListService ) {
+    private modalService: NgbModal, private departementService: DepartementService ) {
           // customize default values of modals used by this component tree
           config.backdrop = 'static';
           config.keyboard = false;
@@ -32,7 +32,7 @@ export class DepartementListComponent implements OnInit {
     this.modalService.dismissAll(content);
   }
   getDepartements(){
-    this.departementListService.getDepartements().subscribe(res=>{
+    this.departementService.getDepartements().subscribe(res=>{
       this.departementList=res;
     })
   }

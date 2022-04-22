@@ -6,4 +6,5 @@ export class Employee {
     status:boolean=true;
     birthdate:string='';
     address:string='';
+    phonenumber:string='';
 }

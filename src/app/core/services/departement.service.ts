@@ -37,7 +37,7 @@ export class DepartementService {
 
     updateDepartement(departement : Departement):Observable<Departement>
     {
-      return this.http.put<Departement>(this.updatedepartementurl,departement);   
+      return this.http.put<Departement>(this.updatedepartementurl+'/'+departement.id,departement);   
     }
 
 }

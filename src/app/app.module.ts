@@ -16,7 +16,6 @@ import{MatListModule} from '@angular/material/list'
 import{MatIconModule} from '@angular/material/icon'
 import{MatDividerModule} from '@angular/material/divider'
 import { HeaderComponent } from './layouts/header/header.component';
-import { HomeComponent } from './pages/home/home.component';
 import { SidenavComponent } from './layouts/sidenav/sidenav.component';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 
@@ -28,15 +27,31 @@ import { PagesModule } from './pages/pages.module';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 
+import { NgxUiLoaderModule,NgxUiLoaderConfig,SPINNER,PB_DIRECTION } from "ngx-ui-loader";
+
+
+const ngxUiLoaderConfig:NgxUiLoaderConfig = {
+  text:"Loading...",
+  textColor:"#ffffff",
+  textPosition:"center-center",
+  pbColor:"blue",
+  bgsColor:"blue",
+  fgsColor:"blue",
+  fgsType:SPINNER.doubleBounce,
+  fgsSize:100,
+  pbDirection:PB_DIRECTION.leftToRight,
+  pbThickness:5
+}
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
     DashboardComponent,
     SidenavComponent,
     ForbiddenComponent,
+    
     
 
   ],
@@ -49,6 +64,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     SharedModule,
     //AdministrationModule,
     PagesModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+
 
         // * MATERIAL IMPORTS
     MatSidenavModule,

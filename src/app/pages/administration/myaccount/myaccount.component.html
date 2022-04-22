@@ -426,7 +426,8 @@
 -->
 
 
-
+<!--***********************************************************************************************-->
+<!--
 <div class="container">
   <div class="row justify-content-center">
       <div class="col-12 col-lg-10 col-xl-8 mx-auto">
@@ -434,10 +435,10 @@
           <div class="my-4">
               <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                   <li class="nav-item">
-                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Profile</a>
+                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Profil</a>
                   </li>
               </ul>
-              <form>
+              <form [formGroup]="accountDetail">
                   <div class="row mt-5 align-items-center">
                       <div class="col-md-3 text-center mb-5">
                           <div class="avatar avatar-xl">
@@ -470,36 +471,41 @@
                   <div class="form-row">
                       <div class="form-group col-md-6">
                           <label for="firstname">Firstname</label>
-                          <input type="text" id="firstname" class="form-control" placeholder="Brown" />
+                          <input type="text" formControlName="fname" id="firstname" class="form-control" placeholder="{{firstname}}" />
                       </div>
                       <div class="form-group col-md-6">
                           <label for="lastname">Lastname</label>
-                          <input type="text" id="lastname" class="form-control" placeholder="Asher" />
+                          <input type="text" formControlName="lname" id="lastname" class="form-control" placeholder="{{lastname}}" />
                       </div>
                   </div>
                   <div class="form-group">
-                      <label for="inputEmail4">Email</label>
-                      <input type="email" class="form-control" id="inputEmail4" placeholder="brown@asher.me" />
-                  </div>
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" formControlName="ads" id="address" placeholder="{{address}}" />
+                </div>
                   <div class="form-group">
-                      <label for="inputAddress5">Address</label>
-                      <input type="text" class="form-control" id="inputAddress5" placeholder="P.O. Box 464, 5975 Eget Avenue" />
+                      <label for="phonenumber">PhoneNumber</label>
+                      <input type="text" class="form-control"formControlName="phnbr"  id="phonenumber" placeholder="{{phonenumber}}" />
                   </div>
-                  <div class="form-row">
+                  
                       <div class="form-group col-md-6">
-                          <label for="inputCompany5">Company</label>
-                          <input type="text" class="form-control" id="inputCompany5" placeholder="Nec Urna Suscipit Ltd" />
-                      </div>
-                      <div class="form-group col-md-4">
-                          <label for="inputState5">State</label>
-                          <select id="inputState5" class="form-control">
-                              <option selected="">Choose...</option>
-                              <option>...</option>
-                          </select>
+                          <label for="birthdate">BirthDate</label>
+                          <input type="text" class="form-control" formControlName="bdate"  id="BirthDate" placeholder="{{birthdate}}" onfocus="(this.type='date')"/>
                       </div>
                       <div class="form-group col-md-2">
-                          <label for="inputZip5">Zip</label>
-                          <input type="text" class="form-control" id="inputZip5" placeholder="98232" />
+                          <a>Gender</a>
+                          <div class="form-row">
+                            <div >
+                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="true" disabled checked>
+                              <label class="form-check-label" for="exampleRadios3">
+                                 Male
+                              </label>
+                            </div>
+                            <div >
+                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios" value="false" disabled>
+                              <label class="form-check-label" for="exampleRadios3">
+                                 Female
+                              </label>
+                            </div>
                       </div>
                   </div>
                   <hr class="my-4" />
@@ -529,10 +535,126 @@
                           </ul>
                       </div>
                   </div>
-                  <button type="submit" class="btn btn-primary">Save Change</button>
+                  <button type="button" class="btn btn-primary" (click)="updateAccount()"  onclick="alert('refresh to see the update')">Save Change</button>
               </form>
           </div>
       </div>
   </div>
   
   </div>
+
+  -->
+  <!--*************************************************************************************************************-->
+
+  <div class="container">
+    <div class="row ">
+        <div >
+            <h2 class="h3 mb-4 page-title">Settings</h2>
+            <div class="my-4">
+                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Profil</a>
+                    </li>
+                </ul>
+                <form [formGroup]="accountDetail" >
+                    <div class="row ">
+                        <div class="col-md-3 text-center mb-5">
+                            <div class="avatar avatar-xl">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." class="avatar-img rounded-circle" />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row ">
+                                <div class="col-md-7">
+                                    <h5 class="mb-1">{{lastname}} {{firstname}}</h5>
+                                    <p class="small mb-3"><span class="badge badge-dark"></span></p>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-7">
+                                    <p class="text-muted">
+                                      {{address}} 
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p class="small mb-0 text-muted">date of birth :{{birthdate}}</p>
+                                    <p class="small mb-0 text-muted">phone : (+216){{phonenumber}}</p>
+                                    <p class="small mb-0 text-muted">gender : male</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4" />
+                    <div class="row">
+                        <div class="input-group" class="input-group-icon">
+                            <label for="firstname"><h6>Firstname</h6></label>
+                            <div class="input-icon"><i class="fa fa-user"></i></div>
+                            <input  type="text" formControlName="fname" id="firstname" class="form-control" placeholder="{{firstname}}" />
+                        </div>
+                        
+                        <div class="input-group" class="input-group-icon">
+                            <label for="lastname"><h6>Lastname</h6></label>
+                            <div class="input-icon"><i class="fa fa-user"></i></div>
+                            <input type="text" formControlName="lname" id="lastname" class="form-control" placeholder="{{lastname}}" />
+                          
+                        </div>
+                    </div>
+                    <div class="input-group" class="input-group-icon">
+                      <label for="address"><h6>Address</h6></label>
+                      <input  type="text" class="form-control" formControlName="ads" id="address" placeholder="{{address}}" />
+                  </div>
+                    <div class="input-group" class="input-group-icon">
+                        <label for="phonenumber"><h6>PhoneNumber</h6></label>
+                        <input  type="text" class="form-control" formControlName="phnbr"  id="phonenumber" placeholder="{{phonenumber}}" />
+                    </div>
+                    
+                        <div  class="col-half" >
+                            <label for="birthdate"><h6>Date of Birth</h6></label>
+                            <input class="input-group"  type="text" class="form-control" formControlName="bdate"  id="BirthDate" placeholder="{{birthdate}}" onfocus="(this.type='date')"/>
+                        </div>
+                       
+  
+                        <div class="col-half">
+                          <h6>Gender</h6>
+                          <div class="input-group">
+                            <input id="gender-male" type="radio" name="gender" value="male" disabled checked />
+                            <label for="gender-male">Male</label>
+                            <input id="gender-female" type="radio" name="gender" value="female" disabled/>
+                            <label for="gender-female">Female</label>
+                          </div>
+                      </div>
+                  <hr/>
+                    <hr class="my-4" />
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputPassword4">Old Password</label>
+                                <input type="password" class="form-control" id="inputPassword4" />
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword5">New Password</label>
+                                <input type="password" class="form-control" id="inputPassword5" />
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword6">Confirm Password</label>
+                                <input type="password" class="form-control" id="inputPassword6" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-2">Password requirements</p>
+                            <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
+                            <ul class="small text-muted pl-4 mb-0">
+                                <li>Minimum 8 character</li>
+                                <li>At least one special character</li>
+                                <li>At least one number</li>
+                                <li>Can’t be the same as a previous password</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button (click)="updateAccount()" mat-raised-button class="btn btn-danger btn-block" onclick="alert('refresh to see updates')" >Save Change</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    </div>

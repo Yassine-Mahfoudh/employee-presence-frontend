@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { config } from 'rxjs';
 import { Salle } from 'src/app/core/models/salle';
-import { SalleListService } from 'src/app/core/services/salle-list.service';
+import { SalleService } from 'src/app/core/services/salle.service';
 
 @Component({
   selector: 'app-salle-list',
@@ -15,7 +14,7 @@ export class SalleListComponent implements OnInit {
   page:number=1
 
   constructor(
-     private salleListService: SalleListService,
+     private salleService: SalleService,
      config: NgbModalConfig,
       private modalService: NgbModal
      ) {
@@ -40,7 +39,7 @@ export class SalleListComponent implements OnInit {
 
 
 getSalle(){
-  this.salleListService.getSalle().subscribe(res=>{
+  this.salleService.getSalles().subscribe(res=>{
     this.salleList1=res;
   })
 }

@@ -37,7 +37,7 @@ export class ProjetService {
 
     updateProjet(projet : Projet):Observable<Projet>
     {
-      return this.http.put<Projet>(this.updateprojecturl,projet);   
+      return this.http.put<Projet>(this.updateprojecturl+'/'+projet.id,projet);   
     }
 
  
