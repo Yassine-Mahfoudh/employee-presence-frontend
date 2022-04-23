@@ -35,6 +35,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 import{MatIconModule} from '@angular/material/icon'
 
+import {MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import{MatToolbarModule} from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog'
+
 
 @NgModule({
   declarations: [
@@ -75,7 +81,12 @@ import{MatIconModule} from '@angular/material/icon'
     BrowserAnimationsModule,
     MatTabsModule,
     FontAwesomeModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatDialogModule
    
   ]
 })

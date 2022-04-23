@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Employee } from 'src/app/core/models/employee';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { EmployeeService } from 'src/app/core/services/employee.service';
+import { UserService } from 'src/app/core/services/user.service';
+import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
+import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 
 declare var $: any;
 
@@ -13,6 +17,12 @@ declare var $: any;
   styleUrls: ['./myaccount.component.css']
 })
 export class MyaccountComponent implements OnInit {
+
+      //changepassword
+  changePasswordForm:any = FormGroup;
+  responseMessage:any;
+
+
 
   accountDetail!: FormGroup;
   accountobj: Employee = new Employee();
@@ -25,8 +35,17 @@ export class MyaccountComponent implements OnInit {
 
   //myaccount:Employee;
 
-  constructor(public authService:AuthService,public employeeService:EmployeeService,private formBuilder : FormBuilder,  config: NgbModalConfig,
-    private modalService: NgbModal) {
+  constructor(public authService:AuthService,
+    public employeeService:EmployeeService,
+    private formBuilder : FormBuilder,
+    config: NgbModalConfig,
+    private modalService: NgbModal,
+
+    //changepassword
+    private userService:UserService,
+    private ngxService:NgxUiLoaderService,
+    private snackbarService:SnackbarService
+    ) {
 
        // customize default values of modals used by this component tree
        config.backdrop = 'static';
@@ -52,10 +71,51 @@ export class MyaccountComponent implements OnInit {
     this.address=this.authService.getUserEmployee().address
     this.phonenumber=this.authService.getUserEmployee().phonenumber
 
-    
-    
+        //changepassword
+this.changePasswordForm=this.formBuilder.group({
+  oldPassword:[null,[Validators.required]],
+  newPassword:[null,[Validators.required]],
+  confirmPassword:[null,[Validators.required]],
+})
   }
 
+  validateSumbit(){
+    if(this.changePasswordForm.controls['newPassword'].value != this.changePasswordForm.controls['confirmPassword'].value){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  handleChangePasswordSubmit(){
+    this.ngxService.start();
+      var formData=this.changePasswordForm.value;
+      var data = {
+        oldPassword:formData.oldPassword,
+        newPassword:formData.newPassword,
+        confirmPassword:formData.confirmPassword
+      };
+      this.userService.changePassword(data).subscribe((response:any)=>
+      {
+        this.ngxService.stop();
+        this.responseMessage = response?.message;
+        this.snackbarService.openSnackBar("Password updated",'');
+      },
+      (error)=>{
+        this.ngxService.stop();
+        if(error.error?.message){
+          this.responseMessage=error.error?.message;
+        }
+        else{
+          this.responseMessage = "Old Password incorrect ";
+        }
+        this.snackbarService.openSnackBar(
+          this.responseMessage,
+          GlobalConstants.error
+        );
+      }
+      );
+  }
   
   
   open(content) {
@@ -79,6 +139,9 @@ export class MyaccountComponent implements OnInit {
     
   }
 
+  changePassword(){
+
+  }
 
 
   

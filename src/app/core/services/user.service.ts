@@ -51,6 +51,9 @@ export class UserService {
   // {headers : new HttpHeaders().set('Content-Type',"application/json")});
   }
 
-
+  public changePassword(data:any){
+    return this.httpclient.post(this.PATH_API+'/utilisateur/changePassword',data)
+    //,{headers : new HttpHeaders().set('Content-Type',"application/json")});
+  }
   
 }

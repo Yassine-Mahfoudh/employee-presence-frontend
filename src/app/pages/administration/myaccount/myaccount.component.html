@@ -1,660 +1,167 @@
-<!--
-<div class="content">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="title">Edit Profile</h5>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="row">
-                <div class="col-md-5 pr-md-1">
-                  <div class="form-group">
-                    <label>Company (disabled)</label>
-                    <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-                  </div>
-                </div>
-                <div class="col-md-3 px-md-1">
-                  <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" class="form-control" placeholder="Username" value="michael23">
-                  </div>
-                </div>
-                <div class="col-md-4 pl-md-1">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" placeholder="mike@email.com">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 pr-md-1">
-                  <div class="form-group">
-                    <label>First Name</label>
-                    <input type="text" class="form-control" placeholder="Company" value="Mike">
-                  </div>
-                </div>
-                <div class="col-md-6 pl-md-1">
-                  <div class="form-group">
-                    <label>Last Name</label>
-                    <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label>Address</label>
-                    <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4 pr-md-1">
-                  <div class="form-group">
-                    <label>City</label>
-                    <input type="text" class="form-control" placeholder="City" value="Mike">
-                  </div>
-                </div>
-                <div class="col-md-4 px-md-1">
-                  <div class="form-group">
-                    <label>Country</label>
-                    <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                  </div>
-                </div>
-                <div class="col-md-4 pl-md-1">
-                  <div class="form-group">
-                    <label>Postal Code</label>
-                    <input type="number" class="form-control" placeholder="ZIP Code">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-8">
-                  <div class="form-group">
-                    <label>About Me</label>
-                    <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="card-footer">
-            <button type="submit" class="btn btn-fill btn-primary">Save</button>
-          </div>
-        </div>
-      </div>
-    -->
-
-
-<!--
-
-    <ul class="nav nav-tabs mb-3" id="myTab0" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button
-            class="nav-link active"
-            id="details-tab0"
-            data-mdb-toggle="tab"
-            data-mdb-target="#details"
-            type="button"
-            role="tab"
-            aria-controls="details"
-            aria-selected="true"
-          >
-            Details
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button
-            class="nav-link"
-            id="settings-tab0"
-            data-mdb-toggle="tab"
-            data-mdb-target="#settings"
-            type="button"
-            role="tab"
-            aria-controls="settings"
-            aria-selected="false"
-          >
-            Settings
-          </button>
-        </li>
-        
-      </ul>
-      <div class="tab-content" id="myTabContent0">
-        <div
-          class="tab-pane fade show active"
-          id="details"
-          role="tabpanel"
-          aria-labelledby="details-tab0"
-        >
-        <section style="background-color: #eee;">
-
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="card mb-4">
-                    <div class="card-body text-center">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                      <h5 class="my-3">John Smith</h5>
-                      <p class="text-muted mb-1">Full Stack Developer</p>
-                      <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                      <div class="d-flex justify-content-center mb-2">
-                        <button type="button" class="btn btn-primary">Follow</button>
-                        <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card mb-4 mb-lg-0">
-                    <div class="card-body p-0">
-                      <ul class="list-group list-group-flush rounded-3">
-                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                          <i class="fas fa-globe fa-lg text-warning"></i>
-                          <p class="mb-0">https://mdbootstrap.com</p>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                          <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                          <p class="mb-0">mdbootstrap</p>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                          <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                          <p class="mb-0">@mdbootstrap</p>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                          <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                          <p class="mb-0">mdbootstrap</p>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                          <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                          <p class="mb-0">mdbootstrap</p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-8">
-                  <div class="card mb-4">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Full Name</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <p class="text-muted mb-0">Johnatan Smith</p>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Email</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <p class="text-muted mb-0">example@example.com</p>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Phone</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <p class="text-muted mb-0">(097) 234-5678</p>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Mobile</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <p class="text-muted mb-0">(098) 765-4321</p>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Address</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="card mb-4 mb-md-0">
-                        <div class="card-body">
-                          <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status</p>
-                          <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                          <div class="progress rounded mb-2" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="card mb-4 mb-md-0">
-                        <div class="card-body">
-                          <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status</p>
-                          <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                          <div class="progress rounded mb-2" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </section>
-        </div>
-    </div>
-        <div class="tab-pane fade"
-         id="settings" role="tabpanel" aria-labelledby="settings-tab0">
-          Tab 2 content
-        </div>
-
-    -->
-
-    <!--
-      
+ 
     <h3>My account</h3>
-<mat-tab-group animationDuration="2000ms">
+<mat-tab-group >
   <mat-tab label="Details">
-    
-    <section style="background-color: #eee;">
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4 h-100">
-          <div class="card-body text-center">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3">John Smith</h5>
-            <p class="text-muted mb-1">Full Stack Developer</p>
-            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-            <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary">Follow</button>
-              <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-      <div class="col-lg-8">
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Full Name</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">Johnatan Smith</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Phone</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">(097) 234-5678</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Mobile</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">(098) 765-4321</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Address</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card mb-4 mb-md-0">
-              <div class="card-body">
-                <p class="mb-4"> My Project </p>
-                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                <div class="progress rounded mb-2" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card mb-4 mb-md-0">
-              <div class="card-body">
-                <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status</p>
-                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                <div class="progress rounded mb-2" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-</section>
-</mat-tab>
-  <mat-tab label="Settings">Content 2</mat-tab>
-</mat-tab-group>
--->
-
-
-<!--***********************************************************************************************-->
-<!--
-<div class="container">
-  <div class="row justify-content-center">
-      <div class="col-12 col-lg-10 col-xl-8 mx-auto">
-          <h2 class="h3 mb-4 page-title">Settings</h2>
-          <div class="my-4">
-              <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-                  <li class="nav-item">
-                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Profil</a>
-                  </li>
-              </ul>
-              <form [formGroup]="accountDetail">
-                  <div class="row mt-5 align-items-center">
-                      <div class="col-md-3 text-center mb-5">
-                          <div class="avatar avatar-xl">
-                              <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." class="avatar-img rounded-circle" />
-                          </div>
-                      </div>
-                      <div class="col">
-                          <div class="row align-items-center">
-                              <div class="col-md-7">
-                                  <h4 class="mb-1">{{lastname}}</h4>
-                                  <p class="small mb-3"><span class="badge badge-dark">New York, USA</span></p>
+    <div class="container">
+      <div class="row ">
+          <div >
+              <h2 class="h3 mb-4 page-title">Profile</h2>
+              <div class="my-4">
+                  <form [formGroup]="accountDetail" >
+                      <div class="row ">
+                          <div class="col-md-3 text-center mb-5">
+                              <div class="avatar avatar-xl">
+                                  <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." class="avatar-img rounded-circle" />
                               </div>
                           </div>
-                          <div class="row mb-4">
-                              <div class="col-md-7">
-                                  <p class="text-muted">
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit nisl ullamcorper, rutrum metus in, congue lectus. In hac habitasse platea dictumst. Cras urna quam, malesuada vitae risus at,
-                                      pretium blandit sapien.
-                                  </p>
+                          <div class="col">
+                              <div class="row ">
+                                  <div class="col-md-7">
+                                      <h5 class="mb-1">{{lastname}} {{firstname}}</h5>
+                                      <p class="small mb-3"><span class="badge badge-dark"></span></p>
+                                  </div>
                               </div>
-                              <div class="col">
-                                  <p class="small mb-0 text-muted">Nec Urna Suscipit Ltd</p>
-                                  <p class="small mb-0 text-muted">P.O. Box 464, 5975 Eget Avenue</p>
-                                  <p class="small mb-0 text-muted">(537) 315-1481</p>
+                              <div class="row mb-4">
+                                  <div class="col-md-7">
+                                      <p class="text-muted">
+                                        {{address}} 
+                                      </p>
+                                  </div>
+                                  <div class="col">
+                                      <p class="small mb-0 text-muted">date of birth :{{birthdate}}</p>
+                                      <p class="small mb-0 text-muted">phone : (+216){{phonenumber}}</p>
+                                      <p class="small mb-0 text-muted">gender : male</p>
+                                  </div>
                               </div>
                           </div>
                       </div>
-                  </div>
-                  <hr class="my-4" />
-                  <div class="form-row">
-                      <div class="form-group col-md-6">
-                          <label for="firstname">Firstname</label>
-                          <input type="text" formControlName="fname" id="firstname" class="form-control" placeholder="{{firstname}}" />
-                      </div>
-                      <div class="form-group col-md-6">
-                          <label for="lastname">Lastname</label>
-                          <input type="text" formControlName="lname" id="lastname" class="form-control" placeholder="{{lastname}}" />
-                      </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" formControlName="ads" id="address" placeholder="{{address}}" />
-                </div>
-                  <div class="form-group">
-                      <label for="phonenumber">PhoneNumber</label>
-                      <input type="text" class="form-control"formControlName="phnbr"  id="phonenumber" placeholder="{{phonenumber}}" />
-                  </div>
-                  
-                      <div class="form-group col-md-6">
-                          <label for="birthdate">BirthDate</label>
-                          <input type="text" class="form-control" formControlName="bdate"  id="BirthDate" placeholder="{{birthdate}}" onfocus="(this.type='date')"/>
-                      </div>
-                      <div class="form-group col-md-2">
-                          <a>Gender</a>
-                          <div class="form-row">
-                            <div >
-                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="true" disabled checked>
-                              <label class="form-check-label" for="exampleRadios3">
-                                 Male
-                              </label>
-                            </div>
-                            <div >
-                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios" value="false" disabled>
-                              <label class="form-check-label" for="exampleRadios3">
-                                 Female
-                              </label>
-                            </div>
-                      </div>
-                  </div>
-                  <hr class="my-4" />
-                  <div class="row mb-4">
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <label for="inputPassword4">Old Password</label>
-                              <input type="password" class="form-control" id="inputPassword4" />
+                      <hr class="my-4" />
+                      <div class="row">
+                          <div class="input-group" class="input-group-icon">
+                              <label for="firstname"><h6>Firstname</h6></label>
+                              <div class="input-icon"><i class="fa fa-user"></i></div>
+                              <input  type="text" formControlName="fname" id="firstname" class="form-control" placeholder="{{firstname}}" />
                           </div>
-                          <div class="form-group">
-                              <label for="inputPassword5">New Password</label>
-                              <input type="password" class="form-control" id="inputPassword5" />
-                          </div>
-                          <div class="form-group">
-                              <label for="inputPassword6">Confirm Password</label>
-                              <input type="password" class="form-control" id="inputPassword6" />
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                          <p class="mb-2">Password requirements</p>
-                          <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
-                          <ul class="small text-muted pl-4 mb-0">
-                              <li>Minimum 8 character</li>
-                              <li>At least one special character</li>
-                              <li>At least one number</li>
-                              <li>Can’t be the same as a previous password</li>
-                          </ul>
-                      </div>
-                  </div>
-                  <button type="button" class="btn btn-primary" (click)="updateAccount()"  onclick="alert('refresh to see the update')">Save Change</button>
-              </form>
-          </div>
-      </div>
-  </div>
-  
-  </div>
-
-  -->
-  <!--*************************************************************************************************************-->
-
-  <div class="container">
-    <div class="row ">
-        <div >
-            <h2 class="h3 mb-4 page-title">Settings</h2>
-            <div class="my-4">
-                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Profil</a>
-                    </li>
-                </ul>
-                <form [formGroup]="accountDetail" >
-                    <div class="row ">
-                        <div class="col-md-3 text-center mb-5">
-                            <div class="avatar avatar-xl">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." class="avatar-img rounded-circle" />
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="row ">
-                                <div class="col-md-7">
-                                    <h5 class="mb-1">{{lastname}} {{firstname}}</h5>
-                                    <p class="small mb-3"><span class="badge badge-dark"></span></p>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-md-7">
-                                    <p class="text-muted">
-                                      {{address}} 
-                                    </p>
-                                </div>
-                                <div class="col">
-                                    <p class="small mb-0 text-muted">date of birth :{{birthdate}}</p>
-                                    <p class="small mb-0 text-muted">phone : (+216){{phonenumber}}</p>
-                                    <p class="small mb-0 text-muted">gender : male</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="my-4" />
-                    <div class="row">
-                        <div class="input-group" class="input-group-icon">
-                            <label for="firstname"><h6>Firstname</h6></label>
-                            <div class="input-icon"><i class="fa fa-user"></i></div>
-                            <input  type="text" formControlName="fname" id="firstname" class="form-control" placeholder="{{firstname}}" />
-                        </div>
-                        
-                        <div class="input-group" class="input-group-icon">
-                            <label for="lastname"><h6>Lastname</h6></label>
-                            <div class="input-icon"><i class="fa fa-user"></i></div>
-                            <input type="text" formControlName="lname" id="lastname" class="form-control" placeholder="{{lastname}}" />
                           
-                        </div>
-                    </div>
-                    <div class="input-group" class="input-group-icon">
-                      <label for="address"><h6>Address</h6></label>
-                      <input  type="text" class="form-control" formControlName="ads" id="address" placeholder="{{address}}" />
-                  </div>
-                    <div class="input-group" class="input-group-icon">
-                        <label for="phonenumber"><h6>PhoneNumber</h6></label>
-                        <input  type="text" class="form-control" formControlName="phnbr"  id="phonenumber" placeholder="{{phonenumber}}" />
-                    </div>
-                    
-                        <div  class="col-half" >
-                            <label for="birthdate"><h6>Date of Birth</h6></label>
-                            <input class="input-group"  type="text" class="form-control" formControlName="bdate"  id="BirthDate" placeholder="{{birthdate}}" onfocus="(this.type='date')"/>
-                        </div>
-                       
-  
-                        <div class="col-half">
-                          <h6>Gender</h6>
-                          <div class="input-group">
-                            <input id="gender-male" type="radio" name="gender" value="male" disabled checked />
-                            <label for="gender-male">Male</label>
-                            <input id="gender-female" type="radio" name="gender" value="female" disabled/>
-                            <label for="gender-female">Female</label>
+                          <div class="input-group" class="input-group-icon">
+                              <label for="lastname"><h6>Lastname</h6></label>
+                              <div class="input-icon"><i class="fa fa-user"></i></div>
+                              <input type="text" formControlName="lname" id="lastname" class="form-control" placeholder="{{lastname}}" />
+                            
                           </div>
                       </div>
-                  <hr/>
-                    <hr class="my-4" />
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="inputPassword4">Old Password</label>
-                                <input type="password" class="form-control" id="inputPassword4" />
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword5">New Password</label>
-                                <input type="password" class="form-control" id="inputPassword5" />
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword6">Confirm Password</label>
-                                <input type="password" class="form-control" id="inputPassword6" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="mb-2">Password requirements</p>
-                            <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
-                            <ul class="small text-muted pl-4 mb-0">
-                                <li>Minimum 8 character</li>
-                                <li>At least one special character</li>
-                                <li>At least one number</li>
-                                <li>Can’t be the same as a previous password</li>
-                            </ul>
-                        </div>
+                      <div class="input-group" class="input-group-icon">
+                        <label for="address"><h6>Address</h6></label>
+                        <input  type="text" class="form-control" formControlName="ads" id="address" placeholder="{{address}}" />
                     </div>
-                    <button (click)="updateAccount()" mat-raised-button class="btn btn-danger btn-block" onclick="alert('refresh to see updates')" >Save Change</button>
+                      <div class="input-group" class="input-group-icon">
+                          <label for="phonenumber"><h6>PhoneNumber</h6></label>
+                          <input  type="text" class="form-control" formControlName="phnbr"  id="phonenumber" placeholder="{{phonenumber}}" />
+                      </div>
+                      
+                          <div  class="col-half" >
+                              <label for="birthdate"><h6>Date of Birth</h6></label>
+                              <input class="input-group"  type="text" class="form-control" formControlName="bdate"  id="BirthDate" placeholder="{{birthdate}}" onfocus="(this.type='date')"/>
+                          </div>
+                         
+    
+                          <div class="col-half">
+                            <h6>Gender</h6>
+                            <div class="input-group">
+                              <input id="gender-male" type="radio" name="gender" value="male" disabled checked />
+                              <label for="gender-male">Male</label>
+                              <input id="gender-female" type="radio" name="gender" value="female" disabled/>
+                              <label for="gender-female">Female</label>
+                            </div>
+                        </div>
+                        <button (click)="updateAccount()" mat-raised-button class="btn btn-danger btn-block" onclick="alert('refresh to see updates')" >Save Change</button>
                 </form>
             </div>
         </div>
     </div>
     
     </div>
+
+</mat-tab>
+  <mat-tab label="Settings">
+    <!--<form [formGroup]="changePasswordForm">
+      <div class="row mb-4 ">
+      <div class="col-md-6">
+          <div class="form-group">
+              <label for="oldPassword">Old Password</label>
+              <input type="password" class="form-control" formControlName="oldPassword" required/>
+              <div *ngIf="changePasswordForm.controls.oldPassword.touched && changePasswordForm.controls.oldPassword.invalid">
+                <span *ngIf="changePasswordForm.controls.oldPassword.error.required">
+                  This field is mandator
+                </span>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="newPassword">New Password</label>
+              <input type="password" class="form-control" formControlName="newPassword" required/>
+          </div>
+          <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" class="form-control" formControlName="confirmPassword" required/>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <p class="mb-2">Password requirements</p>
+          <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
+          <ul class="small text-muted pl-4 mb-0">
+              <li>Minimum 8 character</li>
+              <li>At least one special character</li>
+              <li>At least one number</li>
+              <li>Can’t be the same as a previous password</li>
+          </ul>
+      </div>
+  </div>
+  <button (click)="changePassword()" mat-raised-button class="btn btn-danger btn-block" onclick="alert('refresh to see updates')" >Change Password</button>
+</form>
+  </mat-tab> -->
+
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+      <span class="title-center">Change Password </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="changePasswordForm">
+      <div fxFlex fxLayout="column">
+        <mat-form-field appearence="fill" fxFlex>
+          <mat-label>Old Password </mat-label>
+          <input type="password" matInput formControlName="oldPassword" required>
+          <mat-error *ngIf="changePasswordForm.controls.oldPassword.touched && changePasswordForm.controls.oldPassword.invalid">
+            <span *ngIf="changePasswordForm.controls.oldPassword.errors.required">This field is mandatory</span>
+          </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearence="fill" fxFlex>
+          <mat-label>New Password </mat-label>
+          <input type="password" matInput formControlName="newPassword" required>
+          <mat-error *ngIf="changePasswordForm.controls.newPassword.touched && changePasswordForm.controls.newPassword.invalid">
+            <span *ngIf="changePasswordForm.controls.newPassword.errors.required">This field is mandatory</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearence="fill" fxFlex>
+          <mat-label>Confirm Password </mat-label>
+          <input type="password" matInput formControlName="confirmPassword" required>
+          <mat-error *ngIf="changePasswordForm.controls.confirmPassword.touched && changePasswordForm.controls.confirmPassword.invalid">
+            <span *ngIf="changePasswordForm.controls.confirmPassword.errors.required">This field is mandatory</span>
+          </mat-error>
+          <mat-hint *ngIf="validateSumbit() && !(changePasswordForm.controls.confirmPassword.invalid)">
+            <span> New Password & Confirm Password does not match.</span>
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center" style="width: 100%;" class="btn-group">
+    <button style="width:50%"  mat-raised-button color="primary" type="submit" (click)="handleChangePasswordSubmit()"
+      [disabled]="validateSumbit() || !(changePasswordForm.valid && changePasswordForm.dirty)">Update Password
+    </button>
+  </mat-dialog-actions>
+  </mat-tab>
+</mat-tab-group>

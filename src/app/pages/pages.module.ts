@@ -11,11 +11,12 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { MatDialogModule } from '@angular/material/dialog';
 
 import{MatSidenavModule} from '@angular/material/sidenav';
-import{MatToolbarModule} from '@angular/material/toolbar'
 import{MatMenuModule} from '@angular/material/menu'
 import{MatListModule} from '@angular/material/list'
 import{MatIconModule} from '@angular/material/icon'
 import{MatDividerModule} from '@angular/material/divider'
+import{MatToolbarModule} from '@angular/material/toolbar'
+
 
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -26,6 +27,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { NgxUiLoaderModule,NgxUiLoaderConfig,SPINNER,PB_DIRECTION } from "ngx-ui-loader";
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
@@ -45,6 +47,7 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
   declarations: [
     HomeComponent,
     ResetpasswordComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,

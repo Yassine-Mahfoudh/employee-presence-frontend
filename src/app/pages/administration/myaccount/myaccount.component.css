@@ -290,3 +290,7 @@ select option {
     padding-right: 0;
   }
 }
+
+mat-hint{
+  color: red;
+}
