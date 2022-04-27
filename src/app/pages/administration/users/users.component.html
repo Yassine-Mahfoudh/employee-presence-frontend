@@ -1,5 +1,18 @@
 
-  
+  <div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">Home</div>
+    <div class="page__content shadow p-3 position-relative">
+      <div class="container-fluids ">
+          <nav class="navbar navbar-expand-lg  pad">
+                <a class="navbar-brand pg" >User manager </a>
+                <div  id="navbarSupportedContent">
+                  <button class="btn btn-outline-info " data-bs-toggle="modal"   (click)="open(content)" >add User</button>
+                </div>
+            </nav>
+          </div>
+      <div class="page__content-data position-absolute text-center">
+        
+        
     <!-- adduser -->
     <ng-template #content let-c="close" let-d="dismiss">
         <div class="modal-header">
@@ -8,18 +21,21 @@
         </div>
         <div class="modal-body">
           <form [formGroup]="usersDetail">
-            <div class="pl-lg-4">
-              <div class="row">
+            <div >
+              <div >
                 <div class="col-lg-6">
-                  <div class="form-group">
-                    <h6 class="heading-small text-muted mb-4">User information</h6>
+                  <h6 class="heading-small text-muted mb-4">User informations</h6>
+                  <div class="field padding-bottom--24"  class="input-group" >
                     <label class="form-control-label" for="input-userName">Name</label>
-                    <input type="text" formControlName="userName" id="input-userName" class="form-control form-control-alternative" placeholder="User userName" value="">
+                    <input type="text" formControlName="userName" id="input-userName" placeholder=" userName" value="">
+                  </div>
+                    <div class="field padding-bottom--24"  class="input-group" >
                     <label class="form-control-label" for="input-userPassword">Password</label>
-                    <input type="text" formControlName="userPassword" id="input-userPassword" class="form-control form-control-alternative" placeholder="User userPassword" value="">
+                    <input type="text" formControlName="userPassword" id="input-userPassword" placeholder="userPassword" value="">
+                  </div>
+                    <div class="field padding-bottom--24"  class="input-group" >
                     <label class="form-control-label" for="input-email">email</label>
-                    <input type="text" formControlName="email" id="input-email" class="form-control form-control-alternative" placeholder="User email" value="">
-                    
+                    <input type="text" formControlName="email" id="input-email"  placeholder=" Email" value="">
                   </div>
                 </div>
               </div>
@@ -40,79 +56,100 @@
         </div>
         <div class="modal-body">
           <form [formGroup]="usersDetail">
-            <div class="pl-lg-4">
-              <div class="row">
+            <div >
+              <div >
                 <div class="col-lg-6">
-                  <div class="form-group">
-                    <h6 class="heading-small text-muted mb-4">User information</h6>
+                  <h6 class="heading-small text-muted mb-4">User informations</h6>
+                  <div class="field padding-bottom--24"  class="input-group" >
                     <label class="form-control-label" for="input-userName">Name</label>
-                    <input type="text" formControlName="userName" id="input-userName" class="form-control form-control-alternative" placeholder="User userName" value="">
+                    <input type="text" formControlName="userName" id="input-userName" placeholder=" userName" value="">
+                  </div>
+                    <div class="field padding-bottom--24"  class="input-group" >
                     <label class="form-control-label" for="input-userPassword">Password</label>
-                    <input type="text" formControlName="userPassword" id="input-userPassword" class="form-control form-control-alternative" placeholder="User userPassword" value="">
+                    <input type="text" formControlName="userPassword" id="input-userPassword" placeholder="userPassword" value="">
+                  </div>
+                    <div class="field padding-bottom--24"  class="input-group" >
                     <label class="form-control-label" for="input-email">email</label>
-                    <input type="text" formControlName="email" id="input-email" class="form-control form-control-alternative" placeholder="User email" value="">
-                     </div>
+                    <input type="text" formControlName="email" id="input-email"  placeholder=" Email" value="">
+                  </div>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" (click)="close(contentUpdate)">Close</button>
+            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" (click)="close(content)" >Close</button>
         <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="updateUsers()" (click)="c('Save click')">updateUser</button></div>
           </form>
         </div>
        
       </ng-template>
     
-      <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">User manager </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <button class="btn btn-outline-primary" data-bs-toggle="modal"   (click)="open(content)" >add User</button>
-              </div>
-            </div>
-          </nav>
-          
-        </div>
+    
     
             <!-- getusers -->
-            <div class="table-responsive">
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr >
-                    <th scope="col">Id</th>
-                    <th scope="col">name</th>
-                    <th scope="col">password</th>
-                    <th scope="col">email</th>
-          
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let users of usersList | paginate: { id:'listing_pagination',
-                  itemsPerPage:4,
-                  currentPage:page,
-                  totalItems:totalRec} ">
-                    <td scope="row">
-                      <div class="media align-items-center">
-                        <div class="media-body">
-                          <span class="mb-0 text-sm">{{users.id}}</span>
-                        </div>
+            
+            <div class="container-fluids py-4">
+              
+              <div class="row">
+                <div class="col-12">
+                  <div class="card my-4">
+                    
+                    <div class="card-header p-0 mt-n4 mx-3 z-index-2">
+                      <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Users</h6>
                       </div>
-                    </td>
-                    <td>
-                      {{users.userName}}
-                    </td>
-                    <td>
-                        {{users.userPassword}}
-                      </td>
-                      <td>
-                        {{users.email}}
-                      </td>
-                    <td class="text-right">
+                    </div>
+                    <div class="card-body px-0 pb-2">
+                      <div class="table-responsives p-0">
+                        <table class="table align-items-center mb-0">
+                          <thead>
+                            <tr>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">name</th>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">password</th>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">email</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let users of usersList">
+                              <td>
+                                <div class="text-sm font-weight-bold mb-0">
+                                  <div>
+                                    <span >{{users.id}}</span>
+                                  </div>
+                                  <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm"></h6>
+                                  </div>
+                                </div>
+                              </td>
+                              <td>
+                                <p class="text-xs font-weight-bold mb-0"> {{users.userName}}</p>
+                              </td>
+                              <td>
+                                <p class="text-xs font-weight-bold mb-0"> {{users.userPassword}}</p>
+                              </td>
+                              <td>
+                                <p class="text-xs font-weight-bold mb-0"> {{users.email}}</p>
+                              </td>
+                              <td class="align-middle">
+                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"  (click)="editUsers(users)" (click)="open(contentUpdate)">
+                                  Edit
+                                </a>
+                              </td>
+                              <td class="align-middle">
+                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"  (click)="confirmDelete(users)" >
+                                  delete
+                                </a>
+                              </td>
+                            </tr>
+                           
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                    <!--<td class="text-right">
                       <div ngbDropdown placement="bottom-right">
                         <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
                           <i class="fas fa-ellipsis-v"></i>
@@ -135,5 +172,9 @@
                 </div>
           </div>
       
-      
+        -->
+        </div>
+      </div>
+    </div>
+    </div>
       

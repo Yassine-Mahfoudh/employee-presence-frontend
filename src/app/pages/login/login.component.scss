@@ -106,7 +106,10 @@ a {
 .padding-bottom--15 {
   padding-bottom: 15px;
 }
-
+.error-message{
+  color: darkred;
+  font-size: x-meduim;
+}
 
 .flex-justifyContent--center {
   -ms-flex-pack: center;
@@ -144,6 +147,7 @@ label {
     grid-template-columns: 50% 50%;
     align-items: center;
 }
+
 
 .field input {
     font-size: 16px;
@@ -254,3 +258,5 @@ a.ssolink {
     transform: translateX(0px);
   }
 } 
+
+

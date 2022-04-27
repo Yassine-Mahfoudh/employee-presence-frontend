@@ -18,7 +18,7 @@ declare var myfunction: any;
 export class LoginComponent implements OnInit {
 
 
-  
+  loginError: string;
 
 
   constructor(private userService:UserService,
@@ -33,11 +33,14 @@ export class LoginComponent implements OnInit {
 
     this.userService.login(loginForm.value).subscribe(
       (response:any)=>{
+       
+        this.loginError = null;
         this.authService.setRoles(response.utilisateur.profils);
         this.authService.setToken(response.jwtToken);
         this.authService.setUsername(response.utilisateur.userName)
         this.authService.setUserEmployee(response.utilisateur.employee)
         const type = response.utilisateur.profils[0].name;
+        console.log( this.loginError );
         if (type === 'ADMIN') {
           this.router.navigate(['/dashboard']);
         } else if (type === 'RH')  {
@@ -46,8 +49,13 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/Home']);
 
         }
+      
+     
+
       },
       (error)=>{
+        this.loginError = "username or password is incorrect!";
+        console.log( this.loginError );
         console.log(error);
       }
     );

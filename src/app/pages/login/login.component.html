@@ -79,11 +79,15 @@
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Sign in to your account</span>
               <form id="stripe-login" class="login" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-                <div class="field padding-bottom--24">
+              
+                <p *ngIf="loginError && loginError.length > 0"
+                  class="error-message">
+                 {{loginError}}
+               </p>
+                <div class="field padding-bottom--24"  >
                   <label for="name">Username</label>
-                  <input type="name" ngModel 
-                  name="userName"
-                  id="userName">
+                  <!--<div class="input-icon"><i class="fa fa-user"></i></div>-->
+                  <input type="name" ngModel name="userName" id="userName" >
                 </div>
                 <div class="field padding-bottom--24">
                   <div class="grid--50-50">
@@ -102,7 +106,7 @@
                   </label>
                 </div>-->
                 
-                <button class="bg padding-bottom--24 " type="submit"value="Login">
+                <button class="bg padding-bottom--24 " type="submit" value="Login">
                  Log in
                 </button>
               <!--<span><a href="#">© Stackfindover</a></span>
@@ -113,7 +117,7 @@
             </div>
           </div>
           <div class="footer-link padding-top--24">
-            <span>Don't have an account? <a href="">Sign up</a></span>
+            
             <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
               <span><a target="blank" href="http://www.st2i.com.tn/">ST2i.com</a></span>
               <!--<span><a href="#">© Stackfindover</a></span>

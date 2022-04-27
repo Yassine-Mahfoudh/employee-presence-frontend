@@ -88,13 +88,14 @@ this.changePasswordForm=this.formBuilder.group({
     }
   }
   handleChangePasswordSubmit(){
-    this.ngxService.start();
       var formData=this.changePasswordForm.value;
       var data = {
         oldPassword:formData.oldPassword,
         newPassword:formData.newPassword,
         confirmPassword:formData.confirmPassword
       };
+      if ( data.oldPassword !== data.newPassword ){
+        this.ngxService.start();
       this.userService.changePassword(data).subscribe((response:any)=>
       {
         this.ngxService.stop();
@@ -115,7 +116,10 @@ this.changePasswordForm=this.formBuilder.group({
         );
       }
       );
+  }else {
+    this.snackbarService.openSnackBar("Old Password and New Password should be different","error");
   }
+}
   
   
   open(content) {
@@ -143,6 +147,14 @@ this.changePasswordForm=this.formBuilder.group({
 
   }
 
+ confirmUpdate() {
+    var okToRefresh = confirm("Do you really want to update your informations?");
+    if (okToRefresh)
+      {
+          setTimeout("location.reload(true);",500);
+          this.updateAccount();
+      }
+    }
 
   
 }  
