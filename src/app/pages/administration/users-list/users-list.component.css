@@ -212,6 +212,7 @@ th {
 }
 
 @media (min-width: 576px) {
+.container-fluids,
 
   .container,
   .container-sm {
@@ -220,6 +221,7 @@ th {
 }
 
 @media (min-width: 768px) {
+  .container-fluids,
 
   .container,
   .container-sm,
@@ -229,6 +231,7 @@ th {
 }
 
 @media (min-width: 992px) {
+  .container-fluids,
 
   .container,
   .container-sm,
@@ -239,6 +242,7 @@ th {
 }
 
 @media (min-width: 1200px) {
+  .container-fluids,
 
   .container,
   .container-sm,
@@ -250,6 +254,7 @@ th {
 }
 
 @media (min-width: 1400px) {
+  .container-fluids,
 
   .container,
   .container-sm,

@@ -28,6 +28,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 
 import { NgxUiLoaderModule,NgxUiLoaderConfig,SPINNER,PB_DIRECTION } from "ngx-ui-loader";
+import { FooterComponent } from './layouts/footer/footer.component';
 
 
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
@@ -51,6 +52,7 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
     DashboardComponent,
     SidenavComponent,
     ForbiddenComponent,
+    FooterComponent,
     
     
 

@@ -1,179 +1,179 @@
  
  
     <h3>My account</h3>
-<mat-tab-group >
-  <mat-tab label="Details">
-    <div class="container">
-      <div class="row ">
-          <div >
-              <h2 class="h3 mb-4 page-title">Profile</h2>
-              <div class="my-4">
-                  <form [formGroup]="accountDetail" >
-                      <div class="row ">
-                          <div class="col-md-3 text-center mb-5">
-                              <div class="avatar avatar-xl">
-                                  <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." class="avatar-img rounded-circle" />
+    <mat-tab-group >
+      <mat-tab label="Details">
+        <div class="container">
+          <div class="row ">
+              <div >
+                  <h2 class="h3 mb-4 page-title">Profile</h2>
+                  <div class="my-4">
+                      <form [formGroup]="accountDetail" >
+                          <div class="row ">
+                              <div class="col-md-3 text-center mb-5">
+                                  <div class="avatar avatar-xl">
+                                      <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." class="avatar-img rounded-circle" />
+                                  </div>
+                              </div>
+                              <div class="col">
+                                  <div class="row ">
+                                      <div class="col-md-7">
+                                          <h5 class="mb-1">{{account.lastname}} {{account.firstname}}</h5>
+                                          <p class="small mb-3"><span class="badge badge-dark"></span></p>
+                                      </div>
+                                  </div>
+                                  <div class="row mb-4">
+                                      <div class="col-md-7">
+                                          <p class="text-muted">
+                                            {{account.address}} 
+                                          </p>
+                                      </div>
+                                      <div class="col">
+                                          <p class="small mb-0 text-muted">date of birth :{{account.birthdate}}</p>
+                                          <p class="small mb-0 text-muted">phone : (+216){{account.phonenumber}}</p>
+                                          <p class="small mb-0 text-muted">gender : male</p>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
-                          <div class="col">
-                              <div class="row ">
-                                  <div class="col-md-7">
-                                      <h5 class="mb-1">{{lastname}} {{firstname}}</h5>
-                                      <p class="small mb-3"><span class="badge badge-dark"></span></p>
-                                  </div>
+                          <hr class="my-4" />
+                          <div class="row">
+                              <div class="input-group" class="input-group-icon">
+                                  <label for="firstname"><h6>Firstname</h6></label>
+                                  <div class="input-icon"><i class="fa fa-user"></i></div>
+                                  <input  type="text" formControlName="fname" id="firstname" class="form-control" placeholder="{{account.firstname}}" />
                               </div>
-                              <div class="row mb-4">
-                                  <div class="col-md-7">
-                                      <p class="text-muted">
-                                        {{address}} 
-                                      </p>
-                                  </div>
-                                  <div class="col">
-                                      <p class="small mb-0 text-muted">date of birth :{{birthdate}}</p>
-                                      <p class="small mb-0 text-muted">phone : (+216){{phonenumber}}</p>
-                                      <p class="small mb-0 text-muted">gender : male</p>
-                                  </div>
+                              
+                              <div class="input-group" class="input-group-icon">
+                                  <label for="lastname"><h6>Lastname</h6></label>
+                                  <div class="input-icon"><i class="fa fa-user"></i></div>
+                                  <input type="text" formControlName="lname" id="lastname" class="form-control" placeholder="{{account.lastname}}" />
+                                
                               </div>
                           </div>
-                      </div>
-                      <hr class="my-4" />
-                      <div class="row">
                           <div class="input-group" class="input-group-icon">
-                              <label for="firstname"><h6>Firstname</h6></label>
-                              <div class="input-icon"><i class="fa fa-user"></i></div>
-                              <input  type="text" formControlName="fname" id="firstname" class="form-control" placeholder="{{firstname}}" />
-                          </div>
-                          
-                          <div class="input-group" class="input-group-icon">
-                              <label for="lastname"><h6>Lastname</h6></label>
-                              <div class="input-icon"><i class="fa fa-user"></i></div>
-                              <input type="text" formControlName="lname" id="lastname" class="form-control" placeholder="{{lastname}}" />
+                            <label for="address"><h6>Address</h6></label>
+                            <div class="input-icon"><mat-icon>location_city</mat-icon></div>
                             
-                          </div>
-                      </div>
-                      <div class="input-group" class="input-group-icon">
-                        <label for="address"><h6>Address</h6></label>
-                        <div class="input-icon"><mat-icon>location_city</mat-icon></div>
-                        
-                        <input  type="text" class="form-control" formControlName="ads" id="address" placeholder="{{address}}" />
-                    </div>
-                      <div class="input-group" class="input-group-icon">
-                          <label for="phonenumber"><h6>PhoneNumber</h6></label>
-                          <div class="input-icon"><mat-icon> local_phone</mat-icon></div>
-                          
-                          <input  type="text" class="form-control" formControlName="phnbr"  id="phonenumber" placeholder="{{phonenumber}}" />
-                      </div>
-                      
-                          <div  class="col-half" >
-                              <label for="birthdate"><h6>Date of Birth</h6></label>
-                              <input class="input-group"  type="text" class="form-control" formControlName="bdate"  id="BirthDate" placeholder="{{birthdate}}" onfocus="(this.type='date')"/>
-                          </div>
-                         
-    
-                          <div class="col-half">
-                            <h6>Gender</h6>
-                            <div class="input-group">
-                              <input id="gender-male" type="radio" name="gender" value="male" disabled checked />
-                              <label for="gender-male">Male</label>
-                              <input id="gender-female" type="radio" name="gender" value="female" disabled/>
-                              <label for="gender-female">Female</label>
-                            </div>
+                            <input  type="text" class="form-control" formControlName="ads" id="address" placeholder="{{account.address}}" />
                         </div>
-                        <button (click)="confirmUpdate()" mat-raised-button class="btn btn-primary btn-block"  >Save Change</button>
-                </form>
+                          <div class="input-group" class="input-group-icon">
+                              <label for="phonenumber"><h6>PhoneNumber</h6></label>
+                              <div class="input-icon"><mat-icon> local_phone</mat-icon></div>
+                              
+                              <input  type="text" class="form-control" formControlName="phnbr"  id="phonenumber" placeholder="{{account.phonenumber}}" />
+                          </div>
+                          
+                              <div  class="col-half" >
+                                  <label for="birthdate"><h6>Date of Birth</h6></label>
+                                  <input class="input-group"  type="text" class="form-control" formControlName="bdate"  id="BirthDate" placeholder="{{account.birthdate}}" onfocus="(this.type='date')"/>
+                              </div>
+                             
+        
+                              <div class="col-half">
+                                <h6>Gender</h6>
+                                <div class="input-group">
+                                  <input id="gender-male" type="radio" name="gender" value="male" disabled checked />
+                                  <label for="gender-male">Male</label>
+                                  <input id="gender-female" type="radio" name="gender" value="female" disabled/>
+                                  <label for="gender-female">Female</label>
+                                </div>
+                            </div>
+                            <button (click)="confirmUpdate()" mat-raised-button class="btn btn-primary btn-block"  >Save Change</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+        
+        </div>
     
-    </div>
-
-</mat-tab>
-  <mat-tab label="Settings">
-    <!--<form [formGroup]="changePasswordForm">
-      <div class="row mb-4 ">
-      <div class="col-md-6">
-          <div class="form-group">
-              <label for="oldPassword">Old Password</label>
-              <input type="password" class="form-control" formControlName="oldPassword" required/>
-              <div *ngIf="changePasswordForm.controls.oldPassword.touched && changePasswordForm.controls.oldPassword.invalid">
-                <span *ngIf="changePasswordForm.controls.oldPassword.error.required">
-                  This field is mandator
-                </span>
+    </mat-tab>
+      <mat-tab label="Settings">
+        <!--<form [formGroup]="changePasswordForm">
+          <div class="row mb-4 ">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label for="oldPassword">Old Password</label>
+                  <input type="password" class="form-control" formControlName="oldPassword" required/>
+                  <div *ngIf="changePasswordForm.controls.oldPassword.touched && changePasswordForm.controls.oldPassword.invalid">
+                    <span *ngIf="changePasswordForm.controls.oldPassword.error.required">
+                      This field is mandator
+                    </span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="newPassword">New Password</label>
+                  <input type="password" class="form-control" formControlName="newPassword" required/>
+              </div>
+              <div class="form-group">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input type="password" class="form-control" formControlName="confirmPassword" required/>
               </div>
           </div>
-          <div class="form-group">
-              <label for="newPassword">New Password</label>
-              <input type="password" class="form-control" formControlName="newPassword" required/>
+          <div class="col-md-6">
+              <p class="mb-2">Password requirements</p>
+              <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
+              <ul class="small text-muted pl-4 mb-0">
+                  <li>Minimum 8 character</li>
+                  <li>At least one special character</li>
+                  <li>At least one number</li>
+                  <li>Can’t be the same as a previous password</li>
+              </ul>
           </div>
-          <div class="form-group">
-              <label for="confirmPassword">Confirm Password</label>
-              <input type="password" class="form-control" formControlName="confirmPassword" required/>
-          </div>
       </div>
-      <div class="col-md-6">
-          <p class="mb-2">Password requirements</p>
-          <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
-          <ul class="small text-muted pl-4 mb-0">
-              <li>Minimum 8 character</li>
-              <li>At least one special character</li>
-              <li>At least one number</li>
-              <li>Can’t be the same as a previous password</li>
-          </ul>
-      </div>
-  </div>
-  <button (click)="changePassword()" mat-raised-button class="btn btn-danger btn-block" onclick="alert('refresh to see updates')" >Change Password</button>
-</form>
-  </mat-tab> -->
-<div  class="container">
-  <mat-toolbar class="clr">
-    <mat-toolbar-row fxLayout="row">
-      <span class="title-center" >Change Password </span>
-    </mat-toolbar-row>
-  </mat-toolbar>
-
-  <mat-dialog-content class="mat-typography">
-    <form [formGroup]="changePasswordForm">
-      <div fxFlex fxLayout="column">
-        <div class="row"  class="marg">
-        <mat-form-field appearence="fill" fxFlex>
-          
-          <mat-label class="clr2">Old Password </mat-label>
-          <input type="password" matInput formControlName="oldPassword"  class="input-pass" required>
-          <mat-error *ngIf="changePasswordForm.controls.oldPassword.touched && changePasswordForm.controls.oldPassword.invalid">
-            <span *ngIf="changePasswordForm.controls.oldPassword.errors.required">This field is mandatory</span>
-          </mat-error>
-        </mat-form-field>
-      </div>
-        <div class="row" class="marg">
-        <mat-form-field appearence="fill" fxFlex>
-          <mat-label class="clr2">New Password </mat-label>
-          <input type="password" matInput formControlName="newPassword" class="input-pass" required>
-          <mat-error *ngIf="changePasswordForm.controls.newPassword.touched && changePasswordForm.controls.newPassword.invalid">
-            <span *ngIf="changePasswordForm.controls.newPassword.errors.required">This field is mandatory</span>
-          </mat-error>
-        </mat-form-field>
-      </div>
-        <div class="row" class="marg">
-        <mat-form-field appearence="fill" fxFlex>
-          <mat-label class="clr2">Confirm Password </mat-label>
-          <input type="password" matInput formControlName="confirmPassword"  class="input-pass" required>
-          <mat-error *ngIf="changePasswordForm.controls.confirmPassword.touched && changePasswordForm.controls.confirmPassword.invalid">
-            <span *ngIf="changePasswordForm.controls.confirmPassword.errors.required">This field is mandatory</span>
-          </mat-error>
-          <mat-hint *ngIf="validateSumbit() && !(changePasswordForm.controls.confirmPassword.invalid)">
-            <span> New Password & Confirm Password does not match.</span>
-          </mat-hint>
-        </mat-form-field>
-      </div>
-      </div>
-    
+      <button (click)="changePassword()" mat-raised-button class="btn btn-danger btn-block" onclick="alert('refresh to see updates')" >Change Password</button>
     </form>
-  </mat-dialog-content>
-  <mat-dialog-actions  style="width: 20%;" class="btn-group">
-    <button style="width:50%"  mat-raised-button class="btn btn-primary btn-block" type="submit" (click)="handleChangePasswordSubmit()"
-      [disabled]="validateSumbit() || !(changePasswordForm.valid && changePasswordForm.dirty)">Update Password
-    </button>
-  </mat-dialog-actions>
-</div>
-  </mat-tab>
-  </mat-tab-group>
+      </mat-tab> -->
+    <div  class="container">
+      <mat-toolbar class="clr">
+        <mat-toolbar-row fxLayout="row">
+          <span class="title-center" >Change Password </span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    
+      <mat-dialog-content class="mat-typography">
+        <form [formGroup]="changePasswordForm">
+          <div fxFlex fxLayout="column">
+            <div class="row"  class="marg">
+            <mat-form-field appearence="fill" fxFlex>
+              
+              <mat-label class="clr2">Old Password </mat-label>
+              <input type="password" matInput formControlName="oldPassword"  class="input-pass" required>
+              <mat-error *ngIf="changePasswordForm.controls.oldPassword.touched && changePasswordForm.controls.oldPassword.invalid">
+                <span *ngIf="changePasswordForm.controls.oldPassword.errors.required">This field is mandatory</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+            <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex>
+              <mat-label class="clr2">New Password </mat-label>
+              <input type="password" matInput formControlName="newPassword" class="input-pass" required>
+              <mat-error *ngIf="changePasswordForm.controls.newPassword.touched && changePasswordForm.controls.newPassword.invalid">
+                <span *ngIf="changePasswordForm.controls.newPassword.errors.required">This field is mandatory</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+            <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex>
+              <mat-label class="clr2">Confirm Password </mat-label>
+              <input type="password" matInput formControlName="confirmPassword"  class="input-pass" required>
+              <mat-error *ngIf="changePasswordForm.controls.confirmPassword.touched && changePasswordForm.controls.confirmPassword.invalid">
+                <span *ngIf="changePasswordForm.controls.confirmPassword.errors.required">This field is mandatory</span>
+              </mat-error>
+              <mat-hint *ngIf="validateSumbit() && !(changePasswordForm.controls.confirmPassword.invalid)">
+                <span> New Password & Confirm Password does not match.</span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+          </div>
+        
+        </form>
+      </mat-dialog-content>
+      <mat-dialog-actions  style="width: 20%;" class="btn-group">
+        <button style="width:50%"  mat-raised-button class="btn btn-primary btn-block" type="submit" (click)="handleChangePasswordSubmit()"
+          [disabled]="validateSumbit() || !(changePasswordForm.valid && changePasswordForm.dirty)">Update Password
+        </button>
+      </mat-dialog-actions>
+    </div>
+      </mat-tab>
+      </mat-tab-group>

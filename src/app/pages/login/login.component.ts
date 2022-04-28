@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
         this.authService.setToken(response.jwtToken);
         this.authService.setUsername(response.utilisateur.userName)
         this.authService.setUserEmployee(response.utilisateur.employee)
+        this.authService.setUser(response.utilisateur)
         const type = response.utilisateur.profils[0].name;
         console.log( this.loginError );
         if (type === 'ADMIN') {

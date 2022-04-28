@@ -26,7 +26,7 @@ export class MyaccountComponent implements OnInit {
 
   accountDetail!: FormGroup;
   accountobj: Employee = new Employee();
-  account:Employee;
+  account:Employee = new Employee() ;
   lastname:any;
   firstname:any;
   birthdate:any;
@@ -50,10 +50,17 @@ export class MyaccountComponent implements OnInit {
        // customize default values of modals used by this component tree
        config.backdrop = 'static';
        config.keyboard = false;
+       
      }
 
   ngOnInit() {
-
+    
+    let EmpId = this.authService.getUserEmployee().id;
+    /*this.employeeService.getEmployeeById(EmpId).subscribe(res=>{
+      this.account=res;
+    })*/
+    //this.account=this.employeeService.getEmployeeById(EmpId);
+   // console.log(this.account);
     this.accountDetail = this.formBuilder.group({
       lname: [''],
       fname: [''],
@@ -65,11 +72,16 @@ export class MyaccountComponent implements OnInit {
     console.log("sallllllllllllllut")
     console.log(this.authService.getUserEmployee().lastname)
 
-    this.lastname=this.authService.getUserEmployee().lastname
+    //this.lastname=this.account.lastname;
+
+    /*
+    this.lastname= this.authService.getUserEmployee().lastname
     this.firstname=this.authService.getUserEmployee().firstname
     this.birthdate=this.authService.getUserEmployee().birthdate
     this.address=this.authService.getUserEmployee().address
     this.phonenumber=this.authService.getUserEmployee().phonenumber
+
+    */
 
         //changepassword
 this.changePasswordForm=this.formBuilder.group({
@@ -77,8 +89,19 @@ this.changePasswordForm=this.formBuilder.group({
   newPassword:[null,[Validators.required]],
   confirmPassword:[null,[Validators.required]],
 })
+
+  this.getEmployee(EmpId);
+
   }
 
+  getEmployee(id : any) {
+    this.employeeService.getEmployeeById(id).subscribe(res=>{
+      this.account=res;
+      console.log(this.account);
+    })
+  }
+
+  
   validateSumbit(){
     if(this.changePasswordForm.controls['newPassword'].value != this.changePasswordForm.controls['confirmPassword'].value){
       return true;
@@ -138,9 +161,16 @@ this.changePasswordForm=this.formBuilder.group({
     this.accountobj.birthdate=this.accountDetail.value.bdate;
     this.accountobj.address=this.accountDetail.value.ads;
     this.accountobj.phonenumber=this.accountDetail.value.phnbr;
-      this.authService.setUserEmployee(this.accountobj);
+     // this.authService.setUserEmployee(this.accountobj);
+     let EmpId = this.authService.getUserEmployee().id;
 
-    
+     this.employeeService.updateEmployee(this.accountobj,EmpId).subscribe(res=>{
+      console.log(res);
+    }
+    );
+
+    console.log("upaa")
+
   }
 
   changePassword(){
@@ -158,5 +188,4 @@ this.changePasswordForm=this.formBuilder.group({
 
   
 }  
-
 

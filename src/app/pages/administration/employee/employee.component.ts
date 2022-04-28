@@ -98,14 +98,14 @@ deleteEmployee(employee : Employee){
   }
 
 updateEmployee(){
-  this.employeeobj.id=this.employeeDetail.value.id;
+ // this.employeeobj.id=this.employeeDetail.value.id;
   this.employeeobj.lastname=this.employeeDetail.value.lastname;
   this.employeeobj.firstname=this.employeeDetail.value.firstname;
   this.employeeobj.role=this.employeeDetail.value.role;
   this.employeeobj.status=this.employeeDetail.value.status;
   this.employeeobj.birthdate=this.employeeDetail.value.birthdate;
   this.employeeobj.address=this.employeeDetail.value.address;
-  this.employeeService.updateEmployee(this.employeeobj).subscribe(res=>{
+  this.employeeService.updateEmployee(this.employeeobj,this.employeeDetail.value.id).subscribe(res=>{
     console.log(res);
     this.getEmployees();
   }
