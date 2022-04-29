@@ -156,11 +156,32 @@ this.changePasswordForm=this.formBuilder.group({
 
   
   updateAccount(){
+    if(this.accountDetail.value.lname == ""){
+      this.accountobj.lastname=this.account.lastname;
+    }else{
     this.accountobj.lastname=this.accountDetail.value.lname;
+    }
+    if(this.accountDetail.value.fname == ""){
+      this.accountobj.firstname=this.account.firstname;
+    }else{
     this.accountobj.firstname=this.accountDetail.value.fname;
+    }
+    if(this.accountDetail.value.bdate == ""){
+      this.accountobj.birthdate=this.account.birthdate;
+    }else{
     this.accountobj.birthdate=this.accountDetail.value.bdate;
+    }
+    if(this.accountDetail.value.ads == ""){
+      this.accountobj.address=this.account.address;
+    }else{
     this.accountobj.address=this.accountDetail.value.ads;
+    }
+    if(this.accountDetail.value.phnbr == ""){
+      this.accountobj.phonenumber=this.account.phonenumber;
+    }else{
     this.accountobj.phonenumber=this.accountDetail.value.phnbr;
+    }
+  
      // this.authService.setUserEmployee(this.accountobj);
      let EmpId = this.authService.getUserEmployee().id;
 
