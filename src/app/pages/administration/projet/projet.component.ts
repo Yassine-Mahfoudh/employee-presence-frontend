@@ -7,7 +7,7 @@ import { ProjetService } from 'src/app/core/services/projet.service';
 @Component({
   selector: 'app-projet',
   templateUrl: './projet.component.html',
-  styleUrls: ['./projet.component.css']
+  styleUrls: ['./projet.component.scss']
 })
 export class ProjetComponent implements OnInit {
 
@@ -32,7 +32,7 @@ projetList:Projet[] = [];
     this.projetDetail = this.formBuilder2.group({
       id: [''],
       name:[''],
-      priorite:[''],
+      priority:[''],
       description:[''],
       startdate:[''],
       enddate:['']
@@ -54,7 +54,7 @@ projetList:Projet[] = [];
     console.log(this.projetDetail);
     this.projetobj.id=this.projetDetail.value.id;
     this.projetobj.name=this.projetDetail.value.name;
-    this.projetobj.priorite=this.projetDetail.value.priorite;
+    this.projetobj.priority=this.projetDetail.value.priority;
     this.projetobj.description=this.projetDetail.value.description;
     this.projetobj.startdate=this.projetDetail.value.startdate;
     this.projetobj.enddate=this.projetDetail.value.enddate;
@@ -76,7 +76,7 @@ getProjets(){
 editProjet(projet : Projet){
   this.projetDetail.controls['id'].setValue(projet.id);
   this.projetDetail.controls['name'].setValue(projet.name);
-  this.projetDetail.controls['priorite'].setValue(projet.priorite);
+  this.projetDetail.controls['priority'].setValue(projet.priority);
   this.projetDetail.controls['description'].setValue(projet.description);
   this.projetDetail.controls['startdate'].setValue(projet.startdate);
   this.projetDetail.controls['enddate'].setValue(projet.enddate);
@@ -97,7 +97,7 @@ deleteProjet(projet : Projet){
 updateProjet(){
   this.projetobj.id=this.projetDetail.value.id;
   this.projetobj.name=this.projetDetail.value.name;
-  this.projetobj.priorite=this.projetDetail.value.priorite;
+  this.projetobj.priority=this.projetDetail.value.priority;
   this.projetobj.description=this.projetDetail.value.description;
   this.projetobj.startdate=this.projetDetail.value.startdate;
   this.projetobj.enddate=this.projetDetail.value.enddate;

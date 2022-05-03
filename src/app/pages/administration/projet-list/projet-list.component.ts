@@ -6,7 +6,7 @@ import { ProjetService } from 'src/app/core/services/projet.service';
 @Component({
   selector: 'app-projet-list',
   templateUrl: './projet-list.component.html',
-  styleUrls: ['./projet-list.component.css']
+  styleUrls: ['./projet-list.component.scss']
 })
 export class ProjetListComponent implements OnInit {
   

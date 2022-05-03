@@ -18,7 +18,8 @@
   <!--<a mat-list-item routerLinkActive="list-item-active" routerLink="/modal"> <mat-icon>modal</mat-icon>modal  </a> -->
 
   <a mat-list-item *ngIf="userService.roleMatch(['RH'])" routerLinkActive="list-item-active" routerLink="/salle">
-    <mat-icon>salle</mat-icon>Gestion des salles
+    <img>
+      <img class="png-icon" src="../../../assets/bureau.png" style="width: 24px; height: 24px;"/>Gestion des salles
   </a>
   <a mat-list-item *ngIf="userService.roleMatch(['ADMIN'])" routerLinkActive="list-item-active" routerLink="/sallelist">
     <mat-icon>salle</mat-icon>Liste des salles
@@ -95,6 +96,5 @@
   
  <!-- <a mat-list-item> <mat-icon>edit</mat-icon> Link 6 </a> -->
 
- <a mat-list-item routerLinkActive="list-item-active" routerLink="/resetpassword">Reset password  </a>
 
 </mat-nav-list>

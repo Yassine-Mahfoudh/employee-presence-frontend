@@ -1,60 +1,33 @@
-<!-- getprojects -->
-<div class="table-responsive">
-    <table class="table align-items-center table-flush">
-      <thead class="thead-light">
-        <tr >
-          <th scope="col">Id</th>
-          <th scope="col">name</th>
-          <th scope="col">priority</th>
-          <th scope="col">description</th>
-          <th scope="col">startdate</th>
-          <th scope="col">enddate</th>
-
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let projet of projetList | paginate: { id:'listing_pagination',
-        itemsPerPage:4,
-        currentPage:page,
-        totalItems:totalRec} ">
-          <td scope="row">
-            <div class="media align-items-center">
-              <div class="media-body">
-                <span class="mb-0 text-sm">{{projet.id}}</span>
-              </div>
-            </div>
-          </td>
-          <td>
-            {{projet.name}}
-          </td>
-          <td>
-            {{projet.priority}}
-          </td>
-          <td>
-            {{projet.description}}
-          </td>
-          <td>
-            {{projet.startdate}}
-          </td>
-          <td>
-            {{projet.enddate}}
-          </td>
-          <td class="text-right">
-            <div ngbDropdown placement="bottom-right">
-              <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                <i class="fas fa-ellipsis-v"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-     </tbody>
-    </table>
-      <div>
-        <pagination-controls  id="listing_pagination"
-          (pageChange)="page=$event"  
-     >
-</pagination-controls>
-  
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Dashboard</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div >
+      <div class="container">
+        <h2>Responsive Tables Using LI ></h2>
+        <ul class="responsive-table">
+          <li class="table-header">
+            <div class="col col-1">Project Id</div>
+            <div class="col col-2">Name</div>
+            <div class="col col-3">Priority</div>
+            <div class="col col-4">Description</div>
+            <div class="col col-5">Start date</div>
+            <div class="col col-6">End date</div>
+          </li>
+          
+          <li class="table-row"  *ngFor="let projet of projetList | paginate: { id:'listing_pagination',
+          itemsPerPage:4,
+          currentPage:page,
+          totalItems:totalRec} ">
+            <div class="col col-1" data-label="Job Id">{{projet.id}}</div>
+            <div class="col col-2" data-label="Customer Name">{{projet.name}}</div>
+            <div class="col col-3" data-label="Amount">{{projet.priority}}</div>
+            <div class="col col-4" data-label="Payment Status">{{projet.description}}</div>
+            <div class="col col-5" data-label="Payment Status">{{projet.startdate}}</div>
+            <div class="col col-6" data-label="Payment Status">{{projet.enddate}}</div>
+          </li>
+        
+        </ul>
       </div>
+    </div>
+  </div>
 </div>

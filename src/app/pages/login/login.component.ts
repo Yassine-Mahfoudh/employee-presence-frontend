@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
 
   loginError: string;
 
-
   constructor(private userService:UserService,
     private authService:AuthService,
     private router: Router,

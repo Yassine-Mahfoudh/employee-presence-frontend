@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AuthService } from './core/services/auth.service';
+import { HostListener } from "@angular/core";
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,26 @@ import { AuthService } from './core/services/auth.service';
   styleUrls: ['./app.component.scss']})
 export class AppComponent {
 
-  constructor(private authService:AuthService){};
-
   title = 'appcrud';
   sideBarOpen = true;
+
+  screenHeight:any;screenWidth:any;
+
+  constructor(private authService:AuthService){
+    this.getScreenSize();
+
+  };
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    this.screenHeight = window.innerHeight;
+    this.screenWidth = window.innerWidth;
+    //console.log(this.screenHeight, this.screenWidth);
+    if(this.screenWidth<1400){
+      this.sideBarOpen=false;
+    }
+}
+
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;

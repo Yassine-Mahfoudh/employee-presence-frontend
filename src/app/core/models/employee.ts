@@ -7,5 +7,4 @@ export class Employee {
     birthdate:string='';
     address:string='';
     phonenumber:string='';
-    //code:string='';
 }
