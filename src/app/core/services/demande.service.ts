@@ -37,7 +37,7 @@ export class DemandeService {
 
     updateDemande(demande : Demande):Observable<Demande>
     {
-      return this.http.put<Demande>(this.updatedemandeurl,demande);   
+      return this.http.put<Demande>(this.updatedemandeurl+'/'+demande.id,demande);   
     }
 
 }

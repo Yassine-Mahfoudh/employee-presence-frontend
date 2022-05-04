@@ -12,11 +12,13 @@ export class UsersService {
   addUsersurl : string;
   getUsersurl: string;
   updateUserslurl: string;
+  getUserByUsernameURL:string;
   
 
   constructor(private http:HttpClient) {
     this.deleteUsersurl= 'http://localhost:8080/utilisateur/delete';
     this.getUsersurl= 'http://localhost:8080/utilisateur';
+    this.getUserByUsernameURL= 'http://localhost:8080/utilisateur/find/name';
     this.addUsersurl= 'http://localhost:8080/utilisateur/add';
     this.updateUserslurl= 'http://localhost:8080/utilisateur/update';
     
@@ -37,6 +39,10 @@ export class UsersService {
     updateUsers(users : Users):Observable<Users>
     {
       return this.http.put<Users>(this.updateUserslurl+'/'+users.id,users);   
+    }
+
+    getUserByUsername(username: String) {
+      return this.http.get<Users>(this.getUserByUsernameURL + '/' + username);
     }
 
 }

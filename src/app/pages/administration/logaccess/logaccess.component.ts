@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Logaccess } from 'src/app/core/models/logaccess';
+import { Users } from 'src/app/core/models/users';
 import { LogaccessService } from 'src/app/core/services/logaccess.service';
+import { UsersService } from 'src/app/core/services/users.service';
 
 
 @Component({
@@ -15,29 +16,32 @@ export class LogaccessComponent implements OnInit {
   totalRec!: string;
   page:number=1
 
+  user:Users = new Users();
+
   constructor(private logaccessService: LogaccessService,
-    config: NgbModalConfig,
-     private modalService: NgbModal)
-     {
-       // customize default values of modals used by this component tree
-config.backdrop = 'static';
-config.keyboard = false;
-     } 
+    private usersService:UsersService
+    ){
+
+
+  }
+
+
 
   ngOnInit(): void {
     this.getLogaccess();
-  }
-  open(content) {
-    this.modalService.open(content);
-  }
-
-  close(content) {
-    this.modalService.dismissAll(content);
   }
   getLogaccess(){
     this.logaccessService.getLogaccess().subscribe(res=>{
       this.logaccessList=res;
     })
   }
+
+  getUser(username : any) {
+    this.usersService.getUserByUsername(username).subscribe(res=>{
+      this.user=res;
+      console.log(this.user);
+    })
+  }
+
 }
 

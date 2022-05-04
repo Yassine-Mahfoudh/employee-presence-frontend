@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Salle } from 'src/app/core/models/salle';
 import { SalleService } from 'src/app/core/services/salle.service';
+import { DeleteComponent } from 'src/app/shared/constant/delete/delete.component';
 @Component({
   selector: 'app-salle',
   templateUrl: './salle.component.html',
-  styleUrls: ['./salle.component.css']
+  styleUrls: ['./salle.component.scss']
 })
 export class SalleComponent implements OnInit {
 
@@ -19,7 +21,9 @@ export class SalleComponent implements OnInit {
   constructor(private formBuilder1 : FormBuilder,
      private salleService: SalleService,
      config: NgbModalConfig,
-      private modalService: NgbModal
+      private modalService: NgbModal,
+      private dialog:MatDialog,
+
      ) {
         // customize default values of modals used by this component tree
  config.backdrop = 'static';
@@ -109,5 +113,11 @@ confirmDeleteS(salle: Salle) {
      this.deleteSalle(salle);
   }
 }
+/*ConfirmDelete(){
 
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.width = "550px";
+  this.dialog.open(DeleteComponent,dialogConfig)
+}
+*/
 }

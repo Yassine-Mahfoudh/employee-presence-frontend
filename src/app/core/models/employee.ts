@@ -7,4 +7,6 @@ export class Employee {
     birthdate:string='';
     address:string='';
     phonenumber:string='';
+    salle:number=0;
+    project:string='';
 }

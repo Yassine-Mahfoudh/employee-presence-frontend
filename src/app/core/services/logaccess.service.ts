@@ -10,6 +10,7 @@ import { Logaccess } from '../models/logaccess';
 })
 export class LogaccessService {
   getLogaccesseurl: string;
+
   constructor(private http:HttpClient) { 
 
     this.getLogaccesseurl= 'http://localhost:8080/logaccess';
@@ -17,5 +18,6 @@ export class LogaccessService {
 
   getLogaccess():Observable<Logaccess[]>
   {
-    return this.http.get<Logaccess[]>(this.getLogaccesseurl);   }
+    return this.http.get<Logaccess[]>(this.getLogaccesseurl);  
+  }
 }

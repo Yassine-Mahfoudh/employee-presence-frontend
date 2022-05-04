@@ -1,4 +1,5 @@
 
+  
          <!-- getLogaccess -->
          <div class="table-responsive">
             <table class="table align-items-center table-flush">
@@ -6,30 +7,27 @@
                 <tr >
                   <th scope="col">Id</th>
                   <th scope="col">Username</th>
-                  <th scope="col">role</th>
-                  <th scope="col">Authentification date</th>
-                  <th scope="col">Code Access</th>
+                  <th scope="col">Action</th>
+                  <th scope="col">Action date</th>
 
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let Logaccess of logaccessList | paginate: { id:'listing_pagination',
+                <tr *ngFor="let Logdata of logdataList | paginate: { id:'listing_pagination',
                 itemsPerPage:4,
                 currentPage:page,
                 totalItems:totalRec} ">
                 <td>
-                  {{Logaccess.id}}
+                  {{Logdata.id}}
+                </td>
+                <td>
+                    {{Logdata.username}}
                 </td>
                   <td>
-                    {{Logaccess.username}}
-                  </td>
-                 <!----> <td>
+                    {{Logdata.action}}
                   </td>
                   <td>
-                    {{Logaccess.dateAuth}}
-                  </td>
-                  <td>
-                    {{Logaccess.codeAccess}}
+                    {{Logdata.dateAction}}
                   </td>
                 </tr>
              </tbody>
@@ -41,5 +39,6 @@
         </pagination-controls>
           
               </div>
-        </div>
    
+
+  

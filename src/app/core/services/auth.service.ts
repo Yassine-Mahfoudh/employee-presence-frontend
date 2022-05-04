@@ -7,7 +7,9 @@ import { Users } from '../models/users';
 })
 export class AuthService {
 
+
   constructor() { }
+
 
   public setRoles(roles: []) {
     /* This is storing the roles in local storage. */

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AdministrationRoutingModule } from './administration-routing.module';
-import { LogDataComponent } from './log-data/log-data.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -39,12 +38,12 @@ import {MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import{MatToolbarModule} from '@angular/material/toolbar';
-import { MatDialogModule } from '@angular/material/dialog'
+import { MatDialogModule } from '@angular/material/dialog';
+import { LogdataComponent } from './logdata/logdata.component'
 
 
 @NgModule({
   declarations: [
-    LogDataComponent,
     ProfilComponent,
     UsersComponent,
     SalleComponent,
@@ -63,7 +62,8 @@ import { MatDialogModule } from '@angular/material/dialog'
     FonctionaliteComponent,
     FonctionaliteListComponent,
     LogaccessComponent,
-    MyaccountComponent
+    MyaccountComponent,
+    LogdataComponent
  
   ],
   imports: [

@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 import { ResetpasswordComponent } from '../resetpassword/resetpassword.component';
 
 
@@ -23,7 +24,9 @@ export class LoginComponent implements OnInit {
   constructor(private userService:UserService,
     private authService:AuthService,
     private router: Router,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private snackbarService:SnackbarService
+
     ) { }
 
   ngOnInit(): void {
@@ -54,7 +57,8 @@ export class LoginComponent implements OnInit {
 
       },
       (error)=>{
-        this.loginError = "username or password is incorrect!";
+        this.snackbarService.openSnackBar("Username or password is incorrect !","error");
+
         console.log( this.loginError );
         console.log(error);
       }

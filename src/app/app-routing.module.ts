@@ -11,6 +11,7 @@ import { EmployeeComponent } from './pages/administration/employee/employee.comp
 import { FonctionaliteListComponent } from './pages/administration/fonctionalite-list/fonctionalite-list.component';
 import { FonctionaliteComponent } from './pages/administration/fonctionalite/fonctionalite.component';
 import { LogaccessComponent } from './pages/administration/logaccess/logaccess.component';
+import { LogdataComponent } from './pages/administration/logdata/logdata.component';
 import { ModalFormComponentComponent } from './pages/administration/modal-form-component/modal-form-component.component';
 import { MyaccountComponent } from './pages/administration/myaccount/myaccount.component';
 import { ProfilListComponent } from './pages/administration/profil-list/profil-list.component';
@@ -84,6 +85,8 @@ const routes: Routes = [
   { path: 'fonctionalitelist',component:FonctionaliteListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']}},
 
   { path: 'logaccess',component:LogaccessComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
+  { path: 'logdata',component:LogdataComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
+
 
   { path: 'modal',component:ModalFormComponentComponent },
   { path: 'myAccount',component:MyaccountComponent }

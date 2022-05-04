@@ -36,7 +36,7 @@ export class ProfilService {
 
     updateProfil(profil : Profil):Observable<Profil>
     {
-      return this.http.put<Profil>(this.updateprofilurl,profil);   
+      return this.http.put<Profil>(this.updateprofilurl+'/'+profil.id,profil);   
     }
 
     

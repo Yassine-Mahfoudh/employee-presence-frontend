@@ -36,6 +36,7 @@ config.keyboard = false;
   getFonctionalites(){
     this.fonctionaliteService.getFonctionalites().subscribe(res=>{
       this.fonctionaliteList=res;
+      console.log(res)
     })
   }
 }

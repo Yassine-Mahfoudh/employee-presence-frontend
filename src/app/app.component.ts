@@ -25,6 +25,9 @@ export class AppComponent {
     //console.log(this.screenHeight, this.screenWidth);
     if(this.screenWidth<1400){
       this.sideBarOpen=false;
+    }else{
+      this.sideBarOpen=true;
+
     }
 }
 

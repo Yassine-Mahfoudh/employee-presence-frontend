@@ -35,37 +35,36 @@
 <!-- editsalle -->
 
 <ng-template #contentUpdate let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Update Salle </h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
-  </div>
-  <div class="modal-body">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+      <span class="title-center">Update Salle</span>
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-dialog-content class="mat-typography">
     <form [formGroup]="salleDetail">
-      <div class="pl-lg-4">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="form-group">
+      <div fxFlex fxLayout="column">
               <h6 class="heading-small text-muted mb-4">Salle information</h6>
-              <label class="form-control-label" for="input-type">type</label>
+              <mat-form-field appearence="fill" fxFlex>
+              <mat-label>Type</mat-label>
               <input type="text" formControlName="type" id="input-type" class="form-control form-control-alternative" placeholder="salle type" value="">
-              <label class="form-control-label" for="input-num">number</label>
+              <mat-label>Number</mat-label>
               <input type="text" formControlName="num" id="input-num" class="form-control form-control-alternative" placeholder="salle number" value="">
-              <label class="form-control-label" for="input-nbposte">number of places</label>
+              <mat-label>Number of places</mat-label>
               <input type="text" formControlName="nbposte" id="input-nbposte" class="form-control form-control-alternative" placeholder="number of places" value="">
-              <label class="form-control-label" for="input-pourcentagePres">attendance percentage</label>
+              <mat-label>Attendance percentage</mat-label>
               <input type="text" formControlName="pourcentagePres" id="input-pourcentagePres" class="form-control form-control-alternative" placeholder="attendance percentage" value="">
+            </mat-form-field>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-      <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" (click)="close(contentUpdate)">Close</button>
-  <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="updateSalle()" (click)="c('Save click')">updateSalle</button></div>
-    </form>
-  </div>
+          </form>
+        </mat-dialog-content>
+        <mat-dialog-actions style="width: 100%;" class="btn-group">
+          <button style="width:50%"  class="btn_send" mat-strocked-button color="primary" type="submit" (click)="updateSalle()" (click)="c('Save click')">Update salle
+          </button>
+          <button style="width:50%" class="btn_cancel" mat-stroked-button color="btn-danger" mat-dialog-close>Close</button>
+        </mat-dialog-actions>
  
 </ng-template>
-
 
 
 <div class="container-fluid">

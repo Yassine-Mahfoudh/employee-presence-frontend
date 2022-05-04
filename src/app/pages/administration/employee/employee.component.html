@@ -6,7 +6,7 @@
           <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="employeeDetail">
+          <form [formGroup]="employeeDetail2">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
@@ -16,15 +16,30 @@
                     <input type="text" formControlName="lastname" id="input-lastname" class="form-control form-control-alternative" placeholder="Employee lastname" value="">
                     <label class="form-control-label" for="input-firstname">firstname</label>
                     <input type="text" formControlName="firstname" id="input-firstname" class="form-control form-control-alternative" placeholder="Employee firstname" value="">
-                    <label class="form-control-label" for="input-role">role</label>
-                    <input type="text" formControlName="role" id="input-role" class="form-control form-control-alternative" placeholder="Employee role" value="">
+                    <label class="form-control-label" for="select-role">role</label>
+                    <select formControlName="role" id="select-role" class="form-control form-control-alternative" value="project.name">
+                      <option value="" disabled selected hidden>Select a role</option>
+                      <option *ngFor="let profil of RoleList " [value]="profil.name" >{{profil.name}}</option>
+                    </select>
+                    
                     <label class="form-control-label" for="input-status">status</label>
                     <input type="text" formControlName="status" id="input-status" class="form-control form-control-alternative" placeholder="Employee status" value="">
                     <label class="form-control-label" for="input-birthdate">birthdate</label>
                     <input type="text" formControlName="birthdate" id="input-birthdate" class="form-control form-control-alternative" placeholder="Employee birthdate" value="">
                     <label class="form-control-label" for="input-address">address</label>
                     <input type="text" formControlName="address" id="input-address" class="form-control form-control-alternative" placeholder="Employee address" value="">
-                  
+                    <label class="form-control-label" for="input-phonenumber">phonenumber</label>
+                    <input type="text" formControlName="phonenumber" id="input-adphonenumberdress" class="form-control form-control-alternative" placeholder="Employee phonenumber" value="">
+                    <label class="form-control-label" for="select-project">project</label>
+                    <select formControlName="project" id="select-project" class="form-control form-control-alternative" value="project.name">
+                      <option value="" disabled selected hidden>Select a project</option>
+                      <option *ngFor="let project of projectList " [value]="project.name">{{project.name}}</option>
+                    </select>
+                    <label class="form-control-label" for="select-workroom">workroom</label>
+                    <select formControlName="salle" id="select-workroom" class="form-control form-control-alternative" value="salle.num">
+                      <option value="" disabled selected hidden>Select a workroom</option>
+                      <option *ngFor="let salle of salleList" [value]="salle.num" >{{salle.num}}</option>
+                    </select>
                 </div>
                 </div>
               </div>
@@ -56,14 +71,29 @@
                       <input type="text" formControlName="lastname" id="input-lastname" class="form-control form-control-alternative" placeholder="Employee lastname" value="">
                       <label class="form-control-label" for="input-firstname">firstname</label>
                       <input type="text" formControlName="firstname" id="input-firstname" class="form-control form-control-alternative" placeholder="Employee firstname" value="">
-                      <label class="form-control-label" for="input-role">role</label>
-                      <input type="text" formControlName="role" id="input-role" class="form-control form-control-alternative" placeholder="Employee role" value="">
+                      <label class="form-control-label" for="select-role">role</label>
+                      <select formControlName="role" id="select-role" class="form-control form-control-alternative" value="profil.name">
+                        <option value="" disabled selected hidden>Select a role</option>
+                        <option *ngFor="let profil of RoleList " [value]="profil.name" >{{profil.name}}</option>
+                      </select> 
                       <label class="form-control-label" for="input-status">status</label>
                       <input type="text" formControlName="status" id="input-status" class="form-control form-control-alternative" placeholder="Employee status" value="">
                       <label class="form-control-label" for="input-birthdate">birthdate</label>
                       <input type="text" formControlName="birthdate" id="input-birthdate" class="form-control form-control-alternative" placeholder="Employee birthdate" value="">
                       <label class="form-control-label" for="input-address">address</label>
                       <input type="text" formControlName="address" id="input-address" class="form-control form-control-alternative" placeholder="Employee address" value="">
+                      <label class="form-control-label" for="input-phonenumber">phonenumber</label>
+                      <input type="text" formControlName="phonenumber" id="input-adphonenumberdress" class="form-control form-control-alternative" placeholder="Employee phonenumber" value="">
+                      <label class="form-control-label" for="select-project">project</label>
+                    <select formControlName="project" id="select-project" class="form-control form-control-alternative" >
+                      <option value="" disabled selected hidden>Select a project</option>
+                      <option *ngFor="let project of projectList " [value]="project.name" >{{project.name}}</option>
+                    </select>
+                    <label class="form-control-label" for="select-workroom">workroom</label>
+                    <select formControlName="salle" id="select-workroom" class="form-control form-control-alternative" >
+                      <option value="" disabled selected hidden>Select a workroom</option>
+                      <option *ngFor="let salle of salleList" [value]="salle.num">{{salle.num}}</option>
+                    </select>
                     </div>
                 </div>
               </div>
@@ -100,6 +130,9 @@
               <th scope="col">status</th>
               <th scope="col">birthdate</th>
               <th scope="col">address</th>
+              <th scope="col">phonenumber</th>
+              <th scope="col">project</th>
+              <th scope="col">workroom</th>
     
               <th scope="col"></th>
             </tr>
@@ -133,6 +166,15 @@
               </td>
               <td>
                 {{employee.address}}
+              </td>
+              <td>
+                {{employee.phonenumber}}
+              </td>
+              <td>
+                {{employee.project}}
+              </td>
+              <td>
+                {{employee.salle}}
               </td>
               <td class="text-right">
                 <div ngbDropdown placement="bottom-right">

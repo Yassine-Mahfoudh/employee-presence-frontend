@@ -35,7 +35,7 @@ export class SalleService {
 
     updateSalle(salle : Salle):Observable<Salle>
     {
-      return this.http.put<Salle>(this.updateSalleurl,salle);   
+      return this.http.put<Salle>(this.updateSalleurl+'/'+salle.id,salle);   
     }
 
 }

@@ -1,0 +1,36 @@
+.mat-toolbar{
+    margin: -24px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+.title-center{
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+mat-form-field{
+    padding : 5px
+}
+
+.btn_send{
+    color: blue;
+}
+
+.btn_cancel{
+    color: red;
+}
+
+.btn-group button {
+    background-color: #026773; /* Green background */
+    border: 1px solid #024959; /* Green border */
+    color: white; /* White text */
+   // padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+  }
+ 
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color:#3CA6A6 ;
+  }
