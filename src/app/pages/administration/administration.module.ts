@@ -43,6 +43,7 @@ import { LogdataComponent } from './logdata/logdata.component'
 import { SortDirective } from 'src/app/shared/Utils/directive/sort.directive';
 
 
+
 @NgModule({
   declarations: [
     ProfilComponent,

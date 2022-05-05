@@ -49,9 +49,9 @@ projetList:Projet[] = [];
     //this.search();
     this.projetDetail = this.formBuilder2.group({
       id: [''],
-      name:['',[Validators.required]],
+      name:['',[Validators.required,Validators.pattern(GlobalConstants.nameRegex)]],
       priority:[null,[Validators.required,Validators.pattern(GlobalConstants.numberRegex)]],
-      description:[null,[Validators.required,Validators.pattern(GlobalConstants.textRegex)]],
+      description:[null,[Validators.required]],
       startdate:[null,[Validators.required,Validators.pattern(GlobalConstants.dateRegex)]],
       enddate:[null,[Validators.required,Validators.pattern(GlobalConstants.dateRegex)]]
     });
@@ -131,12 +131,25 @@ updateProjet(){
   );
 
 }
-/*
-search(){
-    console.log(this.projetDetail.value.search);
-
+public searchProjects(key: string): void {
+  console.log(key);
+  const results: Projet[] = [];
+  for (const projet of this.projetList) {
+    if (projet.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || projet.priority.toString().indexOf(key.toLowerCase()) !== -1
+    || projet.description.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || projet.startdate.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || projet.enddate.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+      results.push(projet);
+    }
+  }
+  this.projetList = results;
+  if (results.length === 0 || !key) {
+    this.getProjets();
+  }
 }
-*/
+
+
 confirmDelete(projet: Projet) {
   if(confirm("Are you sure you want to delete projet "+projet.name)) {
      this.deleteProjet(projet);

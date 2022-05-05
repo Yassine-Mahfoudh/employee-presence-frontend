@@ -16,27 +16,45 @@
               <div class="row">
                 <div class="col-lg-6">
                     <h6 class="heading-small text-muted mb-4">Project informations :</h6>
-                    <div class="form-group" >
+                    <div class="form-group " >
                     <label class="form-control-label"  for="input-name">name</label>
                     <input type="text" formControlName="name" id="input-name" class="form-control form-control-alternative "  placeholder="project name" value="" required >
-                    <br>
-                    <span *ngIf="name && name.invalid">This input is not valid</span>
+                    <mat-error  *ngIf="projetDetail.controls.name.touched && projetDetail.controls.name.invalid">
+                      <span *ngIf="projetDetail.controls.name.errors.required">This field is necessary</span>
+                      <span *ngIf="projetDetail.controls.name.errors.pattern">This field is invalid</span> 
+                    </mat-error>
                     </div>
                     <div class="form-group">
                     <label class="form-control-label" for="input-priority">priority</label>
                     <input type="text" formControlName="priority" id="input-priority" class="form-control form-control-alternative" placeholder="project priority" value="">
-                    </div>
+                    <mat-error  *ngIf="projetDetail.controls.priority.touched && projetDetail.controls.priority.invalid">
+                      <span *ngIf="projetDetail.controls.priority.errors.required">This field is necessary</span>
+                      <span *ngIf="projetDetail.controls.priority.errors.pattern">This field is invalid, it should be a number</span> 
+                    </mat-error>  
+                  </div>
                     <div class="form-group">
                     <label class="form-control-label" for="input-description">description</label>
                     <input type="text" formControlName="description" id="input-description" class="form-control form-control-alternative" placeholder="project description" value="">
-                    </div>
+                    <mat-error  *ngIf="projetDetail.controls.description.touched && projetDetail.controls.description.invalid">
+                      <span *ngIf="projetDetail.controls.description.errors.required">This field is necessary</span>
+                      <span *ngIf="projetDetail.controls.description.errors.pattern">This field is invalid</span> 
+                    </mat-error>  
+                  </div>
                     <div class="form-group">
                     <label class="form-control-label" for="input-startdate">startdate</label>
                     <input type="text" formControlName="startdate" id="input-startdate" class="form-control form-control-alternative" placeholder="project startdate" value="">
-                    </div>
+                    <mat-error  *ngIf="projetDetail.controls.startdate.touched && projetDetail.controls.startdate.invalid">
+                      <span *ngIf="projetDetail.controls.startdate.errors.required">This field is necessary</span>
+                      <span *ngIf="projetDetail.controls.startdate.errors.pattern">This field is invalid, the format should be yyyy-mm-dd</span> 
+                    </mat-error>
+                  </div>
                     <div class="form-group">
                     <label class="form-control-label" for="input-enddate">enddate</label>
                     <input type="text" formControlName="enddate" id="input-enddate" class="form-control form-control-alternative" placeholder="project enddate" value="">
+                    <mat-error  *ngIf="projetDetail.controls.enddate.touched && projetDetail.controls.enddate.invalid">
+                      <span *ngIf="projetDetail.controls.enddate.errors.required">This field is necessary</span>
+                      <span *ngIf="projetDetail.controls.enddate.errors.pattern">This field is invalid, the format should be yyyy-mm-dd</span> 
+                    </mat-error>
                   </div>
                 </div>
                 </div>
@@ -49,7 +67,6 @@
                 <button style="width:50%" class="btn draw-border-cancel" mat-stroked-button  mat-dialog-close (click)="close(content)" (click)="handleClear()">Close</button>
               </mat-dialog-actions>
               </div>
-            
           </form>
         </div>
        
@@ -119,7 +136,8 @@
                 <h1 class="bg text-uppercase font-weight-bolder ">Project List : </h1>
                   <div class="inner-form">
                     <div class="input-field">
-                      <input class="form-control"  id="choices-text-preset-values" type="text" placeholder="Type to search..." />
+                      <input class="form-control" (ngModelChange)="searchProjects(key.value)" #key="ngModel" ngModel
+                      name="key" id="choices-text-preset-values" type="text" placeholder="Type to search..." />
                       <button class="btn-search" type="button" name="search" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                           <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>

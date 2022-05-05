@@ -27,7 +27,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { NgxUiLoaderModule,NgxUiLoaderConfig,SPINNER,PB_DIRECTION } from "ngx-ui-loader";
-import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AddprojectformComponent } from './addprojectform/addprojectform.component';
 
 
@@ -48,7 +47,6 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
   declarations: [
     HomeComponent,
     ResetpasswordComponent,
-    ChangePasswordComponent,
     AddprojectformComponent,
     
   ],
