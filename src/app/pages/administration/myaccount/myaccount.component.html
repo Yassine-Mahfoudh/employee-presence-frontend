@@ -140,7 +140,7 @@
               <mat-label class="clr2">Old Password </mat-label>
               <input type="password" matInput formControlName="oldPassword"  class="input-pass" required>
               <mat-error *ngIf="changePasswordForm.controls.oldPassword.touched && changePasswordForm.controls.oldPassword.invalid">
-                <span *ngIf="changePasswordForm.controls.oldPassword.errors.required">This field is mandatory</span>
+                <span *ngIf="changePasswordForm.controls.oldPassword.errors.required">This field is necessary</span>
               </mat-error>
             </mat-form-field>
           </div>
@@ -149,7 +149,7 @@
               <mat-label class="clr2">New Password </mat-label>
               <input type="password" matInput formControlName="newPassword" class="input-pass" required>
               <mat-error *ngIf="changePasswordForm.controls.newPassword.touched && changePasswordForm.controls.newPassword.invalid">
-                <span *ngIf="changePasswordForm.controls.newPassword.errors.required">This field is mandatory</span>
+                <span *ngIf="changePasswordForm.controls.newPassword.errors.required">This field is necessary</span>
               </mat-error>
             </mat-form-field>
           </div>
@@ -158,7 +158,7 @@
               <mat-label class="clr2">Confirm Password </mat-label>
               <input type="password" matInput formControlName="confirmPassword"  class="input-pass" required>
               <mat-error *ngIf="changePasswordForm.controls.confirmPassword.touched && changePasswordForm.controls.confirmPassword.invalid">
-                <span *ngIf="changePasswordForm.controls.confirmPassword.errors.required">This field is mandatory</span>
+                <span *ngIf="changePasswordForm.controls.confirmPassword.errors.required">This field is necessary</span>
               </mat-error>
               <mat-hint *ngIf="validateSumbit() && !(changePasswordForm.controls.confirmPassword.invalid)">
                 <span> New Password & Confirm Password does not match.</span>

@@ -1,0 +1,59 @@
+<!--
+<mat-toolbar color="primary" class="modal-header">
+    <mat-toolbar-row fxLayout="row">
+      <span class="title-center">Add new project</span>
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="projetDetail">
+      <div fxFlex fxLayout="column">
+        <mat-form-field appearence="fill" fxFlex>
+          <mat-label>Name</mat-label>
+          <input type="text" matInput formControlName="name" required>
+          <mat-error *ngIf="projetDetail.controls.name.touched && projetDetail.controls.name.invalid">
+            <span *ngIf="projetDetail.controls.name.errors.required">This field is necessary</span>
+            <span *ngIf="projetDetail.controls.name.errors.pattern">This field is invalid</span> 
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearence="fill" fxFlex>
+          <mat-label>Priority</mat-label>
+          <input type="number" matInput formControlName="priority" required>
+          <mat-error *ngIf="projetDetail.controls.priority.touched && projetDetail.controls.priority.invalid">
+            <span *ngIf="projetDetail.controls.priority.errors.required">This field is necessary</span>
+            <span *ngIf="projetDetail.controls.priority.errors.pattern">This field is invalid</span> 
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearence="fill" fxFlex>
+          <mat-label>Description</mat-label>
+          <input type="text" matInput formControlName="description" required>
+          <mat-error *ngIf="projetDetail.controls.description.touched && projetDetail.controls.description.invalid">
+            <span *ngIf="projetDetail.controls.description.errors.required">This field is necessary</span>
+            <span *ngIf="projetDetail.controls.description.errors.pattern">This field is invalid</span> 
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearence="fill" fxFlex>
+          <mat-label>Start date</mat-label>
+          <input type="date" matInput formControlName="startdate" required>
+          <mat-error *ngIf="projetDetail.controls.startdate.touched && projetDetail.controls.startdate.invalid">
+            <span *ngIf="projetDetail.controls.startdate.errors.required">This field is necessary</span>
+            <span *ngIf="projetDetail.controls.startdate.errors.pattern">This field is invalid</span> 
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearence="fill" fxFlex>
+          <mat-label>End date</mat-label>
+          <input type="date" matInput formControlName="enddate" required>
+          <mat-error *ngIf="projetDetail.controls.enddate.touched && projetDetail.controls.enddate.invalid">
+            <span *ngIf="projetDetail.controls.enddate.errors.required">This field is necessary</span>
+            <span *ngIf="projetDetail.controls.enddate.errors.pattern">This field is invalid</span> 
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions style="width: 100%;" class="btn-group">
+    <button style="width:50%"  class="btn draw-border-update" mat-strocked-button  type="submit" (click)="addProjet()" (click)="c('Save click')" (click)="handleClear()">Add project
+    </button>
+    <button style="width:50%" class="btn draw-border-cancel" mat-stroked-button  mat-dialog-close (click)="close(content)">Close</button>
+  </mat-dialog-actions>
+  -->

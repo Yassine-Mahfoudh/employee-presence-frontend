@@ -53,9 +53,6 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
     SidenavComponent,
     ForbiddenComponent,
     FooterComponent,
-    
-    
-
   ],
   imports: [
     BrowserModule,

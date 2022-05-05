@@ -28,6 +28,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { NgxUiLoaderModule,NgxUiLoaderConfig,SPINNER,PB_DIRECTION } from "ngx-ui-loader";
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { AddprojectformComponent } from './addprojectform/addprojectform.component';
 
 
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
@@ -48,6 +49,8 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
     HomeComponent,
     ResetpasswordComponent,
     ChangePasswordComponent,
+    AddprojectformComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -59,8 +62,6 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
     MatDialogModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     MatSnackBarModule,
-
-
     
 
           // * MATERIAL IMPORTS

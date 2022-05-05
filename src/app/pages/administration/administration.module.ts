@@ -40,6 +40,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import{MatToolbarModule} from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LogdataComponent } from './logdata/logdata.component'
+import { SortDirective } from 'src/app/shared/Utils/directive/sort.directive';
 
 
 @NgModule({
@@ -63,7 +64,9 @@ import { LogdataComponent } from './logdata/logdata.component'
     FonctionaliteListComponent,
     LogaccessComponent,
     MyaccountComponent,
-    LogdataComponent
+    LogdataComponent,
+    SortDirective,
+    
  
   ],
   imports: [

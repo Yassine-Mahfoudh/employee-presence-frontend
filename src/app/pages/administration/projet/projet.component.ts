@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl,Validators, AbstractControl } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Projet } from 'src/app/core/models/projet';
 import { ProjetService } from 'src/app/core/services/projet.service';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AddprojectformComponent } from '../../addprojectform/addprojectform.component';
+import { SortDirective } from 'src/app/shared/Utils/directive/sort.directive';
 
 
 @Component({
   selector: 'app-projet',
   templateUrl: './projet.component.html',
-  styleUrls: ['./projet.component.scss']
+  styleUrls: ['./projet.component.scss'],
+  viewProviders: [SortDirective]
 })
 export class ProjetComponent implements OnInit {
     trashIcon = faTrash;
@@ -22,7 +27,6 @@ export class ProjetComponent implements OnInit {
 
 
   projetDetail!: FormGroup;
-  projetDetail2!: FormGroup;
   projetobj: Projet = new Projet();
 projetList:Projet[] = [];
   totalRec!: string;
@@ -31,7 +35,9 @@ projetList:Projet[] = [];
   constructor(private formBuilder2 : FormBuilder,
      private projetService: ProjetService,
      config: NgbModalConfig,
-      private modalService: NgbModal
+      private modalService: NgbModal,
+      private dialog:MatDialog,
+
      ) {
         // customize default values of modals used by this component tree
  config.backdrop = 'static';
@@ -40,24 +46,20 @@ projetList:Projet[] = [];
 
   ngOnInit(): void {
     this.getProjets();
+    //this.search();
     this.projetDetail = this.formBuilder2.group({
       id: [''],
-      name:[''],
-      priority:[''],
-      description:[''],
-      startdate:[''],
-      enddate:['']
-    });
-    this.projetDetail2 = this.formBuilder2.group({
-      id: [''],
-      name:[''],
-      priority:[''],
-      description:[''],
-      startdate:[''],
-      enddate:['']
+      name:['',[Validators.required]],
+      priority:[null,[Validators.required,Validators.pattern(GlobalConstants.numberRegex)]],
+      description:[null,[Validators.required,Validators.pattern(GlobalConstants.textRegex)]],
+      startdate:[null,[Validators.required,Validators.pattern(GlobalConstants.dateRegex)]],
+      enddate:[null,[Validators.required,Validators.pattern(GlobalConstants.dateRegex)]]
     });
   }
 
+  get name() { return this.projetDetail.get('name'); }
+
+  
   open(content) {
     this.modalService.open(content);
   }
@@ -70,26 +72,26 @@ projetList:Projet[] = [];
 
   addProjet(){
 
-    console.log(this.projetDetail2);
-    this.projetobj.id=this.projetDetail2.value.id;
-    this.projetobj.name=this.projetDetail2.value.name;
-    this.projetobj.priority=this.projetDetail2.value.priority;
-    this.projetobj.description=this.projetDetail2.value.description;
-    this.projetobj.startdate=this.projetDetail2.value.startdate;
-    this.projetobj.enddate=this.projetDetail2.value.enddate;
+    console.log(this.projetDetail);
+    this.projetobj.id=this.projetDetail.value.id;
+    this.projetobj.name=this.projetDetail.value.name;
+    this.projetobj.priority=this.projetDetail.value.priority;
+    this.projetobj.description=this.projetDetail.value.description;
+    this.projetobj.startdate=this.projetDetail.value.startdate;
+    this.projetobj.enddate=this.projetDetail.value.enddate;
     this.projetService.addProjet(this.projetobj).subscribe(res=>{
       console.log(res);
       this.getProjets();
-      this.projetDetail2=null;
     }
     );
+    
 
 
 }
 
 getProjets(){
   this.projetService.getProjets().subscribe(res=>{
-    this.projetList=res;
+    this.projetList=res.sort();
   })
 }
 
@@ -125,14 +127,32 @@ updateProjet(){
     console.log(res);
     this.getProjets();
   }
+  
   );
 
 }
+/*
+search(){
+    console.log(this.projetDetail.value.search);
 
+}
+*/
 confirmDelete(projet: Projet) {
   if(confirm("Are you sure you want to delete projet "+projet.name)) {
      this.deleteProjet(projet);
   }
 }
+
+handleClear(){
+  this.projetDetail.reset();
+}
+
+/*addProjectAction(){
+
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.width = "550px";
+  this.dialog.open(AddprojectformComponent,dialogConfig)
+}*/
+
 
 }

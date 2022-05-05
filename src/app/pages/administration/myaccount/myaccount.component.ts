@@ -56,11 +56,7 @@ export class MyaccountComponent implements OnInit {
   ngOnInit() {
     
     let EmpId = this.authService.getUserEmployee().id;
-    /*this.employeeService.getEmployeeById(EmpId).subscribe(res=>{
-      this.account=res;
-    })*/
-    //this.account=this.employeeService.getEmployeeById(EmpId);
-   // console.log(this.account);
+   
     this.accountDetail = this.formBuilder.group({
       lname: [''],
       fname: [''],
@@ -72,16 +68,6 @@ export class MyaccountComponent implements OnInit {
     console.log("sallllllllllllllut")
     console.log(this.authService.getUserEmployee().lastname)
 
-    //this.lastname=this.account.lastname;
-
-    /*
-    this.lastname= this.authService.getUserEmployee().lastname
-    this.firstname=this.authService.getUserEmployee().firstname
-    this.birthdate=this.authService.getUserEmployee().birthdate
-    this.address=this.authService.getUserEmployee().address
-    this.phonenumber=this.authService.getUserEmployee().phonenumber
-
-    */
 
         //changepassword
 this.changePasswordForm=this.formBuilder.group({
