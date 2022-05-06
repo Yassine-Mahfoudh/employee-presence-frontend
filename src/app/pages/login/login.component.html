@@ -77,21 +77,18 @@
         <div class="formbg-outer">
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
-              <span class="padding-bottom--15">Sign in to your account</span>
+              <span class="padding-bottom--15" style="font-size: 16px ;">Connectez-vous à votre compte</span>
               <form id="stripe-login" class="login" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
               
-                <p *ngIf="loginError && loginError.length > 0"
-                  class="error-message">
-                 {{loginError}}
-               </p>
+                
                 <div class="field padding-bottom--24"  >
-                  <label for="name">Username</label>
-                  <input type="name" ngModel name="userName" id="userName" ></div>
+                  <label for="name">Nom d'utilisateur</label>
+                  <input type="name" ngModel name="userName" id="userName" autofocus ></div>
                 <div class="field padding-bottom--24">
                   <div class="grid--50-50">
-                    <label for="password">Password</label>
+                    <label for="password">Mot de passe</label>
                     <div class="reset-pass">
-                      <a class="link-primary" (click)="forgotPasswordAction()">Forgot your password?</a>
+                      <a class="link-primary" (click)="forgotPasswordAction()">Mot de passe oublié ?</a>
                     </div>
                   </div>
                   <input type="password"  ngModel
@@ -105,12 +102,12 @@
                 </div>-->
                 
                 <button class="bg padding-bottom--24 " type="submit" value="Login">
-                 Log in
+                 S'identifier
                 </button>
-              <!--<span><a href="#">© Stackfindover</a></span>
-                <div class="field">
-                  <a class="ssolink" href="#">Use single sign-on (Google) instead</a>
-                </div>-->
+              <br><br>
+                <div class="reponse error" *ngIf="loginError && loginError.length">
+                 {{loginError}}
+                </div>
               </form>
             </div>
           </div>

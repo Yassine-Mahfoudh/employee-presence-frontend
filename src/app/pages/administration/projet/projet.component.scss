@@ -62,12 +62,13 @@ h1 {
     touch-action: manipulation;
     
   }
-  
+   
+
   .button-1:hover,
   .button-1:focus {
     background-color: #007ba7 ;
   }
-
+  
 
   .table-header {
     background-image: linear-gradient(195deg, #7fd3ed 0%, #5469d4 100%);
@@ -293,7 +294,7 @@ select {
   background: transparent;
   border: 0;
   padding: 0;
-  cursor: pointer;
+  cursor: default;
   display: flex;
   -ms-flex-pack: center;
       justify-content: center;
@@ -314,79 +315,65 @@ select {
 
 
 
-//=== Drawing effect
 
-@mixin btn-border-drawing($color: #ccc, $hover: black, $width: 2px, $vertical: top, $horizontal: left, $duration: 0.25s) {
-  box-shadow: inset 0 0 0 $width $color;
-  color: $color;
-  transition: color $duration $duration/3;
-  position: relative;
-  
-  &::before,
-  &::after {
-    border: 0 solid transparent;
-    box-sizing: border-box;
-    content: '';
-    pointer-events: none;
-    position: absolute;
-    width: 0; height: 0;
-    
-    #{$vertical}: 0; 
-    #{$horizontal}: 0;
-  }
 
-  &::before {
-    $h-side: if($horizontal == 'left', 'right', 'left');
-    
-    border-#{$vertical}-width: $width;
-    border-#{$h-side}-width: $width;
-  }
-  
-  &::after {
-    $v-side: if($vertical == 'top', 'bottom', 'top');
-    
-    border-#{$v-side}-width: $width;
-    border-#{$horizontal}-width: $width;
-  }
-  
-  &:hover {
-    color: $hover;
-    
-    &::before,
-    &::after {
-      border-color: $hover;
-      transition: border-color 0s, width $duration, height $duration;
-      width: 100%;
-      height: 100%;
-    }
-    
-    &::before { transition-delay: 0s, 0s, $duration; }
-    
-    &::after { transition-delay: 0s, $duration, 0s; }
-  }
-}
-
-.draw-border-update {
-  @include btn-border-drawing(#58afd1, #4438f5, 4px, bottom, right);
-}
-.draw-border-cancel {
-  @include btn-border-drawing(#58afd1, #ff2b2b, 4px, bottom, right);
-}
-//=== Button styling
-.btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  line-height: 1.5;
-  font: 700 1.2rem 'Roboto Slab', sans-serif;
-  padding: 1em 2em;
-  letter-spacing: 0.05rem;
-  margin-left: 3pt;
-  margin-right: 3pt;
-  
-  &:focus { outline: 2px dotted #55d7dc; }
-}
 
 .input{
   width: 100%;
 }
+
+
+.bg-cr{
+  background-color: #DC143C;
+}
+.bg-cb{
+  background-color: #007ba7;
+}
+
+
+.bg-cr:hover,
+  .bg-cr:focus {
+    background-color: #b6314b ;
+  }
+  
+.bg-cb:hover,
+  .bg-cb:focus {
+    background-color: #377085 ;
+  }
+
+  .button-2 {
+    
+    border-radius: 10px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 50px;
+    list-style: none;
+    margin: 0.5em;
+    outline: none;
+    padding: 0px 20px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    
+  }
+  .padl
+  {
+    padding-left: 4em;
+    margin-left: 4em;
+  }
+  .padr
+  {
+    padding-right: 4em;
+    margin-right: 4em;
+  }

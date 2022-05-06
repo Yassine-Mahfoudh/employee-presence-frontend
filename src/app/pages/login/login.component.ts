@@ -25,18 +25,18 @@ export class LoginComponent implements OnInit {
     private authService:AuthService,
     private router: Router,
     private dialog:MatDialog,
-    private snackbarService:SnackbarService
-
+    private snackbarService:SnackbarService,
     ) { }
 
   ngOnInit(): void {
+    
   }
   login(loginForm:NgForm){
 
     this.userService.login(loginForm.value).subscribe(
       (response:any)=>{
-       
         this.loginError = null;
+
         this.authService.setRoles(response.utilisateur.profils);
         this.authService.setToken(response.jwtToken);
         this.authService.setUsername(response.utilisateur.userName)
@@ -52,13 +52,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/Home']);
 
         }
-      
-     
-
       },
       (error)=>{
-        this.snackbarService.openSnackBar("Username or password is incorrect !","error");
-
+        this.loginError =" Le nom dutilisateur ou le mot de passe saisi est incorrect !";
+        //this.snackbarService.openSnackBar("Username or password is incorrect !","error");
         console.log( this.loginError );
         console.log(error);
       }

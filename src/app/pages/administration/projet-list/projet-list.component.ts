@@ -41,4 +41,26 @@ projetList:Projet[] = [];
     })
   }
 
+  public searchProjects(key: string): void {
+    console.log(key);
+    const results: Projet[] = [];
+    for (const projet of this.projetList) {
+      if (projet.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || projet.priority.toString().indexOf(key.toLowerCase()) !== -1
+      || projet.description.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || projet.startdate.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || projet.enddate.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+        results.push(projet);
+      }
+    }
+    this.projetList = results;
+    if (results.length === 0 || !key) {
+      this.getProjets();
+    }
+  }
+
+
+
+
+  
 }
