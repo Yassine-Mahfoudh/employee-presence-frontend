@@ -29,6 +29,11 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxUiLoaderModule,NgxUiLoaderConfig,SPINNER,PB_DIRECTION } from "ngx-ui-loader";
 import { AddprojectformComponent } from './addprojectform/addprojectform.component';
 
+import { FullCalendarModule } from '@fullcalendar/angular'; 
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
 
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
   text:"Loading...",
@@ -42,6 +47,13 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
   pbDirection:PB_DIRECTION.leftToRight,
   pbThickness:5
 }
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin,
+  timeGridPlugin,
+  listPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -75,7 +87,8 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
           MatTabsModule,
           MatFormFieldModule,
           MatInputModule,
-          FlexLayoutModule
+          FlexLayoutModule,
+          FullCalendarModule
 
   ]
 })

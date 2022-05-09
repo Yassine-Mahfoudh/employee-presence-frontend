@@ -76,13 +76,7 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
     MatCardModule,
     MatIconModule,
     MatToolbarModule,
-    MatTabsModule
-
-
-
-  
-
-
+    MatTabsModule,
 
   ],
   providers: [
