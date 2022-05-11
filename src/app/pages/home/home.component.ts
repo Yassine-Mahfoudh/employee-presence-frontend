@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from '@fullcalendar/angular'; // useful for typechecking
+import { EventService } from 'src/app/core/services/event.service';
+import { ResetpasswordComponent } from '../resetpassword/resetpassword.component';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +12,7 @@ import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from '@fullca
 })
 export class HomeComponent implements OnInit {
   currentEvents: EventApi[] = [];
+  public myevents : any[];
 
   calendarOptions: CalendarOptions ={
     headerToolbar: {
@@ -18,25 +22,24 @@ export class HomeComponent implements OnInit {
     },
     customButtons: {
       AddNewEvent: { 
-        text : 'Add new event ',
+        text : 'Add new event',
         click : function(){
-          var newEvents = [
-            {
-              title: 'All Day Event 2',
-              start: '2022-05-22',
-            },
-            {
-              title: 'All Day Event 3',
-              start: '2020-02-03',
-            }
-          ];
         }
       }
     },
     
     initialView: 'dayGridMonth',
-    events: [
-      { title: 'event 1', date: '2022-05-10' },
+    /*events: [
+      {
+        title: 'event 1',
+        rrule : {
+          freq: 'weekly',
+          //a day, daily, weekly, every two weeks and monthly
+          byweekday: [ 'mo', 'fr' ],
+          dtstart: '2022-05-14',
+          until: '2022-05-27'
+        }
+     },
       { title: 'event 2', date: '2022-05-12' },
       {
         title  : 'event3',
@@ -61,7 +64,7 @@ export class HomeComponent implements OnInit {
       }
 
 
-    ],
+    ],*/
     weekends: true,
     editable: true,
     selectable: true,
@@ -69,34 +72,44 @@ export class HomeComponent implements OnInit {
     dayMaxEvents: true,
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
-    eventsSet: this.handleEvents.bind(this)
   };
 
   handleDateClick(arg) {
     alert('date click! ' + arg.dateStr)
   }
-  handleDateSelect(selectInfo: DateSelectArg) {
-    const title = prompt('Please enter a new title for your event');
+  handleDateSelect() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = "550px";
+    this.dialog.open(ResetpasswordComponent,dialogConfig)
   }
   handleEventClick(clickInfo: EventClickArg) {
-    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove();
-      console.log(clickInfo.event.title);
-      //this.remove(data);
-    }
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = "550px";
+    this.dialog.open(ResetpasswordComponent,dialogConfig)
     }
     
-    handleEvents(events: EventApi[]) {
-    this.currentEvents = events;
-    console.log(this.currentEvents);
-    }
     
      
-    constructor( ) { }
+    constructor(
+      private eventService : EventService,
+      private dialog:MatDialog,
+
+     ) { }
 
  
 
   ngOnInit(){
+   
+//    this.calendarOptions.events=this.myevents;
+
+
+    //this.getEvents();
   }  
 
+  /*getEvents(){
+    this.eventService.getEvents().subscribe(res=>{
+     this.myevents=res;
+     this.calendarOptions.events=this.myevents;
+    })
+  }*/
 }

@@ -34,6 +34,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
+import RRulePlugin from '@fullcalendar/rrule';
 
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
   text:"Loading...",
@@ -52,7 +53,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,
   timeGridPlugin,
-  listPlugin
+  listPlugin,
+  RRulePlugin
 ]);
 
 @NgModule({

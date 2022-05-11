@@ -1,7 +1,7 @@
-/*export class workDay {
+export class MyEvent {
     id:number=0;
     title:string='';
     start:string='';
     end:string='';
 }
-*/
+

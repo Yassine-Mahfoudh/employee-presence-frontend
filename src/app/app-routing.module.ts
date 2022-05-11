@@ -88,7 +88,7 @@ const routes: Routes = [
   { path: 'logdata',component:LogdataComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
 
 
-  { path: 'modal',component:ModalFormComponentComponent },
+  //{ path: 'modal',component:ModalFormComponentComponent,canActivate:[AuthGuard],data : {profils:['MANAGER','USER']} },
   { path: 'myAccount',component:MyaccountComponent }
 
   
