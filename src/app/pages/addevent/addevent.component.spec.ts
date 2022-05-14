@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddprojectformComponent } from './addprojectform.component';
+import { AddeventComponent } from './addevent.component';
 
-describe('AddprojectformComponent', () => {
-  let component: AddprojectformComponent;
-  let fixture: ComponentFixture<AddprojectformComponent>;
+describe('AddeventComponent', () => {
+  let component: AddeventComponent;
+  let fixture: ComponentFixture<AddeventComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddprojectformComponent ]
+      declarations: [ AddeventComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddprojectformComponent);
+    fixture = TestBed.createComponent(AddeventComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

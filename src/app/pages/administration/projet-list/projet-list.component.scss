@@ -5,22 +5,20 @@ body {
   font-size: 1rem;
 }
 .container {
-  max-width: 1000px;
+  max-width: 100px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 1px;
+  padding-right: 1px;
 }
 
 h1 {
   font-size: 26px;
   margin: 20px 0;
   text-align: center;
-  text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #007ba7 0px 0px 20px,
-   #007ba7 0px 0px 30px, #007ba7 0px 0px 40px, #007ba7 0px 0px 50px, #007ba7 0px 0px 75px, 2px 3px 2px rgba(26, 77, 124, 0);
-   color: #5469d4;
-   padding-bottom: 1em;
+  
 }
+
 
 .responsive-table {
   li {
@@ -30,96 +28,295 @@ h1 {
     justify-content: space-between;
     margin-bottom: 30px;
 
+
+
+  }
+
+  @media only screen  and (max-width: 1400px) {
+    .button-1 {
+      padding-left: 4em;
+    }
     
   }
+  
+ 
 
-
-.table-header {
-  background-image: linear-gradient(195deg, #7fd3ed 0%, #5469d4 100%);
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-.table-row {
-  background-color: #ffffff;
-  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
-}
-.col-1 {
-  flex-basis: 4%;
-}
-.col-2 {
-  flex-basis: 15%;
-}
-.col-3 {
-  flex-basis: 10%;
-}
-.col-4 {
-  flex-basis: 20%;
-  margin-left: 0.2em;
-}
-.col-5 {
-  flex-basis: 17%;
-  margin-left: 0.2em;
-
-}
-.col-6 {
-  flex-basis: 17%;
-}
-
-.text-secondary {
-  color: #7b809a !important;
-}
-.text-white {
-  color: #ffffff !important;
-}
-.text-uppercase {
-  text-transform: uppercase !important;
-}
-.opacity-7 {
-  opacity: 0.7 !important;
-}
-.text-xxs {
-  font-size: 1rem !important;
-}
-.font-weight-bold {
-  font-weight: 400 !important;
-}
-
-.font-weight-bolder {
-  font-weight: 700 !important;
-}
-
-
-
-@media all and (max-width: 950px) {
-  .table-header {
-    display: none;
-  }
-  .table-row{
+  
+  /* CSS */
+  .button-1 {
+    background-color: #007ba7;
+    border-radius: 15px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 55px;
+    list-style: none;
+    margin: 0.5em;
+    outline: none;
+    padding: 0px 25px;
+    scroll-margin-right: 6em;
+    position: relative;
+    top: -1em;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
     
   }
-  li {
-    display: block;
-  }
-  .col {
    
-    flex-basis: 100%;
-    max-width:160em;
+
+  .button-1:hover,
+  .button-1:focus {
+    background-color: #007ba7 ;
+  }
+  
+
+  .table-header {
+    background-image: linear-gradient(195deg, #7fd3ed 0%, #5469d4 100%);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
     
   }
-  .col {
-    display: flex;
-    padding: 1px 0;
-    &:before {
-      color: #6C7A89;
-      padding-right: 10px;
-      content: attr(data-label);
-      flex-basis: 50%;
-      text-align: center;
+  .table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  }
+  .mar{
+    margin-top:14px;
+    margin-bottom: 14px;
+  }
+  .col-1 {
+    flex-basis: 3%;
+  }
+  .col-2 {
+    flex-basis: 15%;
+}
+  .col-3 {
+    flex-basis: 10%;
+  }
+  .col-4 {
+    flex-basis: 18%;
+    margin-left: 0.2em;
+  }
+  .col-5 {
+    flex-basis: 12%;
+    margin-left: 3em;
+
+  }
+  .col-6 {
+    flex-basis: 10%;
+    margin-left: 3em;
+  }
+  
+  .col-7 {
+    flex-basis:9%;
+    margin-right: 1em;
+  }
+  .col-8 {
+    flex-basis:12%;
+  }
+  .text-secondary {
+    color: #7b809a !important;
+  }
+  .text-white {
+    color: #ffffff !important;
+  }
+  .text-uppercase {
+    text-transform: uppercase !important;
+  }
+  .opacity-7 {
+    opacity: 0.7 !important;
+  }
+  .text-xxs {
+    font-size: 1rem !important;
+  }
+  .font-weight-bold {
+    font-weight: 400 !important;
+  }
+  
+  .font-weight-bolder {
+    font-weight: 700 !important;
+  }
+  
+  
+  
+  @media all and (max-width: 965px) {
+    
+    .table-header {
+      display: none;
+    }
+    .table-row{
+      
+    }
+    li {
+      display: block;
+    }
+    .col {
+     
+      flex-basis: 100%;
+      max-width:160em;
+      
+    }
+    .col {
+      display: flex;
+      padding: 1px 0;
+      &:before {
+        color: #6C7A89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: center;
+      }
     }
   }
 }
+
+.phrase{
+    max-width: 40em; max-width: 100ch;
 }
+
+.page {
+  color: white;
+  padding: 0 -1em;
+  background: #f1f5f9;
+}
+.page__box {
+  min-height: 100px;
+  background: #b0dfe5;
+  margin: 0 -1rem;
+  font-size: 36px;
+}
+.page__content {
+  min-height: calc(100vh - 188px);
+  border-radius: 10px;
+  margin-top: -2rem;
+  background: white;
+  color: black;
+
+}
+.page__content-data {
+  top: 30%;
+  left: 50%;
+  position: relative !important; 
+  left:1em !important;
+  top:1em !important;
+}
+
+.pad{
+padding-left:2em;
+padding-right:2em;
+}
+
+.padl{
+  padding-left:2em;
+}
+
+
+.padr{
+  padding-right:2em;
+
+ 
+}
+
+
+.margl{
+  margin-left: 3em;
+}
+
+.margr{
+  margin-right: 3em;
+}
+
+.pg{
+color: #0dcaf0;
+}
+
+
+
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ 
+ h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  max-inline-size: 15ch;
+}*/
+
+@media (max-width: 650px) {
+  .twelve {
+  margin-right: 6em !important;
+  }
+}
+
+div .twelve {
+  position: relative;
+  width: 90%;
+  max-width: 350px;
+  padding: 2em;
+  margin: 2em auto;
+}
+
+h1:before,
+h1:after {
+  background-color: #b0dfe5;
+  
+}
+
+.twelve h1 {
+  font-size:40px;
+   font-weight:700; 
+   letter-spacing:1px;
+    text-transform:uppercase;
+   width:300px;
+    text-align:center; 
+   margin:auto; 
+   white-space:nowrap;
+    padding-bottom:20px;
+    color:#5469d4 ;
+}
+.twelve h1:before {
+    background-color: #b0dfe5;
+    content: '';
+    display: block;
+    height: 8px;
+    width: 80px;
+    margin-bottom: 10px;
+}
+.twelve h1:after {
+    background-color: #b0dfe5;
+    content: '';
+    display: block;
+  position:absolute; right:0; bottom:0;
+    height: 8px;
+    width: 80px;
+    margin-bottom: 1em;
+}
+
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers (opinionated).
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
 button,
 input {
   /* 1 */
@@ -148,183 +345,130 @@ select {
 
 
 
-.s004 form {
+.s004 .form {
   width: 100%;
-  max-width: 790px;
+ 
 }
 
 
-.s004 form .inner-form {
+.s004 .form .inner-form {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom:10px;
 }
 
-.s004 form .inner-form .input-field {
-  width: 50%;
-  position: relative;
-  bottom: 0;
-  right: -200px;
-}
+.s004 .form .inner-form .input-field {
+  display: flex;
+  padding: 1em 20em;
+    
+    content: attr(data-label);
+    flex-basis: 50%;
+    text-align: center;
+  
 
-.s004 form .inner-form .input-field .choices {
+}
+.s004 .form .inner-form .input-field .choices {
   margin-bottom: 0;
 }
 
 
-.s004 form .inner-form .input-field .btn-search {
-  width: 70px;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  background: transparent;
-  border: 0;
-  padding: 0;
-  cursor: default;
-  display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  align-items: center;
+.input-icon {
+ background-color: #ffffff;
+ margin: 0.2em 0.5em;
 }
+ .input-icon:after {
 
-.s004 form .inner-form .input-field .btn-search svg {
+  transition: all 0.35s ease-in-out;
+}
+.s004 .form .inner-form .input-field .btn-search svg {
   fill: #333;
   width: 30px;
   height: 30px;
   transition: all .2s ease-out, color .2s ease-out;
 }
 
-.s004 form .inner-form .input-field .btn-search:hover, .s004 form .inner-form .input-field .btn-search:focus {
+.s004 .form .inner-form .input-field .btn-search:hover, .s004 .form .inner-form .input-field .btn-search:focus {
   outline: 0;
   box-shadow: none;
 }
 
+@media all and (max-width: 965px) {
+    
+  .s004 .form .inner-form .input-field {
 
-
-//=== Drawing effect
-
-@mixin btn-border-drawing($color: #ccc, $hover: black, $width: 2px, $vertical: top, $horizontal: left, $duration: 0.25s) {
-  box-shadow: inset 0 0 0 $width $color;
-  color: $color;
-  transition: color $duration $duration/3;
-  position: relative;
-  
-  &::before,
-  &::after {
-    border: 0 solid transparent;
-    box-sizing: border-box;
-    content: '';
-    pointer-events: none;
-    position: absolute;
-    width: 0; height: 0;
-    
-    #{$vertical}: 0; 
-    #{$horizontal}: 0;
-  }
-
-  &::before {
-    $h-side: if($horizontal == 'left', 'right', 'left');
-    
-    border-#{$vertical}-width: $width;
-    border-#{$h-side}-width: $width;
-  }
-  
-  &::after {
-    $v-side: if($vertical == 'top', 'bottom', 'top');
-    
-    border-#{$v-side}-width: $width;
-    border-#{$horizontal}-width: $width;
-  }
-  
-  &:hover {
-    color: $hover;
-    
-    &::before,
-    &::after {
-      border-color: $hover;
-      transition: border-color 0s, width $duration, height $duration;
-      width: 100%;
-      height: 100%;
-    }
-    
-    &::before { transition-delay: 0s, 0s, $duration; }
-    
-    &::after { transition-delay: 0s, $duration, 0s; }
+    display: flex;
+ 
+    padding-left: 10em;
+    padding-right: 10em;
+      content: attr(data-label);
+      flex-basis: 50%;
+      text-align: center;
   }
 }
 
-.draw-border-update {
-  @include btn-border-drawing(#58afd1, #4438f5, 4px, bottom, right);
-}
-.draw-border-cancel {
-  @include btn-border-drawing(#58afd1, #ff2b2b, 4px, bottom, right);
-}
-//=== Button styling
-.btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  line-height: 1.5;
-  font: 700 1.2rem 'Roboto Slab', sans-serif;
-  padding: 1em 2em;
-  letter-spacing: 0.05rem;
-  margin-left: 3pt;
-  margin-right: 3pt;
-  
-  &:focus { outline: 2px dotted #55d7dc; }
-}
+
 
 .input{
   width: 100%;
 }
 
-.page {
-  color: white;
-  padding: 0 1em;
-  background: #f1f5f9;
-}
-.page__box {
-  min-height: 120px;
-  background: #b0dfe5;
-  margin: 0 -1rem;
-  font-size: 36px;
-}
-.page__content {
-  min-height: calc(100vh - 178px);
-  border-radius: 10px;
-  margin-top: -2rem;
-  background: white;
-  color: black;
 
+.bg-cr{
+  background-color: #DC143C;
 }
-.page__content-data {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.pad{
-padding:0;
-
+.bg-cb{
+  background-color: #007ba7;
 }
 
 
-.pg{
-color: #0dcaf0;
-}
+.bg-cr:hover,
+  .bg-cr:focus {
+    background-color: #b6314b ;
+  }
+  
+.bg-cb:hover,
+  .bg-cb:focus {
+    background-color: #377085 ;
+  }
 
+  .button-2 {
+    
+    border-radius: 10px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 50px;
+    list-style: none;
+    margin: 0.5em;
+    outline: none;
+    padding: 0px 20px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    
+  }
+  .padl
+  {
+    padding-left: 4em;
 
-
-
-/**
- * Correct the font size and margin on h1 elements within section and
- * article contexts in Chrome, Firefox, and Safari.
- */
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
+  }
+  
+  //pagination
+  .wrapper {
+    padding-bottom: 5px;
+   
+  }
+  .margt {
+    margin-top: 1em;
+   
+  }
+ 

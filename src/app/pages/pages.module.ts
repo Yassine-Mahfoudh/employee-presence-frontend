@@ -27,7 +27,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { NgxUiLoaderModule,NgxUiLoaderConfig,SPINNER,PB_DIRECTION } from "ngx-ui-loader";
-import { AddprojectformComponent } from './addprojectform/addprojectform.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular'; 
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
@@ -35,6 +34,8 @@ import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import RRulePlugin from '@fullcalendar/rrule';
+import { AddeventComponent } from './addevent/addevent.component';
+import { EditeventComponent } from './editevent/editevent.component';
 
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
   text:"Loading...",
@@ -61,7 +62,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   declarations: [
     HomeComponent,
     ResetpasswordComponent,
-    AddprojectformComponent,
+    AddeventComponent,
+    EditeventComponent
     
   ],
   imports: [

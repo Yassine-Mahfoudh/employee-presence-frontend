@@ -1,0 +1,51 @@
+<!-- editevent -->
+    <mat-toolbar>
+      <mat-toolbar-row fxLayout="row">
+        <span class="title-center">edit event</span>
+        <button type="button" class="btn-close" aria-label="Close"  (click)="handleClear()"></button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+        <div class="modal-body">
+          <form [formGroup]="eventDetail">
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group " >
+                <label  for="input-title">title</label>
+                <input type="text" matInput formControlName="title" id="input-title" placeholder="event title" required>
+                <mat-error *ngIf="eventDetail.controls.title.touched && eventDetail.controls.title.invalid">
+                  <span *ngIf="eventDetail.controls.title.errors.required">This field is necessary</span>
+                  <span *ngIf="eventDetail.controls.title.errors.pattern">This field is invalid</span> 
+                </mat-error>
+                  </div>
+                  <div class="form-group " >
+                <label  for="input-datedebut">datedebut</label>
+                <input type="text" matInput formControlName="datedebut" id="input-datedebut" placeholder="event datedebut" required>
+                <mat-error *ngIf="eventDetail.controls.datedebut.touched && eventDetail.controls.title.invalid">
+                  <span *ngIf="eventDetail.controls.datedebut.errors.required">This field is necessary</span>
+                  <span *ngIf="eventDetail.controls.datedebut.errors.pattern">This field is invalid</span> 
+                </mat-error></div>
+                <div class="form-group " >
+                <label  for="input-datefin">datefin</label>
+                <input type="text" matInput formControlName="datefin"  id="input-datefin" placeholder="event datefin" required>
+                <mat-error *ngIf="eventDetail.controls.datefin.touched && eventDetail.controls.datefin.invalid">
+                  <span *ngIf="eventDetail.controls.datefin.errors.required">This field is necessary</span>
+                  <span *ngIf="eventDetail.controls.datefin.errors.pattern">This field is invalid</span> 
+                </mat-error>
+                </div>
+            </div>
+              </div>
+            </div>
+            <div>
+              <mat-dialog-actions style="width: 100%;" class="btn-group">
+                <button style="width:40%"  class="btn button-2 bg-cb" mat-strocked-button type="submit"  [disabled]="!eventDetail.valid" 
+                (click)="updateEvent()"  (click)="handleClear()">Edit Event</button>
+                <button style="width:40%"  class="btn button-2 bg-cb" mat-strocked-button type="submit"
+                (click)="confirmDelete()"  >Delete</button>
+                <button style="width:20%" class="btn button-2 bg-cr" mat-stroked-button  mat-dialog-close 
+                 (click)="handleClear()">Close</button>
+              </mat-dialog-actions>
+              </div>
+              </form>
+        </div>
+     

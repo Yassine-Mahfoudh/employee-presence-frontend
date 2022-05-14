@@ -1,6 +1,4 @@
 
-
-.error { color: #ed1c24 }
 .fa{
   border-color: #ed1c24;
   color: #ed1c24;
@@ -116,7 +114,9 @@ a {
 .error-message{
   color: darkred;
   font-size: x-meduim;
+
 }
+
 
 .flex-justifyContent--center {
   -ms-flex-pack: center;
@@ -156,11 +156,41 @@ label {
 }
 
 
+
+ .input-icon {
+  position: absolute;
+  top: -6;
+  left: -5;
+  width: 1.9em;
+  height: 3.4em;
+  line-height: 1.8em;
+  text-align: center;
+  pointer-events: none;
+
+  
+}
+ .input-icon:after {
+  position: absolute;
+  top: -5.4em;
+  bottom: 1em;
+  left: -3.6em;
+  display: block;
+  border-right: 1px solid #e5e5e5;
+  content: "";
+  -webkit-transition: 0.35s ease-in-out;
+  -moz-transition: 0.35s ease-in-out;
+  -o-transition: 0.35s ease-in-out;
+  transition: 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+
+
 .field input {
     font-size: 16px;
     line-height: 28px;
     padding: 8px 16px;
     width: 100%;
+    padding-left: 2.4em;
     min-height: 44px;
     border: unset;
     border-radius: 4px;
@@ -173,6 +203,7 @@ label {
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+               
 }
 
 .bg  {

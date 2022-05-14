@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
+import { AddeventComponent } from './pages/addevent/addevent.component';
 import { DemandeListComponent } from './pages/administration/demande-list/demande-list.component';
 import { DemandeComponent } from './pages/administration/demande/demande.component';
 import { DepartementListComponent } from './pages/administration/departement-list/departement-list.component';
@@ -22,6 +23,7 @@ import { SalleListComponent } from './pages/administration/salle-list/salle-list
 import { SalleComponent } from './pages/administration/salle/salle.component';
 import { UsersListComponent } from './pages/administration/users-list/users-list.component';
 import { UsersComponent } from './pages/administration/users/users.component';
+import { EditeventComponent } from './pages/editevent/editevent.component';
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -89,7 +91,11 @@ const routes: Routes = [
 
 
   //{ path: 'modal',component:ModalFormComponentComponent,canActivate:[AuthGuard],data : {profils:['MANAGER','USER']} },
-  { path: 'myAccount',component:MyaccountComponent }
+  { path: 'myAccount',component:MyaccountComponent },
+
+  { path: 'addevent',component:AddeventComponent },
+
+  { path: 'editevent',component:EditeventComponent }
 
   
 

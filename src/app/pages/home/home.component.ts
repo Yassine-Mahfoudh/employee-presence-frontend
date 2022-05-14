@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from '@fullcalendar/angular'; // useful for typechecking
 import { EventService } from 'src/app/core/services/event.service';
-import { ResetpasswordComponent } from '../resetpassword/resetpassword.component';
+import { AddeventComponent } from '../addevent/addevent.component';
+import { EditeventComponent } from '../editevent/editevent.component';
+
 
 @Component({
   selector: 'app-home',
@@ -80,12 +82,12 @@ export class HomeComponent implements OnInit {
   handleDateSelect() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = "550px";
-    this.dialog.open(ResetpasswordComponent,dialogConfig)
+    this.dialog.open(AddeventComponent,dialogConfig)
   }
   handleEventClick(clickInfo: EventClickArg) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = "550px";
-    this.dialog.open(ResetpasswordComponent,dialogConfig)
+    this.dialog.open(EditeventComponent,dialogConfig)
     }
     
     
@@ -100,16 +102,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(){
    
-//    this.calendarOptions.events=this.myevents;
+   // this.calendarOptions.events=this.myevents;
 
 
-    //this.getEvents();
+    this.getEvents();
   }  
 
-  /*getEvents(){
+  getEvents(){
     this.eventService.getEvents().subscribe(res=>{
      this.myevents=res;
      this.calendarOptions.events=this.myevents;
     })
-  }*/
+  }
 }

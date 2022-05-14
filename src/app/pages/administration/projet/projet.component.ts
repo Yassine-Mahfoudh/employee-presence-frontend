@@ -8,8 +8,8 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AddprojectformComponent } from '../../addprojectform/addprojectform.component';
 import { SortDirective } from 'src/app/shared/Utils/directive/sort.directive';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -22,6 +22,7 @@ export class ProjetComponent implements OnInit {
     trashIcon = faTrash;
     editIcon = faPenToSquare;
     addIcon = faPlusCircle;
+  
 
     
 
@@ -49,15 +50,14 @@ projetList:Projet[] = [];
     //this.search();
     this.projetDetail = this.formBuilder2.group({
       id: [''],
-      name:['',[Validators.required,Validators.pattern(GlobalConstants.nameRegex)]],
+      name:[null,[Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
       priority:[null,[Validators.required,Validators.pattern(GlobalConstants.numberRegex)]],
-      description:[null,[Validators.required]],
-      startdate:[null,[Validators.required,Validators.pattern(GlobalConstants.dateRegex)]],
-      enddate:[null,[Validators.required,Validators.pattern(GlobalConstants.dateRegex)]]
+      description:[null,[Validators.required,Validators.minLength(5)]],
+      startdate:[null,[Validators.required,Validators.pattern(GlobalConstants.dateRegex),Validators.minLength(10)]],
+      enddate:[null,[Validators.required,Validators.pattern(GlobalConstants.dateRegex),Validators.minLength(10)]]
     });
   }
 
-  get name() { return this.projetDetail.get('name'); }
 
   
   open(content) {
@@ -82,6 +82,9 @@ projetList:Projet[] = [];
     this.projetService.addProjet(this.projetobj).subscribe(res=>{
       console.log(res);
       this.getProjets();
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
     }
     );
     
@@ -111,6 +114,9 @@ deleteProjet(projet : Projet){
       console.log(res);
       alert("projet deleted successfully");
       this.getProjets();
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
     }
     );
   
@@ -126,6 +132,9 @@ updateProjet(){
   this.projetService.updateProjet(this.projetobj).subscribe(res=>{
     console.log(res);
     this.getProjets();
+  },
+  (error: HttpErrorResponse) => {
+    alert(error.message);
   }
   
   );

@@ -32,6 +32,11 @@ export class MyaccountComponent implements OnInit {
   birthdate:any;
   address:any;
   phonenumber:any;
+  photo:any;
+  userFile ;
+  public imagePath;
+  imgURL: any;
+  public message: string;
 
   //myaccount:Employee;
 
@@ -62,10 +67,10 @@ export class MyaccountComponent implements OnInit {
       fname: [''],
       bdate: [''],
       ads: [''],
-      phnbr:['']
+      phnbr:[''],
+      photo:['']
     });
 
-    console.log("sallllllllllllllut")
     console.log(this.authService.getUserEmployee().lastname)
 
 
@@ -130,7 +135,32 @@ this.changePasswordForm=this.formBuilder.group({
   }
 }
   
+
+onSelectFile(event) {
+  if (event.target.files.length > 0)
+  {
+    const file = event.target.files[0];
+    this.userFile = file;
+   // this.f['profile'].setValue(file);
+
+  var mimeType = event.target.files[0].type;
+  if (mimeType.match(/image\/*/) == null) {
+    this.message = "Only images are supported.";
+    return;
+  }
+
+  var reader = new FileReader();
   
+  this.imagePath = file;
+  reader.readAsDataURL(file); 
+  reader.onload = (_event) => { 
+    this.imgURL = reader.result; 
+  }
+}
+   
+    
+  }
+
   open(content) {
     this.modalService.open(content);
   }
@@ -166,6 +196,10 @@ this.changePasswordForm=this.formBuilder.group({
       this.accountobj.phonenumber=this.account.phonenumber;
     }else{
     this.accountobj.phonenumber=this.accountDetail.value.phnbr;
+    }if(this.accountDetail.value.photo == ""){
+      this.accountobj.photo=this.account.photo;
+    }else{
+    this.accountobj.photo=this.accountDetail.value.photo;
     }
   
      // this.authService.setUserEmployee(this.accountobj);

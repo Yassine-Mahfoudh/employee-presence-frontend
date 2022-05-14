@@ -31,6 +31,7 @@ import { NgxUiLoaderModule,NgxUiLoaderConfig,SPINNER,PB_DIRECTION } from "ngx-ui
 import { FooterComponent } from './layouts/footer/footer.component';
 
 
+
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
   text:"Loading...",
   textColor:"#ffffff",

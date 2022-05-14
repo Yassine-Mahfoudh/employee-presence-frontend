@@ -1,31 +1,4 @@
-<!--
-<html>
-    <body>
-        <div class="wrapper">
-            <form class="login" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-              <p class="title">Log in</p>
-              <input type="text" placeholder="Username" autofocus  ngModel 
-              name="userName"
-              id="userName"
-              />
-              <i class="fab fa fa-user"></i>
-              <input type="password" placeholder="Password" ngModel
-              name="userPassword"
-              id="userPassword" />
-              <i class="fab fa fa-key"></i>
-              <button>
-                <i class="spinner"></i>
-                <span class="state" type="submit"
-                value="Login"
-                >Log in</span>
-              </button>
-            </form>
-            <a  routerLink="/resetpassword">forgot your password?</a>  
-            <footer><a target="blank" href="http://www.st2i.com.tn/">ST2i.com</a></footer>
-          </div>
-    </body>
-</html>
--->
+
 
 
 <html>
@@ -45,28 +18,28 @@
             </div>
           </div>
           <div class="box-root flex-flex" style="grid-area: 4 / 2 / auto / 5;">
-            <div class="box-root box-divider--light-all-2 animationLeftRight tans3s" style="flex-grow: 1;"></div>
+            <div class="box-root box-divider--light-all-2  " style="flex-grow: 1;"></div>
           </div>
           <div class="box-root flex-flex" style="grid-area: 6 / start / auto / 2;">
             <div class="box-root box-background--blue800" style="flex-grow: 1;"></div>
           </div>
           <div class="box-root flex-flex" style="grid-area: 7 / start / auto / 4;">
-            <div class="box-root box-background--blue animationLeftRight" style="flex-grow: 1;"></div>
+            <div class="box-root box-background--blue " style="flex-grow: 1;"></div>
           </div>
           <div class="box-root flex-flex" style="grid-area: 8 / 4 / auto / 6;">
-            <div class="box-root box-background--gray100 animationLeftRight tans3s" style="flex-grow: 1;"></div>
+            <div class="box-root box-background--gray100  " style="flex-grow: 1;"></div>
           </div>
           <div class="box-root flex-flex" style="grid-area: 2 / 15 / auto / end;">
-            <div class="box-root box-background--cyan200 animationRightLeft tans4s" style="flex-grow: 1;"></div>
+            <div class="box-root box-background--cyan200  " style="flex-grow: 1;"></div>
           </div>
           <div class="box-root flex-flex" style="grid-area: 3 / 14 / auto / end;">
-            <div class="box-root box-background--blue animationRightLeft" style="flex-grow: 1;"></div>
+            <div class="box-root box-background--blue " style="flex-grow: 1;"></div>
           </div>
           <div class="box-root flex-flex" style="grid-area: 4 / 17 / auto / 20;">
-            <div class="box-root box-background--gray100 animationRightLeft tans4s" style="flex-grow: 1;"></div>
+            <div class="box-root box-background--gray100  " style="flex-grow: 1;"></div>
           </div>
           <div class="box-root flex-flex" style="grid-area: 5 / 14 / auto / 17;">
-            <div class="box-root box-divider--light-all-2 animationRightLeft tans3s" style="flex-grow: 1;"></div>
+            <div class="box-root box-divider--light-all-2  " style="flex-grow: 1;"></div>
           </div>
         </div>
       </div>
@@ -77,23 +50,33 @@
         <div class="formbg-outer">
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
-              <span class="padding-bottom--15" style="font-size: 16px ;">Connectez-vous à votre compte</span>
+              <span class="padding-bottom--15">Sign in to your account</span>
               <form id="stripe-login" class="login" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
               
-                
+               
                 <div class="field padding-bottom--24"  >
-                  <label for="name">Nom d'utilisateur</label>
-                  <input type="name" ngModel name="userName" id="userName" autofocus ></div>
+                  <label for="name">Username</label>
+                  <span class="input-icon" id="basic-addon1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                    <path fill="gray" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                  </svg>
+                  </span>
+              <input type="name" ngModel name="userName" id="userName" placeholder="Nom d'utilisateur"></div>
                 <div class="field padding-bottom--24">
                   <div class="grid--50-50">
-                    <label for="password">Mot de passe</label>
+                    <label for="password">Password</label>
                     <div class="reset-pass">
-                      <a class="link-primary" (click)="forgotPasswordAction()">Mot de passe oublié ?</a>
+                      <a class="link-primary" (click)="forgotPasswordAction()">Forgot your password?</a>
                     </div>
                   </div>
+                  <span class="input-icon" id="basic-addon1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
+                    <path fill="gray" d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>
+                    </svg>
+                  </span>
                   <input type="password"  ngModel
                   name="userPassword"
-                  id="userPassword">
+                  id="userPassword" placeholder="Mot de passe">
                 </div>
                 <!--<div class="field field-checkbox padding-bottom--24 flex-flex align-center">
                   <label for="checkbox">
@@ -102,12 +85,12 @@
                 </div>-->
                 
                 <button class="bg padding-bottom--24 " type="submit" value="Login">
-                 S'identifier
+                 Log in
                 </button>
-              <br><br>
-                <div class="reponse error" *ngIf="loginError && loginError.length">
-                 {{loginError}}
-                </div>
+              <!--<span><a href="#">© Stackfindover</a></span>
+                <div class="field">
+                  <a class="ssolink" href="#">Use single sign-on (Google) instead</a>
+                </div>-->
               </form>
             </div>
           </div>
@@ -118,7 +101,12 @@
               <!--<span><a href="#">© Stackfindover</a></span>
               <span><a href="#">Contact</a></span>
               <span><a href="#">Privacy & terms</a></span>-->
+              <p *ngIf="loginError && loginError.length > 0"
+                class="error-message">
+               {{loginError}}
+             </p>
             </div>
+            
           </div>
         </div>
       </div>
