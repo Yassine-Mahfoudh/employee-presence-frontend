@@ -20,30 +20,19 @@ export class UserService {
     return this.httpclient.post(this.PATH_API+'/authenticate',loginData,{headers:this.requestHeader});
   }
 
-  public roleMatch(allowedRoles) : boolean | undefined{
-    let isMatch=false;
+  public roleMatch(allowedRoles) :boolean{
+    let isMatch = false;
     const userRoles : any=this.authService.getRoles();
-
-    if (userRoles !=null && userRoles)
-    {
-      for(let i=0;i<userRoles.length;i++)
-      {
-        for(let j=0;j<allowedRoles.length;j++)
-        {
-          if(userRoles[i].name === allowedRoles[j])
-          {
-            isMatch=true;
-            return isMatch;
-          }
-          else
-          {
-            return isMatch;
-          }
+    if(userRoles) {
+      for(let i = 0; i<userRoles.length; i++) {
+        if(allowedRoles.indexOf(userRoles[i].name) !== -1){
+         isMatch = true;
+         break;
         }
       }
     }
-    //throw new Error("Role not found")
-  }
+    return isMatch;
+    }
 
   public forgotPassword(email:any){
     return this.httpclient.post(this.PATH_API+'/utilisateur/forgotPassword',email,

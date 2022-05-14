@@ -45,9 +45,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   
   { path: 'dashboard', component:DashboardComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']}},
-  { path: 'home', component:HomeComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
+  { path: 'home', component:HomeComponent,canActivate:[AuthGuard],data : {profils:['RH','USER','MANAGER']} },
   
-  { path: 'Home', component:HomeComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
+ // { path: 'Home', component:HomeComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
 
 
   { path: 'forbidden',component:ForbiddenComponent },
@@ -55,8 +55,8 @@ const routes: Routes = [
 
 
   { path: 'salle',component:SalleComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
-  { path: 'sallelist',component:SalleListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
-  { path: 'SalleList',component:SalleListComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
+  { path: 'sallelist',component:SalleListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN','USER']} },
+  //{ path: 'SalleList',component:SalleListComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
 
 
   { path: 'profil',component:ProfilComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
@@ -66,12 +66,12 @@ const routes: Routes = [
   { path: 'projetlist',component:ProjetListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
 
   { path: 'departement',component:DepartementComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
-  { path: 'departementlist',component:DepartementListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
-  { path: 'DepartementList',component:DepartementListComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
+  { path: 'departementlist',component:DepartementListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN','USER']} },
+ // { path: 'DepartementList',component:DepartementListComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
 
 
-  { path: 'demande',component:DemandeComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
-  { path: 'Demande',component:DemandeComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
+  { path: 'demande',component:DemandeComponent,canActivate:[AuthGuard],data : {profils:['RH','USER']} },
+  //{ path: 'Demande',component:DemandeComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
   { path: 'demandelist',component:DemandeListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
 
 
@@ -79,8 +79,9 @@ const routes: Routes = [
   { path: 'userlist',component:UsersListComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
 
   { path: 'employee',component:EmployeeComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
-  { path: 'employeelist',component:EmployeeListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
-  { path: 'EmployeeList',component:EmployeeListComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
+  { path: 'employeelist',component:EmployeeListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN','USER']} },
+
+ // { path: 'EmployeeList',component:EmployeeListComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
 
 
   { path: 'fonctionalite',component:FonctionaliteComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
@@ -90,8 +91,9 @@ const routes: Routes = [
   { path: 'logdata',component:LogdataComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
 
 
-  //{ path: 'modal',component:ModalFormComponentComponent,canActivate:[AuthGuard],data : {profils:['MANAGER','USER']} },
+  { path: 'modal',component:ModalFormComponentComponent,canActivate:[AuthGuard],data : {profils:['MANAGER','USER']} },
   { path: 'myAccount',component:MyaccountComponent },
+
 
   { path: 'addevent',component:AddeventComponent },
 

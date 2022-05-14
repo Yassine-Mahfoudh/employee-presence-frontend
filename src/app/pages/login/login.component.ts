@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
 
     this.userService.login(loginForm.value).subscribe(
       (response:any)=>{
-       
         this.loginError = null;
+
         this.authService.setRoles(response.utilisateur.profils);
         this.authService.setToken(response.jwtToken);
         this.authService.setUsername(response.utilisateur.userName)
@@ -46,19 +46,13 @@ export class LoginComponent implements OnInit {
         console.log( this.loginError );
         if (type === 'ADMIN') {
           this.router.navigate(['/dashboard']);
-        } else if (type === 'RH')  {
-          this.router.navigate(['/home']);
-        } else{
-          this.router.navigate(['/Home']);
-
-        }
-      
-     
-
+        } else 
+        this.router.navigate(['/home']);
+        
       },
       (error)=>{
-        this.snackbarService.openSnackBar("Username or password is incorrect !","error");
-
+        this.loginError =" Le nom dutilisateur ou le mot de passe saisi est incorrect !";
+        //this.snackbarService.openSnackBar("Username or password is incorrect !","error");
         console.log( this.loginError );
         console.log(error);
       }
