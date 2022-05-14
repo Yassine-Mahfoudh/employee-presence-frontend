@@ -15,8 +15,8 @@
             <label  for="input-title">title</label>
             <input type="text" matInput formControlName="title" id="input-title" placeholder="event title" required>
             <mat-error *ngIf="eventDetail.controls.title.touched && eventDetail.controls.title.invalid">
-              <span *ngIf="eventDetail.controls.title.errors.required">This field is necessary</span>
-              <span *ngIf="eventDetail.controls.title.errors.pattern">This field is invalid</span> 
+              <span *ngIf="eventDetail.controls.title.errors.required">Ce champ est obligatoire</span>
+              <span *ngIf="eventDetail.controls.title.errors.pattern">Ce champ est invalide</span> 
             </mat-error>
               </div>
               <div class="form-group " >

@@ -8,7 +8,7 @@ import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 @Component({
   selector: 'app-addevent',
   templateUrl: './addevent.component.html',
-  styleUrls: ['./addevent.component.css']
+  styleUrls: ['./addevent.component.scss']
 })
 export class AddeventComponent implements OnInit {
 
