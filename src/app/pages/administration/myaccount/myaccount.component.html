@@ -1,6 +1,6 @@
  
  
-    <h3>My account</h3>
+    <h3>Mon compte</h3>
     <mat-tab-group >
       <mat-tab label="Details">
         <div class="container">
@@ -35,9 +35,9 @@
                                           </p>
                                       </div>
                                       <div class="col">
-                                          <p class="small mb-0 text-muted">date of birth :{{account.birthdate}}</p>
-                                          <p class="small mb-0 text-muted">phone : (+216){{account.phonenumber}}</p>
-                                          <p class="small mb-0 text-muted">gender : male</p>
+                                          <p class="small mb-0 text-muted">Date de naissance :{{account.birthdate}}</p>
+                                          <p class="small mb-0 text-muted">Téléphone : (+216){{account.phonenumber}}</p>
+                                          <p class="small mb-0 text-muted">Sexe : male</p>
                                       </div>
                                   </div>
                               </div>
@@ -45,47 +45,47 @@
                           <hr class="my-4" />
                           <div class="row">
                               <div class="input-group" class="input-group-icon">
-                                  <label for="firstname"><h6>Firstname</h6></label>
+                                  <label for="firstname"><h6>Prénom</h6></label>
                                   <div class="input-icon"><i class="fa fa-user"></i></div>
                                   <input  type="text" formControlName="fname" id="firstname" class="form-control" placeholder="{{account.firstname}}"  />
                               </div>
                               
                               <div class="input-group" class="input-group-icon">
-                                  <label for="lastname"><h6>Lastname</h6></label>
+                                  <label for="lastname"><h6>Nom</h6></label>
                                   <div class="input-icon"><i class="fa fa-user"></i></div>
                                   <input type="text" formControlName="lname" id="lastname" class="form-control" placeholder="{{account.lastname}}" />
                                 
                               </div>
                           </div>
                           <div class="input-group" class="input-group-icon">
-                            <label for="address"><h6>Address</h6></label>
+                            <label for="address"><h6>Adresse</h6></label>
                             <div class="input-icon"><mat-icon>location_city</mat-icon></div>
                             
                             <input  type="text" class="form-control" formControlName="ads" id="address" placeholder="{{account.address}}" />
                         </div>
                           <div class="input-group" class="input-group-icon">
-                              <label for="phonenumber"><h6>PhoneNumber</h6></label>
+                              <label for="phonenumber"><h6>Numéro de téléphone</h6></label>
                               <div class="input-icon"><mat-icon> local_phone</mat-icon></div>
                               
                               <input  type="text" class="form-control" formControlName="phnbr"  id="phonenumber" placeholder="{{account.phonenumber}}" />
                           </div>
                           
                               <div  class="col-half" >
-                                  <label for="birthdate"><h6>Date of Birth</h6></label>
+                                  <label for="birthdate"><h6>Date de naissance</h6></label>
                                   <input class="input-group"  type="text" class="form-control" formControlName="bdate"  id="BirthDate" placeholder="{{account.birthdate}}" onfocus="(this.type='date')"/>
                               </div>
                              
         
                               <div class="col-half">
-                                <h6>Gender</h6>
+                                <h6>Sexe</h6>
                                 <div class="input-group">
                                   <input id="gender-male" type="radio" name="gender" value="male" disabled checked />
-                                  <label for="gender-male">Male</label>
+                                  <label for="gender-male">Homme</label>
                                   <input id="gender-female" type="radio" name="gender" value="female" disabled/>
-                                  <label for="gender-female">Female</label>
+                                  <label for="gender-female">Femme</label>
                                 </div>
                             </div>
-                            <button (click)="confirmUpdate()" mat-raised-button class="btn btn-primary btn-block"  >Save Change</button>
+                            <button (click)="confirmUpdate()" mat-raised-button class="btn btn-primary btn-block">Mettre à jour</button>
                     </form>
                 </div>
             </div>
@@ -133,7 +133,7 @@
     <div  class="container">
       <mat-toolbar class="clr">
         <mat-toolbar-row fxLayout="row">
-          <span class="title-center" >Change Password </span>
+          <span class="title-center" >Changer le mot de passe </span>
         </mat-toolbar-row>
       </mat-toolbar>
     
@@ -143,7 +143,7 @@
             <div class="row"  class="marg">
             <mat-form-field appearence="fill" fxFlex>
               
-              <mat-label class="clr2">Old Password </mat-label>
+              <mat-label class="clr2">Mot de passe actuel</mat-label>
               <input type="password" matInput formControlName="oldPassword"  class="input-pass" required>
               <mat-error *ngIf="changePasswordForm.controls.oldPassword.touched && changePasswordForm.controls.oldPassword.invalid">
                 <span *ngIf="changePasswordForm.controls.oldPassword.errors.required">This field is necessary</span>
@@ -152,7 +152,7 @@
           </div>
             <div class="row" class="marg">
             <mat-form-field appearence="fill" fxFlex>
-              <mat-label class="clr2">New Password </mat-label>
+              <mat-label class="clr2">Nouveau mot de passe</mat-label>
               <input type="password" matInput formControlName="newPassword" class="input-pass" required>
               <mat-error *ngIf="changePasswordForm.controls.newPassword.touched && changePasswordForm.controls.newPassword.invalid">
                 <span *ngIf="changePasswordForm.controls.newPassword.errors.required">This field is necessary</span>
@@ -161,13 +161,13 @@
           </div>
             <div class="row" class="marg">
             <mat-form-field appearence="fill" fxFlex>
-              <mat-label class="clr2">Confirm Password </mat-label>
+              <mat-label class="clr2">Confirmer le nouveau mot de passe </mat-label>
               <input type="password" matInput formControlName="confirmPassword"  class="input-pass" required>
               <mat-error *ngIf="changePasswordForm.controls.confirmPassword.touched && changePasswordForm.controls.confirmPassword.invalid">
                 <span *ngIf="changePasswordForm.controls.confirmPassword.errors.required">This field is necessary</span>
               </mat-error>
               <mat-hint *ngIf="validateSumbit() && !(changePasswordForm.controls.confirmPassword.invalid)">
-                <span> New Password & Confirm Password does not match.</span>
+                <span> Les entrées dans les champs "Nouveau mot de passe" et "Confirmer le nouveau mot de passe" ne sont pas identiques.</span>
               </mat-hint>
             </mat-form-field>
           </div>
@@ -175,9 +175,9 @@
         
         </form>
       </mat-dialog-content>
-      <mat-dialog-actions  style="width: 20%;" class="btn-group">
+      <mat-dialog-actions  style="width: 30%;" class="btn-group">
         <button style="width:50%"  mat-raised-button class="btn btn-primary btn-block" type="submit" (click)="handleChangePasswordSubmit()"
-          [disabled]="validateSumbit() || !(changePasswordForm.valid && changePasswordForm.dirty)">Update Password
+          [disabled]="validateSumbit() || !(changePasswordForm.valid && changePasswordForm.dirty)">Mettre à jour votre mot de passe.
         </button>
       </mat-dialog-actions>
     </div>
