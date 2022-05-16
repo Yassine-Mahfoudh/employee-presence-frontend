@@ -30,7 +30,8 @@ export class AddeventComponent implements OnInit {
     this.getevents();
     this.eventDetail = this.formBuilder.group({
       id: [''],
-      /*title:[null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
+      /*
+      title:[null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
       datedebut:[null,[Validators.required, Validators.pattern(GlobalConstants.dateRegex)]],
       datefin:[null,[Validators.required, Validators.pattern(GlobalConstants.dateRegex)]]
       */
@@ -77,6 +78,7 @@ getevents(){
 editEvent(demande : MyEvent){
   this.eventDetail.controls['id'].setValue(demande.id);
   this.eventDetail.controls['title'].setValue(demande.title);
+  //sthis.eventDetail.controls['start'].setValue(HomeComponent.calendarOptions.select.value);
   this.eventDetail.controls['datedebut'].setValue(demande.start);
   this.eventDetail.controls['datefin'].setValue(demande.end);
 

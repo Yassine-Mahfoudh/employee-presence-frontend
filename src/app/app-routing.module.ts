@@ -97,9 +97,9 @@ const routes: Routes = [
 
   { path: 'addevent',component:AddeventComponent },
 
-  { path: 'editevent',component:EditeventComponent }
+  { path: 'editevent',component:EditeventComponent },
 
-  
+
 
 
 

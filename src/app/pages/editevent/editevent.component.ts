@@ -8,7 +8,7 @@ import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 @Component({
   selector: 'app-editevent',
   templateUrl: './editevent.component.html',
-  styleUrls: ['./editevent.component.css']
+  styleUrls: ['./editevent.component.scss']
 })
 export class EditeventComponent implements OnInit {
 
@@ -56,11 +56,11 @@ getevents(){
   })
 }
 
-editEvent(demande : MyEvent){
-  this.eventDetail.controls['id'].setValue(demande.id);
-  this.eventDetail.controls['title'].setValue(demande.title);
-  this.eventDetail.controls['datedebut'].setValue(demande.start);
-  this.eventDetail.controls['datefin'].setValue(demande.end);
+editEvent(event : MyEvent){
+  this.eventDetail.controls['id'].setValue(event.id);
+  this.eventDetail.controls['title'].setValue(event.title);
+  this.eventDetail.controls['datedebut'].setValue(event.start);
+  this.eventDetail.controls['datefin'].setValue(event.end);
 
 }
 
@@ -76,14 +76,8 @@ deleteEvent(){
   }
 
 updateEvent(){
-  //this.eventobj.id=this.eventDetail.value.id;
+  this.eventobj.id=this.eventDetail.value.id;
   this.eventobj.title=this.eventDetail.value.title;
-  let upevent:MyEvent;
-  this.myeventService.getEventByTitle(this.eventobj.title).subscribe(res=>{
-    upevent=res;
-  });
-  console.log(upevent);
-  this.eventobj.id=upevent.id;
   this.eventobj.start=this.eventDetail.value.datedebut;
   this.eventobj.end=this.eventDetail.value.datefin;
   this.myeventService.updateEvent(this.eventobj).subscribe(res=>{

@@ -20,15 +20,24 @@ export class HomeComponent implements OnInit {
     headerToolbar: {
       left: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
       center: 'title',
-      right: 'AddNewEvent today prevYear,prev,next,nextYear'
+      right: 'today prevYear,prev,next,nextYear'
     },
-    customButtons: {
+    buttonText: {
+      today:    'Aujourd\'hui',
+      month:    'Mois',
+      week:     'Semaine',
+      day:      'Jour',
+      list:     'Liste'
+  },
+  locale: 'fr',
+   /* customButtons: {
       AddNewEvent: { 
         text : 'Add new event',
         click : function(){
+        
         }
       }
-    },
+    },*/
     
     initialView: 'dayGridMonth',
     /*events: [
@@ -76,9 +85,12 @@ export class HomeComponent implements OnInit {
     eventClick: this.handleEventClick.bind(this),
   };
 
+  /*
   handleDateClick(arg) {
     alert('date click! ' + arg.dateStr)
   }
+*/
+
   handleDateSelect() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = "550px";
@@ -101,9 +113,6 @@ export class HomeComponent implements OnInit {
  
 
   ngOnInit(){
-   
-   // this.calendarOptions.events=this.myevents;
-
 
     this.getEvents();
   }  
