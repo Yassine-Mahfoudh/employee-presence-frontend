@@ -1,55 +1,64 @@
 <!-- addevent -->
 <!-- <ng-template #content let-c="close" let-d="dismiss">-->
-<mat-toolbar color="primary" >
-  <mat-toolbar-row fxLayout="row bg-color">
-    <!--<h1 class="">Add new event</h1>
-    <button type="button"  class="btn-close clr"  aria-label="Close" mat-dialog-close (click)="handleClear()"></button>
-    -->
-    <span class="title-center">Ajouter un nouveau événement</span>
-    <button type="button"  class="d-block mr-0 ml-auto btn-close" aria-label="Close" mat-dialog-close (click)="handleClear()"></button>
-  </mat-toolbar-row>
-</mat-toolbar>
-    <div class="modal-body">
-      <form [formGroup]="eventDetail">
-        <div class="pl-lg-4 field">
-          <div class="row formbg-inner padding-horizontal--48 ">
-            <div class="col-lg-6">
-              <h6 class="heading-small text-muted mb-4">Les informations d'événement :</h6>
-              <div class="form-group  padding-bottom--24" >
-            <label  for="input-title">Titre</label>
-            <input type="text" matInput formControlName="title" id="input-title" placeholder="event title" required>
-            <mat-error *ngIf="eventDetail.controls.title.touched && eventDetail.controls.title.invalid">
-              <span *ngIf="eventDetail.controls.title.errors.required">Ce champ est obligatoire</span>
-              <span *ngIf="eventDetail.controls.title.errors.pattern">Ce champ est invalide</span> 
-            </mat-error>
+  <mat-toolbar color="primary" >
+    <mat-toolbar-row fxLayout="row bg-color">
+      <!--<h1 class="">Add new event</h1>
+      <button type="button"  class="btn-close clr"  aria-label="Close" mat-dialog-close (click)="handleClear()"></button>
+      -->
+      <span class="title-center">Ajouter un nouveau événement</span>
+      <button type="button"  class="d-block mr-0 ml-auto btn-close" aria-label="Close" mat-dialog-close (click)="handleClear()"></button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+      <div class="modal-body">
+        <form [formGroup]="eventDetail">
+          <div class="pl-lg-4 field">
+            <div class="row formbg-inner padding-horizontal--48 ">
+              <div class="col-lg-6">
+                <h6 class="heading-small text-muted mb-4">Les informations d'événement :</h6>
+                <div class="form-group  padding-bottom--24" >
+              <label  for="select-title">Titre</label>
+              <select formControlName="title" id="select-title" class="form-control form-control-alternative" >
+                <option value="" disabled selected >Choisissez un titre</option>
+                <option value="Presentielle">Presentielle</option>
+                <option value="à distance">à distance</option>
+                <option value="congé">congé</option>
+              </select>
+              
+                </div>
+                <div class="form-group padding-bottom--24 " >
+              <label  for="input-datedebut">Date debut</label>
+              <input type="text" matInput formControlName="datedebut" id="input-datedebut" placeholder="event datedebut" required>
+            </div>
+              <div class="form-group padding-bottom--24 " >
+              <label  for="input-datefin">Date fin</label>
+              <input type="text" matInput formControlName="datefin"  id="input-datefin" placeholder="event datefin" required>
+             <!-- <mat-error *ngIf="eventDetail.controls.datefin.touched && eventDetail.controls.datefin.invalid">
+                <span *ngIf="eventDetail.controls.datefin.errors.required">This field is necessary</span>
+                <span *ngIf="eventDetail.controls.datefin.errors.pattern">This field is invalid</span> 
+              </mat-error>-->
               </div>
               <div class="form-group padding-bottom--24 " >
-            <label  for="input-datedebut">Date debut</label>
-            <input type="text" matInput formControlName="datedebut" id="input-datedebut" placeholder="event datedebut" required>
+              <label  for="select-employee">Employees</label>
+              <select formControlName="employee" id="select-employee" class="form-control form-control-alternative"   multiple>
+                <option disabled >Choisissez un employé</option>
+                <option *ngFor="let employee of employeeList " [value]="employee.firstname">{{employee.firstname}}</option>
+              </select>
+              
+              </div>
           </div>
-            <div class="form-group padding-bottom--24 " >
-            <label  for="input-datefin">Date fin</label>
-            <input type="text" matInput formControlName="datefin"  id="input-datefin" placeholder="event datefin" required>
-           <!-- <mat-error *ngIf="eventDetail.controls.datefin.touched && eventDetail.controls.datefin.invalid">
-              <span *ngIf="eventDetail.controls.datefin.errors.required">This field is necessary</span>
-              <span *ngIf="eventDetail.controls.datefin.errors.pattern">This field is invalid</span> 
-            </mat-error>-->
             </div>
-        </div>
           </div>
-        </div>
-        <div>
-          <mat-dialog-actions  class="btn-group">
-            <button   class="btn button-2 bg-cb" mat-strocked-button 
-            type="submit"  
-            (click)="addEvent()"  
-            (click)="handleClear()">Add event
-            </button>
-            <button class="btn button-2 bg-cr" mat-stroked-button 
-             mat-dialog-close 
-             (click)="handleClear()">Close</button>
-          </mat-dialog-actions>
-          </div>
-          </form>
-    </div>
-  <!--</ng-template>-->
+          <div>
+            <mat-dialog-actions  class="btn-group">
+              <button   class="btn button-2 bg-cb" mat-strocked-button 
+              type="submit"  
+              (click)="addEvent()"  
+              (click)="handleClear()">Add event
+              </button>
+              <button class="btn button-2 bg-cr" mat-stroked-button 
+               mat-dialog-close 
+               (click)="handleClear()">Close</button>
+            </mat-dialog-actions>
+            </div>
+            </form>
+      </div>

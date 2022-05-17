@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MyEvent } from 'src/app/core/models/myevent';
 import { EventService } from 'src/app/core/services/event.service';
@@ -15,15 +16,19 @@ export class EditeventComponent implements OnInit {
   eventDetail!: FormGroup;
   eventobj: MyEvent = new MyEvent();
   eventlist:MyEvent[] = [];
-
+id;
+title
   constructor(private formBuilder : FormBuilder,
      private myeventService: EventService,
-  config: NgbModalConfig,
+  config: NgbModalConfig,@Inject(MAT_DIALOG_DATA) data,
       private modalService: NgbModal  ) 
     {
         // customize default values of modals used by this component tree
  config.backdrop = 'static';
  config.keyboard = false;
+ this.title=data.title
+ this.id=data.id
+
       }
 
   ngOnInit(): void {
@@ -33,7 +38,7 @@ export class EditeventComponent implements OnInit {
      /* title:[null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
       datedebut:[null,[Validators.required, Validators.pattern(GlobalConstants.dateRegex)]],
       datefin:[null,[Validators.required, Validators.pattern(GlobalConstants.dateRegex)]]*/
-      title:[null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
+      title:[this.title,[Validators.required, Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
       datedebut: [''],
       datefin: [''],
     });
