@@ -165,8 +165,8 @@ export class HomeComponent implements OnInit {
     },
     
     initialView: 'dayGridMonth',
-/*
-    events: [
+
+    /*events: [
       {
         title: 'event 1',
 
@@ -192,8 +192,8 @@ export class HomeComponent implements OnInit {
       },
       {
         title  : 'event4',
-        start  : '2022-05-26T12:30:00',
-        allDay : false, // will make the time show
+        start  : '2022-05-03',
+        allDay : true, // will make the time show
         color: 'yellow',   // an option!
         textColor: 'black', // an option!
         description : 'le soir',
@@ -201,7 +201,7 @@ export class HomeComponent implements OnInit {
           freq: 'weekly',
           //a day, daily, weekly, every two weeks and monthly
           byweekday: [ 'mo', 'fr' ],
-          dtstart: '2022-05-14',
+          dtstart: '2022-05-03',
           until: '2022-05-27'
         }
       }
@@ -229,8 +229,8 @@ export class HomeComponent implements OnInit {
 
    // console.log(' arg ::: ', arg)
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = "550px";
-    this.dialog.open(AddeventComponent,{data:{dateDebut:arg.startStr},width:'550px'})
+    dialogConfig.width = "600px";
+    this.dialog.open(AddeventComponent,{data:{dateDebut:arg.startStr},width:'550px',height:'300px'})
   }
   handleEventClick(clickInfo: EventClickArg) {
     console.log('click Dialog :: ', clickInfo)

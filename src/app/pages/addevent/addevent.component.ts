@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Employee } from 'src/app/core/models/employee';
 import { MyEvent } from 'src/app/core/models/myevent';
+import { RRule } from 'src/app/core/models/rrule';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { EventService } from 'src/app/core/services/event.service';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
@@ -17,9 +18,11 @@ export class AddeventComponent implements OnInit {
 
   eventDetail!: FormGroup;
   eventobj: MyEvent = new MyEvent();
+  rruleObject : RRule = new RRule();
   eventlist:MyEvent[] = [];
   employeeList:Employee[]=[];
-dateDebut
+
+  dateDebut
   constructor(private formBuilder : FormBuilder,
      @Inject(MAT_DIALOG_DATA) data,
      private myeventService: EventService,
@@ -44,7 +47,11 @@ dateDebut
       title:[null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
       datedebut: [this.dateDebut],
       datefin: [''],
-      employee:['']
+      employee:[''],
+      datedebutrecur:[''],
+      datefinrecur:[''],
+      frequency:[''],
+      weekday:[''],
     });
   }
 
@@ -61,11 +68,34 @@ dateDebut
   addEvent(){
 
     console.log(this.eventDetail);
+
+    this.rruleObject.freq=this.eventDetail.value.frequency;
+console.log("frequency ok");
+this.rruleObject.dtstart=this.eventDetail.value.datedebutrecur;
+console.log(" dtstart ok");
+this.rruleObject.until=this.eventDetail.value.datefinrecur;
+console.log("until ok");
+this.rruleObject.byweekday=this.eventDetail.value.weekday;
+console.log("byweekday ok");
+
     this.eventobj.id=this.eventDetail.value.id;
     this.eventobj.title=this.eventDetail.value.title;
     this.eventobj.start=this.eventDetail.value.datedebut;
     this.eventobj.end=this.eventDetail.value.datefin;
     this.eventobj.employee=this.eventDetail.value.employee;
+    this.eventobj.rrule=this.rruleObject;
+    console.log("ok");
+   /* this.eventobj.rrule.freq=this.eventDetail.value.frequency;
+    console.log("frequency ok");
+    this.eventobj.rrule.dtstart=this.eventDetail.value.datedebutrecur;
+    console.log(" dtstart ok");
+    this.eventobj.rrule.until=this.eventDetail.value.datefinrecur;
+    console.log("until ok");
+    this.eventobj.rrule.byweekday=this.eventDetail.value.weekday;
+    console.log("byweekday ok");
+*/
+
+
     this.myeventService.addEvent(this.eventobj).subscribe(res=>{
       console.log(res);
       this.getevents();
