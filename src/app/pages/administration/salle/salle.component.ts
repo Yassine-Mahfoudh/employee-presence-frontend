@@ -5,12 +5,19 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Salle } from 'src/app/core/models/salle';
 import { SalleService } from 'src/app/core/services/salle.service';
 import { DeleteComponent } from 'src/app/shared/constant/delete/delete.component';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-salle',
   templateUrl: './salle.component.html',
   styleUrls: ['./salle.component.scss']
 })
 export class SalleComponent implements OnInit {
+
+  trashIcon = faTrash;
+  editIcon = faPenToSquare;
+  addIcon = faPlusCircle;
 
   salleDetail!: FormGroup;
   salleobj: Salle = new Salle();
@@ -108,7 +115,7 @@ updateSalle(){
 
 }
 
-confirmDeleteS(salle: Salle) {
+confirmDelete(salle: Salle) {
   if(confirm("Are you sure you want to delete salle "+salle.type+" number : "+salle.num)) {
      this.deleteSalle(salle);
   }
@@ -120,4 +127,21 @@ confirmDeleteS(salle: Salle) {
   this.dialog.open(DeleteComponent,dialogConfig)
 }
 */
+
+public searchSalles(key: string): void {
+  console.log(key);
+  const results: Salle[] = [];
+  for (const salle of this.salleList) {
+    if (salle.type.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || salle.num.toString().indexOf(key.toLowerCase()) !== -1
+    || salle.nbposte.toString().indexOf(key.toLowerCase()) !== -1
+    || salle.pourcentagePres.toString().indexOf(key.toLowerCase()) !== -1) {
+      results.push(salle);
+    }
+  }
+  this.salleList = results;
+  if (results.length === 0 || !key) {
+    this.getSalles();
+  }
+}
 }

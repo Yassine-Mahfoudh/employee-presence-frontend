@@ -9,12 +9,11 @@ import { Page500Component } from './page500/page500.component';
 @NgModule({
   declarations: [
     Page404Component,
-    Page500Component,
+    Page500Component
   ],
   imports: [
     CommonModule,
-    ExtrapagesRoutingModule,
-   
+    ExtrapagesRoutingModule
   ]
 })
 export class ExtrapagesModule { }

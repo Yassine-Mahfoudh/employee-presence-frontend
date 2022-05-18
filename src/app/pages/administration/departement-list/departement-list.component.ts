@@ -6,7 +6,7 @@ import { DepartementService } from 'src/app/core/services/departement.service';
 @Component({
   selector: 'app-departement-list',
   templateUrl: './departement-list.component.html',
-  styleUrls: ['./departement-list.component.css']
+  styleUrls: ['./departement-list.component.scss']
 })
 export class DepartementListComponent implements OnInit {
  
@@ -35,5 +35,21 @@ export class DepartementListComponent implements OnInit {
     this.departementService.getDepartements().subscribe(res=>{
       this.departementList=res;
     })
+  }
+
+
+  public searchDepartements(key: string): void {
+    console.log(key);
+    const results: Departement[] = [];
+    for (const departement of this.departementList) {
+      if (departement.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || departement.nbsalles.toString().indexOf(key.toLowerCase()) !== -1 ) {
+        results.push(departement);
+      }
+    }
+    this.departementList = results;
+    if (results.length === 0 || !key) {
+      this.getDepartements();
+    }
   }
 }

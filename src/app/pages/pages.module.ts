@@ -37,6 +37,8 @@ import RRulePlugin from '@fullcalendar/rrule';
 import { AddeventComponent } from './addevent/addevent.component';
 import { EditeventComponent } from './editevent/editevent.component';
 
+
+
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
   text:"Loading...",
   textColor:"#ffffff",
@@ -64,7 +66,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ResetpasswordComponent,
     AddeventComponent,
     EditeventComponent
-    
   ],
   imports: [
     CommonModule,

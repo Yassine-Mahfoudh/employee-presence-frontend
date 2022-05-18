@@ -60,6 +60,7 @@ export class MyaccountComponent implements OnInit {
 
   ngOnInit() {
     
+    console.log(this.imgURL);
     let EmpId = this.authService.getUserEmployee().id;
    
     this.accountDetail = this.formBuilder.group({
@@ -157,9 +158,11 @@ onSelectFile(event) {
     this.imgURL = reader.result; 
   }
 }
-   
-    
   }
+   
+  
+
+    
 
   open(content) {
     this.modalService.open(content);

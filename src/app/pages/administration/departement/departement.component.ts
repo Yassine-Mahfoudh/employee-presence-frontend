@@ -3,14 +3,21 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Departement } from 'src/app/core/models/departement';
 import { DepartementService } from 'src/app/core/services/departement.service';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-departement',
   templateUrl: './departement.component.html',
-  styleUrls: ['./departement.component.css']
+  styleUrls: ['./departement.component.scss']
 })
 
 export class DepartementComponent implements OnInit {
+
+  trashIcon = faTrash;
+    editIcon = faPenToSquare;
+    addIcon = faPlusCircle;
 
   departementDetail!: FormGroup;
   departementobj: Departement = new Departement();
@@ -100,5 +107,19 @@ confirmDelete(departement: Departement) {
   }
 }
 
+public searchDepartements(key: string): void {
+  console.log(key);
+  const results: Departement[] = [];
+  for (const departement of this.departementList) {
+    if (departement.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || departement.nbsalles.toString().indexOf(key.toLowerCase()) !== -1 ) {
+      results.push(departement);
+    }
+  }
+  this.departementList = results;
+  if (results.length === 0 || !key) {
+    this.getDepartements();
+  }
+}
 
 }

@@ -15,9 +15,11 @@ export class EditeventComponent implements OnInit {
 
   eventDetail!: FormGroup;
   eventobj: MyEvent = new MyEvent();
+  e: MyEvent = new MyEvent();
+
   eventlist:MyEvent[] = [];
 id;
-title
+title;
   constructor(private formBuilder : FormBuilder,
      private myeventService: EventService,
   config: NgbModalConfig,@Inject(MAT_DIALOG_DATA) data,
@@ -28,17 +30,19 @@ title
  config.keyboard = false;
  this.title=data.title
  this.id=data.id
+ console.log(this.id)
 
       }
 
   ngOnInit(): void {
     this.getevents();
     this.eventDetail = this.formBuilder.group({
-      id: [''],
+      id: [this.id],
      /* title:[null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
       datedebut:[null,[Validators.required, Validators.pattern(GlobalConstants.dateRegex)]],
       datefin:[null,[Validators.required, Validators.pattern(GlobalConstants.dateRegex)]]*/
-      title:[this.title,[Validators.required, Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
+      //title:[this.title,[Validators.required, Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
+      title:[this.title],
       datedebut: [''],
       datefin: [''],
     });
@@ -62,16 +66,15 @@ getevents(){
 }
 
 editEvent(event : MyEvent){
-  this.eventDetail.controls['id'].setValue(event.id);
-  this.eventDetail.controls['title'].setValue(event.title);
+//  this.eventDetail.controls['id'].setValue(event.id);
+//  this.eventDetail.controls['title'].setValue(event.title);
   this.eventDetail.controls['datedebut'].setValue(event.start);
   this.eventDetail.controls['datefin'].setValue(event.end);
 
 }
 
 deleteEvent(){
-
-    this.myeventService.deleteEvent(this.eventobj).subscribe(res=>{
+    this.myeventService.deleteEvent(this.eventDetail.value).subscribe(res=>{
       console.log(res);
       alert("event deleted successfully");
       this.getevents();
@@ -94,7 +97,7 @@ updateEvent(){
 }
 
 confirmDelete() {
-  if(confirm("Are you sure you want to delete event "+this.eventobj.title)) {
+  if(confirm("Are you sure you want to delete event "+this.eventDetail.value.title)) {
      this.deleteEvent();
   }
 }

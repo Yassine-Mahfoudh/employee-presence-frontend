@@ -10,6 +10,7 @@ export class EventService {
 
   getEventsurl: string;
   getEventByTitleurl: string;
+  getEventByIdurl: string;
   addEventsurl: string;
   deleteEventsurl: string;
   updateEventsurl: string;
@@ -19,6 +20,7 @@ export class EventService {
 
     this.getEventsurl= 'http://localhost:8080/events';
     this.getEventByTitleurl='http://localhost:8080/events/find/title'
+    this.getEventByIdurl='http://localhost:8080/events/find'
     this.addEventsurl= 'http://localhost:8080/events/add';
     this.deleteEventsurl= 'http://localhost:8080/events/delete';
     this.updateEventsurl= 'http://localhost:8080/events/update';
@@ -39,10 +41,6 @@ export class EventService {
     updateEvent(event : MyEvent):Observable<MyEvent>
   {
     return this.http.put<MyEvent>(this.updateEventsurl+'/'+event.id,event);   
-  }
-
-  getEventByTitle(title: String) {
-    return this.http.get<MyEvent>(this.getEventByTitleurl + '/' + title);
   }
 
 }

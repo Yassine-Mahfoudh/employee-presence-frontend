@@ -1,4 +1,5 @@
   <!-- getsalles --> 
+  <!--
   <div class="table-responsive">
     <table class="table align-items-center table-flush">
       <thead class="thead-light">
@@ -52,4 +53,69 @@
 </pagination-controls>
   
       </div>
+</div>
+-->
+
+
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Consultation des salles</div>
+  <div class="page__content shadow p-3 ">
+  <div class="page__content-data position-absolute text-center">
+    <div class="twelve">
+      <h1  >La liste des salles : </h1>  
+    </div>
+         <form>
+          <div class="s004">
+            <form class="form">
+              <fieldset>
+                <div class="inner-form">
+                  <div class="input-field">
+                    <input class="form-control" id="choices-text-preset-values" (ngModelChange)="searchSalles(key.value)" #key="ngModel" ngModel
+                    name="key" type="search" placeholder="Type to search..." />
+                    <span class="input-icon" id="basic-addon1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                    </svg>
+                    </span>
+                  </div>
+                </div> 
+              </fieldset>
+            </form>
+          </div>
+        <ul class="responsive-table pad">
+          <li class="table-header margt  ">
+            <div [(appSort)]="salleList" data-order="desc" data-name="id" class="col mar col-1 text-uppercase text-white font-weight-bolder opacity-7">Id</div>
+            <div [(appSort)]="salleList" data-order="desc" data-name="type" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Type</div>
+            <div [(appSort)]="salleList" data-order="desc" data-name="num" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Numéro</div>
+            <div [(appSort)]="salleList" data-order="desc" data-name="nbposte" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Nombre de postes</div>
+            <div [(appSort)]="salleList" data-order="desc" data-name="pourcentagePres" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Pourcentage de présence </div>            
+          </li>
+          
+          <li class="table-row"  *ngFor="let salle of salleList | paginate: { id:'listing_pagination',
+          itemsPerPage:4,
+          currentPage:page,
+          totalItems:totalRec}">
+            <div class="col col-1" data-label="Id">{{salle.id}}</div>
+            <div class="col col-2" data-label="type" style="width: 100px; word-wrap:break-word;">{{salle.type}}</div>
+            <div class="col col-3" data-label="num">{{salle.num}}</div>
+            <div class="col col-4" data-label="nbposte">{{salle.nbposte}}</div>
+            <div class="col col-5" data-label="pourcentagePres">{{salle.pourcentagePres}}</div>
+          </li>
+          
+        </ul>
+        
+  
+        <div class="wrapper ">
+          <pagination-controls  id="listing_pagination"
+            (pageChange)="page=$event"  
+       >
+  </pagination-controls>
+    
+</div>
+    </form>
+   
+
+  
+    </div>
+  </div>
 </div>

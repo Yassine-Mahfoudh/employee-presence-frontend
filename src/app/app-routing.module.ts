@@ -23,6 +23,7 @@ import { SalleListComponent } from './pages/administration/salle-list/salle-list
 import { SalleComponent } from './pages/administration/salle/salle.component';
 import { UsersListComponent } from './pages/administration/users-list/users-list.component';
 import { UsersComponent } from './pages/administration/users/users.component';
+
 import { EditeventComponent } from './pages/editevent/editevent.component';
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -97,9 +98,9 @@ const routes: Routes = [
 
   { path: 'addevent',component:AddeventComponent },
 
-  { path: 'editevent',component:EditeventComponent },
+  { path: 'editevent',component:EditeventComponent }
 
-
+  
 
 
 

@@ -6,10 +6,10 @@ import { SalleService } from 'src/app/core/services/salle.service';
 @Component({
   selector: 'app-salle-list',
   templateUrl: './salle-list.component.html',
-  styleUrls: ['./salle-list.component.css']
+  styleUrls: ['./salle-list.component.scss']
 })
 export class SalleListComponent implements OnInit {
-  salleList1:Salle[] = [];
+  salleList:Salle[] = [];
   totalRec!: string;
   page:number=1
 
@@ -40,8 +40,25 @@ export class SalleListComponent implements OnInit {
 
 getSalle(){
   this.salleService.getSalles().subscribe(res=>{
-    this.salleList1=res;
+    this.salleList=res;
   })
+}
+
+public searchSalles(key: string): void {
+  console.log(key);
+  const results: Salle[] = [];
+  for (const salle of this.salleList) {
+    if (salle.type.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || salle.num.toString().indexOf(key.toLowerCase()) !== -1
+    || salle.nbposte.toString().indexOf(key.toLowerCase()) !== -1
+    || salle.pourcentagePres.toString().indexOf(key.toLowerCase()) !== -1) {
+      results.push(salle);
+    }
+  }
+  this.salleList = results;
+  if (results.length === 0 || !key) {
+    this.getSalle();
+  }
 }
 
 

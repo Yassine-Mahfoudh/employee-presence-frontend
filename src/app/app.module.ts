@@ -1,5 +1,3 @@
-import { FormsModule } from '@angular/forms';
-import { MbscModule } from '@mobiscroll/angular';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,7 +32,6 @@ import { FooterComponent } from './layouts/footer/footer.component';
 
 
 
-
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
   text:"Loading...",
   textColor:"#ffffff",
@@ -58,9 +55,7 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
     ForbiddenComponent,
     FooterComponent,
   ],
-  imports: [ 
-    FormsModule,  
-    MbscModule, 
+  imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

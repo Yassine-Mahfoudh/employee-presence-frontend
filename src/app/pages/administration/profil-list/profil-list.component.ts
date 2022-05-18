@@ -6,10 +6,10 @@ import { ProfilService } from 'src/app/core/services/profil.service';
 @Component({
   selector: 'app-profil-list',
   templateUrl: './profil-list.component.html',
-  styleUrls: ['./profil-list.component.css']
+  styleUrls: ['./profil-list.component.scss']
 })
 export class ProfilListComponent implements OnInit {
-  profiList1:Profil[] = [];
+  profilList:Profil[] = [];
   totalRec!: string;
   page:number=1
 
@@ -31,7 +31,24 @@ export class ProfilListComponent implements OnInit {
   }
   getProfil(){
     this.profilService.getProfils().subscribe(res=>{
-      this.profiList1=res;
+      this.profilList=res;
     })
   }
+
+  public searchProfils(key: string): void {
+    console.log(key);
+    const results: Profil[] = [];
+    for (const projet of this.profilList) {
+      if (projet.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || projet.description.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    ) {
+        results.push(projet);
+      }
+    }
+    this.profilList = results;
+    if (results.length === 0 || !key) {
+      this.getProfil();
+    }
+  }
+
 }

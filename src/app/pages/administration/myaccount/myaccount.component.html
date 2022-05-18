@@ -11,13 +11,12 @@
                       <form [formGroup]="accountDetail" >
                           <div class="row ">
                               <div class="col-md-3 text-center mb-5">
-                                <label for="photodeprofil"><h4>picture</h4></label>
+                                <label for="photo"><h4>picture</h4></label>
                               <br/>
-                              <img [src]="imgURL" height="200" *ngIf="imgURL">
-                                 
+                              <img [src]="imgURL" class="rounded-circle avatar-xl" height="200" *ngIf="imgURL">
                               </div>
                               <div >
-                                <input type="file" accept="image/*" (change)="onSelectFile($event)">
+                                <input type="file" name="photo" id="photo" class="img-input" accept="image/*" (change)="onSelectFile($event)">
                                
                                
                             </div>

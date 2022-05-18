@@ -69,38 +69,40 @@ export class AddeventComponent implements OnInit {
 
     console.log(this.eventDetail);
 
-    this.rruleObject.freq=this.eventDetail.value.frequency;
-console.log("frequency ok");
-this.rruleObject.dtstart=this.eventDetail.value.datedebutrecur;
-console.log(" dtstart ok");
-this.rruleObject.until=this.eventDetail.value.datefinrecur;
-console.log("until ok");
-this.rruleObject.byweekday=this.eventDetail.value.weekday;
-console.log("byweekday ok");
-
     this.eventobj.id=this.eventDetail.value.id;
     this.eventobj.title=this.eventDetail.value.title;
     this.eventobj.start=this.eventDetail.value.datedebut;
     this.eventobj.end=this.eventDetail.value.datefin;
     this.eventobj.employee=this.eventDetail.value.employee;
-    this.eventobj.rrule=this.rruleObject;
-    console.log("ok");
-   /* this.eventobj.rrule.freq=this.eventDetail.value.frequency;
-    console.log("frequency ok");
-    this.eventobj.rrule.dtstart=this.eventDetail.value.datedebutrecur;
-    console.log(" dtstart ok");
-    this.eventobj.rrule.until=this.eventDetail.value.datefinrecur;
-    console.log("until ok");
-    this.eventobj.rrule.byweekday=this.eventDetail.value.weekday;
-    console.log("byweekday ok");
-*/
 
+    console.log("freq :"+this.eventDetail.value.frequency);
+    console.log("day :"+this.eventDetail.value.weekday)
+
+    let startrecur =this.eventDetail.value.datedebutrecur;
+      let yyyy=startrecur.substr(0,4)
+      let mm=startrecur.substr(-5,2) 
+      let dd=startrecur.substr(8,9) 
+      let startr=yyyy+mm+dd
+     console.log(" start date recursivité : "+startr)
+
+
+
+     let endrecur =this.eventDetail.value.datefinrecur;
+     let YYYY=endrecur.substr(0,4)
+     let MM=endrecur.substr(-5,2) 
+     let DD=endrecur.substr(8,9) 
+     let endr=YYYY+MM+DD
+    console.log(" end date recursivité : "+endr)
+
+
+    this.eventobj.rrule=`DTSTART:${startr}\nRRULE:FREQ=${this.eventDetail.value.frequency};UNTIL=${endr};BYDAY=${this.eventDetail.value.weekday}`;
+    //this.eventobj.rrule="DTSTART:20220503\nRRULE:FREQ=WEEKLY;UNTIL=20220527;BYDAY=MO,FR"
 
     this.myeventService.addEvent(this.eventobj).subscribe(res=>{
       console.log(res);
       this.getevents();
+      console.log("okkkkkkk")
       //setTimeout("location.reload(true);",500);
-
     }
     );
 

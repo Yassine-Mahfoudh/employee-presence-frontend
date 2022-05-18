@@ -35,13 +35,20 @@ img {
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 */
-
+.img-input
+{
+  display: block;
+  width: 50%;
+  background-color: #fff;
+  border-style: none;
+  
+}
 
 .avatar-xl img {
     width: 110px;
 }
 .rounded-circle {
-    border-radius: 50% !important;
+    border-radius: 40% !important;
 }
 img {
     vertical-align: middle;

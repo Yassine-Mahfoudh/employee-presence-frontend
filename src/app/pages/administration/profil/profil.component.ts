@@ -4,16 +4,25 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Profil } from 'src/app/core/models/profil';
 import { ProfilService } from 'src/app/core/services/profil.service';
 
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-profil',
   templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.css']
+  styleUrls: ['./profil.component.scss']
 })
 export class ProfilComponent implements OnInit {
 
+  trashIcon = faTrash;
+  editIcon = faPenToSquare;
+  addIcon = faPlusCircle;
+
+
   profilDetail!: FormGroup;
   profilobj: Profil = new Profil();
-  profiList:Profil[] = [];
+  profilList:Profil[] = [];
   totalRec!: string;
   page:number=1
 
@@ -56,7 +65,7 @@ export class ProfilComponent implements OnInit {
 
 getProfils(){
   this.profilService.getProfils().subscribe(res=>{
-    this.profiList=res;
+    this.profilList=res;
   })
 }
 
@@ -91,6 +100,22 @@ updateProfil(){
 confirmDelete(profil: Profil) {
   if(confirm("Are you sure you want to delete this profil : "+profil.name)) {
      this.deleteProfil(profil);
+  }
+}
+
+public searchProfils(key: string): void {
+  console.log(key);
+  const results: Profil[] = [];
+  for (const projet of this.profilList) {
+    if (projet.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || projet.description.toLowerCase().indexOf(key.toLowerCase()) !== -1
+  ) {
+      results.push(projet);
+    }
+  }
+  this.profilList = results;
+  if (results.length === 0 || !key) {
+    this.getProfils();
   }
 }
 
