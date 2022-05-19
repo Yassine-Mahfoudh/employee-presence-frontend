@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../models/employee';
-import { Users } from '../models/users';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -34,11 +34,11 @@ export class AuthService {
     localStorage.setItem('userName', userName);
   }
 
-  public setUser(utilisateur: Users) {
+  public setUser(utilisateur: User) {
     /* This is storing the user in local storage. */
     localStorage.setItem('utilisateur', JSON.stringify(utilisateur));
   }
-  public getUser(): Users {
+  public getUser(): User {
     return JSON.parse(localStorage.getItem('utilisateur')|| 'null' || '{}');
   }
 

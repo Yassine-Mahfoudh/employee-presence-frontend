@@ -14,11 +14,11 @@ body {
   
   h1 {
     font-size: 26px;
-    margin: 20px 120px;
+    margin: 20px 0;
     text-align: center;
-    font-family: 'lato', sans-serif;
-    color:#FFFFFF;
+    
   }
+  
   
   .responsive-table {
     li {
@@ -89,6 +89,10 @@ body {
     .table-row {
       background-color: #ffffff;
       box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+    }
+    .mar{
+      margin-top:14px;
+      margin-bottom: 14px;
     }
     .col-1 {
       flex-basis: 3%;
@@ -362,7 +366,9 @@ body {
     
   
   }
-  
+  .s004 .form .inner-form .input-field .choices {
+    margin-bottom: 0;
+  }
   
   
   .input-icon {
@@ -405,32 +411,12 @@ body {
     width: 100%;
   }
   
-  .field input {
-    font-size: 16px;
-    line-height: 28px;
-    padding: 8px 16px;
-    width: 100%;
-    padding-left: 2.4em;
-    min-height: 44px;
-    border: unset;
-    border-radius: 4px;
-    outline-color: rgb(84 105 212 / 0.5);
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
-               
-  }
   
   .bg-cr{
     background-color: #DC143C;
   }
   .bg-cb{
-    background-color: #3f51b5;
+    background-color: #007ba7;
   }
   
   
@@ -441,11 +427,11 @@ body {
     
   .bg-cb:hover,
     .bg-cb:focus {
-      background-color: #3f51b5 ;
+      background-color: #377085 ;
     }
   
     .button-2 {
-      margin: 3em;
+      
       border-radius: 10px;
       border-style: none;
       box-sizing: border-box;
@@ -464,6 +450,7 @@ body {
       text-align: center;
       text-decoration: none;
       transition: color 100ms;
+      vertical-align: baseline;
       user-select: none;
       -webkit-user-select: none;
       touch-action: manipulation;
@@ -474,14 +461,7 @@ body {
       padding-left: 4em;
   
     }
-    span{
-      margin: 20px 10px;
-    }
-    .padr
-    {
-      margin-top: 1em;
-      margin-bottom: 1em;
-    }
+    
     //pagination
     .wrapper {
       padding-bottom: 5px;
@@ -490,8 +470,5 @@ body {
     .margt {
       margin-top: 1em;
      
-    }
-    mat-dialog-actions{
-      width: 450px;
     }
    

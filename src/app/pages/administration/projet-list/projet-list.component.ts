@@ -57,10 +57,5 @@ projetList:Projet[] = [];
     if (results.length === 0 || !key) {
       this.getProjets();
     }
-  }
-
-
-
-
-  
+  }  
 }

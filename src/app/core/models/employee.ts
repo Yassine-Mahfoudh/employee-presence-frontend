@@ -10,4 +10,7 @@ export class Employee {
     photo:string='';
     salle:number=0;
     project:string='';
+    manager:string='';
+
+
 }

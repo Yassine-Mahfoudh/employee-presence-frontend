@@ -1,24 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Users } from 'src/app/core/models/users';
-import { UsersService } from 'src/app/core/services/users.service';
+import { User } from 'src/app/core/models/user';
+import { UserService } from 'src/app/core/services/user.service';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.scss']
 })
 
 export class UsersComponent implements OnInit {
 
-  usersDetail!: FormGroup;
-  usersobj: Users = new Users();
-  usersList:Users[] = [];
+  trashIcon = faTrash;
+  editIcon = faPenToSquare;
+  addIcon = faPlusCircle;
+
+  userDetail!: FormGroup;
+  userobj: User = new User();
+  usersList:User[] = [];
   totalRec!: string;
   page:number=1
 
-  constructor(private formBuilder5 : FormBuilder, private usersService: UsersService,  config: NgbModalConfig,
+  constructor(private formBuilder5 : FormBuilder, private userService: UserService,  config: NgbModalConfig,
     private modalService: NgbModal) {  
        // customize default values of modals used by this component tree
       config.backdrop = 'static';
@@ -27,7 +34,7 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
 
     this.getUsers();
-    this.usersDetail = this.formBuilder5.group({
+    this.userDetail = this.formBuilder5.group({
       id: [''],
       userName: [''],
       userPassword: [''],
@@ -43,14 +50,14 @@ export class UsersComponent implements OnInit {
     this.modalService.dismissAll(content);
   }
 
-  addUsers(){
+  addUser(){
 
-    console.log(this.usersDetail);
-    this.usersobj.id=this.usersDetail.value.id;
-    this.usersobj.userName=this.usersDetail.value.userName;
-    this.usersobj.userPassword=this.usersDetail.value.userPassword;
-    this.usersobj.email=this.usersDetail.value.email;
-    this.usersService.addUsers(this.usersobj).subscribe(res=>{
+    console.log(this.userDetail);
+    this.userobj.id=this.userDetail.value.id;
+    this.userobj.userName=this.userDetail.value.userName;
+    this.userobj.userPassword=this.userDetail.value.userPassword;
+    this.userobj.email=this.userDetail.value.email;
+    this.userService.addUser(this.userobj).subscribe(res=>{
       console.log(res);
       this.getUsers();
     }
@@ -60,21 +67,21 @@ export class UsersComponent implements OnInit {
 }
 
 getUsers(){
-  this.usersService.getUsers().subscribe(res=>{
+  this.userService.getUsers().subscribe(res=>{
     this.usersList=res;
   })
 }
 
-editUsers(Users : Users){
-  this.usersDetail.controls['id'].setValue(Users.id);
-  this.usersDetail.controls['userName'].setValue(Users.userName);
-  this.usersDetail.controls['userPassword'].setValue(Users.userPassword);
-  this.usersDetail.controls['email'].setValue(Users.email);
+editUser(User : User){
+  this.userDetail.controls['id'].setValue(User.id);
+  this.userDetail.controls['userName'].setValue(User.userName);
+  this.userDetail.controls['userPassword'].setValue(User.userPassword);
+  this.userDetail.controls['email'].setValue(User.email);
 }
 
-deleteUsers(Users : Users){
+deleteUser(User : User){
 
-    this.usersService.deleteUsers(Users).subscribe(res=>{
+    this.userService.deleteUser(User).subscribe(res=>{
       console.log(res);
       alert("user deleted successfully");
       this.getUsers();
@@ -83,12 +90,12 @@ deleteUsers(Users : Users){
   
   }
 
-updateUsers(){
-  this.usersobj.id=this.usersDetail.value.id;
-  this.usersobj.userName=this.usersDetail.value.userName;
-  this.usersobj.userPassword=this.usersDetail.value.userPassword;
-  this.usersobj.email=this.usersDetail.value.email;
-  this.usersService.updateUsers(this.usersobj).subscribe(res=>{
+updateUser(){
+  this.userobj.id=this.userDetail.value.id;
+  this.userobj.userName=this.userDetail.value.userName;
+  this.userobj.userPassword=this.userDetail.value.userPassword;
+  this.userobj.email=this.userDetail.value.email;
+  this.userService.updateUser(this.userobj).subscribe(res=>{
     console.log(res);
     this.getUsers();
   }
@@ -96,9 +103,27 @@ updateUsers(){
 
 }
 
-confirmDelete(Users: Users) {
-  if(confirm("Are you sure you want to delete this user : "+Users.userName)) {
-     this.deleteUsers(Users);
+confirmDelete(User: User) {
+  if(confirm("Are you sure you want to delete this user : "+User.userName)) {
+     this.deleteUser(User);
+  }
+}
+
+public searchUsers(key: string): void {
+  console.log(key);
+  const results: User[] = [];
+  for (const user of this.usersList) {
+    if (user.userName.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || user.profil.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || user.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || user.userPassword.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    ) {
+      results.push(user);
+    }
+  }
+  this.usersList = results;
+  if (results.length === 0 || !key) {
+    this.getUsers();
   }
 }
 

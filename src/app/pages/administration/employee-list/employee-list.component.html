@@ -1,66 +1,86 @@
  <!-- getdemandes -->
- <div class="table-responsive">
-    <table class="table align-items-center table-flush">
-      <thead class="thead-light">
-        <tr >
-          <th scope="col">Id</th>
-          <th scope="col">lastname</th>
-          <th scope="col">firstname</th>
-          <th scope="col">role</th>
-          <th scope="col">status</th>
-          <th scope="col">birthdate</th>
-          <th scope="col">address</th>
 
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let employee of employeeList | paginate: { id:'listing_pagination',
-        itemsPerPage:4,
-        currentPage:page,
-        totalItems:totalRec} ">
-          <td scope="row">
-            <div class="media align-items-center">
-              <div class="media-body">
-                <span class="mb-0 text-sm">{{employee.id}}</span>
-              </div>
-            </div>
-          </td>
-          <td>
-            {{employee.lastname}}
-          </td>
-          <td>
-            {{employee.firstname}}
-          </td>
-          <td>
-            {{employee.role}}
-          </td>
-          <td>
-            {{employee.status}}
-          </td>
-          <td>
-            {{employee.birthdate}}
-          </td>
-          <td>
-            {{employee.address}}
-          </td>
-          <td class="text-right">
-            <div ngbDropdown placement="bottom-right">
-              <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                <i class="fas fa-ellipsis-v"></i>
-              </a>
-             
-            </div>
-          </td>
-        </tr>
-     </tbody>
-    </table>
-      <div>
-        <pagination-controls  id="listing_pagination"
-          (pageChange)="page=$event"  
-     >
-</pagination-controls>
+
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Consultation des employés</div>
+  <div class="page__content shadow p-3 ">
+  <div class="page__content-data position-absolute text-center">
+    <div class="twelve">
+      <h1  >La liste des employes : </h1>  
+    </div>
   
-      </div>
-</div>
+     
+         
 
+         <form>
+          <div class="s004">
+            <form class="form">
+              <fieldset>
+                <div class="inner-form">
+                  <div class="input-field">
+                    <input class="form-control" id="choices-text-preset-values" (ngModelChange)="searchEmployees(key.value)" #key="ngModel" ngModel
+                    name="key" type="search" placeholder="Type to search..." />
+                    <span class="input-icon" id="basic-addon1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                    </svg>
+                    </span>
+                  </div>
+                </div> 
+              </fieldset>
+            </form>
+          </div>
+        <ul class="responsive-table pad">
+          <li class="table-header margt  ">
+            <div [(appSort)]="employeeList" data-order="desc" data-name="id" class="col mar col-1 text-uppercase text-white font-weight-bolder opacity-7">Id</div>
+            <div [(appSort)]="employeeList" data-order="desc" data-name="lastname" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Prénom</div>
+            <div [(appSort)]="employeeList" data-order="desc" data-name="firstname" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
+            <div [(appSort)]="employeeList" data-order="desc" data-name="role" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Role</div>
+            <div [(appSort)]="employeeList" data-order="desc" data-name="status" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Etat</div>
+            <div [(appSort)]="employeeList" data-order="desc" data-name="birthdate" class="col mar col-6 text-uppercase text-white font-weight-bolder opacity-7">Date de naissance</div>
+            <div [(appSort)]="employeeList" data-order="desc" data-name="address" class="col mar col-7 text-uppercase text-white font-weight-bolder opacity-7">Adresse</div>
+            <div [(appSort)]="employeeList" data-order="desc" data-name="phonenumber" class="col mar col-8 text-uppercase text-white font-weight-bolder opacity-7">Numéro</div>
+            <div [(appSort)]="employeeList" data-order="desc" data-name="project" class="col  mar col-9 text-uppercase text-white font-weight-bolder opacity-7">Projet</div>
+            <div [(appSort)]="employeeList" data-order="desc" data-name="workroom" class="col mar col-10 text-uppercase text-white font-weight-bolder opacity-7">Salle</div>
+            <div [(appSort)]="employeeList" data-order="desc" data-name="manager" class="col mar col-11 text-uppercase text-white font-weight-bolder opacity-7">Chef</div>
+
+            
+          </li>
+          
+          <li class="table-row"  *ngFor="let employee of employeeList | paginate: { id:'listing_pagination',
+          itemsPerPage:4,
+          currentPage:page,
+          totalItems:totalRec}">
+            <div class="col col-1" data-label="Id">{{employee.id}}</div>
+            <div class="col col-2" data-label="lastname" style="width: 100px; word-wrap:break-word;">{{employee.lastname}}</div>
+            <div class="col col-3" data-label="firstname">{{employee.firstname}}</div>
+            <div class="col col-4" data-label="role" style="width: 130px; word-wrap:break-word;">{{employee.role}}</div>
+            <div class="col col-5" data-label="status">{{getStatut(employee)}}</div>
+            <div class="col col-6" data-label="birthdate">{{employee.birthdate}}</div>
+            <div class="col col-7" data-label="address">{{employee.address}}</div>
+            <div class="col col-8" data-label="phonenumber">{{employee.phonenumber}}</div>
+            <div class="col col-9" data-label="project">{{employee.project}}</div>
+            <div class="col col-10" data-label="workroom">{{employee.salle}}</div>
+            <div class="col col-11" data-label="manager">{{employee.manager}}</div>
+
+
+
+          </li>
+          
+        </ul>
+        
+  
+        <div class="wrapper ">
+          <pagination-controls  id="listing_pagination"
+            (pageChange)="page=$event"  
+       >
+  </pagination-controls>
+    
+</div>
+    </form>
+   
+
+  
+    </div>
+  </div>
+</div>

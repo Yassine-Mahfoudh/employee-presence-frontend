@@ -9,13 +9,21 @@ import { EmployeeService } from 'src/app/core/services/employee.service';
 import { ProfilService } from 'src/app/core/services/profil.service';
 import { ProjetService } from 'src/app/core/services/projet.service';
 import { SalleService } from 'src/app/core/services/salle.service';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+  styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
+  
+  trashIcon = faTrash;
+  editIcon = faPenToSquare;
+  addIcon = faPlusCircle;
 
   employeeDetail!: FormGroup;
   employeeobj: Employee = new Employee();
@@ -34,7 +42,8 @@ export class EmployeeComponent implements OnInit {
      private profilService: ProfilService,
      private salleService: SalleService,
      config: NgbModalConfig,
-      private modalService: NgbModal
+      private modalService: NgbModal,
+      private authService:AuthService
      ) {
         // customize default values of modals used by this component tree
  config.backdrop = 'static';
@@ -176,6 +185,39 @@ updateEmployee(){
 confirmDelete(employee: Employee) {
   if(confirm("Are you sure you want to delete employee "+employee.lastname+' '+employee.firstname)) {
      this.deleteEmployee(employee);
+  }
+}
+
+getStatut(employee : Employee):String{
+
+  if(this.authService.getUserEmployee().id===employee.id){
+    return "Actif"
+  }else
+  return"Inactif";
+}
+
+public searchEmployees(key: string): void {
+  console.log(key);
+  const results: Employee[] = [];
+  for (const employee of this.employeeList) {
+    if (employee.firstname.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || employee.lastname.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || employee.address.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || employee.salle.toString().toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || employee.project.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || employee.role.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || employee.birthdate.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || employee.phonenumber.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || employee.manager.toLowerCase().indexOf(key.toLowerCase()) !== -1
+
+
+    ) {
+      results.push(employee);
+    }
+  }
+  this.employeeList = results;
+  if (results.length === 0 || !key) {
+    this.getEmployees();
   }
 }
 

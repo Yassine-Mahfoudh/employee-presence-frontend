@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Logaccess } from 'src/app/core/models/logaccess';
-import { Users } from 'src/app/core/models/users';
+import { User } from 'src/app/core/models/user';
 import { LogaccessService } from 'src/app/core/services/logaccess.service';
-import { UsersService } from 'src/app/core/services/users.service';
 
 
 @Component({
   selector: 'app-logaccess',
   templateUrl: './logaccess.component.html',
-  styleUrls: ['./logaccess.component.css']
+  styleUrls: ['./logaccess.component.scss']
 })
 export class LogaccessComponent implements OnInit {
 
@@ -16,14 +15,9 @@ export class LogaccessComponent implements OnInit {
   totalRec!: string;
   page:number=1
 
-  user:Users = new Users();
+  user:User = new User();
 
-  constructor(private logaccessService: LogaccessService,
-    private usersService:UsersService
-    ){
-
-
-  }
+  constructor(private logaccessService: LogaccessService,){}
 
 
 
@@ -36,12 +30,22 @@ export class LogaccessComponent implements OnInit {
     })
   }
 
-  getUser(username : any) {
-    this.usersService.getUserByUsername(username).subscribe(res=>{
-      this.user=res;
-      console.log(this.user);
-    })
-  }
 
+  public searchLogaccess(key: string): void {
+    console.log(key);
+    const results: Logaccess[] = [];
+    for (const logaccess of this.logaccessList) {
+      if (logaccess.username.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || logaccess.dateAuth.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || logaccess.codeAccess.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      ) {
+        results.push(logaccess);
+      }
+    }
+    this.logaccessList = results;
+    if (results.length === 0 || !key) {
+      this.getLogaccess();
+    }
+  }
 }
 

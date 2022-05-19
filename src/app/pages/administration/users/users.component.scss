@@ -1,0 +1,489 @@
+body {
+  font-family: 'lato', sans-serif;
+}
+.page__content{
+  font-size: 1rem;
+}
+.container {
+  max-width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+h1 {
+  font-size: 26px;
+  margin: 20px 120px;
+  text-align: center;
+  font-family: 'lato', sans-serif;
+  color:#FFFFFF;
+}
+
+.responsive-table {
+  li {
+    border-radius: 20px;
+    padding: 10px 60px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+
+
+  }
+
+  @media only screen  and (max-width: 1400px) {
+    .button-1 {
+      padding-left: 4em;
+    }
+    
+  }
+  
+ 
+
+  
+  /* CSS */
+  .button-1 {
+    background-color: #007ba7;
+    border-radius: 15px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 55px;
+    list-style: none;
+    margin: 0.5em;
+    outline: none;
+    padding: 0px 25px;
+    scroll-margin-right: 6em;
+    position: relative;
+    top: -1em;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    
+  }
+   
+
+  .button-1:hover,
+  .button-1:focus {
+    background-color: #007ba7 ;
+  }
+  
+
+  .table-header {
+    background-image: linear-gradient(195deg, #7fd3ed 0%, #5469d4 100%);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    
+  }
+  .table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  }
+  .col-1 {
+    flex-basis: 3%;
+  }
+  .col-2 {
+    flex-basis: 15%;
+}
+  .col-3 {
+    flex-basis: 7%;
+  }
+  .col-4 {
+    flex-basis: 18%;
+    margin-left: 0.2em;
+  }
+  .col-5 {
+    flex-basis: 12%;
+    margin-left: 3em;
+
+  }
+  .col-6 {
+    flex-basis: 10%;
+  }
+
+  .text-secondary {
+    color: #7b809a !important;
+  }
+  .text-white {
+    color: #ffffff !important;
+  }
+  .text-uppercase {
+    text-transform: uppercase !important;
+  }
+  .opacity-7 {
+    opacity: 0.7 !important;
+  }
+  .text-xxs {
+    font-size: 1rem !important;
+  }
+  .font-weight-bold {
+    font-weight: 400 !important;
+  }
+  
+  .font-weight-bolder {
+    font-weight: 700 !important;
+  }
+  
+  
+  
+  @media all and (max-width: 965px) {
+    
+    .table-header {
+      display: none;
+    }
+    .table-row{
+      
+    }
+    li {
+      display: block;
+    }
+    .col {
+     
+      flex-basis: 100%;
+      max-width:160em;
+      
+    }
+    .col {
+      display: flex;
+      padding: 1px 0;
+      &:before {
+        color: #6C7A89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.phrase{
+    max-width: 40em; max-width: 100ch;
+}
+
+.page {
+  color: white;
+  padding: 0 -1em;
+  background: #f1f5f9;
+}
+.page__box {
+  min-height: 100px;
+  background: #b0dfe5;
+  margin: 0 -1rem;
+  font-size: 36px;
+}
+.page__content {
+  min-height: calc(100vh - 188px);
+  border-radius: 10px;
+  margin-top: -2rem;
+  background: white;
+  color: black;
+
+}
+.page__content-data {
+  top: 30%;
+  left: 50%;
+  position: relative !important; 
+  left:1em !important;
+  top:1em !important;
+}
+
+.pad{
+padding-left:2em;
+padding-right:2em;
+}
+
+.padl{
+  padding-left:2em;
+}
+
+
+.padr{
+  padding-right:2em;
+
+ 
+}
+
+
+.margl{
+  margin-left: 3em;
+}
+
+.margr{
+  margin-right: 3em;
+}
+
+.pg{
+color: #0dcaf0;
+}
+
+
+
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ 
+ h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  max-inline-size: 15ch;
+}*/
+
+@media (max-width: 650px) {
+  .twelve {
+  margin-right: 6em !important;
+  }
+}
+
+div .twelve {
+  position: relative;
+  width: 90%;
+  max-width: 350px;
+  padding: 2em;
+  margin: 2em auto;
+}
+
+h1:before,
+h1:after {
+  background-color: #b0dfe5;
+  
+}
+
+.twelve h1 {
+  font-size:40px;
+   font-weight:700; 
+   letter-spacing:1px;
+    text-transform:uppercase;
+   width:300px;
+    text-align:center; 
+   margin:auto; 
+   white-space:nowrap;
+    padding-bottom:20px;
+    color:#5469d4 ;
+}
+.twelve h1:before {
+    background-color: #b0dfe5;
+    content: '';
+    display: block;
+    height: 8px;
+    width: 80px;
+    margin-bottom: 10px;
+}
+.twelve h1:after {
+    background-color: #b0dfe5;
+    content: '';
+    display: block;
+  position:absolute; right:0; bottom:0;
+    height: 8px;
+    width: 80px;
+    margin-bottom: 1em;
+}
+
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers (opinionated).
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+
+/**
+ * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+
+
+
+.s004 .form {
+  width: 100%;
+ 
+}
+
+
+.s004 .form .inner-form {
+  width: 100%;
+  margin-bottom:10px;
+}
+
+.s004 .form .inner-form .input-field {
+  display: flex;
+  padding: 1em 20em;
+    
+    content: attr(data-label);
+    flex-basis: 50%;
+    text-align: center;
+  
+
+}
+
+
+
+.input-icon {
+ background-color: #ffffff;
+ margin: 0.2em 0.5em;
+}
+ .input-icon:after {
+
+  transition: all 0.35s ease-in-out;
+}
+.s004 .form .inner-form .input-field .btn-search svg {
+  fill: #333;
+  width: 30px;
+  height: 30px;
+  transition: all .2s ease-out, color .2s ease-out;
+}
+
+.s004 .form .inner-form .input-field .btn-search:hover, .s004 .form .inner-form .input-field .btn-search:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+@media all and (max-width: 965px) {
+    
+  .s004 .form .inner-form .input-field {
+
+    display: flex;
+ 
+    padding-left: 10em;
+    padding-right: 10em;
+      content: attr(data-label);
+      flex-basis: 50%;
+      text-align: center;
+  }
+}
+
+
+
+.input{
+  width: 100%;
+}
+
+.field input {
+  font-size: 16px;
+  line-height: 28px;
+  padding: 8px 16px;
+  width: 100%;
+  padding-left: 2.4em;
+  min-height: 44px;
+  border: unset;
+  border-radius: 4px;
+  outline-color: rgb(84 105 212 / 0.5);
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+             
+}
+
+.bg-cr{
+  background-color: #DC143C;
+}
+.bg-cb{
+  background-color: #3f51b5;
+}
+
+
+.bg-cr:hover,
+  .bg-cr:focus {
+    background-color: #b6314b ;
+  }
+  
+.bg-cb:hover,
+  .bg-cb:focus {
+    background-color: #3f51b5 ;
+  }
+
+  .button-2 {
+    margin: 3em;
+    border-radius: 10px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 50px;
+    list-style: none;
+    margin: 0.5em;
+    outline: none;
+    padding: 0px 20px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    
+  }
+  .padl
+  {
+    padding-left: 4em;
+
+  }
+  span{
+    margin: 20px 10px;
+  }
+  .padr
+  {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  //pagination
+  .wrapper {
+    padding-bottom: 5px;
+   
+  }
+  .margt {
+    margin-top: 1em;
+   
+  }
+  mat-dialog-actions{
+    width: 450px;
+  }
+ 
