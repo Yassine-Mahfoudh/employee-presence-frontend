@@ -13,7 +13,6 @@ import { FonctionaliteListComponent } from './pages/administration/fonctionalite
 import { FonctionaliteComponent } from './pages/administration/fonctionalite/fonctionalite.component';
 import { LogaccessComponent } from './pages/administration/logaccess/logaccess.component';
 import { LogdataComponent } from './pages/administration/logdata/logdata.component';
-import { ModalFormComponentComponent } from './pages/administration/modal-form-component/modal-form-component.component';
 import { MyaccountComponent } from './pages/administration/myaccount/myaccount.component';
 import { ProfilListComponent } from './pages/administration/profil-list/profil-list.component';
 import { ProfilComponent } from './pages/administration/profil/profil.component';
@@ -92,7 +91,6 @@ const routes: Routes = [
   { path: 'logdata',component:LogdataComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
 
 
-  { path: 'modal',component:ModalFormComponentComponent,canActivate:[AuthGuard],data : {profils:['MANAGER','USER']} },
   { path: 'myAccount',component:MyaccountComponent },
 
 

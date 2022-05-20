@@ -7,9 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { SalleComponent } from './salle/salle.component';
-import { ModalFormComponentComponent } from './modal-form-component/modal-form-component.component';
-
-
 import { ModalModule } from "ngx-bootstrap/modal";
 import { ProfilComponent } from './profil/profil.component';
 import { ProfilListComponent } from './profil-list/profil-list.component';
@@ -49,7 +46,6 @@ import { SortDirective } from 'src/app/shared/Utils/directive/sort.directive';
     ProfilComponent,
     UsersComponent,
     SalleComponent,
-    ModalFormComponentComponent,
     ProfilListComponent,
     SalleListComponent,
     ProjetComponent,
