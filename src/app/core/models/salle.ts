@@ -4,7 +4,5 @@ export class Salle {
     num:number=0;
     nbposte:number=0;
     pourcentagePres:number=0;
-    
-    
-
+    dep : string='';
 }

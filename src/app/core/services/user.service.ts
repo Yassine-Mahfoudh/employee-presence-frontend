@@ -21,6 +21,22 @@ export class UserService {
     {"No-Auth":"True"}
   )
 
+
+
+
+
+  requestHeader2= new HttpHeaders(
+    {'Content-Type': 'application/json'}
+      )
+
+
+
+
+
+
+
+
+
   constructor(private httpclient: HttpClient,
     private authService:AuthService) {
 
@@ -34,6 +50,10 @@ export class UserService {
 
   public login(loginData){
     return this.httpclient.post(this.PATH_API+'/authenticate',loginData,{headers:this.requestHeader});
+  }
+
+   public logout(user:User):any{
+    return this.httpclient.post(this.PATH_API+'/logout',user);
   }
 
   public roleMatch(allowedRoles) :boolean{
@@ -68,7 +88,7 @@ export class UserService {
     }
 
    addUser(user : User):Observable<User>{
-     return this.httpclient.post<User>(this.addUsersurl,User);
+     return this.httpclient.post<User>(this.addUsersurl,User,{headers:this.requestHeader2});
     }
     getUsers():Observable<User[]>
     {

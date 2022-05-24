@@ -47,7 +47,6 @@ projetList:Projet[] = [];
 
   ngOnInit(): void {
     this.getProjets();
-    //this.search();
     this.projetDetail = this.formBuilder2.group({
       id: [''],
       name:[null,[Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
@@ -79,17 +78,15 @@ projetList:Projet[] = [];
     this.projetobj.description=this.projetDetail.value.description;
     this.projetobj.startdate=this.projetDetail.value.startdate;
     this.projetobj.enddate=this.projetDetail.value.enddate;
+    console.log(this.projetobj);
     this.projetService.addProjet(this.projetobj).subscribe(res=>{
       console.log(res);
       this.getProjets();
     },
     (error: HttpErrorResponse) => {
-      alert(error.message);
+      console.log(error.message);
     }
     );
-    
-
-
 }
 
 getProjets(){

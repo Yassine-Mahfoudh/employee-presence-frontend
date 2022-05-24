@@ -6,6 +6,9 @@ import { UserService } from 'src/app/core/services/user.service';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { Profil } from 'src/app/core/models/profil';
+import { ProfilService } from 'src/app/core/services/profil.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-users',
@@ -22,23 +25,29 @@ export class UsersComponent implements OnInit {
   userDetail!: FormGroup;
   userobj: User = new User();
   usersList:User[] = [];
+  profilList:Profil[] = [];
+
   totalRec!: string;
   page:number=1
 
-  constructor(private formBuilder5 : FormBuilder, private userService: UserService,  config: NgbModalConfig,
-    private modalService: NgbModal) {  
+  constructor(private formBuilder : FormBuilder, private userService: UserService,  config: NgbModalConfig,
+    private modalService: NgbModal,
+    private profilService: ProfilService,
+    ) {  
        // customize default values of modals used by this component tree
       config.backdrop = 'static';
       config.keyboard = false;}
 
   ngOnInit(): void {
-
+this.getProfils();
     this.getUsers();
-    this.userDetail = this.formBuilder5.group({
+    this.userDetail = this.formBuilder.group({
       id: [''],
       userName: [''],
       userPassword: [''],
-      email:['']
+      email:[''],
+     // profil:['']
+
     });
   }
 
@@ -57,13 +66,23 @@ export class UsersComponent implements OnInit {
     this.userobj.userName=this.userDetail.value.userName;
     this.userobj.userPassword=this.userDetail.value.userPassword;
     this.userobj.email=this.userDetail.value.email;
+    console.log(this.userobj);
     this.userService.addUser(this.userobj).subscribe(res=>{
       console.log(res);
       this.getUsers();
+    },
+    (error: HttpErrorResponse) => {
+      console.log(error.message);
     }
     );
+}
+  
 
 
+getProfils(){
+  this.profilService.getProfils().subscribe(res=>{
+    this.profilList=res;
+  })
 }
 
 getUsers(){
@@ -114,7 +133,7 @@ public searchUsers(key: string): void {
   const results: User[] = [];
   for (const user of this.usersList) {
     if (user.userName.toLowerCase().indexOf(key.toLowerCase()) !== -1
-    || user.profil.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    //|| user.profil.toLowerCase().indexOf(key.toLowerCase()) !== -1
     || user.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
     || user.userPassword.toLowerCase().indexOf(key.toLowerCase()) !== -1
     ) {
@@ -127,5 +146,7 @@ public searchUsers(key: string): void {
   }
 }
 
-
+handleClear(){
+  this.userDetail.reset();
+}
 }

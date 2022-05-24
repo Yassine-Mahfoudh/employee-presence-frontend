@@ -51,7 +51,9 @@ public searchSalles(key: string): void {
     if (salle.type.toLowerCase().indexOf(key.toLowerCase()) !== -1
     || salle.num.toString().indexOf(key.toLowerCase()) !== -1
     || salle.nbposte.toString().indexOf(key.toLowerCase()) !== -1
-    || salle.pourcentagePres.toString().indexOf(key.toLowerCase()) !== -1) {
+    || salle.pourcentagePres.toString().indexOf(key.toLowerCase()) !== -1
+    || salle.dep.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    ) {
       results.push(salle);
     }
   }

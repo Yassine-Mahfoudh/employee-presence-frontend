@@ -1,70 +1,185 @@
 
- <!-- addsalle -->
+
+<!-- addsalle -->
 <ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Add Salle </h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
-  </div>
-  <div class="modal-body">
-    <form [formGroup]="salleDetail">
-      <div class="pl-lg-4">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="form-group">
-              <h6 class="heading-small text-muted mb-4">Salle information</h6>
-              <label class="form-control-label" for="input-type">type</label>
-              <input type="text" formControlName="type" id="input-type" class="form-control form-control-alternative" placeholder="salle type" value="">
-              <label class="form-control-label" for="input-num">number</label>
-              <input type="text" formControlName="num" id="input-num" class="form-control form-control-alternative" placeholder="salle number" value="">
-              <label class="form-control-label" for="input-nbposte">number of places</label>
-              <input type="text" formControlName="nbposte" id="input-nbposte" class="form-control form-control-alternative" placeholder="number of places" value="">
-              <label class="form-control-label" for="input-pourcentagePres">attendance percentage</label>
-              <input type="text" formControlName="pourcentagePres" id="input-pourcentagePres" class="form-control form-control-alternative" placeholder="attendance percentage" value="">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-      <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" (click)="close(content)" >Close</button>
-  <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="addSalle()" (click)="c('Save click')">addsalle</button></div>
-    </form>
-  </div>
- 
-</ng-template>
-
-<!-- editsalle -->
-
-<ng-template #contentUpdate let-c="close" let-d="dismiss">
+  
   <mat-toolbar color="primary">
-    <mat-toolbar-row fxLayout="row">
-      <span class="title-center">Update Salle</span>
-      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    <mat-toolbar-row fxLayout="row bg-color">
+
+      <span class="title-center">Ajouter une nouvelle salle</span>
+      <button
+        type="button"
+        class="d-block mr-0 ml-auto btn-close" (click)="d('Cross click')"
+        aria-label="Close"
+        mat-dialog-close
+        (click)="handleClear()"
+      ></button>
     </mat-toolbar-row>
   </mat-toolbar>
-  <mat-dialog-content class="mat-typography">
-    <form [formGroup]="salleDetail">
-      <div fxFlex fxLayout="column">
-              <h6 class="heading-small text-muted mb-4">Salle information</h6>
-              <mat-form-field appearence="fill" fxFlex>
-              <mat-label>Type</mat-label>
-              <input type="text" formControlName="type" id="input-type" class="form-control form-control-alternative" placeholder="salle type" value="">
-              <mat-label>Number</mat-label>
-              <input type="text" formControlName="num" id="input-num" class="form-control form-control-alternative" placeholder="salle number" value="">
-              <mat-label>Number of places</mat-label>
-              <input type="text" formControlName="nbposte" id="input-nbposte" class="form-control form-control-alternative" placeholder="number of places" value="">
-              <mat-label>Attendance percentage</mat-label>
-              <input type="text" formControlName="pourcentagePres" id="input-pourcentagePres" class="form-control form-control-alternative" placeholder="attendance percentage" value="">
-            </mat-form-field>
+  <div class="modal-body">
+  <form [formGroup]="salleDetail" >
+    <div class="pl-lg-4 field">
+      <div class="row formbg-inner   ">
+        <div class="col-lg-6">
+          <h6 class="heading-small text-muted mb-4">
+            Les informations de la salle :
+          </h6>
+          <div class="padding-bottom--24" >
+            <label class="form-control-label"  for="input-name">Type</label>
+          <select id = "select-type" formControlName="type" class="form-control form-control-alternative" >
+              <option value="" selected hidden>Choisissez le type de la salle</option>
+              <option value="Salle de travail">Salle de travail</option> <!-- OPTION 1 -->
+              <option value="Salle de réunion">Salle de réunion</option> <!-- OPTION 2 -->
+          </select>
+          <mat-error  *ngIf="salleDetail.controls.type.touched && salleDetail.controls.type.invalid">
+              <span *ngIf="salleDetail.controls.type.errors.required"> Ce champ est obligatoire</span>
+              <!--<span *ngIf="salleDetail.controls.type.errors.pattern"> Ce champ est invalide</span> 
+              <span *ngIf="salleDetail.controls.type.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>-->
+            </mat-error>
             </div>
-          </form>
-        </mat-dialog-content>
-        <mat-dialog-actions style="width: 100%;" class="btn-group">
-          <button style="width:50%"  class="btn_send" mat-strocked-button color="primary" type="submit" (click)="updateSalle()" (click)="c('Save click')">Update salle
-          </button>
-          <button style="width:50%" class="btn_cancel" mat-stroked-button color="btn-danger" mat-dialog-close>Close</button>
-        </mat-dialog-actions>
- 
-</ng-template>
+            <div class="padding-bottom--24">
+            <label class="form-control-label" for="input-priority">Numéro</label>
+            <input type="text" formControlName="num" id="input-priority" class="form-control form-control-alternative" placeholder="Numéro de la salle" value="" required>
+            <mat-error  *ngIf="salleDetail.controls.num.touched && salleDetail.controls.num.invalid">
+              <span *ngIf="salleDetail.controls.num.errors.required"> Ce champ est obligatoire</span>
+              <span *ngIf="salleDetail.controls.num.errors.pattern"> Ce champ est invalide, il doit être un numéro</span> 
+            </mat-error>  
+          </div>
+          <div class="padding-bottom--24">
+          <label class="form-control-label" for="input-priority">Nombre des postes</label>
+          <input type="text" formControlName="nbposte" id="input-priority" class="form-control form-control-alternative" placeholder="Le nombre des postes" value="" required>
+          <mat-error  *ngIf="salleDetail.controls.nbposte.touched && salleDetail.controls.num.invalid">
+            <span *ngIf="salleDetail.controls.nbposte.errors.required"> Ce champ est obligatoire</span>
+            <span *ngIf="salleDetail.controls.nbposte.errors.pattern"> Ce champ est invalide, il doit être un numéro</span> 
+          </mat-error>  
+        </div>
+        <div class="padding-bottom--24">
+          <label class="form-control-label" for="input-priority">Pourcentage des présence</label>
+          <input type="text" formControlName="pourcentagePres" id="input-priority" class="form-control form-control-alternative" placeholder="Le pourcentage des présence" value="" required>
+          <mat-error  *ngIf="salleDetail.controls.pourcentagePres.touched && salleDetail.controls.pourcentagePres.invalid">
+            <span *ngIf="salleDetail.controls.pourcentagePres.errors.required"> Ce champ est obligatoire</span>
+            <span *ngIf="salleDetail.controls.pourcentagePres.errors.pattern"> Ce champ est invalide, il doit être un numéro</span> 
+          </mat-error>  
+        </div>
+
+        <div class="padding-bottom--24">
+          <label class="form-control-label" for="input-departement">Département</label>
+        <select formControlName="dep" id="select-dep" class="form-control form-control-alternative" value="dep.name">
+          <option value="" disabled selected hidden>Sélectionnez un département</option>
+          <option *ngFor="let departement of departementList" [value]="departement.name" >{{departement.name}}</option>
+        </select>
+        </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div>
+      <mat-dialog-actions class="btn-group padding--14">
+        <button class="btn button-2 bg-cb"  [disabled]="!salleDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')" (click)="addSalle()"  (click)="handleClear()">
+          Ajouter une salle
+        </button>
+        <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(content)" (click)="handleClear()">
+          Fermer
+        </button>
+      </mat-dialog-actions>
+    </div>
+  </form>
+</div>
+     
+    </ng-template>
+
+<!-- editsalle -->
+        
+<ng-template #contentUpdate let-c="close" let-d="dismiss">
+      
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row bg-color">
+
+      <span class="title-center">Mettre à jour la salle</span>
+      <button
+        type="button"
+        class="d-block mr-0 ml-auto btn-close" (click)="d('Cross click')"
+        aria-label="Close"
+        mat-dialog-close
+        (click)="handleClear()"
+      ></button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="modal-body">
+  <form [formGroup]="salleDetail" >
+    <div class="pl-lg-4 field">
+      <div class="row formbg-inner   ">
+        <div class="col-lg-6">
+          <h6 class="heading-small text-muted mb-4">
+            Les informations de la salle :
+          </h6>
+          <div class="padding-bottom--24" >
+            <label class="form-control-label"  for="input-name">Type</label>
+          <select id = "select-type" formControlName="type" class="form-control form-control-alternative" >
+            <optgroup label="Type de salle :">
+              <option value="" selected hidden>Choisissez le type de la salle</option>
+              <option value="Salle de travail">Salle de travail</option> <!-- OPTION 1 -->
+              <option value="Salle de réunion">Salle de réunion</option> <!-- OPTION 2 -->
+            </optgroup>
+          </select>
+          <mat-error  *ngIf="salleDetail.controls.type.touched && salleDetail.controls.type.invalid">
+              <span *ngIf="salleDetail.controls.type.errors.required"> Ce champ est obligatoire</span>
+              <!--<span *ngIf="salleDetail.controls.type.errors.pattern"> Ce champ est invalide</span> 
+              <span *ngIf="salleDetail.controls.type.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>-->
+            </mat-error>
+            </div>
+            <div class="padding-bottom--24">
+            <label class="form-control-label" for="input-priority">Numéro</label>
+            <input type="text" formControlName="num" id="input-priority" class="form-control form-control-alternative"  value="" required>
+            <mat-error  *ngIf="salleDetail.controls.num.touched && salleDetail.controls.num.invalid">
+              <span *ngIf="salleDetail.controls.num.errors.required"> Ce champ est obligatoire</span>
+              <span *ngIf="salleDetail.controls.num.errors.pattern"> Ce champ est invalide, il doit être un numéro</span> 
+            </mat-error>  
+          </div>
+          <div class="padding-bottom--24">
+          <label class="form-control-label" for="input-priority">Nombre des postes</label>
+          <input type="text" formControlName="nbposte" id="input-priority" class="form-control form-control-alternative"  value="" required>
+          <mat-error  *ngIf="salleDetail.controls.nbposte.touched && salleDetail.controls.num.invalid">
+            <span *ngIf="salleDetail.controls.nbposte.errors.required"> Ce champ est obligatoire</span>
+            <span *ngIf="salleDetail.controls.nbposte.errors.pattern"> Ce champ est invalide, il doit être un numéro</span> 
+          </mat-error>  
+        </div>
+        <div class="padding-bottom--24">
+          <label class="form-control-label" for="input-priority">Pourcentage des présence</label>
+          <input type="text" formControlName="pourcentagePres" id="input-priority" class="form-control form-control-alternative"  value="" required>
+          <mat-error  *ngIf="salleDetail.controls.pourcentagePres.touched && salleDetail.controls.pourcentagePres.invalid">
+            <span *ngIf="salleDetail.controls.pourcentagePres.errors.required"> Ce champ est obligatoire</span>
+            <span *ngIf="salleDetail.controls.pourcentagePres.errors.pattern"> Ce champ est invalide, il doit être un numéro</span> 
+          </mat-error>  
+        </div>
+        <div class="padding-bottom--24">
+          <label class="form-control-label" for="input-departement">Département</label>
+        <select formControlName="dep" id="select-dep" class="form-control form-control-alternative" value="dep.name">
+          <option value="" disabled selected hidden>Sélectionnez un département</option>
+          <option *ngFor="let departement of departementList" [value]="departement.name" >{{departement.name}}</option>
+        </select>
+        </div>
+        
+        </div>
+      </div>
+    </div>
+    <div>
+      <mat-dialog-actions class="btn-group padding--14">
+        <button class="btn button-2 bg-cb"  [disabled]="!salleDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')"
+         (click)="updateSalle()"  (click)="handleClear()">
+          modifier projet
+        </button>
+        <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(contentUpdate)" (click)="handleClear()">
+          Fermer
+        </button>
+      </mat-dialog-actions>
+    </div>
+  </form>
+</div>
+     
+    </ng-template>
+
 
 
      <!-- getsalles -->
@@ -102,7 +217,8 @@
                   <div [(appSort)]="salleList" data-order="desc" data-name="num" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Numéro</div>
                   <div [(appSort)]="salleList" data-order="desc" data-name="nbposte" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Nombre de postes</div>
                   <div [(appSort)]="salleList" data-order="desc" data-name="pourcentagePres" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Pourcentage de présence </div>            
-                
+                  <div [(appSort)]="salleList" data-order="desc" data-name="dep" class="col mar col-6 text-uppercase text-white font-weight-bolder opacity-7">Département </div>            
+
                 <div class="col  col-7  margl  text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
                 <div class="col col-8 ">
                           <span class="navbar-toggler-icon"></span>  
@@ -119,10 +235,11 @@
           currentPage:page,
           totalItems:totalRec}">
             <div class="col col-1" data-label="Id">{{salle.id}}</div>
-            <div class="col col-2" data-label="type" style="width: 100px; word-wrap:break-word;">{{salle.type}}</div>
+            <div class="col col-2" data-label="type">{{salle.type}}</div>
             <div class="col col-3" data-label="num">{{salle.num}}</div>
             <div class="col col-4" data-label="nbposte">{{salle.nbposte}}</div>
-            <div class="col col-5" data-label="pourcentagePres">{{salle.pourcentagePres}}</div>
+            <div class="col col-5" data-label="pourcentagePres">{{salle.pourcentagePres}}%</div>
+            <div class="col col-6" data-label="dep">{{salle.dep}}</div>
             <div class="col margl col-7" >
                   
               <a href="javascript:;" class="text-secondary font-weight-bold text-xxs" data-toggle="tooltip" data-original-title="Edit salle"  (click)="editSalle(salle)" (click)="open(contentUpdate)">

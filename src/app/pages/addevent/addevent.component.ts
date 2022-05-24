@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -22,6 +23,9 @@ export class AddeventComponent implements OnInit {
   eventlist:MyEvent[] = [];
   employeeList:Employee[]=[];
 
+  
+ nowDate = new Date(); 
+ dateDebutButton = this.nowDate.getFullYear()+'/'+(this.nowDate.getMonth()+1)+'/'+this.nowDate.getDate();
   dateDebut
   constructor(private formBuilder : FormBuilder,
      @Inject(MAT_DIALOG_DATA) data,
@@ -41,18 +45,31 @@ export class AddeventComponent implements OnInit {
   ngOnInit(): void {
     this.getevents();
     this.getEmployees();
+   
+   
     
     this.eventDetail = this.formBuilder.group({
       id: [''],
       title:[null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
+      description:[''],
       datedebut: [this.dateDebut],
-      datefin: [''],
+      datefin: [this.dateDebut],
       employee:[''],
       datedebutrecur:[''],
       datefinrecur:[''],
       frequency:[''],
+      everyNday:[''],
       weekday:[''],
+      everyNmonth:[''],
+      monthday:[''],
+      daypos:[''],
+      byday:[''],
+      onday:[''],
+      eventtype:['']
+     
     });
+
+  
   }
 
   open(content) {
@@ -63,20 +80,31 @@ export class AddeventComponent implements OnInit {
     this.modalService.dismissAll(content);
   }
 
- 
+  
 
   addEvent(){
 
     console.log(this.eventDetail);
 
+    //static
+    if (this.eventDetail.controls.eventtype.value=="Static"){
     this.eventobj.id=this.eventDetail.value.id;
     this.eventobj.title=this.eventDetail.value.title;
+    this.eventobj.description=this.eventDetail.value.description;
     this.eventobj.start=this.eventDetail.value.datedebut;
     this.eventobj.end=this.eventDetail.value.datefin;
     this.eventobj.employee=this.eventDetail.value.employee;
+    this.eventobj.rrule=null;
+  }
+else {
 
-    console.log("freq :"+this.eventDetail.value.frequency);
-    console.log("day :"+this.eventDetail.value.weekday)
+    //recurrsive
+  
+
+    this.eventobj.id=this.eventDetail.value.id;
+    this.eventobj.title=this.eventDetail.value.title;
+    this.eventobj.description=this.eventDetail.value.description;
+    this.eventobj.employee=this.eventDetail.value.employee;
 
     let startrecur =this.eventDetail.value.datedebutrecur;
       let yyyy=startrecur.substr(0,4)
@@ -84,7 +112,6 @@ export class AddeventComponent implements OnInit {
       let dd=startrecur.substr(8,9) 
       let startr=yyyy+mm+dd
      console.log(" start date recursivité : "+startr)
-
 
 
      let endrecur =this.eventDetail.value.datefinrecur;
@@ -95,19 +122,57 @@ export class AddeventComponent implements OnInit {
     console.log(" end date recursivité : "+endr)
 
 
-    this.eventobj.rrule=`DTSTART:${startr}\nRRULE:FREQ=${this.eventDetail.value.frequency};UNTIL=${endr};BYDAY=${this.eventDetail.value.weekday}`;
-    //this.eventobj.rrule="DTSTART:20220503\nRRULE:FREQ=WEEKLY;UNTIL=20220527;BYDAY=MO,FR"
+    if (this.eventDetail.value.frequency=="WEEKLY"){
+      this.eventobj.rrule=`DTSTART:${startr}\nRRULE:FREQ=${this.eventDetail.value.frequency};UNTIL=${endr};BYDAY=${this.eventDetail.value.weekday};INTERVAL=${this.eventDetail.value.everyNday}`;
+    }else{
+      if(this.eventDetail.value.onday=="onday"){
+        this.eventobj.rrule=`DTSTART:${startr}\nRRULE:FREQ=${this.eventDetail.value.frequency};UNTIL=${endr};BYMONTHDAY=${this.eventDetail.value.monthday};INTERVAL=${this.eventDetail.value.everyNmonth}`;
+      }else{
+        this.eventobj.rrule=`DTSTART:${startr}\nRRULE:FREQ=${this.eventDetail.value.frequency};UNTIL=${endr};BYSETPOS=${this.eventDetail.value.daypos};BYDAY=${this.eventDetail.value.byday};INTERVAL=${this.eventDetail.value.everyNmonth}`;
+      }
+    
+    }
+    
+    
 
+  }
+    
     this.myeventService.addEvent(this.eventobj).subscribe(res=>{
       console.log(res);
       this.getevents();
       console.log("okkkkkkk")
-      //setTimeout("location.reload(true);",500);
+      //setTimeout("location.reload(true);",200);
     }
     );
 
 
 }
+
+eventType(val){
+
+  (document.getElementById("status-select")as HTMLButtonElement).disabled = false;
+   if (val == "Static"){
+ ( document.querySelector<HTMLElement>(".add-static-event")).style.display= "block";
+ (document.querySelector<HTMLElement>(".add-recursive-event")).style.display= "none";
+}
+   if (val == "Recursive"){
+   ( document.querySelector<HTMLElement>(".add-static-event")).style.display= "none";
+     (document.querySelector<HTMLElement>(".add-recursive-event")).style.display= "block";
+    }
+}
+
+eventFrequence(val){
+  (document.getElementById("frequence-select")as HTMLButtonElement).disabled = false;
+   if (val == "WEEKLY"){
+ ( document.querySelector<HTMLElement>(".weekly-frequence")).style.display= "block";
+ (document.querySelector<HTMLElement>(".monthly-frequence")).style.display= "none";
+}
+   if (val == "MONTHLY"){
+     (document.querySelector<HTMLElement>(".monthly-frequence")).style.display= "block";
+     ( document.querySelector<HTMLElement>(".weekly-frequence")).style.display= "none";
+    }
+}
+
 
 getEmployees(){
   this.employeeService.getEmployees().subscribe(res=>{
@@ -125,6 +190,7 @@ getevents(){
 editEvent(event : MyEvent){
   this.eventDetail.controls['id'].setValue(event.id);
   this.eventDetail.controls['title'].setValue(event.title);
+  this.eventDetail.controls['description'].setValue(event.description);
   this.eventDetail.controls['datedebut'].setValue(event.start);
   this.eventDetail.controls['datefin'].setValue(event.end);
   this.eventDetail.controls['employee'].setValue(event.employee);
@@ -144,6 +210,7 @@ deleteEvent(event : MyEvent){
 updateEvent(){
   this.eventobj.id=this.eventDetail.value.id;
   this.eventobj.title=this.eventDetail.value.title;
+  this.eventobj.description=this.eventDetail.value.description;
   this.eventobj.start=this.eventDetail.value.datedebut;
   this.eventobj.end=this.eventDetail.value.datefin;
   this.eventobj.employee=this.eventDetail.value.employee;

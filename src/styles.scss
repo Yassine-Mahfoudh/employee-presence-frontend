@@ -18,6 +18,8 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .black-snackbar{
+  margin-bottom:8em !important;
+padding: 1.5em !important;
   background: rgb(240, 16, 16) !important;
   color: white !important;
 }

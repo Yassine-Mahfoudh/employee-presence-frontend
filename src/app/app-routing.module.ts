@@ -41,6 +41,7 @@ const routes: Routes = [
  // { path: '', component:DashboardComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']}},
   //{ path: '', component:HomeComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
 
+  //{ path: '', component: LoginComponent },
 
   { path: 'login', component: LoginComponent },
   

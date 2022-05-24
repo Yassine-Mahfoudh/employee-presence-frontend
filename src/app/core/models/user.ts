@@ -3,5 +3,5 @@ export class User {
     userName:string='';
     userPassword:string='';
     email:string='';
-   profil:string='';
+ //  profil:string='';
 }

@@ -15,7 +15,9 @@ export class DepartementListComponent implements OnInit {
   page:number=1
 
   constructor(config: NgbModalConfig,
-    private modalService: NgbModal, private departementService: DepartementService ) {
+    private modalService: NgbModal,
+     private departementService: DepartementService
+      ) {
           // customize default values of modals used by this component tree
           config.backdrop = 'static';
           config.keyboard = false;

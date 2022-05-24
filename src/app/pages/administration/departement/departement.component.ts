@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Departement } from 'src/app/core/models/departement';
 import { DepartementService } from 'src/app/core/services/departement.service';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 
 @Component({
   selector: 'app-departement',
@@ -33,12 +34,11 @@ export class DepartementComponent implements OnInit {
     }
 
   ngOnInit(): void {
-
     this.getDepartements();
     this.departementDetail = this.formBuilder.group({
       id: [''],
-      name:[''],
-      nbsalles:['']
+      name:[null,[Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
+      nbsalles:[null,[Validators.required,Validators.pattern(GlobalConstants.numberRegex)]]
     });
   }
 
@@ -50,6 +50,10 @@ export class DepartementComponent implements OnInit {
   close(content) {
     this.modalService.dismissAll(content);
   }
+
+
+
+
   addDepartement(){
 
     console.log(this.departementDetail);
@@ -120,6 +124,11 @@ public searchDepartements(key: string): void {
   if (results.length === 0 || !key) {
     this.getDepartements();
   }
+}
+
+
+handleClear(){
+  this.departementDetail.reset();
 }
 
 }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,9 @@ export class HeaderComponent implements OnInit {
    current = new Date();
 
   constructor(private router: Router,
-    public authService:AuthService) {}
+    public authService:AuthService,
+   private userService:UserService
+    ) {}
 
   ngOnInit(): void {}
 
@@ -22,11 +25,9 @@ export class HeaderComponent implements OnInit {
   }
 
   public logout(){
+   // this.userService.logout(this.authService.getUser());
     this.authService.clear();
     this.router.navigate(['/login']);
   }
-
-
-
   
 }

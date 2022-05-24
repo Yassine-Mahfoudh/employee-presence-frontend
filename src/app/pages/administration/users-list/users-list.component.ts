@@ -44,7 +44,7 @@ export class UsersListComponent implements OnInit {
     const results: User[] = [];
     for (const user of this.usersList) {
       if (user.userName.toLowerCase().indexOf(key.toLowerCase()) !== -1
-       || user.profil.toLowerCase().indexOf(key.toLowerCase()) !== -1
+       //|| user.profil.toLowerCase().indexOf(key.toLowerCase()) !== -1
       || user.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
       || user.userPassword.toLowerCase().indexOf(key.toLowerCase()) !== -1
       ) {

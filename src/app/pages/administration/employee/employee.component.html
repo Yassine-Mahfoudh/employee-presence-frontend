@@ -1,5 +1,5 @@
       <!-- adddEmployee -->
-    
+    <!--
       <ng-template #content let-c="close" let-d="dismiss">
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Add Employee </h4>
@@ -52,58 +52,118 @@
        
       </ng-template>
     
-      <!-- editEmployee -->
-    
+    -->
 
-      <ng-template #contentUpdate let-c="close" let-d="dismiss">
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">update Employee details </h4>
-          <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
-        </div>
-        <div class="modal-body">
-          <form [formGroup]="employeeDetail">
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                      <h6 class="heading-small text-muted mb-4">Employee informations</h6>
-                      <label class="form-control-label" for="input-lastname">lastname</label>
-                      <input type="text" formControlName="lastname" id="input-lastname" class="form-control form-control-alternative" placeholder="Employee lastname" value="">
-                      <label class="form-control-label" for="input-firstname">firstname</label>
-                      <input type="text" formControlName="firstname" id="input-firstname" class="form-control form-control-alternative" placeholder="Employee firstname" value="">
-                      <label class="form-control-label" for="select-role">role</label>
-                      <select formControlName="role" id="select-role" class="form-control form-control-alternative" value="profil.name">
-                        <option value="" disabled selected hidden>Select a role</option>
-                        <option *ngFor="let profil of RoleList " [value]="profil.name" >{{profil.name}}</option>
-                      </select> 
-                      <label class="form-control-label" for="input-status">status</label>
-                      <input type="text" formControlName="status" id="input-status" class="form-control form-control-alternative" placeholder="Employee status" value="">
-                      <label class="form-control-label" for="input-birthdate">birthdate</label>
-                      <input type="text" formControlName="birthdate" id="input-birthdate" class="form-control form-control-alternative" placeholder="Employee birthdate" value="">
-                      <label class="form-control-label" for="input-address">address</label>
-                      <input type="text" formControlName="address" id="input-address" class="form-control form-control-alternative" placeholder="Employee address" value="">
-                      <label class="form-control-label" for="input-phonenumber">phonenumber</label>
-                      <input type="text" formControlName="phonenumber" id="input-adphonenumberdress" class="form-control form-control-alternative" placeholder="Employee phonenumber" value="">
-                      <label class="form-control-label" for="select-project">project</label>
-                    <select formControlName="project" id="select-project" class="form-control form-control-alternative" >
-                      <option value="" disabled selected hidden>Select a project</option>
-                      <option *ngFor="let project of projectList " [value]="project.name" >{{project.name}}</option>
-                    </select>
-                    <label class="form-control-label" for="select-workroom">workroom</label>
-                    <select formControlName="salle" id="select-workroom" class="form-control form-control-alternative" >
-                      <option value="" disabled selected hidden>Select a workroom</option>
-                      <option *ngFor="let salle of salleList" [value]="salle.num">{{salle.num}}</option>
-                    </select>
+                <!-- editemployee -->
+        
+                <ng-template #contentUpdate let-c="close" let-d="dismiss">
+      
+                  <mat-toolbar color="primary">
+                    <mat-toolbar-row fxLayout="row bg-color">
+                
+                      <span class="title-center">Mettre à jour l'employé</span>
+                      <button
+                        type="button"
+                        class="d-block mr-0 ml-auto btn-close" (click)="d('Cross click')"
+                        aria-label="Close"
+                        mat-dialog-close
+                        (click)="handleClear()"
+                      ></button>
+                    </mat-toolbar-row>
+                  </mat-toolbar>
+                  <div class="modal-body">
+                  <form [formGroup]="employeeDetail" >
+                    <div class="pl-lg-4 field">
+                      <div class="row formbg-inner   ">
+                        <div class="col-lg-6">
+                          <h6 class="heading-small text-muted mb-4">
+                            Les informations de l'employé :
+                          </h6>
+                          <div class="padding-bottom--24" >
+                            <label class="form-control-label"  for="input-name">Prénom</label>
+                            <input type="text" formControlName="name" id="input-name" class="form-control form-control-alternative "   value="" required minlength="4">
+                            <mat-error  *ngIf="employeeDetail.controls.lastname.touched && employeeDetail.controls.lastname.invalid">
+                              <span *ngIf="employeeDetail.controls.lastname.errors.required"> Ce champ est obligatoire</span>
+                              <span *ngIf="employeeDetail.controls.lastname.errors.pattern"> Ce champ est invalide</span> 
+                              <span *ngIf="employeeDetail.controls.lastname.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
+                            </mat-error>
+                            </div>
+                            <div class="padding-bottom--24" >
+                              <label class="form-control-label"  for="input-name">Nom</label>
+                              <input type="text" formControlName="name" id="input-name" class="form-control form-control-alternative "   value="" required minlength="4">
+                              <mat-error  *ngIf="employeeDetail.controls.firstname.touched && employeeDetail.controls.firstname.invalid">
+                                <span *ngIf="employeeDetail.controls.firstname.errors.required"> Ce champ est obligatoire</span>
+                                <span *ngIf="employeeDetail.controls.firstname.errors.pattern"> Ce champ est invalide</span> 
+                                <span *ngIf="employeeDetail.controls.firstname.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
+                              </mat-error>
+                              </div>
+                              <div class="padding-bottom--24">
+                                <label class="form-control-label" for="input-startdate">Date de naissance</label>
+                                <input type="text" formControlName="birthdate" id="input-startdate" class="form-control form-control-alternative" placeholder="project startdate" value="" onfocus="(this.type='date')" required>
+                                <mat-error  *ngIf="employeeDetail.controls.birthdate.touched && employeeDetail.controls.birthdate.invalid">
+                                  <span *ngIf="employeeDetail.controls.birthdate.errors.required"> Ce champ est obligatoire</span>
+                                  <span *ngIf="employeeDetail.controls.birthdate.errors.pattern"> Ce champ est invalide, le format doit être yyyy-mm-dd</span> 
+                                </mat-error>
+                              </div>
+                              <div class="padding-bottom--24">
+                                <label class="form-control-label" for="input-description">Adreese</label>
+                                <input type="text" formControlName="address" id="input-address" class="form-control form-control-alternative" placeholder="project description" value="" minlength="4" required>
+                                <mat-error  *ngIf="employeeDetail.controls.address.touched && employeeDetail.controls.address.invalid">
+                                  <span *ngIf="employeeDetail.controls.address.errors.required"> Ce champ est obligatoire</span>
+                                  <span *ngIf="employeeDetail.controls.address.errors.pattern"> Ce champ est invalide</span> 
+                                  <span *ngIf="employeeDetail.controls.address.errors.minlength"> La description doit comporter au moins 4 caractères</span>
+                                </mat-error>  
+                              </div>
+                            <div class="padding-bottom--24">
+                            <label class="form-control-label" for="input-priority">Numéro</label>
+                            <input type="text" formControlName="phonenumber" id="input-phonenumber" class="form-control form-control-alternative"  value="" required>
+                            <mat-error  *ngIf="employeeDetail.controls.phonenumber.touched && employeeDetail.controls.priority.invalid">
+                              <span *ngIf="employeeDetail.controls.phonenumber.errors.required"> Ce champ est obligatoire</span>
+                              <span *ngIf="employeeDetail.controls.phonenumber.errors.pattern"> Ce champ est invalide, il doit être un numéro</span> 
+                            </mat-error>  
+                          </div>
+                          <div class="padding-bottom--24">
+                            <label class="form-control-label" for="input-departement">Chef</label>
+                          <select formControlName="manager" id="select-dep" class="form-control form-control-alternative" value="dep.name">
+                            <option value="" disabled selected hidden>Sélectionnez un chef</option>
+                            <option *ngFor="let employee of employeeList" [value]="employee.firstname" >{{employee.firstname}}</option>
+                          </select>
+                          </div>
+                          <div class="padding-bottom--24">
+                            <label class="form-control-label" for="input-project">Projet</label>
+                          <select formControlName="project" id="select-project" class="form-control form-control-alternative" value="project.name">
+                            <option value="" disabled selected hidden>Sélectionnez un project</option>
+                            <option *ngFor="let project of projectList" [value]="project.name" >{{project.name}}</option>
+                          </select>
+                          </div>
+                          <div class="padding-bottom--24">
+                            <label class="form-control-label" for="input-salle">Salle</label>
+                          <select formControlName="salle" id="select-salle" class="form-control form-control-alternative" value="salle.name">
+                            <option value="" disabled selected hidden>Sélectionnez une salle</option>
+                            <option *ngFor="let salle of salleList" [value]="salle.name" >{{salle.name}}</option>
+                          </select>
+                          </div>
+                            
+              
+              
+                        </div>
+                      </div>
                     </div>
+                    <div>
+                      <mat-dialog-actions class="btn-group padding--14">
+                        <button class="btn button-2 bg-cb"  [disabled]="!employeeDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')"
+                         (click)="updateEmployee()"  (click)="handleClear()">
+                          Modifier employé
+                        </button>
+                        <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(contentUpdate)" (click)="handleClear()">
+                          Fermer
+                        </button>
+                      </mat-dialog-actions>
+                    </div>
+                  </form>
                 </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" (click)="close(contentUpdate)">Close</button>
-        <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="updateEmployee()" (click)="c('Save click')">updateEmployee</button></div>
-          </form>
-        </div>
-      </ng-template>
+                     
+                    </ng-template>
 
        <!-- getprojects -->
      
@@ -147,13 +207,7 @@
                 <div [(appSort)]="employeeList" data-order="desc" data-name="workroom" class="col mar col-10 text-uppercase text-white font-weight-bolder opacity-7">Salle</div>
                 <div [(appSort)]="employeeList" data-order="desc" data-name="manager" class="col mar col-11 text-uppercase text-white font-weight-bolder opacity-7">Chef</div>
                 <div class="col  col-12  margl  text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
-                <div class="col col-13 ">
-                          <span class="navbar-toggler-icon"></span>  
-                        <div  id="navbarSupportedContent">
-                          <button class="btn button-1" data-bs-toggle="modal" (click)="open(content)" ><i><fa-icon [icon]="addIcon"></fa-icon></i></button>
-                        </div>
-                       
-                </div>
+                
                 
               </li>
               
@@ -181,8 +235,6 @@
                   <a href="javascript:;" class=" padlr text-secondary font-weight-bold text-xxs" data-toggle="tooltip" data-original-title="delete employee"  (click)="confirmDelete(employee)" >
                     <i><fa-icon [icon]="trashIcon"></fa-icon> </i>
                   </a>
-                </div>
-                <div class="col  col-13" >
                 </div>
 
               </li>

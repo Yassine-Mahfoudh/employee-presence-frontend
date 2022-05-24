@@ -52,8 +52,7 @@ export class LoginComponent implements OnInit {
       },
       (error)=>{
         this.loginError =" Le nom dutilisateur ou le mot de passe saisi est incorrect !";
-        //this.snackbarService.openSnackBar("Username or password is incorrect !","error");
-        console.log( this.loginError );
+        this.snackbarService.openSnackBar( this.loginError,"error");
         console.log(error);
       }
     );

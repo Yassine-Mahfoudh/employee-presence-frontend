@@ -39,5 +39,13 @@ export class DepartementService {
     {
       return this.http.put<Departement>(this.updatedepartementurl+'/'+departement.id,departement);   
     }
+   /* getDepartementByName(name: string): Departement {
+      return this.http.get<Departement>(this.getdepartementurl+ '/find/name/' + name);
+    }*/
+    getDepartementByName(name : any):Observable<Departement>
+    {
+      return this.http.get<Departement>(this.getdepartementurl+ '/find/name/' + name);
+    }  
+
 
 }

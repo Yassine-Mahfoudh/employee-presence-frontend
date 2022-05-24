@@ -1,258 +1,285 @@
 
       <!-- addproject -->
-
-  
-    
       <ng-template #content let-c="close" let-d="dismiss">
-        <mat-toolbar color="primary" class="modal-header">
-          <mat-toolbar-row fxLayout="row">
-            <h1 class="title-center">Add new project</h1>
-            <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')" (click)="handleClear()"></button>
+  
+        <mat-toolbar color="primary">
+          <mat-toolbar-row fxLayout="row bg-color">
+      
+            <span class="title-center">Ajouter un nouveau projet</span>
+            <button
+              type="button"
+              class="d-block mr-0 ml-auto btn-close" (click)="d('Cross click')"
+              aria-label="Close"
+              mat-dialog-close
+              (click)="handleClear()"
+            ></button>
           </mat-toolbar-row>
         </mat-toolbar>
         <div class="modal-body">
-          <form [formGroup]="projetDetail">
-            <div class="pl-lg-4 field">
-              <div class="row">
-                <div class="col-lg-6">
-                    <h6 class="heading-small text-muted mb-4">Project informations :</h6>
-                    <div class="form-group " >
-                    <label class="form-control-label"  for="input-name">name</label>
-                    <input type="text" formControlName="name" id="input-name" class="form-control form-control-alternative "  placeholder="project name" value="" required minlength="4">
-                    <mat-error  *ngIf="projetDetail.controls.name.touched && projetDetail.controls.name.invalid">
-                      <span *ngIf="projetDetail.controls.name.errors.required"> This field is necessary</span>
-                      <span *ngIf="projetDetail.controls.name.errors.pattern"> This field is invalid</span> 
-                      <span *ngIf="projetDetail.controls.name.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
-                    </mat-error>
-                    </div>
-                    <div class="form-group">
-                    <label class="form-control-label" for="input-priority">priority</label>
-                    <input type="text" formControlName="priority" id="input-priority" class="form-control form-control-alternative" placeholder="project priority" value="" required>
-                    <mat-error  *ngIf="projetDetail.controls.priority.touched && projetDetail.controls.priority.invalid">
-                      <span *ngIf="projetDetail.controls.priority.errors.required"> This field is necessary</span>
-                      <span *ngIf="projetDetail.controls.priority.errors.pattern"> This field is invalid, it should be a number</span> 
-                    </mat-error>  
-                  </div>
-                    <div class="form-group">
-                    <label class="form-control-label" for="input-description">description</label>
-                    <input type="text" formControlName="description" id="input-description" class="form-control form-control-alternative" placeholder="project description" value="" minlength="4" required>
-                    <mat-error  *ngIf="projetDetail.controls.description.touched && projetDetail.controls.description.invalid">
-                      <span *ngIf="projetDetail.controls.description.errors.required"> This field is necessary</span>
-                      <span *ngIf="projetDetail.controls.description.errors.pattern"> This field is invalid</span> 
-                      <span *ngIf="projetDetail.controls.description.errors.minlength"> La description doit comporter au moins 4 caractères</span>
-                    </mat-error>  
-                  </div>
-                    <div class="form-group">
-                    <label class="form-control-label" for="input-startdate">startdate</label>
-                    <input type="text" formControlName="startdate" id="input-startdate" class="form-control form-control-alternative" placeholder="project startdate" value="" required>
-                    <mat-error  *ngIf="projetDetail.controls.startdate.touched && projetDetail.controls.startdate.invalid">
-                      <span *ngIf="projetDetail.controls.startdate.errors.required"> This field is necessary</span>
-                      <span *ngIf="projetDetail.controls.startdate.errors.pattern"> This field is invalid, the format should be yyyy-mm-dd</span> 
-                    </mat-error>
-                  </div>
-                    <div class="form-group">
-                    <label class="form-control-label" for="input-enddate">enddate</label>
-                    <input type="text" formControlName="enddate" id="input-enddate" class="form-control form-control-alternative" placeholder="project enddate" value="" required>
-                    <mat-error  *ngIf="projetDetail.controls.enddate.touched && projetDetail.controls.enddate.invalid">
-                      <span *ngIf="projetDetail.controls.enddate.errors.required"> This field is necessary</span>
-                      <span *ngIf="projetDetail.controls.enddate.errors.pattern"> This field is invalid, the format should be yyyy-mm-dd</span> 
-                    </mat-error>
-                  </div>
-                </div>
-                </div>
-              </div>
-            <br>
-            <div>
-              <mat-dialog-actions  class="btn-group">
-                <button   class="btn button-2 bg-cb" mat-strocked-button type="submit"  [disabled]="!projetDetail.valid" (click)="addProjet()" (click)="c('Save click')" (click)="handleClear()">Add project
-                </button>
-                <button class="btn button-2 bg-cr" mat-stroked-button  mat-dialog-close (click)="close(content)" (click)="handleClear()">Close</button>
-              </mat-dialog-actions>
-              </div>
-          </form>
-        </div>
-       
-      </ng-template>
-    
-      <!-- editproject -->
-    
-
-      <ng-template #contentUpdate let-c="close" let-d="dismiss">
-          <mat-toolbar color="primary" class="modal-header">
-            <mat-toolbar-row fxLayout="row">
-              <span class="title-center">Update project details</span>
-              <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')" (click)="handleClear()"></button>
-            </mat-toolbar-row>
-          </mat-toolbar>
-        <div class="modal-body">
-          <form [formGroup]="projetDetail">
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-6">
-                    <h6 class="heading-small text-muted mb-4">Project informations :</h6>
-                    <div class="form-group " >
-                    <label class="form-control-label"  for="input-name">name</label>
-                    <input type="text" formControlName="name" id="input-name" class="form-control form-control-alternative "  placeholder="project name" value="" required minlength="4">
-                    <mat-error  *ngIf="projetDetail.controls.name.touched && projetDetail.controls.name.invalid">
-                      <span *ngIf="projetDetail.controls.name.errors.required"> This field is necessary</span>
-                      <span *ngIf="projetDetail.controls.name.errors.pattern"> This field is invalid</span> 
-                      <span *ngIf="projetDetail.controls.name.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
-                    </mat-error>
-                    </div>
-                    <div class="form-group">
-                    <label class="form-control-label" for="input-priority">priority</label>
-                    <input type="text" formControlName="priority" id="input-priority" class="form-control form-control-alternative" placeholder="project priority" value="" required>
-                    <mat-error  *ngIf="projetDetail.controls.priority.touched && projetDetail.controls.priority.invalid">
-                      <span *ngIf="projetDetail.controls.priority.errors.required"> This field is necessary</span>
-                      <span *ngIf="projetDetail.controls.priority.errors.pattern"> This field is invalid, it should be a number</span> 
-                    </mat-error>  
-                  </div>
-                    <div class="form-group">
-                    <label class="form-control-label" for="input-description">description</label>
-                    <input type="text" formControlName="description" id="input-description" class="form-control form-control-alternative" placeholder="project description" value="" minlength="4" required>
-                    <mat-error  *ngIf="projetDetail.controls.description.touched && projetDetail.controls.description.invalid">
-                      <span *ngIf="projetDetail.controls.description.errors.required"> This field is necessary</span>
-                      <span *ngIf="projetDetail.controls.description.errors.pattern"> This field is invalid</span> 
-                      <span *ngIf="projetDetail.controls.description.errors.minlength"> La description doit comporter au moins 4 caractères</span>
-                    </mat-error>  
-                  </div>
-                    <div class="form-group">
-                    <label class="form-control-label" for="input-startdate">startdate</label>
-                    <input type="text" formControlName="startdate" id="input-startdate" class="form-control form-control-alternative" placeholder="project startdate" value="" required>
-                    <mat-error  *ngIf="projetDetail.controls.startdate.touched && projetDetail.controls.startdate.invalid">
-                      <span *ngIf="projetDetail.controls.startdate.errors.required"> This field is necessary</span>
-                      <span *ngIf="projetDetail.controls.startdate.errors.pattern"> This field is invalid, the format should be yyyy-mm-dd</span> 
-                    </mat-error>
-                  </div>
-                    <div class="form-group">
-                    <label class="form-control-label" for="input-enddate">enddate</label>
-                    <input type="text" formControlName="enddate" id="input-enddate" class="form-control form-control-alternative" placeholder="project enddate" value="" required>
-                    <mat-error  *ngIf="projetDetail.controls.enddate.touched && projetDetail.controls.enddate.invalid">
-                      <span *ngIf="projetDetail.controls.enddate.errors.required"> This field is necessary</span>
-                      <span *ngIf="projetDetail.controls.enddate.errors.pattern"> This field is invalid, the format should be yyyy-mm-dd</span> 
-                    </mat-error>
-                  </div>
-                </div>
-                </div>
-              </div>
-            <br>
-            <div>
-              <mat-dialog-actions style="width: 100%;" class="btn-group">
-                <button style="width:50%"  class="btn button-2 bg-cb" mat-strocked-button type="submit"
-                  [disabled]="!projetDetail.valid" (click)="updateProjet()" (click)="c('Save click')" (click)="handleClear()">Update project
-                </button>
-                <button style="width:50%" class="btn button-2 bg-cr" mat-stroked-button  mat-dialog-close (click)="close(content)" (click)="handleClear()">Close</button>
-              </mat-dialog-actions>
-              </div>
-          </form>
-        </div>
-      </ng-template>
-
-
-     
- 
-     <!-- getprojects -->
-     
-     
-     <div class="container-fluid page">
-      <div class="d-flex page__box p-3 mt-2">Gestion des projets</div>
-      <div class="page__content shadow p-3 ">
-      <div class="page__content-data position-absolute text-center">
-        <div class="twelve">
-          <h1  >La liste des projets : </h1>  
-        </div>
-      
-         
-             
-
-             <form>
-              <div class="s004">
-                <form class="form">
-                  <fieldset>
-                    <div class="inner-form">
-                      <div class="input-field">
-                        <input class="form-control" id="choices-text-preset-values" (ngModelChange)="searchProjects(key.value)" #key="ngModel" ngModel
-                        name="key" type="search" placeholder="Type to search..." />
-                        <span class="input-icon" id="basic-addon1">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                        </svg>
-                        </span>
-                      </div>
-                    </div> 
-                  </fieldset>
-                </form>
-              </div>
-            <ul class="responsive-table pad">
-              <li class="table-header margt">
-                <div [(appSort)]="projetList" data-order="desc" data-name="id" class="col  col-1 text-uppercase text-white font-weight-bolder opacity-7">Id</div>
-                <div [(appSort)]="projetList" data-order="desc" data-name="name" class="col  col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
-                <div [(appSort)]="projetList" data-order="desc" data-name="priority" class="col  col-3 text-uppercase text-white font-weight-bolder opacity-7">Priority</div>
-                <div [(appSort)]="projetList" data-order="desc" data-name="description" class="col  col-4 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
-                <div [(appSort)]="projetList" data-order="desc" data-name="startdate" class="col  col-5 text-uppercase text-white font-weight-bolder opacity-7">Start date</div>
-                <div [(appSort)]="projetList" data-order="desc" data-name="enddate" class="col  col-6 text-uppercase text-white font-weight-bolder opacity-7">End date</div>
-                <div class="col  col-7  margl  text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
-                <div class="col col-8 ">
-                          <span class="navbar-toggler-icon"></span>  
-                        <div  id="navbarSupportedContent">
-                          <button class="btn button-1" data-bs-toggle="modal" (click)="open(content)" ><i><fa-icon [icon]="addIcon"></fa-icon></i></button>
-                        </div>
-                       
-                </div>
+        <form [formGroup]="projetDetail" >
+          <div class="pl-lg-4 field">
+            <div class="row formbg-inner   ">
+              <div class="col-lg-6">
+                <h6 class="heading-small text-muted mb-4">
+                  Les informations du projet :
+                </h6>
                 
-              </li>
-              
-              <li class="table-row"  *ngFor="let projet of projetList | paginate: { id:'listing_pagination',
-              itemsPerPage:4,
-              currentPage:page,
-              totalItems:totalRec}">
-                <div class="col col-1" data-label="Id">{{projet.id}}</div>
-                <div class="col col-2" data-label="Name" style="width: 100px; word-wrap:break-word;">{{projet.name}}</div>
-                <div class="col col-3" data-label="Priority">{{projet.priority}}</div>
-                <div class="col col-4" data-label="Description" style="width: 130px; word-wrap:break-word;">{{projet.description}}</div>
-                <div class="col col-5" data-label="Start date">{{projet.startdate}}</div>
-                <div class="col col-6" data-label="End date">{{projet.enddate}}</div>
-                <div class="col margl col-7" >
-                  
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xxs" data-toggle="tooltip" data-original-title="Edit projet"  (click)="editProjet(projet)" (click)="open(contentUpdate)">
-                    <i> <fa-icon [icon]="editIcon"></fa-icon> </i>
-                  </a><br>
-                  
-                  <a href="javascript:;" class=" padlr text-secondary font-weight-bold text-xxs" data-toggle="tooltip" data-original-title="delete projet"  (click)="confirmDelete(projet)" >
-                    <i><fa-icon [icon]="trashIcon"></fa-icon> </i>
-                  </a>
+                <div class="padding-bottom--24" >
+                  <label class="form-control-label"  for="input-name">Nom</label>
+                  <input type="text" formControlName="name" id="input-name" class="form-control form-control-alternative "  placeholder="Le nom " value="" required minlength="4">
+                  <mat-error  *ngIf="projetDetail.controls.name.touched && projetDetail.controls.name.invalid">
+                    <span *ngIf="projetDetail.controls.name.errors.required"> Ce champ est obligatoire</span>
+                    <span *ngIf="projetDetail.controls.name.errors.pattern"> Ce champ est invalide</span> 
+                    <span *ngIf="projetDetail.controls.name.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
+                  </mat-error>
+                  </div>
+                  <div class="padding-bottom--24">
+                  <label class="form-control-label" for="input-priority">Priorité</label>
+                  <input type="text" formControlName="priority" id="input-priority" class="form-control form-control-alternative" placeholder="La priorité" value="" required>
+                  <mat-error  *ngIf="projetDetail.controls.priority.touched && projetDetail.controls.priority.invalid">
+                    <span *ngIf="projetDetail.controls.priority.errors.required"> Ce champ est obligatoire</span>
+                    <span *ngIf="projetDetail.controls.priority.errors.pattern"> Ce champ est invalide, il doit être un numéro</span> 
+                  </mat-error>  
                 </div>
-                <div class="col  col-8" >
+                  <div class="padding-bottom--24">
+                  <label class="form-control-label" for="input-description">Description</label>
+                  <input type="text" formControlName="description" id="input-description" class="form-control form-control-alternative" placeholder="La description " value="" minlength="4" required>
+                  <mat-error  *ngIf="projetDetail.controls.description.touched && projetDetail.controls.description.invalid">
+                    <span *ngIf="projetDetail.controls.description.errors.required"> Ce champ est obligatoire</span>
+                    <span *ngIf="projetDetail.controls.description.errors.pattern"> Ce champ est invalide</span> 
+                    <span *ngIf="projetDetail.controls.description.errors.minlength"> La description doit comporter au moins 4 caractères</span>
+                  </mat-error>  
                 </div>
-
-              </li>
-              
-            </ul>
-            
-      
-            <div class="wrapper ">
-              <pagination-controls  id="listing_pagination"
-                (pageChange)="page=$event"  
-           >
-      </pagination-controls>
-        
-    </div>
-        </form>
-       
+                  <div class="padding-bottom--24">
+                  <label class="form-control-label" for="input-startdate">Date de début</label>
+                  <input type="date" formControlName="startdate" id="input-startdate" class="form-control form-control-alternative" placeholder="La date de début " value=""  required>
+                  <mat-error  *ngIf="projetDetail.controls.startdate.touched && projetDetail.controls.startdate.invalid">
+                    <span *ngIf="projetDetail.controls.startdate.errors.required"> Ce champ est obligatoire</span>
+                    <span *ngIf="projetDetail.controls.startdate.errors.pattern"> Ce champ est invalide, le format doit être yyyy-mm-dd</span> 
+                  </mat-error>
+                </div>
+                  <div class="padding-bottom--24">
+                  <label class="form-control-label" for="input-enddate">Date de fin</label>
+                  <input type="date" formControlName="enddate" id="input-enddate" class="form-control form-control-alternative" placeholder="La date de fin" value=""  required>
+                  <mat-error  *ngIf="projetDetail.controls.enddate.touched && projetDetail.controls.enddate.invalid">
+                    <span *ngIf="projetDetail.controls.startdate.errors.required"> Ce champ est obligatoire</span>
+                    <span *ngIf="projetDetail.controls.startdate.errors.pattern"> Ce champ est invalide, le format doit être yyyy-mm-dd</span> 
+                  </mat-error>
+                </div>
     
-      
-        </div>
+    
+              </div>
+            </div>
+          </div>
+          <div>
+            <mat-dialog-actions class="btn-group padding--14">
+              <button class="btn button-2 bg-cb"  [disabled]="!projetDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')" (click)="addProjet()"  (click)="handleClear()">
+                Ajouter un projet
+              </button>
+              <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(content)" (click)="handleClear()">
+                Fermer
+              </button>
+            </mat-dialog-actions>
+          </div>
+        </form>
       </div>
-    </div>
-
-
-
- <!--   <ul style="width: 300px; word-wrap:break-word;">
-      <li>Hello</li>
-      <li>How are you</li>
-      <li>Search...</li>
-    <ul>
+           
+          </ng-template>
+        
+          <!-- editproject -->
+        
+          <ng-template #contentUpdate let-c="close" let-d="dismiss">
       
-    <p class="phrase">ppppp</p>
--->
- 
+            <mat-toolbar color="primary">
+              <mat-toolbar-row fxLayout="row bg-color">
+          
+                <span class="title-center">Mettre à jour le projet</span>
+                <button
+                  type="button"
+                  class="d-block mr-0 ml-auto btn-close" (click)="d('Cross click')"
+                  aria-label="Close"
+                  mat-dialog-close
+                  (click)="handleClear()"
+                ></button>
+              </mat-toolbar-row>
+            </mat-toolbar>
+            <div class="modal-body">
+            <form [formGroup]="projetDetail" >
+              <div class="pl-lg-4 field">
+                <div class="row formbg-inner   ">
+                  <div class="col-lg-6">
+                    <h6 class="heading-small text-muted mb-4">
+                      Les informations du projet :
+                    </h6>
+                    <div class="padding-bottom--24" >
+                      <label class="form-control-label"  for="input-name">Nom</label>
+                      <input type="text" formControlName="name" id="input-name" class="form-control form-control-alternative "   value="" required minlength="4">
+                      <mat-error  *ngIf="projetDetail.controls.name.touched && projetDetail.controls.name.invalid">
+                        <span *ngIf="projetDetail.controls.name.errors.required"> Ce champ est obligatoire</span>
+                        <span *ngIf="projetDetail.controls.name.errors.pattern"> Ce champ est invalide</span> 
+                        <span *ngIf="projetDetail.controls.name.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
+                      </mat-error>
+                      </div>
+                      <div class="padding-bottom--24">
+                      <label class="form-control-label" for="input-priority">Priorité</label>
+                      <input type="text" formControlName="priority" id="input-priority" class="form-control form-control-alternative"  value="" required>
+                      <mat-error  *ngIf="projetDetail.controls.priority.touched && projetDetail.controls.priority.invalid">
+                        <span *ngIf="projetDetail.controls.priority.errors.required"> Ce champ est obligatoire</span>
+                        <span *ngIf="projetDetail.controls.priority.errors.pattern"> Ce champ est invalide, il doit être un numéro</span> 
+                      </mat-error>  
+                    </div>
+                      <div class="padding-bottom--24">
+                      <label class="form-control-label" for="input-description">Description</label>
+                      <input type="text" formControlName="description" id="input-description" class="form-control form-control-alternative" placeholder="project description" value="" minlength="4" required>
+                      <mat-error  *ngIf="projetDetail.controls.description.touched && projetDetail.controls.description.invalid">
+                        <span *ngIf="projetDetail.controls.description.errors.required"> Ce champ est obligatoire</span>
+                        <span *ngIf="projetDetail.controls.description.errors.pattern"> Ce champ est invalide</span> 
+                        <span *ngIf="projetDetail.controls.description.errors.minlength"> La description doit comporter au moins 4 caractères</span>
+                      </mat-error>  
+                    </div>
+                      <div class="padding-bottom--24">
+                      <label class="form-control-label" for="input-startdate">Date de début</label>
+                      <input type="text" formControlName="startdate" id="input-startdate" class="form-control form-control-alternative" placeholder="project startdate" value="" onfocus="(this.type='date')" required>
+                      <mat-error  *ngIf="projetDetail.controls.startdate.touched && projetDetail.controls.startdate.invalid">
+                        <span *ngIf="projetDetail.controls.startdate.errors.required"> Ce champ est obligatoire</span>
+                        <span *ngIf="projetDetail.controls.startdate.errors.pattern"> Ce champ est invalide, le format doit être yyyy-mm-dd</span> 
+                      </mat-error>
+                    </div>
+                      <div class="padding-bottom--24">
+                      <label class="form-control-label" for="input-enddate">Date de fin</label>
+                      <input type="text" formControlName="enddate" id="input-enddate" class="form-control form-control-alternative" placeholder="project enddate" value="" onfocus="(this.type='date')" required>
+                      <mat-error  *ngIf="projetDetail.controls.enddate.touched && projetDetail.controls.enddate.invalid">
+                        <span *ngIf="projetDetail.controls.startdate.errors.required"> Ce champ est obligatoire</span>
+                        <span *ngIf="projetDetail.controls.startdate.errors.pattern"> Ce champ est invalide, le format doit être yyyy-mm-dd</span> 
+                      </mat-error>
+                    </div>
+        
+        
+                  </div>
+                </div>
+              </div>
+              <div>
+                <mat-dialog-actions class="btn-group padding--14">
+                  <button class="btn button-2 bg-cb"  [disabled]="!projetDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')"
+                   (click)="updateProjet()"  (click)="handleClear()">
+                    modifier projet
+                  </button>
+                  <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(contentUpdate)" (click)="handleClear()">
+                    Fermer
+                  </button>
+                </mat-dialog-actions>
+              </div>
+            </form>
+          </div>
+               
+              </ng-template>
+         
+    
+    
+         
+     
+         <!-- getprojects -->
+         
+         
+         <div class="container-fluid page">
+          <div class="d-flex page__box p-3 mt-2">Gestion des projets</div>
+          <div class="page__content shadow p-3 ">
+          <div class="page__content-data position-absolute text-center">
+            <div class="twelve">
+              <h1  >La liste des projets : </h1>  
+            </div>
+          
+             
+                 
+    
+                 <form>
+                  <div class="s004">
+                    <form class="form">
+                      <fieldset>
+                        <div class="inner-form">
+                          <div class="input-field">
+                            <input class="form-control" id="choices-text-preset-values" (ngModelChange)="searchProjects(key.value)" #key="ngModel" ngModel
+                            name="key" type="search" placeholder="Type to search..." />
+                            <span class="input-icon" id="basic-addon1">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                            </svg>
+                            </span>
+                          </div>
+                        </div> 
+                      </fieldset>
+                    </form>
+                  </div>
+                <ul class="responsive-table pad">
+                  <li class="table-header margt">
+                    <div [(appSort)]="projetList" data-order="desc" data-name="id" class="col  col-1 text-uppercase text-white font-weight-bolder opacity-7">Id</div>
+                    <div [(appSort)]="projetList" data-order="desc" data-name="name" class="col  col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
+                    <div [(appSort)]="projetList" data-order="desc" data-name="priority" class="col  col-3 text-uppercase text-white font-weight-bolder opacity-7">Priorité</div>
+                    <div [(appSort)]="projetList" data-order="desc" data-name="description" class="col  col-4 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
+                    <div [(appSort)]="projetList" data-order="desc" data-name="startdate" class="col  col-5 text-uppercase text-white font-weight-bolder opacity-7">Date de début</div>
+                    <div [(appSort)]="projetList" data-order="desc" data-name="enddate" class="col  col-6 text-uppercase text-white font-weight-bolder opacity-7">Date de fin</div>
+                    <div class="col  col-7  margl  text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
+                    <div class="col col-8 ">
+                              <span class="navbar-toggler-icon"></span>  
+                            <div  id="navbarSupportedContent">
+                              <button class="btn button-1" data-bs-toggle="modal" (click)="open(content)" ><i><fa-icon [icon]="addIcon"></fa-icon></i></button>
+                            </div>
+                           
+                    </div>
+                    
+                  </li>
+                  
+                  <li class="table-row"  *ngFor="let projet of projetList | paginate: { id:'listing_pagination',
+                  itemsPerPage:4,
+                  currentPage:page,
+                  totalItems:totalRec}">
+                    <div class="col col-1" data-label="Id">{{projet.id}}</div>
+                    <div class="col col-2" data-label="Name" style="width: 100px; word-wrap:break-word;">{{projet.name}}</div>
+                    <div class="col col-3" data-label="Priority">{{projet.priority}}</div>
+                    <div class="col col-4" data-label="Description" style="width: 130px; word-wrap:break-word;">{{projet.description}}</div>
+                    <div class="col col-5" data-label="Start date">{{projet.startdate}}</div>
+                    <div class="col col-6" data-label="End date">{{projet.enddate}}</div>
+                    <div class="col margl col-7" >
+                      
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xxs" data-toggle="tooltip" data-original-title="Edit projet"  (click)="editProjet(projet)" (click)="open(contentUpdate)">
+                        <i> <fa-icon [icon]="editIcon"></fa-icon> </i>
+                      </a><br>
+                      
+                      <a href="javascript:;" class=" padlr text-secondary font-weight-bold text-xxs" data-toggle="tooltip" data-original-title="delete projet"  (click)="confirmDelete(projet)" >
+                        <i><fa-icon [icon]="trashIcon"></fa-icon> </i>
+                      </a>
+                    </div>
+                    <div class="col  col-8" >
+                    </div>
+    
+                  </li>
+                  
+                </ul>
+                
+          
+                <div class="wrapper ">
+                  <pagination-controls  id="listing_pagination"
+                    (pageChange)="page=$event"  
+               >
+          </pagination-controls>
+            
+        </div>
+            </form>
+           
+        
+          
+            </div>
+          </div>
+        </div>
+    
+    
+    
+     <!--   <ul style="width: 300px; word-wrap:break-word;">
+          <li>Hello</li>
+          <li>How are you</li>
+          <li>Search...</li>
+        <ul>
+          
+        <p class="phrase">ppppp</p>
+    -->
+     

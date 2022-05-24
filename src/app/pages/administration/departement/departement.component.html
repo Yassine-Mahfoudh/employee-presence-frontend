@@ -1,63 +1,128 @@
 
- <!-- adddepartement -->
+  <!-- addDepartment -->
   <ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Add departement </h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
-    </div>
+  
+    <mat-toolbar color="primary">
+      <mat-toolbar-row fxLayout="row bg-color">
+  
+        <span class="title-center">Ajouter un nouveau département</span>
+        <button
+          type="button"
+          class="d-block mr-0 ml-auto btn-close" (click)="d('Cross click')"
+          aria-label="Close"
+          mat-dialog-close
+          (click)="handleClear()"
+        ></button>
+      </mat-toolbar-row>
+    </mat-toolbar>
     <div class="modal-body">
-      <form [formGroup]="departementDetail">
-        <div class="pl-lg-4">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-group">
-                <h6 class="heading-small text-muted mb-4">departement information</h6>
-                <div class="form-group">
-                    <label class="form-control-label" for="input-name">name</label>
-                    <input type="text" formControlName="name" id="input-name" class="form-control form-control-alternative" placeholder="departement name" value="">
-                    <label class="form-control-label" for="input-nbsalles">number of rooms</label>
-                    <input type="text" formControlName="nbsalles" id="input-nbsalles" class="form-control form-control-alternative" placeholder="departement nbsalles" value="">
-                  </div>
+    <form [formGroup]="departementDetail" >
+      <div class="pl-lg-4 field">
+        <div class="row formbg-inner   ">
+          <div class="col-lg-6">
+            <h6 class="heading-small text-muted mb-4">
+              Les informations du département :
+            </h6>
+            
+            <div class="padding-bottom--24" >
+              <label class="form-control-label"  for="input-name">Nom</label>
+              <input type="text" formControlName="name" id="input-name" class="form-control form-control-alternative "  placeholder="Le nom " value="" required minlength="4">
+              <mat-error  *ngIf="departementDetail.controls.name.touched && departementDetail.controls.name.invalid">
+                <span *ngIf="departementDetail.controls.name.errors.required"> Ce champ est obligatoire</span>
+                <span *ngIf="departementDetail.controls.name.errors.pattern"> Ce champ est invalide</span> 
+                <span *ngIf="departementDetail.controls.name.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
+              </mat-error>
+              </div>
+
+              <div class="padding-bottom--24">
+              <label class="form-control-label" for="input-priority">Nombre des salles</label>
+              <input type="text" formControlName="nbsalles" id="input-nbsalles" class="form-control form-control-alternative" placeholder="Le nombre des salles" value="" required>
+              <mat-error  *ngIf="departementDetail.controls.nbsalles.touched && departementDetail.controls.nbsalles.invalid">
+                <span *ngIf="departementDetail.controls.nbsalles.errors.required"> Ce champ est obligatoire</span>
+                <span *ngIf="departementDetail.controls.nbsalles.errors.pattern"> Ce champ est invalide, il doit être un numéro</span> 
+              </mat-error>  
             </div>
-            </div>
+           
           </div>
         </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" (click)="close(content)" >Close</button>
-    <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="addDepartement()" (click)="c('Save click')">add Departement</button></div>
-      </form>
-    </div>
-   
-  </ng-template>
- 
+      </div>
+      <div>
+        <mat-dialog-actions class="btn-group padding--14">
+          <button class="btn button-2 bg-cb"  [disabled]="!departementDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')" (click)="addDepartement()"  (click)="handleClear()">
+            Ajouter un département
+          </button>
+          <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(content)" (click)="handleClear()">
+            Fermer
+          </button>
+        </mat-dialog-actions>
+      </div>
+    </form>
+  </div>
+       
+      </ng-template>
 
-  <!-- editedepartement -->
-
+  <!-- editproject -->
+        
   <ng-template #contentUpdate let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">update departement details </h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
-    </div>
+      
+    <mat-toolbar color="primary">
+      <mat-toolbar-row fxLayout="row bg-color">
+  
+        <span class="title-center">Mettre à jour le projet</span>
+        <button
+          type="button"
+          class="d-block mr-0 ml-auto btn-close" (click)="d('Cross click')"
+          aria-label="Close"
+          mat-dialog-close
+          (click)="handleClear()"
+        ></button>
+      </mat-toolbar-row>
+    </mat-toolbar>
     <div class="modal-body">
-      <form [formGroup]="departementDetail">
-        <div class="pl-lg-4">
-          <div class="row">
-            <div class="col-lg-6">
-                <div class="form-group">
-                    <label class="form-control-label" for="input-name">name</label>
-                    <input type="text" formControlName="name" id="input-name" class="form-control form-control-alternative" placeholder="departement name" value="">
-                    <label class="form-control-label" for="input-nbsalles">number of rooms</label>
-                    <input type="text" formControlName="nbsalles" id="input-nbsalles" class="form-control form-control-alternative" placeholder="departement nbsalles" value="">
-                  </div>
-            </div>
+    <form [formGroup]="departementDetail" >
+      <div class="pl-lg-4 field">
+        <div class="row formbg-inner   ">
+          <div class="col-lg-6">
+            <h6 class="heading-small text-muted mb-4">
+              Les informations du département :
+            </h6>
+            <div class="padding-bottom--24" >
+              <label class="form-control-label"  for="input-name">Nom</label>
+                <input type="text" formControlName="name" id="input-name" class="form-control form-control-alternative "  placeholder="Le nom " value="" required minlength="4">
+                <mat-error  *ngIf="departementDetail.controls.name.touched && departementDetail.controls.name.invalid">
+                  <span *ngIf="departementDetail.controls.name.errors.required"> Ce champ est obligatoire</span>
+                  <span *ngIf="departementDetail.controls.name.errors.pattern"> Ce champ est invalide</span> 
+                  <span *ngIf="departementDetail.controls.name.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
+                </mat-error>
+                </div>
+  
+                <div class="padding-bottom--24">
+                <label class="form-control-label" for="input-priority">Nombre des salles</label>
+                <input type="text" formControlName="nbsalles" id="input-nbsalles" class="form-control form-control-alternative" placeholder="Le nombre des salles" value="" required>
+                <mat-error  *ngIf="departementDetail.controls.nbsalles.touched && departementDetail.controls.nbsalles.invalid">
+                  <span *ngIf="departementDetail.controls.nbsalles.errors.required"> Ce champ est obligatoire</span>
+                  <span *ngIf="departementDetail.controls.nbsalles.errors.pattern"> Ce champ est invalide, il doit être un numéro</span> 
+                </mat-error>  
+              </div>
+
           </div>
         </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" (click)="close(contentUpdate)">Close</button>
-    <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="updateDepartement()" (click)="c('Save click')">update Departement</button></div>
-      </form>
-    </div>
-  </ng-template>
+      </div>
+      <div>
+        <mat-dialog-actions class="btn-group padding--14">
+          <button class="btn button-2 bg-cb"  [disabled]="!departementDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')"
+           (click)="updateDepartement()"  (click)="handleClear()">
+            modifier projet
+          </button>
+          <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(contentUpdate)" (click)="handleClear()">
+            Fermer
+          </button>
+        </mat-dialog-actions>
+      </div>
+    </form>
+  </div>
+       
+      </ng-template>
 
 
 
