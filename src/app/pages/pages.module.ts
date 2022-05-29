@@ -36,7 +36,11 @@ import listPlugin from '@fullcalendar/list';
 import RRulePlugin from '@fullcalendar/rrule';
 import { AddeventComponent } from './addevent/addevent.component';
 import { EditeventComponent } from './editevent/editevent.component';
-
+import { UserCalendarComponent } from './user-calendar/user-calendar.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { ChatComponent } from './Chat/chat/chat.component';
+import { ChatUsersComponent } from './Chat/chat-users/chat-users.component';
+import { ChatstreamComponent } from './Chat/chatstream/chatstream.component';
 
 
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
@@ -65,7 +69,12 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     HomeComponent,
     ResetpasswordComponent,
     AddeventComponent,
-    EditeventComponent
+    EditeventComponent,
+    UserCalendarComponent,
+    ChatComponent,
+    ChatUsersComponent,
+    ChatstreamComponent
+    
   ],
   imports: [
     CommonModule,
@@ -77,7 +86,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatDialogModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     MatSnackBarModule,
-    
+    MatGridListModule ,
 
           // * MATERIAL IMPORTS
           MatSidenavModule,

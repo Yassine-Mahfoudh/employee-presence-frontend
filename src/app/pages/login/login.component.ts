@@ -46,9 +46,11 @@ export class LoginComponent implements OnInit {
         console.log( this.loginError );
         if (type === 'ADMIN') {
           this.router.navigate(['/dashboard']);
-        } else 
+        } else if(type==='RH'){
         this.router.navigate(['/home']);
-        
+      }else{
+        this.router.navigate(['/user-calendar']);
+      }
       },
       (error)=>{
         this.loginError =" Le nom dutilisateur ou le mot de passe saisi est incorrect !";

@@ -1,6 +1,229 @@
 
+    <h3 style="text-align:center">Gestion des Demande</h3>
+    <mat-tab-group >
+      <mat-tab label="Demande">
+        <div class="container">
+          <div class="row ">
+              <div >
+                  <h2 class="h3 mb-4 page-title">Ajouter demande</h2>
+                  <div class="my-4">
+                      <form [formGroup]="demandeDetail" >
+                        <div class="pl-lg-4">
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="form-group">
+            
+                                  <div class="form-group form-control-alternative padding-bottom--24">
+                                    <label for="select-title">Titre</label>
+                                    <select
+                                      formControlName="title"
+                                      id="select-title"
+                                      class="form-control form-control-alternative">
+                                      <optgroup label="Type d'événement">
+                                      <option value="" selected hidden>Choisissez un titre</option>
+                                      <option value="Presentielle">Presentielle</option>
+                                      <option value="à distance">à distance</option>
+                                      <option value="congé">congé</option>
+                                    </optgroup>
+                                    </select>
+                                  </div>
+                      
+                                 <div class="padding-bottom--24 " >
+                                    <label  for="input-Description">Description </label>
+                                    <input type="text" matInput formControlName="description"  class="form-control form-control-alternative" id="input-Description" placeholder=" Description du l'evenement" required>
+                                  </div>
+                      
+                                  <div class="padding-bottom--24">
+                                    <label for="input-datedebut">Date debut</label>
+                                    <input
+                                      type="text"
+                                      matInput
+                                      class="form-control form-control-alternative"
+                                      formControlName="datedebut"
+                                      id="input-datedebut"
+                                      placeholder="event datedebut"
+                                      required  onfocus="(this.type='date')"/>
+                                  </div>
+                                  <div class="padding-bottom--24">
+                                    <label for="input-datefin">Date fin</label>
+                                    <input
+                                      type="text"
+                                      matInput
+                                      class="form-control form-control-alternative"
+                                      formControlName="datefin"
+                                      id="input-datefin"
+                                      placeholder="event datefin"
+                                      required  onfocus="(this.type='date')"/>
+                                   
+                                  </div>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal"  >Close</button>
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="addDemande()" >adddemande</button></div>
+                      </form>  
+                </div>
+              </div>
+          </div>
+          
+          </div>
+
+
+          
+      </mat-tab>
+      <div class="mes-demande " *ngIf="userService.roleMatch(['USER'])">
+      <mat-tab label="Mes Demandes">
+        <div class="container">
+          <div class="row ">
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr >
+                <th scope="col">Id</th>
+                <th scope="col">title</th>
+                <th scope="col">description</th>
+                <th scope="col">datedebut</th>
+                <th scope="col">datefin</th>
+      
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let demande of demandeList | paginate: { id:'listing_pagination',
+              itemsPerPage:4,
+              currentPage:page,
+              totalItems:totalRec} ">
+                <td scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{demande.id}}</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  {{demande.title}}
+                </td>
+                <td>
+                  {{demande.description}}
+                </td>
+                <td>
+                  {{demande.datedebut}}
+                </td>
+                <td>
+                  {{demande.datefin}}
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+           </tbody>
+          </table>
+            <div>
+              <pagination-controls  id="listing_pagination"
+                (pageChange)="page=$event"  
+           >
+      </pagination-controls>
+        
+            </div>
+      </div>
+
+    </div>
+  </div>
+      </mat-tab>
+    </div>
+
+
+
+    <!--
+      
+    -->
+<div class="demande-en-attentes" *ngIf="userService.roleMatch(['RH'])">
+      <mat-tab label="Demandes en attentes">
+        <div class="table-responsive">
+          <div class="container">
+            <div class="row ">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr >
+                <th scope="col">Id</th>
+                <th scope="col">title</th>
+                <th scope="col">description</th>
+                <th scope="col">datedebut</th>
+                <th scope="col">datefin</th>
+      
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let demande of demandeList | paginate: { id:'listing_pagination',
+              itemsPerPage:4,
+              currentPage:page,
+              totalItems:totalRec} ">
+                <td scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{demande.id}}</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  {{demande.title}}
+                </td>
+                <td>
+                  {{demande.description}}
+                </td>
+                <td>
+                  {{demande.datedebut}}
+                </td>
+                <td>
+                  {{demande.datefin}}
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+           </tbody>
+          </table>
+            <div>
+              <pagination-controls  id="listing_pagination"
+                (pageChange)="page=$event"  
+           >
+      </pagination-controls>
+        
+            </div>
+      </div>
+    </div>
+  </div>
+
+      </mat-tab>
+</div>
+      <mat-tab label="grid test">
+      <mat-grid-list  cols="3" rowHeight="200px" *ngFor="let demande of demandeList ">
+	
+ 
+      
     
-      <!-- adddemande -->
+        <mat-grid-tile><table><tr>{{demande.title}}</tr><tr>{{demande.description}}</tr>
+          <tr>{{demande.datedebut}}</tr><tr>{{demande.datefin}}</tr></table></mat-grid-tile>
+
+  
+        </mat-grid-list>
+
+      </mat-tab>
+    </mat-tab-group>
+
+
+      <!-- adddemande
 
   
     
@@ -37,7 +260,7 @@
        
       </ng-template>
     
-      <!-- editdemande -->
+     
     
 
       <ng-template #contentUpdate let-c="close" let-d="dismiss">
@@ -84,7 +307,7 @@
             </div>
           </nav>
         </div>
-     <!-- getdemandes -->
+    
      <div class="table-responsive">
         <table class="table align-items-center table-flush">
           <thead class="thead-light">
@@ -144,5 +367,5 @@
       
           </div>
     </div>
-    
+     -->
    

@@ -3,14 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 import { AddeventComponent } from './pages/addevent/addevent.component';
-import { DemandeListComponent } from './pages/administration/demande-list/demande-list.component';
 import { DemandeComponent } from './pages/administration/demande/demande.component';
 import { DepartementListComponent } from './pages/administration/departement-list/departement-list.component';
 import { DepartementComponent } from './pages/administration/departement/departement.component';
 import { EmployeeListComponent } from './pages/administration/employee-list/employee-list.component';
 import { EmployeeComponent } from './pages/administration/employee/employee.component';
-import { FonctionaliteListComponent } from './pages/administration/fonctionalite-list/fonctionalite-list.component';
-import { FonctionaliteComponent } from './pages/administration/fonctionalite/fonctionalite.component';
+
 import { LogaccessComponent } from './pages/administration/logaccess/logaccess.component';
 import { LogdataComponent } from './pages/administration/logdata/logdata.component';
 import { MyaccountComponent } from './pages/administration/myaccount/myaccount.component';
@@ -22,12 +20,14 @@ import { SalleListComponent } from './pages/administration/salle-list/salle-list
 import { SalleComponent } from './pages/administration/salle/salle.component';
 import { UsersListComponent } from './pages/administration/users-list/users-list.component';
 import { UsersComponent } from './pages/administration/users/users.component';
+import { ChatComponent } from './pages/Chat/chat/chat.component';
 
 import { EditeventComponent } from './pages/editevent/editevent.component';
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
+import { UserCalendarComponent } from './pages/user-calendar/user-calendar.component';
 
 const routes: Routes = [
   //{ path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
@@ -46,7 +46,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   
   { path: 'dashboard', component:DashboardComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']}},
-  { path: 'home', component:HomeComponent,canActivate:[AuthGuard],data : {profils:['RH','USER','MANAGER']} },
+  { path: 'home', component:HomeComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
+  { path: 'user-calendar', component:UserCalendarComponent,canActivate:[AuthGuard],data : {profils:['USER','MANAGER']} },
   
  // { path: 'Home', component:HomeComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
 
@@ -73,7 +74,7 @@ const routes: Routes = [
 
   { path: 'demande',component:DemandeComponent,canActivate:[AuthGuard],data : {profils:['RH','USER']} },
   //{ path: 'Demande',component:DemandeComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
-  { path: 'demandelist',component:DemandeListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
+
 
 
   { path: 'user',component:UsersComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
@@ -84,10 +85,6 @@ const routes: Routes = [
 
  // { path: 'EmployeeList',component:EmployeeListComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
 
-
-  { path: 'fonctionalite',component:FonctionaliteComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
-  { path: 'fonctionalitelist',component:FonctionaliteListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']}},
-
   { path: 'logaccess',component:LogaccessComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
   { path: 'logdata',component:LogdataComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
 
@@ -97,7 +94,10 @@ const routes: Routes = [
 
   { path: 'addevent',component:AddeventComponent },
 
-  { path: 'editevent',component:EditeventComponent }
+  { path: 'editevent',component:EditeventComponent },
+
+  { path: 'chat',component:ChatComponent }
+
 
   
 

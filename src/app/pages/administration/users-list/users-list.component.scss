@@ -23,7 +23,7 @@ h1 {
 .responsive-table {
   li {
     border-radius: 20px;
-    padding: 10px 60px;
+    padding: 20px 60px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
@@ -188,19 +188,20 @@ h1 {
 
 .page {
   color: white;
-  padding: 0 -1em;
+  padding: 5 -1em;
   background: #f1f5f9;
 }
 .page__box {
   min-height: 100px;
   background: #b0dfe5;
   margin: 0 -1rem;
-  font-size: 36px;
+  font-size: 45px;
+  padding: 1em !important;
 }
 .page__content {
   min-height: calc(100vh - 188px);
   border-radius: 10px;
-  margin-top: -2rem;
+  margin-top: -3rem;
   background: white;
   color: black;
 
@@ -361,7 +362,7 @@ select {
 .s004 .form .inner-form .input-field {
   display: flex;
   padding: 1em 20em;
-    
+  padding-top: 5em;
     content: attr(data-label);
     flex-basis: 50%;
     text-align: center;

@@ -16,12 +16,9 @@ import { ProjetListComponent } from './projet-list/projet-list.component';
 import { DepartementComponent } from './departement/departement.component';
 import { DepartementListComponent } from './departement-list/departement-list.component';
 import { DemandeComponent } from './demande/demande.component';
-import { DemandeListComponent } from './demande-list/demande-list.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
-import { FonctionaliteComponent } from './fonctionalite/fonctionalite.component';
-import { FonctionaliteListComponent } from './fonctionalite-list/fonctionalite-list.component';
 import { LogaccessComponent } from './logaccess/logaccess.component';
 import { UsersComponent } from './users/users.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
@@ -38,6 +35,8 @@ import{MatToolbarModule} from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LogdataComponent } from './logdata/logdata.component'
 import { SortDirective } from 'src/app/shared/Utils/directive/sort.directive';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -53,17 +52,13 @@ import { SortDirective } from 'src/app/shared/Utils/directive/sort.directive';
     DepartementComponent,
     DepartementListComponent,
     DemandeComponent,
-    DemandeListComponent,
     UsersListComponent,
     EmployeeComponent,
     EmployeeListComponent,
-    FonctionaliteComponent,
-    FonctionaliteListComponent,
     LogaccessComponent,
     MyaccountComponent,
     LogdataComponent,
     SortDirective,
-    
  
   ],
   imports: [
@@ -72,7 +67,7 @@ import { SortDirective } from 'src/app/shared/Utils/directive/sort.directive';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-
+    MatGridListModule ,
     ModalModule.forRoot(),
     //MatDialogModule,
     //MatCardModule,
@@ -86,8 +81,8 @@ import { SortDirective } from 'src/app/shared/Utils/directive/sort.directive';
     MatInputModule,
     FlexLayoutModule,
     MatToolbarModule,
-    MatDialogModule
-   
+    MatDialogModule,
+    MatSelectModule
   ]
 })
 export class AdministrationModule { }

@@ -34,7 +34,6 @@ export class HomeComponent implements OnInit {
     },
     
     initialView: 'dayGridMonth',
-
    
     weekends: true,
     editable: true,
@@ -64,8 +63,7 @@ export class HomeComponent implements OnInit {
     dialogConfig.width = "550px";
     this.dialog.open(EditeventComponent,{
       data:{
-        id:clickInfo.event._def.publicId,
-        title:clickInfo.event._def.title
+        id:clickInfo.event._def.publicId
       },
       width:"550px"
     })
@@ -93,7 +91,9 @@ export class HomeComponent implements OnInit {
     this.eventService.getEvents().subscribe(res=>{
      this.myevents=res;
      this.calendarOptions.events=this.myevents;
-     console.log(this.myevents)
+
     })
   }
+
+  
 }

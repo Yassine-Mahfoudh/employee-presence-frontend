@@ -7,6 +7,7 @@ export class MyEvent {
     employee:string='';
     rrule:string='';
     description:string='';
-
+    color:string='';
+    type:string='';
 }
 

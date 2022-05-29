@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FonctionaliteListComponent } from './fonctionalite-list.component';
+import { ChatUsersComponent } from './chat-users.component';
 
-describe('FonctionaliteListComponent', () => {
-  let component: FonctionaliteListComponent;
-  let fixture: ComponentFixture<FonctionaliteListComponent>;
+describe('ChatUsersComponent', () => {
+  let component: ChatUsersComponent;
+  let fixture: ComponentFixture<ChatUsersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FonctionaliteListComponent ]
+      declarations: [ ChatUsersComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FonctionaliteListComponent);
+    fixture = TestBed.createComponent(ChatUsersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

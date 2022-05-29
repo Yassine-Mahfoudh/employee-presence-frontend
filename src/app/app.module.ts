@@ -29,7 +29,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 import { NgxUiLoaderModule,NgxUiLoaderConfig,SPINNER,PB_DIRECTION } from "ngx-ui-loader";
 import { FooterComponent } from './layouts/footer/footer.component';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
@@ -54,6 +54,7 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
     SidenavComponent,
     ForbiddenComponent,
     FooterComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -65,7 +66,7 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
     //AdministrationModule,
     PagesModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-
+    MatGridListModule ,
 
         // * MATERIAL IMPORTS
     MatSidenavModule,

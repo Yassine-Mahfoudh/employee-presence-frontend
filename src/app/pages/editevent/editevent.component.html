@@ -1,42 +1,296 @@
-<!-- editevent -->
 <mat-toolbar color="primary">
-  <mat-toolbar-row fxLayout="row  bg-color">
-   <h1 class="title-center">Modifier l'événement</h1>
-    <button type="button" class="btn-close d-block mr-0 ml-auto" aria-label="Close" mat-dialog-close  (click)="handleClear()"></button>
+  <mat-toolbar-row fxLayout="row bg-color" >
+    <!--<h1 class="">Add new event</h1>
+      <button type="button"  class="btn-close clr"  aria-label="Close" mat-dialog-close (click)="handleClear()"></button>
+      -->
+    <span class="title-center">modifier un événement</span>
+    <button
+      type="button"
+      class="d-block mr-0 ml-auto btn-close"
+      aria-label="Close"
+      mat-dialog-close
+      (click)="handleClear()"
+    ></button>
   </mat-toolbar-row>
 </mat-toolbar>
-    <div class="modal-body">
-      <form [formGroup]="eventDetail">
-        <div class="pl-lg-4 field">
-          <div class="row formbg-inner padding-horizontal--48">
-            <div class="col-lg-6">
-              <div class="form-group padding-bottom--24" >
-            <label  for="input-title">Titre</label>
-            <input type="text" matInput formControlName="title" id="input-title" placeholder="event title" required>
-            <mat-error *ngIf="eventDetail.controls.title.touched && eventDetail.controls.title.invalid">
-              <span *ngIf="eventDetail.controls.title.errors.required">Ce champ est obligatoire</span>
-              <span *ngIf="eventDetail.controls.title.errors.pattern">Ce champ est invalide</span> 
-            </mat-error>
-              </div>
-              <div class="form-group padding-bottom--24" >
-            <label  for="input-datedebut">Date debut</label>
-            <input type="text" matInput formControlName="datedebut" id="input-datedebut" placeholder="event datedebut" required>
-            <mat-error *ngIf="eventDetail.controls.datedebut.touched && eventDetail.controls.title.invalid">
-              <span *ngIf="eventDetail.controls.datedebut.errors.required">Ce champ est obligatoire</span>
-              <span *ngIf="eventDetail.controls.datedebut.errors.pattern">Ce champ est invalide</span> 
-            </mat-error></div>
-            <div class="form-group padding-bottom--24" >
-            <label  for="input-datefin">Date fin</label>
-            <input type="text" matInput formControlName="datefin"  id="input-datefin" placeholder="event datefin" required>
-            <mat-error *ngIf="eventDetail.controls.datefin.touched && eventDetail.controls.datefin.invalid">
-              <span *ngIf="eventDetail.controls.datefin.errors.required">Ce champ est obligatoire</span>
-              <span *ngIf="eventDetail.controls.datefin.errors.pattern">Ce champ est invalide</span> 
-            </mat-error>
-            </div>
-            
-        </div>
+<div class="modal-body">
+  <form [formGroup]="eventDetail" >
+    <div class="pl-lg-4 field">
+      <div class="row formbg-inner ">
+        <div class="col-lg-6">
+          <h6 class="heading-small text-muted mb-4">
+            Les informations d'événement :
+          </h6>
+
+          
+<!-- selectionner le type d'événement
+          <div class="form-group padding-bottom--24">
+          <select id = "status-select" formControlName="eventtype" class="form-control form-control-alternative" name="status-select" (change)="eventType(this.eventDetails.controls.eventtype.value)">
+            <optgroup label="Type d'événement">
+              <option value="" selected hidden>Choisissez le type d'événement</option>
+              <option value="Static">Static</option> 
+              <option value="Recursive">Recursive</option> 
+            </optgroup>
+          </select>
+          </div>-->
+
+<!--événement static -->
+<div class="add-static-event">
+          
+          <div class="form-group form-control-alternative padding-bottom--24">
+            <label for="select-title">Titre</label>
+            <select
+              formControlName="title"
+              id="select-title"
+              class="form-control form-control-alternative">
+              <optgroup label="Type d'événement">
+              <option value="" selected hidden>Choisissez un titre</option>
+              <option value="Presentielle">Presentielle</option>
+              <option value="à distance">à distance</option>
+              <option value="congé">congé</option>
+            </optgroup>
+            </select>
+          </div>
+
+         <div class="padding-bottom--24 " >
+            <label  for="input-Description">Description </label>
+            <input type="text" matInput formControlName="description"  class="form-control form-control-alternative" id="input-Description" placeholder=" Description du l'evenement" required>
+          </div>
+
+          <div class="padding-bottom--24">
+            <label for="input-datedebut">Date debut</label>
+            <input
+              type="text"
+              matInput
+              class="form-control form-control-alternative"
+              formControlName="datedebut"
+              id="input-datedebut"
+              placeholder="event datedebut"
+              required  onfocus="(this.type='date')"/>
+          </div>
+          <div class="padding-bottom--24">
+            <label for="input-datefin">Date fin</label>
+            <input
+              type="text"
+              matInput
+              class="form-control form-control-alternative"
+              formControlName="datefin"
+              id="input-datefin"
+              placeholder="event datefin"
+              required  onfocus="(this.type='date')"/>
+           
+          </div>
+          <div class="form-group padding-bottom--24">
+            <label for="select-employee">Employees</label>
+            <select
+              formControlName="employee"
+              id="select-employee"
+              class="form-control form-control-alternative" multiple>
+              <optgroup label="Employées invoqués">
+            <option value="" selected hidden>Choisissez un employé</option>
+              <option
+                *ngFor="let employee of employeeList"
+                [value]="employee.firstname"
+              >
+                {{ employee.firstname }}
+              </option>
+            </optgroup>
+            </select>
+          </div>
+
+        
+</div>
+
+      <!--événement recursive -->
+
+      <div class="add-recursive-event " >
+
+       <div class="form-group padding-bottom--24">
+            <label for="select-title">Titre</label>
+            <select
+              formControlName="title"
+              id="select-title"
+              class="form-control form-control-alternative">
+              <optgroup label="Titre">
+              <option value="default" selected hidden>Choisissez un titre</option>
+              <option value="Presentielle">Presentielle</option>
+              <option value="à distance">à distance</option>
+              <option value="congé">congé</option>
+            </optgroup>
+            </select>
+          </div>
+<!--
+          <div class="padding-bottom--24 " >
+            <label  for="input-Description">Description </label>
+            <input type="text" matInput formControlName="description"  class="form-control form-control-alternative" id="input-Description" placeholder=" Description du l'evenement" required>
+          </div>-->
+
+          <div class="padding-bottom--24 " >
+            <label  for="input-datedebut">Date debut </label>
+            <input type="text" matInput formControlName="datedebutrecur"  class="form-control form-control-alternative" id="input-datedebut" placeholder="event datedebut recur"  onfocus="(this.type='date')" required>
+          </div>
+
+
+          <div class="padding-bottom--24 " >
+            <label  for="input-datedebut">Date fin</label>
+            <input type="text" matInput formControlName="datefinrecur"  class="form-control form-control-alternative" id="input-datedebut" placeholder="event datefin recur"  onfocus="(this.type='date')" required >
+          </div>
+          <div class="form-group padding-bottom--24">
+            <label for="select-employee">Employees</label>
+            <select
+              formControlName="employee"
+              id="select-employee"
+              class="form-control form-control-alternative" multiple>
+              <optgroup label="Employées invoqués">
+              <option disabled>Choisissez un employé</option>
+              <option
+                *ngFor="let employee of employeeList"
+                [value]="employee.firstname">
+                {{ employee.firstname }}
+              </option>
+            </optgroup>
+            </select>
           </div>
         </div>
+              <!--selectionner le type de frequence 
+
+             <div class="form-group padding-bottom--24">
+            <label for="frequence-select">Frequence</label>
+            <select id = "frequence-select" formControlName="frequency" style="width:50%" class="form-control form-control-alternative " 
+            name="status-select" (change)="eventFrequence(this.eventDetail.controls.frequency.value)">
+            <optgroup label="Type de frequence">
+            <option value="" selected hidden>Choisissez la frequence</option>
+              <option value="WEEKLY">chaque semaine</option>
+              <option value="MONTHLY">chaque mois</option>
+            </optgroup>
+            </select>
+          </div>
+
+
+
+          <div class="weekly-frequence" >
+
+          <label for="repeat-every-week" class="label-pos">chaque</label>
+          <input id="repeat-every-week" formControlName="everyNday" type="number" class="number-field " min="1"  />
+          <span class="span-pos">semaine</span>
+
+
+          <div class="form-group padding-bottom--24">
+            <label for="" class="">jour de semaine</label>
+            <select formControlName="weekday" id="" class="form-control form-control-alternative" multiple>
+            <option value="MO">Lundi</option>
+            <option value="TU">Mardi</option>
+            <option value="WE">Mercreedi</option>
+            <option value="TH">Jeudi</option>
+            <option value="FR">venderedi</option>
+            <option value="SA">Samedi</option>
+            <option value="SU">dimanche</option>
+          </select>
+          </div>
+          
+        
+          
+            </div>
+          <div class="monthly-frequence " >
+
+
+            <label for="repeat-every-week" class="label-pos">chaque</label>
+          <input id="repeat-every-week" type="number" formControlName="everyNmonth" class="number-field " min="1"  />
+          <span class="span-pos">mois</span>
+
+         
+            <div >
+              <label for="onday" class="label3-pos">on day</label>
+              <input class="checkmark " type="radio"  id="onday" name="onday" value="onday"  formControlName="onday">
+            </div>
+
+              <div class="form-group padding-bottom--24">
+                <select
+                  formControlName="monthday"
+                  id="select-weekday"
+                  class="form-control  select-pos chosen-select form-control-alternative" >
+                  <optgroup >
+                  <option value="1" selected>1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                </optgroup>
+                </select>
+              </div>
+
+           <div class=" padding-bottom--24">
+        
+                <label class="label4-pos" for="onthe">on the</label>
+                <input class="checkmark2 "  type="radio" id="onthe" name="onday" value="onthe" formControlName="onday">
+
+           </div>
+
+              <div class="form-group padding-top--24 padding-bottom--24">
+                <select formControlName="daypos"  class="form-control select2-pos form-control-alternative">
+                  <option value="1" selected>fisrt</option>
+                  <option value="2">second</option>
+                  <option value="3">third</option>
+                  <option value="4">fourth</option>
+                  <option value="-1">last</option>
+                </select>
+              </div>
+    
+              <div class="form-group    padding-bottom--24">
+                <select
+                  formControlName="byday"
+                  id="select-weekday"
+                  class="form-control select3-pos form-control-alternative">
+                  <optgroup label="jour de la semaine">
+                  <option value="" disabled >Choisissez la jour de la semaine</option>
+                  <option value="SU" selected>dimanche</option>
+                  <option value="MO" >lundi</option>
+                  <option value="Tu">mardi</option>
+                  <option value="WE">mercredi</option>
+                  <option value="TH">jeudi</option>
+                  <option value="FR">venderedi</option>
+                  <option value="SA">samedi</option>
+                  <option value="SU,MO,TU,WE,TH,FR,SA">jour</option>
+                  <option value="MO,TU,WE,TH,FR">jour de travail</option>
+                  <option value="SU,SA">week-end</option>
+                </optgroup>
+                </select>
+              </div>
+            </div>-->
+
+
+
+
+
+        </div>
+      </div>
+    </div>
         <div>
           <mat-dialog-actions style="width: 100%;" class="btn-group">
             <button  class="btn button-2  bg-cb" mat-strocked-button type="submit"  [disabled]="!eventDetail.valid" 

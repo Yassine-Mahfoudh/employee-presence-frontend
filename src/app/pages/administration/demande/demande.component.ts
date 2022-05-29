@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Demande } from 'src/app/core/models/demande';
 import { DemandeService } from 'src/app/core/services/demande.service';
+import { UserService } from 'src/app/core/services/user.service';
+import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 
 @Component({
   selector: 'app-demande',
@@ -19,6 +21,7 @@ export class DemandeComponent implements OnInit {
 
   constructor(private formBuilder : FormBuilder,
      private demandeService: DemandeService,
+     public userService:UserService,
      config: NgbModalConfig,
       private modalService: NgbModal
      ) {
@@ -31,10 +34,10 @@ export class DemandeComponent implements OnInit {
     this.getDemandes();
     this.demandeDetail = this.formBuilder.group({
       id: [''],
-      name:[''],
-      motive:[''],
-      startdate:[''],
-      enddate:['']
+      title:[null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
+      description:[''],
+      datedebut: [''],
+      datefin: [''],
     });
   }
 
@@ -52,10 +55,10 @@ export class DemandeComponent implements OnInit {
 
     console.log(this.demandeDetail);
     this.demandeobj.id=this.demandeDetail.value.id;
-    this.demandeobj.name=this.demandeDetail.value.name;
-    this.demandeobj.motive=this.demandeDetail.value.motive;
-    this.demandeobj.startdate=this.demandeDetail.value.startdate;
-    this.demandeobj.enddate=this.demandeDetail.value.enddate;
+    this.demandeobj.title=this.demandeDetail.value.title;
+    this.demandeobj.description=this.demandeDetail.value.description;
+    this.demandeobj.datedebut=this.demandeDetail.value.datedebut;
+    this.demandeobj.datefin=this.demandeDetail.value.datefin;
     this.demandeService.addDemande(this.demandeobj).subscribe(res=>{
       console.log(res);
       this.getDemandes();
@@ -73,10 +76,10 @@ getDemandes(){
 
 editDemande(demande : Demande){
   this.demandeDetail.controls['id'].setValue(demande.id);
-  this.demandeDetail.controls['name'].setValue(demande.name);
-  this.demandeDetail.controls['motive'].setValue(demande.motive);
-  this.demandeDetail.controls['startdate'].setValue(demande.startdate);
-  this.demandeDetail.controls['enddate'].setValue(demande.enddate);
+  this.demandeDetail.controls['title'].setValue(demande.title);
+  this.demandeDetail.controls['description'].setValue(demande.description);
+  this.demandeDetail.controls['datedebut'].setValue(demande.datedebut);
+  this.demandeDetail.controls['datefin'].setValue(demande.datefin);
 
 }
 
@@ -93,10 +96,10 @@ deleteDemande(demande : Demande){
 
 updateDemande(){
   this.demandeobj.id=this.demandeDetail.value.id;
-  this.demandeobj.name=this.demandeDetail.value.name;
-  this.demandeobj.motive=this.demandeDetail.value.motive;
-  this.demandeobj.startdate=this.demandeDetail.value.startdate;
-  this.demandeobj.enddate=this.demandeDetail.value.enddate;
+  this.demandeobj.title=this.demandeDetail.value.title;
+  this.demandeobj.description=this.demandeDetail.value.description;
+  this.demandeobj.datedebut=this.demandeDetail.value.datedebut;
+  this.demandeobj.datefin=this.demandeDetail.value.datefin;
   this.demandeService.updateDemande(this.demandeobj).subscribe(res=>{
     console.log(res);
     this.getDemandes();
@@ -106,7 +109,7 @@ updateDemande(){
 }
 
 confirmDelete(demande: Demande) {
-  if(confirm("Are you sure you want to delete demande "+demande.name)) {
+  if(confirm("Are you sure you want to delete demande: "+demande.title)) {
      this.deleteDemande(demande);
   }
 }

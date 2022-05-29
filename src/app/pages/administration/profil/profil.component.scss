@@ -23,7 +23,7 @@ body {
   .responsive-table {
     li {
       border-radius: 20px;
-      padding: 10px 60px;
+      padding: 20px 60px;
       display: flex;
       justify-content: space-between;
       margin-bottom: 30px;
@@ -56,7 +56,7 @@ body {
       font-weight: 500;
       height: 55px;
       list-style: none;
-      margin: 0.5em;
+      margin: 0.2em;
       outline: none;
       padding: 0px 25px;
       scroll-margin-right: 6em;
@@ -91,35 +91,28 @@ body {
       box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
     }
     .col-1 {
-      flex-basis: 3%;
+      flex-basis: 15%;
+      padding-top:1em;
     }
     .col-2 {
-      flex-basis: 15%;
+      flex-basis: 28%;
+      padding-top:1em;
   }
     .col-3 {
-      flex-basis: 10%;
+      flex-basis: 29%;
+      padding-top:1em;
     }
     .col-4 {
-      flex-basis: 18%;
-      margin-left: 0.2em;
+      flex-basis: 28%;
+     // margin-left: 0.2em;
+      padding-top:1em;
     }
-    .col-5 {
+    /*.col-5 {
       flex-basis: 12%;
-      margin-left: 3em;
-  
-    }
-    .col-6 {
-      flex-basis: 10%;
-      margin-left: 3em;
-    }
-    
-    .col-7 {
-      flex-basis:9%;
-      margin-right: 1em;
-    }
-    .col-8 {
-      flex-basis:12%;
-    }
+     // margin-left: 3em;
+      padding-top:1em;
+    }*/
+   
     .text-secondary {
       color: #7b809a !important;
     }
@@ -182,19 +175,20 @@ body {
   
   .page {
     color: white;
-    padding: 0 -1em;
+    padding: 5 -1em;
     background: #f1f5f9;
   }
   .page__box {
     min-height: 100px;
     background: #b0dfe5;
     margin: 0 -1rem;
-    font-size: 36px;
+    font-size: 45px;
+    padding: 1em !important;
   }
   .page__content {
     min-height: calc(100vh - 188px);
     border-radius: 10px;
-    margin-top: -2rem;
+    margin-top: -3rem;
     background: white;
     color: black;
   
@@ -223,6 +217,9 @@ body {
    
   }
   
+  .padt{
+    padding-top:3em !important; 
+  }
   
   .margl{
     margin-left: 3em;
@@ -355,7 +352,7 @@ body {
   .s004 .form .inner-form .input-field {
     display: flex;
     padding: 1em 20em;
-      
+    padding-top: 5em;
       content: attr(data-label);
       flex-basis: 50%;
       text-align: center;
@@ -390,7 +387,7 @@ body {
     .s004 .form .inner-form .input-field {
   
       display: flex;
-   
+     padding-top: 5em;
       padding-left: 10em;
       padding-right: 10em;
         content: attr(data-label);

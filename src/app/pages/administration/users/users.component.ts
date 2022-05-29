@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, AbstractControl, Validators } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/core/models/user';
 import { UserService } from 'src/app/core/services/user.service';
@@ -9,6 +9,7 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { Profil } from 'src/app/core/models/profil';
 import { ProfilService } from 'src/app/core/services/profil.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 
 @Component({
   selector: 'app-users',
@@ -31,7 +32,7 @@ export class UsersComponent implements OnInit {
   page:number=1
 
   constructor(private formBuilder : FormBuilder, private userService: UserService,  config: NgbModalConfig,
-    private modalService: NgbModal,
+    private modalService: NgbModal, private snackbar:SnackbarService,
     private profilService: ProfilService,
     ) {  
        // customize default values of modals used by this component tree
@@ -39,6 +40,7 @@ export class UsersComponent implements OnInit {
       config.keyboard = false;}
 
   ngOnInit(): void {
+   
 this.getProfils();
     this.getUsers();
     this.userDetail = this.formBuilder.group({
@@ -46,7 +48,7 @@ this.getProfils();
       userName: [''],
       userPassword: [''],
       email:[''],
-     // profil:['']
+      profil: new FormControl(),
 
     });
   }
@@ -58,23 +60,39 @@ this.getProfils();
   close(content) {
     this.modalService.dismissAll(content);
   }
-
+  
   addUser(){
 
     console.log(this.userDetail);
-    this.userobj.id=this.userDetail.value.id;
-    this.userobj.userName=this.userDetail.value.userName;
-    this.userobj.userPassword=this.userDetail.value.userPassword;
-    this.userobj.email=this.userDetail.value.email;
-    console.log(this.userobj);
-    this.userService.addUser(this.userobj).subscribe(res=>{
-      console.log(res);
-      this.getUsers();
-    },
-    (error: HttpErrorResponse) => {
-      console.log(error.message);
-    }
-    );
+    this.userService.getUserName(this.userDetail.value.userName).subscribe(res=>{
+      console.log('user check ::: ',res)
+      if(res.id==null){
+       
+       console.log('this.userDetail.value.profil ::',this.userDetail.value)
+         this.userobj.id=this.userDetail.value.id;
+         this.userobj.userName=this.userDetail.value.userName;
+         this.userobj.userPassword=this.userDetail.value.userPassword;
+         this.userobj.email=this.userDetail.value.email;
+         for(var prof of this.userDetail.value.profil){
+          let profil: Profil = new Profil();
+           profil.name=prof
+           this.userobj.profils.push(profil)
+         }
+         console.log('user to add',this.userobj);
+         this.userService.addUser(this.userobj).subscribe(res=>{
+           console.log(res);
+           this.getUsers();
+         },
+         (error: HttpErrorResponse) => {
+           console.log(error.message);
+         }
+         );
+      }
+      else {
+        this.snackbar.openSnackBar("check userName","error")
+      }
+    })
+ 
 }
   
 
@@ -149,4 +167,13 @@ public searchUsers(key: string): void {
 handleClear(){
   this.userDetail.reset();
 }
+
+userNameValidator(userControl: AbstractControl) {
+  console.log('userControl.value', userControl.value)
+ 
+}
+
+
+
+
 }

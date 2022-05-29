@@ -5,7 +5,6 @@ import { Employee } from 'src/app/core/models/employee';
 import { Projet } from 'src/app/core/models/projet';
 import { Salle } from 'src/app/core/models/salle';
 import { EmployeeService } from 'src/app/core/services/employee.service';
-import { ProfilService } from 'src/app/core/services/profil.service';
 import { ProjetService } from 'src/app/core/services/projet.service';
 import { SalleService } from 'src/app/core/services/salle.service';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +12,7 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-employee',
@@ -28,10 +28,14 @@ export class EmployeeComponent implements OnInit {
   employeeDetail!: FormGroup;
   employeeobj: Employee = new Employee();
   employeeList:Employee[] = [];
+  employeeList2:Employee[] = [];
   projectList:Projet[] = [];
   salleList:Salle[] = [];
   totalRec!: string;
-  page:number=1
+  page:number=1;
+  r:any;
+  userId=2;
+theProfil:String;
 
   constructor(private formBuilder : FormBuilder,
      private employeeService: EmployeeService,
@@ -39,7 +43,8 @@ export class EmployeeComponent implements OnInit {
      private salleService: SalleService,
      config: NgbModalConfig,
       private modalService: NgbModal,
-      private authService:AuthService
+      private authService:AuthService,
+      private userService:UserService
      ) {
         // customize default values of modals used by this component tree
  config.backdrop = 'static';
@@ -50,13 +55,14 @@ export class EmployeeComponent implements OnInit {
     this.getEmployees();
     this.getprojects();
     this.getsalles();
+    
     this.employeeDetail = this.formBuilder.group({
       id: [''],
-      lastname:[null,[Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
-      firstname:[null,[Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
-      birthdate:[null,[Validators.required,Validators.pattern(GlobalConstants.dateRegex),Validators.minLength(10)]],
-      address:[null,[Validators.required,Validators.pattern(GlobalConstants.textRegex),Validators.minLength(4)]],
-      phonenumber:[null,[Validators.required,Validators.pattern(GlobalConstants.numberRegex)]],
+      lastname:[null],
+      firstname:[null],
+      birthdate:[null],
+      address:[null],
+      phonenumber:[null],
       manager:[''],
       project:[''],
       salle:[''],
@@ -97,11 +103,22 @@ export class EmployeeComponent implements OnInit {
 
 }
 
+
 getEmployees(){
   this.employeeService.getEmployees().subscribe(res=>{
     this.employeeList=res;
-  })
-}
+    const results: any[] = [];
+
+    this.employeeList.forEach(employee=>{if(employee.lastname!='' && employee.firstname!='' && employee.address!='' && employee.phonenumber!=null && employee.birthdate!=null){
+      results.push(employee);
+      this.employeeList2=results;
+console.log("ok")
+     }} )
+    
+    });
+
+  }
+
 
 
 getprojects(){
@@ -173,6 +190,8 @@ getStatut(employee : Employee):String{
   return"Inactif";
 }
 
+
+
 public searchEmployees(key: string): void {
   console.log(key);
   const results: Employee[] = [];
@@ -201,6 +220,25 @@ public searchEmployees(key: string): void {
 handleClear(){
   this.employeeDetail.reset();
 }
+/*
+getProfil(id):String{
+console.log("id :",2)
+  this.getUser(id);
+  console.log("getprofil:",this.r)
+  return ("ok");
 
+}*/
+getUser(id:any):String{
+
+  this.userService.getUserById(id).subscribe(res=>{
+    this.r=res
+  })
+  console.log("this.r.profils[0].name :",this.r.profils[0].name)
+  let res=""
+  for(let i;i<this.r.profils.length;i++){
+    res=res+this.r.profils[i].name
+  }
+  return res
+}
 
 }

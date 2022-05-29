@@ -1,6 +1,6 @@
  
  
-    <h3>Mon compte</h3>
+    <h3 style="text-align:center">Mon compte</h3>
     <mat-tab-group >
       <mat-tab label="Details">
         <div class="container">
@@ -11,7 +11,7 @@
                       <form [formGroup]="accountDetail" >
                           <div class="row ">
                               <div class="col-md-3 text-center mb-5">
-                                <label for="photo"><h4>picture</h4></label>
+                                
                               <br/>
                               <img [src]="imgURL" class="rounded-circle avatar-xl" height="200" *ngIf="imgURL">
                               </div>
@@ -21,12 +21,7 @@
                                
                             </div>
                               <div class="col">
-                                  <div class="row ">
-                                      <div class="col-md-7">
-                                          <h5 class="mb-1">{{account.lastname}} {{account.firstname}}</h5>
-                                          <p class="small mb-3"><span class="badge badge-dark"></span></p>
-                                      </div>
-                                  </div>
+                                 
                                   <div class="row mb-4">
                                       <div class="col-md-7">
                                           <p class="text-muted">
@@ -34,6 +29,12 @@
                                           </p>
                                       </div>
                                       <div class="col">
+                                        <div class="row ">
+                                          <div class="col-md-7">
+                                              <h5 class="mb-1">{{account.lastname}} {{account.firstname}}</h5>
+                                              <p class="small mb-3"><span class="badge badge-dark"></span></p>
+                                          </div>
+                                      </div>
                                           <p class="small mb-0 text-muted">Date de naissance :{{account.birthdate}}</p>
                                           <p class="small mb-0 text-muted">Téléphone : (+216){{account.phonenumber}}</p>
                                           <p class="small mb-0 text-muted">Sexe : male</p>

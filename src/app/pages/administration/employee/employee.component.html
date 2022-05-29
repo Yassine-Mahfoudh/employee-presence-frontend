@@ -126,7 +126,7 @@
                             <label class="form-control-label" for="input-departement">Chef</label>
                           <select formControlName="manager" id="select-dep" class="form-control form-control-alternative" value="dep.name">
                             <option value="" disabled selected hidden>Sélectionnez un chef</option>
-                            <option *ngFor="let employee of employeeList" [value]="employee.firstname" >{{employee.firstname}}</option>
+                            <option *ngFor="let employee of employeeList2" [value]="employee.firstname" >{{employee.firstname}}</option>
                           </select>
                           </div>
                           <div class="padding-bottom--24">
@@ -165,16 +165,14 @@
                      
                     </ng-template>
 
-       <!-- getprojects -->
+       <!-- getemployees -->
      
      
      <div class="container-fluid page">
       <div class="d-flex page__box p-3 mt-2">Gestion des employés</div>
       <div class="page__content shadow p-3 ">
       <div class="page__content-data position-absolute text-center">
-        <div class="twelve">
-          <h1  >La liste des employes : </h1>  
-        </div>
+     
              <form>
               <div class="s004">
                 <form class="form">
@@ -195,30 +193,35 @@
               </div>
             <ul class="responsive-table pad">
               <li class="table-header margt">
-                <div [(appSort)]="employeeList" data-order="desc" data-name="id" class="col mar col-1 text-uppercase text-white font-weight-bolder opacity-7">Id</div>
-                <div [(appSort)]="employeeList" data-order="desc" data-name="lastname" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Prénom</div>
-                <div [(appSort)]="employeeList" data-order="desc" data-name="firstname" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
-                <div [(appSort)]="employeeList" data-order="desc" data-name="role" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Role</div>
-                <div [(appSort)]="employeeList" data-order="desc" data-name="status" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Etat</div>
-                <div [(appSort)]="employeeList" data-order="desc" data-name="birthdate" class="col mar col-6 text-uppercase text-white font-weight-bolder opacity-7">Date de naissance</div>
-                <div [(appSort)]="employeeList" data-order="desc" data-name="address" class="col mar col-7 text-uppercase text-white font-weight-bolder opacity-7">Adresse</div>
-                <div [(appSort)]="employeeList" data-order="desc" data-name="phonenumber" class="col mar col-8 text-uppercase text-white font-weight-bolder opacity-7">Numéro</div>
-                <div [(appSort)]="employeeList" data-order="desc" data-name="project" class="col  mar col-9 text-uppercase text-white font-weight-bolder opacity-7">Projet</div>
-                <div [(appSort)]="employeeList" data-order="desc" data-name="workroom" class="col mar col-10 text-uppercase text-white font-weight-bolder opacity-7">Salle</div>
-                <div [(appSort)]="employeeList" data-order="desc" data-name="manager" class="col mar col-11 text-uppercase text-white font-weight-bolder opacity-7">Chef</div>
+                <div [(appSort)]="employeeList2" data-order="desc" data-name="id" class="col mar col-1 text-uppercase text-white font-weight-bolder opacity-7">Id</div>
+                <div [(appSort)]="employeeList2" data-order="desc" data-name="lastname" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Prénom</div>
+                <div [(appSort)]="employeeList2" data-order="desc" data-name="firstname" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
+                <div [(appSort)]="employeeList2" data-order="desc" data-name="role" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Role</div>
+                <div [(appSort)]="employeeList2" data-order="desc" data-name="status" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Etat</div>
+                <div [(appSort)]="employeeList2" data-order="desc" data-name="birthdate" class="col mar col-6 text-uppercase text-white font-weight-bolder opacity-7">Date de naissance</div>
+                <div [(appSort)]="employeeList2" data-order="desc" data-name="address" class="col mar col-7 text-uppercase text-white font-weight-bolder opacity-7">Adresse</div>
+                <div [(appSort)]="employeeList2" data-order="desc" data-name="phonenumber" class="col mar col-8 text-uppercase text-white font-weight-bolder opacity-7">Numéro</div>
+                <div [(appSort)]="employeeList2" data-order="desc" data-name="project" class="col  mar col-9 text-uppercase text-white font-weight-bolder opacity-7">Projet</div>
+                <div [(appSort)]="employeeList2" data-order="desc" data-name="workroom" class="col mar col-10 text-uppercase text-white font-weight-bolder opacity-7">Salle</div>
+                <div [(appSort)]="employeeList2" data-order="desc" data-name="manager" class="col mar col-11 text-uppercase text-white font-weight-bolder opacity-7">Chef</div>
                 <div class="col  col-12  margl  text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
                 
                 
               </li>
               
-              <li class="table-row"  *ngFor="let employee of employeeList | paginate: { id:'listing_pagination',
+              <li class="table-row"  *ngFor="let employee of employeeList2 | paginate: { id:'listing_pagination',
               itemsPerPage:4,
               currentPage:page,
               totalItems:totalRec}">
               <div class="col col-1" data-label="Id">{{employee.id}}</div>
               <div class="col col-2" data-label="lastname" style="width: 100px; word-wrap:break-word;">{{employee.lastname}}</div>
               <div class="col col-3" data-label="firstname">{{employee.firstname}}</div>
-              <div class="col col-4" data-label="role" style="width: 130px; word-wrap:break-word;">{{employee.role}}</div>
+              <!--<div class="col col-4" data-label="role" style="width: 130px; word-wrap:break-word;">
+                <p *ngFor="let i of employee" style="width: 90px; word-wrap:break-word;">{{i.name}}</p> 
+
+                {{getUser(employee.id)}}
+              </div>-->
+              <div class="col col-4" data-label="role" style="width: 130px; word-wrap:break-word;">ok</div>
               <div class="col col-5" data-label="status">{{getStatut(employee)}}</div>
               <div class="col col-6" data-label="birthdate">{{employee.birthdate}}</div>
               <div class="col col-7" data-label="address">{{employee.address}}</div>

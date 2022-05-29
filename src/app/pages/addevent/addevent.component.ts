@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { stringify } from 'querystring';
 import { Employee } from 'src/app/core/models/employee';
 import { MyEvent } from 'src/app/core/models/myevent';
 import { RRule } from 'src/app/core/models/rrule';
@@ -23,7 +24,7 @@ export class AddeventComponent implements OnInit {
   eventlist:MyEvent[] = [];
   employeeList:Employee[]=[];
 
-  
+  etype
  nowDate = new Date(); 
  dateDebutButton = this.nowDate.getFullYear()+'/'+(this.nowDate.getMonth()+1)+'/'+this.nowDate.getDate();
   dateDebut
@@ -55,8 +56,8 @@ export class AddeventComponent implements OnInit {
       datedebut: [this.dateDebut],
       datefin: [this.dateDebut],
       employee:[''],
-      datedebutrecur:[''],
-      datefinrecur:[''],
+      datedebutrecur:[this.dateDebut],
+      datefinrecur:[this.dateDebut],
       frequency:[''],
       everyNday:[''],
       weekday:[''],
@@ -84,7 +85,6 @@ export class AddeventComponent implements OnInit {
 
   addEvent(){
 
-    console.log(this.eventDetail);
 
     //static
     if (this.eventDetail.controls.eventtype.value=="Static"){
@@ -93,8 +93,21 @@ export class AddeventComponent implements OnInit {
     this.eventobj.description=this.eventDetail.value.description;
     this.eventobj.start=this.eventDetail.value.datedebut;
     this.eventobj.end=this.eventDetail.value.datefin;
-    this.eventobj.employee=this.eventDetail.value.employee;
+    this.eventobj.employee=this.eventDetail.value.employee.toString();
     this.eventobj.rrule=null;
+    if(this.eventDetail.value.title==="Presentielle"){
+      this.eventobj.color="#FF8B94";
+
+      }
+      else if(this.eventDetail.value.title==="à distance"){
+        this.eventobj.color="#8D7BE0";
+ 
+        }
+        else{
+          this.eventobj.color="#7fd3ed";
+
+          }
+
   }
 else {
 
@@ -104,26 +117,41 @@ else {
     this.eventobj.id=this.eventDetail.value.id;
     this.eventobj.title=this.eventDetail.value.title;
     this.eventobj.description=this.eventDetail.value.description;
-    this.eventobj.employee=this.eventDetail.value.employee;
+    this.eventobj.employee=this.eventDetail.value.employee.toString();
+
+if(this.eventDetail.value.title==="Presentielle"){
+  this.eventobj.color="#FF8B94";
+
+  }
+  else if(this.eventDetail.value.title==="à distance"){
+    this.eventobj.color="#8D7BE0";
+
+    }
+    else{
+      this.eventobj.color="#7fd3ed";
+
+      }
 
     let startrecur =this.eventDetail.value.datedebutrecur;
       let yyyy=startrecur.substr(0,4)
       let mm=startrecur.substr(-5,2) 
       let dd=startrecur.substr(8,9) 
       let startr=yyyy+mm+dd
-     console.log(" start date recursivité : "+startr)
 
+
+     
 
      let endrecur =this.eventDetail.value.datefinrecur;
      let YYYY=endrecur.substr(0,4)
      let MM=endrecur.substr(-5,2) 
      let DD=endrecur.substr(8,9) 
      let endr=YYYY+MM+DD
-    console.log(" end date recursivité : "+endr)
+
 
 
     if (this.eventDetail.value.frequency=="WEEKLY"){
       this.eventobj.rrule=`DTSTART:${startr}\nRRULE:FREQ=${this.eventDetail.value.frequency};UNTIL=${endr};BYDAY=${this.eventDetail.value.weekday};INTERVAL=${this.eventDetail.value.everyNday}`;
+   
     }else{
       if(this.eventDetail.value.onday=="onday"){
         this.eventobj.rrule=`DTSTART:${startr}\nRRULE:FREQ=${this.eventDetail.value.frequency};UNTIL=${endr};BYMONTHDAY=${this.eventDetail.value.monthday};INTERVAL=${this.eventDetail.value.everyNmonth}`;
@@ -136,11 +164,11 @@ else {
     
 
   }
-    
+  this.eventobj.type=this.eventDetail.controls.eventtype.value;
     this.myeventService.addEvent(this.eventobj).subscribe(res=>{
       console.log(res);
       this.getevents();
-      console.log("okkkkkkk")
+      console.log("event type::",this.eventobj.type);
       //setTimeout("location.reload(true);",200);
     }
     );
@@ -149,16 +177,18 @@ else {
 }
 
 eventType(val){
-
   (document.getElementById("status-select")as HTMLButtonElement).disabled = false;
    if (val == "Static"){
  ( document.querySelector<HTMLElement>(".add-static-event")).style.display= "block";
  (document.querySelector<HTMLElement>(".add-recursive-event")).style.display= "none";
+  this.etype=val;
 }
    if (val == "Recursive"){
    ( document.querySelector<HTMLElement>(".add-static-event")).style.display= "none";
      (document.querySelector<HTMLElement>(".add-recursive-event")).style.display= "block";
+      this.etype=val;
     }
+    return  this.etype;
 }
 
 eventFrequence(val){

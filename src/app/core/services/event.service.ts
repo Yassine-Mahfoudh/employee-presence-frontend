@@ -30,6 +30,11 @@ export class EventService {
     return this.http.get<MyEvent[]>(this.getEventsurl);  
   }
 
+  getEventById(id:any):Observable<MyEvent>
+  {
+    return this.http.get<MyEvent>(this.getEventByIdurl+'/'+id);  
+  }
+
   deleteEvent(event : MyEvent):Observable<MyEvent>
   {
     return this.http.delete<MyEvent>(this.deleteEventsurl+'/'+event.id);   

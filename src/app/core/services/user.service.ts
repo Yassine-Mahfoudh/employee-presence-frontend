@@ -88,7 +88,7 @@ export class UserService {
     }
 
    addUser(user : User):Observable<User>{
-     return this.httpclient.post<User>(this.addUsersurl,User,{headers:this.requestHeader2});
+     return this.httpclient.post<User>(this.addUsersurl,user,{headers:this.requestHeader2});
     }
     getUsers():Observable<User[]>
     {
@@ -99,8 +99,21 @@ export class UserService {
       return this.httpclient.put<User>(this.updateUserslurl+'/'+user.id,user);   
     }
 
-    getUserByUsername(username: String) {
+    getUserByUsername(username: String):Observable<User> {
       return this.httpclient.get<User>(this.getUserByUsernameURL + '/' + username);
+    }
+
+    getUserById(id:any):Observable<User>
+    {
+      return this.httpclient.get<User>(this.getUsersurl+'/find/'+id);  
+    }
+
+
+    getUserName(name : string){
+      return this.httpclient
+      .get<any>(this.getUserByUsernameURL+"/"+name)
+     
+  // return this.httpclient.get(getUserByUsernameURL)
     }
   
 }

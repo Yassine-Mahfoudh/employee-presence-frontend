@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FonctionaliteComponent } from './fonctionalite.component';
+import { ChatstreamComponent } from './chatstream.component';
 
-describe('FonctionaliteComponent', () => {
-  let component: FonctionaliteComponent;
-  let fixture: ComponentFixture<FonctionaliteComponent>;
+describe('ChatstreamComponent', () => {
+  let component: ChatstreamComponent;
+  let fixture: ComponentFixture<ChatstreamComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FonctionaliteComponent ]
+      declarations: [ ChatstreamComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FonctionaliteComponent);
+    fixture = TestBed.createComponent(ChatstreamComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
