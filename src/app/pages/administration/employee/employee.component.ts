@@ -13,6 +13,7 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 import { UserService } from 'src/app/core/services/user.service';
+import { Profil } from 'src/app/core/models/profil';
 
 @Component({
   selector: 'app-employee',
@@ -35,6 +36,7 @@ export class EmployeeComponent implements OnInit {
   page:number=1;
   r:any;
   userId=2;
+  profilsList:Profil[]=[];
 theProfil:String;
 
   constructor(private formBuilder : FormBuilder,
@@ -112,6 +114,11 @@ getEmployees(){
     this.employeeList.forEach(employee=>{if(employee.lastname!='' && employee.firstname!='' && employee.address!='' && employee.phonenumber!=null && employee.birthdate!=null){
       results.push(employee);
       this.employeeList2=results;
+      this.employeeList2.filter(emp=>{
+        this.getProfils(emp.id).filter(prof=>{
+          emp.listProfils.push(prof.name)
+        })
+      })
 console.log("ok")
      }} )
     
@@ -119,7 +126,13 @@ console.log("ok")
 
   }
 
-
+getProfils(id){
+  this.userService.getUserProfils(id).subscribe(res=>{
+    this.profilsList=res
+    console.log("profilsList :",this.profilsList)
+  })
+  return this.profilsList;
+}
 
 getprojects(){
   this.projetService.getProjets().subscribe(res=>{

@@ -23,7 +23,14 @@ export class UsersComponent implements OnInit {
   editIcon = faPenToSquare;
   addIcon = faPlusCircle;
 
-  userDetail!: FormGroup;
+  userDetail: FormGroup=new FormGroup({
+    id: new FormControl(null),
+    userName: new FormControl(null),
+    userPassword: new FormControl(null),
+    email: new FormControl(null),
+    profil: new FormControl(null),
+
+  });;
   userobj: User = new User();
   usersList:User[] = [];
   profilList:Profil[] = [];
@@ -43,14 +50,7 @@ export class UsersComponent implements OnInit {
    
 this.getProfils();
     this.getUsers();
-    this.userDetail = this.formBuilder.group({
-      id: [''],
-      userName: [''],
-      userPassword: [''],
-      email:[''],
-      profil: new FormControl(),
-
-    });
+   
   }
 
   open(content) {
@@ -64,21 +64,22 @@ this.getProfils();
   addUser(){
 
     console.log(this.userDetail);
+    console.log('this.userDetail.value.profil ::',this.userDetail.value.profil)
+    this.userobj.id=this.userDetail.value.id;
+    this.userobj.userName=this.userDetail.value.userName;
+    this.userobj.userPassword=this.userDetail.value.userPassword;
+    this.userobj.email=this.userDetail.value.email;
+    for(var prof of this.userDetail.value.profil){
+     let profil: Profil = new Profil();
+      profil.name=prof
+      this.userobj.profils.push(profil)
+    }
+    console.log('user to add',this.userobj);
     this.userService.getUserName(this.userDetail.value.userName).subscribe(res=>{
       console.log('user check ::: ',res)
       if(res.id==null){
        
-       console.log('this.userDetail.value.profil ::',this.userDetail.value)
-         this.userobj.id=this.userDetail.value.id;
-         this.userobj.userName=this.userDetail.value.userName;
-         this.userobj.userPassword=this.userDetail.value.userPassword;
-         this.userobj.email=this.userDetail.value.email;
-         for(var prof of this.userDetail.value.profil){
-          let profil: Profil = new Profil();
-           profil.name=prof
-           this.userobj.profils.push(profil)
-         }
-         console.log('user to add',this.userobj);
+      
          this.userService.addUser(this.userobj).subscribe(res=>{
            console.log(res);
            this.getUsers();
@@ -89,7 +90,7 @@ this.getProfils();
          );
       }
       else {
-        this.snackbar.openSnackBar("check userName","error")
+        this.snackbar.openSnackBar("Nom d'utilisateur déja utilisé","error")
       }
     })
  
@@ -132,7 +133,13 @@ updateUser(){
   this.userobj.userName=this.userDetail.value.userName;
   this.userobj.userPassword=this.userDetail.value.userPassword;
   this.userobj.email=this.userDetail.value.email;
-  this.userService.updateUser(this.userobj).subscribe(res=>{
+  for(var prof of this.userDetail.value.profil){
+    let profil: Profil = new Profil();
+     profil.name=prof
+     this.userobj.profils.push(profil)
+   }
+   console.log('user to update :: ',this.userobj )
+     this.userService.updateUser(this.userobj).subscribe(res=>{
     console.log(res);
     this.getUsers();
   }
@@ -167,12 +174,6 @@ public searchUsers(key: string): void {
 handleClear(){
   this.userDetail.reset();
 }
-
-userNameValidator(userControl: AbstractControl) {
-  console.log('userControl.value', userControl.value)
- 
-}
-
 
 
 

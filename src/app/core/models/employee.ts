@@ -11,4 +11,5 @@ export class Employee {
     salle:number=0;
     project:string='';
     manager:string='';
+    listProfils:any[]=[];
 }

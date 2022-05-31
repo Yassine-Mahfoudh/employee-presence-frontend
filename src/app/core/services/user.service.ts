@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Profil } from '../models/profil';
 import { User } from '../models/user';
 import { AuthService } from './auth.service';
 
@@ -93,6 +94,11 @@ export class UserService {
     getUsers():Observable<User[]>
     {
       return this.httpclient.get<User[]>(this.getUsersurl);   }
+
+      getUserProfils(id):Observable<Profil[]>
+      {
+        return this.httpclient.get<Profil[]>(this.getUsersurl+'/find/profils/'+id);   }
+
 
     updateUser(user : User):Observable<User>
     {

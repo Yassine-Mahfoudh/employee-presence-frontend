@@ -56,14 +56,7 @@
                         <option *ngFor="let profil of profilList" [value]="profil.name" >{{profil.name}}</option>
                       </select>
                       </div>
-                      <!-- <div class="padding-bottom--24">
-                      <mat-form-field appearance="fill">
-                        <mat-label class="form-control-label" for="input-profil">Profil</mat-label>
-                        <mat-select formControlName="profil"  class="form-control form-control-alternative" multiple>
-                          <mat-option *ngFor="let profil of profilList" [value]="profil.name">{{profil.name}}</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div> -->
+              
     
               </div>
             </div>
@@ -83,7 +76,7 @@
            
           </ng-template>
 
-          <!-- editproject -->
+          <!-- edituser -->
         
           <ng-template #contentUpdate let-c="close" let-d="dismiss">
       
@@ -134,13 +127,13 @@
                             <span *ngIf="userDetail.controls.userPassword.errors.minlength"> Le mot de passe doit comporter au moins 4 caractères</span>
                           </mat-error>
                           </div>
-                          <!--<div class="padding-bottom--24">
+                          <div class="padding-bottom--24">
                             <label class="form-control-label" for="input-profil">Profil</label>
-                          <select formControlName="profil" id="select-profil" class="form-control form-control-alternative" value="profil.name">
+                          <select multiple formControlName="profil" id="select-profil" class="form-control form-control-alternative" value="profil.name">
                             <option value="" disabled selected hidden>Sélectionnez un profil</option>
                             <option *ngFor="let profil of profilList" [value]="profil.name" >{{profil.name}}</option>
                           </select>
-                          </div>-->
+                          </div>
                   </div>
                 </div>
               </div>
@@ -148,7 +141,7 @@
                 <mat-dialog-actions class="btn-group padding--14">
                   <button class="btn button-2 bg-cb"  [disabled]="!userDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')"
                    (click)="updateUser()"  (click)="handleClear()">
-                    modifier projet
+                    Modifier utilisateur
                   </button>
                   <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(contentUpdate)" (click)="handleClear()">
                     Fermer
@@ -191,7 +184,6 @@
                 <div [(appSort)]="usersList" data-order="desc" data-name="userName" class="col mar padt col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom d'utilisateur</div>
                 <div [(appSort)]="usersList" data-order="desc" data-name="profil" class="col mar padt col-3 text-uppercase text-white font-weight-bolder opacity-7">Profil</div>
                 <div [(appSort)]="usersList" data-order="desc" data-name="email" class="col  mar padt col-4 text-uppercase text-white font-weight-bolder opacity-7">Email</div>
-                <div [(appSort)]="usersList" data-order="desc" data-name="userPassword" class="col padt mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Mot de passe</div>
 
                 <div class="col  col-6 padt margl  text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
                 <div class="col col-7 ">
@@ -214,7 +206,6 @@
                <p *ngFor="let i of user.profils" style="width: 90px; word-wrap:break-word;">{{i.name}}</p> 
               </div>
               <div class="col col-4" data-label="email">{{user.email}}</div>
-              <div class="col col-5" data-label="userPassword" style="width: 130px; word-wrap:break-word;">{{user.userPassword}}</div>
 
                 <div class="col margl col-6" >
                   
