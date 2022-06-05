@@ -11,7 +11,6 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 import { UserService } from 'src/app/core/services/user.service';
 import { Profil } from 'src/app/core/models/profil';
 
@@ -31,13 +30,16 @@ export class EmployeeComponent implements OnInit {
   employeeList:Employee[] = [];
   employeeList2:Employee[] = [];
   projectList:Projet[] = [];
+  profilsList:Profil[]=[];
+  
   salleList:Salle[] = [];
   totalRec!: string;
   page:number=1;
   r:any;
-  userId=2;
-  profilsList:Profil[]=[];
+  
 theProfil:String;
+  employeebyname: Employee =new Employee();
+  managerList: Employee[] = [];
 
   constructor(private formBuilder : FormBuilder,
      private employeeService: EmployeeService,
@@ -57,7 +59,8 @@ theProfil:String;
     this.getEmployees();
     this.getprojects();
     this.getsalles();
-    
+  
+
     this.employeeDetail = this.formBuilder.group({
       id: [''],
       lastname:[null],
@@ -105,6 +108,10 @@ theProfil:String;
 
 }
 
+listComboxUsers : Employee[] = [];
+
+
+
 
 getEmployees(){
   this.employeeService.getEmployees().subscribe(res=>{
@@ -114,25 +121,34 @@ getEmployees(){
     this.employeeList.forEach(employee=>{if(employee.lastname!='' && employee.firstname!='' && employee.address!='' && employee.phonenumber!=null && employee.birthdate!=null){
       results.push(employee);
       this.employeeList2=results;
-      this.employeeList2.filter(emp=>{
-        this.getProfils(emp.id).filter(prof=>{
-          emp.listProfils.push(prof.name)
-        })
-      })
-console.log("ok")
+  
+
      }} )
-    
+     const res2: any[] = [];
+     console.log('employeeList2 :',this.listComboxUsers)
+     this.employeeList2.forEach(employee=>{
+      for(let i in employee.listeProfils){
+        if(employee.listeProfils[i]==="MANAGER")
+        {
+       res2.push(employee);
+       this.managerList= res2;
+       this.listComboxUsers=res2
+
+       this.listComboxUsers= this.listComboxUsers.filter((user) => user.id !== this.id_edit_user)
+     }
+     }
+
+   
+
+       })
+    console.log('managerList :',this.managerList)
     });
+   
 
   }
 
-getProfils(id){
-  this.userService.getUserProfils(id).subscribe(res=>{
-    this.profilsList=res
-    console.log("profilsList :",this.profilsList)
-  })
-  return this.profilsList;
-}
+  
+  
 
 getprojects(){
   this.projetService.getProjets().subscribe(res=>{
@@ -145,8 +161,9 @@ getsalles(){
     this.salleList=res;
   })
 }
-
+id_edit_user;
 editEmployee(employee : Employee){
+  this.id_edit_user=employee.id
   this.employeeDetail.controls['id'].setValue(employee.id);
   this.employeeDetail.controls['lastname'].setValue(employee.lastname);
   this.employeeDetail.controls['firstname'].setValue(employee.firstname);
@@ -157,7 +174,7 @@ editEmployee(employee : Employee){
   this.employeeDetail.controls['salle'].setValue(employee.salle);
   this.employeeDetail.controls['manager'].setValue(employee.manager);
 
-
+  this.getEmployees();
 }
 
 deleteEmployee(employee : Employee){
@@ -171,8 +188,21 @@ deleteEmployee(employee : Employee){
   
   }
 
+  //get employee by name
+  getempbyname(name:string){
+
+    this.employeeService.getEmployeeByName(name).subscribe(res=>{
+      this.employeebyname=res;
+      return res
+     
+    })
+    let a=this.employeebyname;
+return a;
+  }
+  
+
 updateEmployee(){
- 
+  this.employeeobj.id=this.employeeDetail.value.id;
   this.employeeobj.lastname=this.employeeDetail.value.lastname;
   this.employeeobj.firstname=this.employeeDetail.value.firstname;
   this.employeeobj.birthdate=this.employeeDetail.value.birthdate;
@@ -181,11 +211,36 @@ updateEmployee(){
   this.employeeobj.project=this.employeeDetail.value.project;
   this.employeeobj.salle=this.employeeDetail.value.salle;
   this.employeeobj.manager=this.employeeDetail.value.manager;
-  this.employeeService.updateEmployee(this.employeeobj,this.employeeDetail.value.id).subscribe(res=>{
-    console.log(res);
-    this.getEmployees();
-  }
-  );
+
+  
+  
+
+  this.employeeService.getEmployeeByName(this.employeeobj.manager).subscribe(res=>{
+    // this.employeebyname=res;
+
+    this.employeeobj.managerid=res.id
+   console.log(' to update ::: ',this.employeeobj,this.employeeobj.id)
+    this.employeeService.updateEmployee(this.employeeobj,this.employeeobj.id).subscribe(ress=>{
+    
+      console.log('id manager ',ress);
+  
+      this.getEmployees();
+  
+    
+    }
+    );
+  })
+  // this.employeeobj.managerid=this.getempbyname(this.employeeobj.manager).id;
+
+  // this.employeeService.updateEmployee(this.employeeobj,this.employeeDetail.value.id).subscribe(res=>{
+    
+  //   console.log(res);
+
+  //   this.getEmployees();
+
+  
+  // }
+  // );
 
 }
 

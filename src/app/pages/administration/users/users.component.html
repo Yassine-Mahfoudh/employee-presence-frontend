@@ -118,15 +118,6 @@
                           <span *ngIf="userDetail.controls.email.errors.pattern"> Ce champ est invalide, il doit être un email</span> 
                         </mat-error>
                         </div>
-                        <div class="padding-bottom--24" >
-                          <label class="form-control-label"  for="input-userPassword">Mot de passe</label>
-                          <input type="text" formControlName="userPassword" id="input-userPassword" class="form-control form-control-alternative "  placeholder="Le mot de passe  " value="" required minlength="4">
-                          <mat-error  *ngIf="userDetail.controls.userPassword.touched && userDetail.controls.userPassword.invalid">
-                            <span *ngIf="userDetail.controls.userPassword.errors.required"> Ce champ est obligatoire</span>
-                            <span *ngIf="userDetail.controls.userPassword.errors.pattern"> Ce champ est invalide</span> 
-                            <span *ngIf="userDetail.controls.userPassword.errors.minlength"> Le mot de passe doit comporter au moins 4 caractères</span>
-                          </mat-error>
-                          </div>
                           <div class="padding-bottom--24">
                             <label class="form-control-label" for="input-profil">Profil</label>
                           <select multiple formControlName="profil" id="select-profil" class="form-control form-control-alternative" value="profil.name">

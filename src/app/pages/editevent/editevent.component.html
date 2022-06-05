@@ -119,11 +119,11 @@
             </optgroup>
             </select>
           </div>
-<!--
+
           <div class="padding-bottom--24 " >
             <label  for="input-Description">Description </label>
             <input type="text" matInput formControlName="description"  class="form-control form-control-alternative" id="input-Description" placeholder=" Description du l'evenement" required>
-          </div>-->
+          </div>
 
           <div class="padding-bottom--24 " >
             <label  for="input-datedebut">Date debut </label>
@@ -152,12 +152,12 @@
             </select>
           </div>
         </div>
-              <!--selectionner le type de frequence 
+              <!--selectionner le type de frequence -->
 
              <div class="form-group padding-bottom--24">
             <label for="frequence-select">Frequence</label>
             <select id = "frequence-select" formControlName="frequency" style="width:50%" class="form-control form-control-alternative " 
-            name="status-select" (change)="eventFrequence(this.eventDetail.controls.frequency.value)">
+            name="status-select" >
             <optgroup label="Type de frequence">
             <option value="" selected hidden>Choisissez la frequence</option>
               <option value="WEEKLY">chaque semaine</option>
@@ -282,7 +282,7 @@
                 </optgroup>
                 </select>
               </div>
-            </div>-->
+            </div>
 
 
 

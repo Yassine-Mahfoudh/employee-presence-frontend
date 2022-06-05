@@ -88,6 +88,7 @@ export class AddeventComponent implements OnInit {
 
     //static
     if (this.eventDetail.controls.eventtype.value=="Static"){
+      this.eventobj.type=this.eventDetail.value.eventtype;
     this.eventobj.id=this.eventDetail.value.id;
     this.eventobj.title=this.eventDetail.value.title;
     this.eventobj.description=this.eventDetail.value.description;
@@ -112,12 +113,15 @@ export class AddeventComponent implements OnInit {
 else {
 
     //recurrsive
-  
-
+    this.eventobj.type=this.eventDetail.value.eventtype;
     this.eventobj.id=this.eventDetail.value.id;
     this.eventobj.title=this.eventDetail.value.title;
     this.eventobj.description=this.eventDetail.value.description;
     this.eventobj.employee=this.eventDetail.value.employee.toString();
+    this.eventobj.frequency=this.eventDetail.value.frequency;
+    this.eventobj.start=this.eventDetail.value.datedebutrecur;
+    this.eventobj.end=this.eventDetail.value.datefinrecur;
+
 
 if(this.eventDetail.value.title==="Presentielle"){
   this.eventobj.color="#FF8B94";
@@ -150,9 +154,16 @@ if(this.eventDetail.value.title==="Presentielle"){
 
 
     if (this.eventDetail.value.frequency=="WEEKLY"){
+      
       this.eventobj.rrule=`DTSTART:${startr}\nRRULE:FREQ=${this.eventDetail.value.frequency};UNTIL=${endr};BYDAY=${this.eventDetail.value.weekday};INTERVAL=${this.eventDetail.value.everyNday}`;
+      this.eventobj.frequency="WEEKLY";
+     // this.eventobj.weekday=this.eventDetail.value.weekday;
+     // this.eventobj.everyNday=this.eventDetail.value.everyNday;
    
     }else{
+      this.eventobj.frequency="MONTHLY" ;
+     // this.eventobj.monthday=this.eventDetail.value.monthday;
+     // this.eventobj.everyNmonth=this.eventDetail.value.everyNmonth;
       if(this.eventDetail.value.onday=="onday"){
         this.eventobj.rrule=`DTSTART:${startr}\nRRULE:FREQ=${this.eventDetail.value.frequency};UNTIL=${endr};BYMONTHDAY=${this.eventDetail.value.monthday};INTERVAL=${this.eventDetail.value.everyNmonth}`;
       }else{
@@ -161,10 +172,12 @@ if(this.eventDetail.value.title==="Presentielle"){
     
     }
     
-    
+
 
   }
-  this.eventobj.type=this.eventDetail.controls.eventtype.value;
+  console.log('this.eventobj to add ::: ', this.eventobj)
+
+
     this.myeventService.addEvent(this.eventobj).subscribe(res=>{
       console.log(res);
       this.getevents();
@@ -188,7 +201,7 @@ eventType(val){
      (document.querySelector<HTMLElement>(".add-recursive-event")).style.display= "block";
       this.etype=val;
     }
-    return  this.etype;
+    
 }
 
 eventFrequence(val){

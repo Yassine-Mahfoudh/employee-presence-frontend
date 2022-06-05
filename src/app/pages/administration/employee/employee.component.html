@@ -81,7 +81,7 @@
                           </h6>
                           <div class="padding-bottom--24" >
                             <label class="form-control-label"  for="input-name">Prénom</label>
-                            <input type="text" formControlName="name" id="input-name" class="form-control form-control-alternative "   value="" required minlength="4">
+                            <input type="text" formControlName="firstname" id="input-name" class="form-control form-control-alternative "   value="" required minlength="4">
                             <mat-error  *ngIf="employeeDetail.controls.lastname.touched && employeeDetail.controls.lastname.invalid">
                               <span *ngIf="employeeDetail.controls.lastname.errors.required"> Ce champ est obligatoire</span>
                               <span *ngIf="employeeDetail.controls.lastname.errors.pattern"> Ce champ est invalide</span> 
@@ -90,8 +90,8 @@
                             </div>
                             <div class="padding-bottom--24" >
                               <label class="form-control-label"  for="input-name">Nom</label>
-                              <input type="text" formControlName="name" id="input-name" class="form-control form-control-alternative "   value="" required minlength="4">
-                              <mat-error  *ngIf="employeeDetail.controls.firstname.touched && employeeDetail.controls.firstname.invalid">
+                              <input type="text" formControlName="lastname" id="input-name" class="form-control form-control-alternative "   value="" required minlength="4">
+                              <mat-error  *ngIf="employeeDetail.controls.lastname.touched && employeeDetail.controls.firstname.invalid">
                                 <span *ngIf="employeeDetail.controls.firstname.errors.required"> Ce champ est obligatoire</span>
                                 <span *ngIf="employeeDetail.controls.firstname.errors.pattern"> Ce champ est invalide</span> 
                                 <span *ngIf="employeeDetail.controls.firstname.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
@@ -123,10 +123,12 @@
                             </mat-error>  
                           </div>
                           <div class="padding-bottom--24">
-                            <label class="form-control-label" for="input-departement">Chef</label>
-                          <select formControlName="manager" id="select-dep" class="form-control form-control-alternative" value="dep.name">
-                            <option value="" disabled selected hidden>Sélectionnez un chef</option>
-                            <option *ngFor="let employee of employeeList2" [value]="employee.firstname" >{{employee.firstname}}</option>
+                            <label class="form-control-label" for="select-manager">Chef</label>
+                          <select formControlName="manager" id="select-manager" class="form-control form-control-alternative"  >
+                            <option value=""  selected >Sélectionnez un chef</option>
+                            <ng-container *ngFor="let employee of listComboxUsers" >
+                            <option  *ngIf="employeeDetail.controls.firstname!==employee.firstname" >{{employee.firstname}}</option>
+                          </ng-container>
                           </select>
                           </div>
                           <div class="padding-bottom--24">
@@ -216,15 +218,16 @@
               <div class="col col-1" data-label="Id">{{employee.id}}</div>
               <div class="col col-2" data-label="lastname" style="width: 100px; word-wrap:break-word;">{{employee.lastname}}</div>
               <div class="col col-3" data-label="firstname">{{employee.firstname}}</div>
-            
               <!--<div class="col col-4" data-label="role" style="width: 130px; word-wrap:break-word;">
                 <p *ngFor="let i of employee" style="width: 90px; word-wrap:break-word;">{{i.name}}</p> 
 
                 {{getUser(employee.id)}}
               </div>-->
-              <div class="col col-4" data-label="role" >
-                
-                <p *ngFor="let i of employee.listProfils" style="width: 90px; word-wrap:break-word;">{{i}}</p> 
+              <!-- <div class="col col-4" data-label="role" style="width: 130px; word-wrap:break-word;">ok</div> -->
+
+             <div class="col col-4" data-label="role" >
+              
+                <p *ngFor="let i of employee.listeProfils" style="width: 90px; word-wrap:break-word;">{{i}}</p> 
 
               </div>
               <div class="col col-5" data-label="status">{{getStatut(employee)}}</div>

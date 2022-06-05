@@ -50,7 +50,6 @@ export class EditeventComponent implements OnInit {
     this.getevents();
     this.getEmployees();
   
-  this.editEvent();
     
     this.eventDetail = this.formBuilder.group({
       id: [''],
@@ -97,14 +96,99 @@ getEmployees(){
 geteventbyid(){
   this.myeventService.getEventById(this.id).subscribe(res=>{
     this.eventbyid=res;
-    return this.eventbyid.type;
+    console.log("frequence :: ",this.eventbyid);
+    
+
+    if(this.eventbyid.type=="Static"){
+      
+      console.log("event static");
+       ( document.querySelector<HTMLElement>(".add-static-event")).style.display= "block";
+       (document.querySelector<HTMLElement>(".add-recursive-event")).style.display= "none";
+       
+        this.eventDetail.controls['id'].setValue(this.eventbyid.id);
+  this.eventDetail.controls['title'].setValue( this.eventbyid.title);
+  this.eventDetail.controls['description'].setValue( this.eventbyid.description);
+  this.eventDetail.controls['datedebut'].setValue( this.eventbyid.start);
+  this.eventDetail.controls['datefin'].setValue( this.eventbyid.end);
+  const results: any[] = [];
+  
+  this.eventbyid.employee.split(',').forEach(event=> 
+    {
+      results.push(event)
+   
+   })
+   this.eventDetail.controls['employee'].setValue(results);
+      } 
+      
+      else if (this.eventbyid.type == "Recursive"){
+
+        console.log("event Recursive");
+         ( document.querySelector<HTMLElement>(".add-recursive-event")).style.display= "block";
+          (document.querySelector<HTMLElement>(".add-static-event")).style.display= "none";
+
+
+
+
+             if(this.eventbyid.frequency=="WEEKLY"){
+      
+              console.log("event WEEKLY");
+             ( document.querySelector<HTMLElement>(".weekly-frequence")).style.display= "block";
+             (document.querySelector<HTMLElement>(".monthly-frequence")).style.display= "none";
+             console.log("everyNday::",this.eventbyid.everyNday)
+                console.log("weekday::",this.eventbyid.weekday)
+             this.eventDetail.controls['everyNday'].setValue( this.eventbyid.everyNday);
+             const results: any[] = [];
+  
+  this.eventbyid.weekday.split(',').forEach(event=> 
+    {
+      results.push(event)
+   
+   })
+             this.eventDetail.controls['weekday'].setValue(results);
+            } 
+            
+            else if (this.eventbyid.frequency == "MONTHLY"){
+              console.log("event MONTHLY");
+               ( document.querySelector<HTMLElement>(".monthly-frequence")).style.display= "block";
+                (document.querySelector<HTMLElement>(".weekly-frequence")).style.display= "none";
+                console.log("everymonth::",this.eventbyid.everyNmonth)
+                console.log("monthday::",this.eventbyid.monthday)
+                this.eventDetail.controls['everyNmonth'].setValue( this.eventbyid.everyNmonth);
+                this.eventDetail.controls['monthday'].setValue( this.eventbyid.monthday);
+                }
+                
+                else{
+                  console.log("frequency error");
+                }
+                console.log("event :::::",this.eventbyid);
+                this.eventDetail.controls['id'].setValue(this.eventbyid.id);
+                this.eventDetail.controls['title'].setValue( this.eventbyid.title);
+                this.eventDetail.controls['description'].setValue( this.eventbyid.description);
+                this.eventDetail.controls['datedebutrecur'].setValue( this.eventbyid.start);
+                this.eventDetail.controls['datefinrecur'].setValue( this.eventbyid.end);
+                this.eventDetail.controls['employee'].setValue( this.eventbyid.employee);
+                const results: any[] = [];
+                this.eventbyid.employee.split(',').forEach(event=> 
+                  {
+                    results.push(event)
+                 
+                 })
+                 this.eventDetail.controls['employee'].setValue(results);
+          }
+          
+          
+          
+          else{
+            console.log("event error");
+          }
+       
   })
 }
 
 getevents(){
   this.myeventService.getEvents().subscribe(res=>{
     this.eventlist=res;
-   
+   console.log(this.eventlist);
  
   })
 }
@@ -142,7 +226,7 @@ console.log("event static");
 
 deleteEvent(){
 
-    this.myeventService.deleteEvent(this.eventDetail.value.title).subscribe(res=>{
+    this.myeventService.deleteEvent(this.eventbyid).subscribe(res=>{
       console.log(res);
       alert("event deleted successfully");
       this.getevents();
@@ -167,7 +251,7 @@ updateEvent(){
 }
 
 confirmDelete() {
-  if(confirm("Are you sure you want to delete event "+this.eventDetail.value.title)) {
+  if(confirm("Are you sure you want to delete event "+this.eventbyid.title)) {
      this.deleteEvent();
   }
 }

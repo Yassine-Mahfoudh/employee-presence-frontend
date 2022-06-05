@@ -4,4 +4,6 @@ export class Demande {
     description:string='';
     datedebut:string='';
     datefin:string='';
+    empid:number=0;
+    etat:string='';
 }

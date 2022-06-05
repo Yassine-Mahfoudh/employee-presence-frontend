@@ -1,0 +1,35 @@
+<div id="modal-content-wrapper" >
+  <header id="modal-header">
+      <h1 id="modal-title">Event Details</h1>
+  </header>
+  <div class="event-static">
+  <ul >
+      <li>Titre : {{eventbyid.title}}</li>
+      <li> Description : {{eventbyid.description}}</li>
+      <li>Date Debut : {{eventbyid.start}}</li>
+      <li>Date fin : {{eventbyid.end}}</li>
+      <li>Type : {{eventbyid.type}}</li>
+      <li>Employees invoqués : {{eventbyid.employee}}</li>
+      
+  </ul></div>
+  <div class="event-reccursive">
+  <ul >
+    <li>Titre : {{eventbyid.title}}</li>
+    <li>Description : {{eventbyid.description}}</li>
+    <li>Date Debut : {{eventbyid.start}}</li>
+    <li>Date fin: {{eventbyid.end}}</li>
+    <li>Type : {{eventbyid.type}}</li>
+
+    <li>evenement repeter par : {{frequence}}</li>
+    <li>Chaque : {{eventbyid.everyNday}} semaine</li>
+    <li>dans les jour : {{eventbyid.weekday}}</li>
+    <li> Chaque : {{eventbyid.everyNmonth}} mois</li>
+    <li>dans les mois :{{eventbyid.monthday}}</li>
+    <li>Employees invoqués : {{eventbyid.employee}}</li>
+    
+</ul>
+</div>
+  <footer id="modal-footer">
+      <button mat-raised-button id="modal-close-button" (click)="closeModal()">Close</button>
+  </footer>
+</div>

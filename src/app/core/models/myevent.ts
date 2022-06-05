@@ -9,5 +9,10 @@ export class MyEvent {
     description:string='';
     color:string='';
     type:string='';
+    frequency:string='';
+    everyNday:number=0;
+    weekday:string='';
+    everyNmonth:number=0;
+    monthday:string='';
 }
 

@@ -1,3 +1,5 @@
+import { Profil } from "./profil";
+
 export class Employee {
     id:number=0;
     lastname:string='';
@@ -11,5 +13,6 @@ export class Employee {
     salle:number=0;
     project:string='';
     manager:string='';
-    listProfils:any[]=[];
+    managerid:number=0;
+    listeProfils:String[]=[]
 }

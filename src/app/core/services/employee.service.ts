@@ -15,12 +15,14 @@ export class EmployeeService {
   getemployeeurl: string;
   updateemployeeurl: string;
   getemployeebyidurl:string;
+  getemployeebynameurl:string;
   
 
   constructor(private http:HttpClient) {
     this.deleteemployeeurl= 'http://localhost:8080/employee/delete';
     this.getemployeeurl= 'http://localhost:8080/employee';
     this.getemployeebyidurl= 'http://localhost:8080/employee/find';
+    this.getemployeebynameurl= 'http://localhost:8080/employee/findname';
     this.addemployeeurl= 'http://localhost:8080/employee/add';
     this.updateemployeeurl= 'http://localhost:8080/employee/update';
     
@@ -38,18 +40,15 @@ export class EmployeeService {
     {
       return this.http.get<Employee[]>(this.getemployeeurl);   
     }
-   /* getEmployeeById(id : any):Observable<Employee>
-    {
-      return this.http.get<Employee>(`${this.getemployeebyidurl}/${id}`);
-    }  */
-    /*getEmployeeByCode(code : any):Observable<Employee>
-    {
-      return this.http.get<Employee>(this.getemployeeurl+'/find'+'/'+code);
-    }  
-*/
+   s
 getEmployeeById(id: number) {
   return this.http.get<Employee>(this.getemployeebyidurl + '/' + id);
 }
+
+getEmployeeByName(firstname: String){
+  return this.http.get<Employee>(this.getemployeebynameurl + '/' + firstname);
+}
+
     updateEmployee(employee : Employee, id :any):Observable<Employee>
     {
       return this.http.put<Employee>(this.updateemployeeurl+'/'+id,employee);   

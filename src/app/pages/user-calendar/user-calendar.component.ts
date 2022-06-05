@@ -80,7 +80,8 @@ export class UserCalendarComponent implements OnInit {
      this.myevents=res;
     
 
-     this.myevents.forEach(event=> event.employee.split(',').forEach(employee=>{if(employee===this.authService.getUserEmployee().firstname){
+     this.myevents.forEach(event=> event.employee.split(',').forEach(employee=>{if(employee===this.authService.getUserEmployee().firstname)
+      {
     
       results.push(event);
      }} ));
@@ -99,7 +100,6 @@ if (test)
       {
         this.calendarOptions.events=this.myevents;
         console.log('all-event : ',this.myevents);
-      
       } 
       else
       {

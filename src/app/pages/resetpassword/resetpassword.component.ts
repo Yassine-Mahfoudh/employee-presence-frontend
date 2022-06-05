@@ -41,7 +41,7 @@ export class ResetpasswordComponent implements OnInit {
       (response: any) => {
         this.ngxService.stop();
         this.dialogRef.close();
-        this.snackBarService.openSnackBar("Done, check your email",'');
+        this.snackBarService.openSnackBar("Terminé, vérifiez votre messagerie",'');
       },
       (error) => {
         this.ngxService.stop();

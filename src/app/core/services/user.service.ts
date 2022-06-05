@@ -53,10 +53,7 @@ export class UserService {
     return this.httpclient.post(this.PATH_API+'/authenticate',loginData,{headers:this.requestHeader});
   }
 
-   public logout(user:User):any{
-    return this.httpclient.post(this.PATH_API+'/logout',user);
-  }
-
+  
   public roleMatch(allowedRoles) :boolean{
     let isMatch = false;
     const userRoles : any=this.authService.getRoles();
@@ -88,17 +85,16 @@ export class UserService {
       return this.httpclient.delete<User>(this.deleteUsersurl+'/'+user.id);   
     }
 
+    getUserProfils(id):Observable<Profil[]>
+    {
+      return this.httpclient.get<Profil[]>(this.getUsersurl+'/find/profils/'+id);   }
+
    addUser(user : User):Observable<User>{
      return this.httpclient.post<User>(this.addUsersurl,user,{headers:this.requestHeader2});
     }
     getUsers():Observable<User[]>
     {
       return this.httpclient.get<User[]>(this.getUsersurl);   }
-
-      getUserProfils(id):Observable<Profil[]>
-      {
-        return this.httpclient.get<Profil[]>(this.getUsersurl+'/find/profils/'+id);   }
-
 
     updateUser(user : User):Observable<User>
     {

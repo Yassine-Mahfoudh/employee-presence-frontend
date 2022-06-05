@@ -10,6 +10,7 @@ import { Profil } from 'src/app/core/models/profil';
 import { ProfilService } from 'src/app/core/services/profil.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SnackbarService } from 'src/app/shared/service/snackbar.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-users',
@@ -33,6 +34,7 @@ export class UsersComponent implements OnInit {
   });;
   userobj: User = new User();
   usersList:User[] = [];
+  managerList:User[] = [];
   profilList:Profil[] = [];
 
   totalRec!: string;
@@ -41,6 +43,8 @@ export class UsersComponent implements OnInit {
   constructor(private formBuilder : FormBuilder, private userService: UserService,  config: NgbModalConfig,
     private modalService: NgbModal, private snackbar:SnackbarService,
     private profilService: ProfilService,
+    private ngxService: NgxUiLoaderService,
+
     ) {  
        // customize default values of modals used by this component tree
       config.backdrop = 'static';
@@ -79,9 +83,10 @@ this.getProfils();
       console.log('user check ::: ',res)
       if(res.id==null){
        
-      
+        this.ngxService.start();
          this.userService.addUser(this.userobj).subscribe(res=>{
            console.log(res);
+           this.ngxService.stop();
            this.getUsers();
          },
          (error: HttpErrorResponse) => {
@@ -131,7 +136,7 @@ deleteUser(User : User){
 updateUser(){
   this.userobj.id=this.userDetail.value.id;
   this.userobj.userName=this.userDetail.value.userName;
-  this.userobj.userPassword=this.userDetail.value.userPassword;
+  this.userobj.userPassword=this.userobj.userPassword;
   this.userobj.email=this.userDetail.value.email;
   for(var prof of this.userDetail.value.profil){
     let profil: Profil = new Profil();

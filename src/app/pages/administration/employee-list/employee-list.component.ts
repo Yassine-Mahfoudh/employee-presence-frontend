@@ -14,6 +14,7 @@ export class EmployeeListComponent implements OnInit {
   employeeList:Employee[] = [];
   totalRec!: string;
   page:number=1
+  employeeList2: Employee[]= [];
   constructor(
     private employeeService: EmployeeService,
     config: NgbModalConfig,
@@ -28,11 +29,45 @@ config.keyboard = false;
   ngOnInit(): void {
     this.getEmployees();
   }
+  /*
   getEmployees(){
     this.employeeService.getEmployees().subscribe(res=>{
       this.employeeList=res;
       console.log(this.authService.getUserEmployee())
     })
+  }*/
+
+
+  listComboxUsers : Employee[] = [];
+
+
+
+
+getEmployeesRoles(){
+  this.employeeService.getEmployees().subscribe(res=>{
+    this.employeeList=res;
+    const results: any[] = [];
+    
+    });
+
+  }
+
+
+getEmployees(){
+  this.employeeService.getEmployees().subscribe(res=>{
+    this.employeeList=res;
+    const results: any[] = [];
+
+    this.employeeList.forEach(employee=>{if(employee.lastname!='' && employee.firstname!='' && employee.address!='' && employee.phonenumber!=null && employee.birthdate!=null){
+      results.push(employee);
+      this.employeeList2=results;
+  
+
+     }} )
+  
+    });
+   
+
   }
 
   getStatut(employee : Employee):String{

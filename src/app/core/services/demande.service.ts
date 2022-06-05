@@ -13,11 +13,13 @@ export class DemandeService {
   adddemandeurl : string;
   getdemandeurl: string;
   updatedemandeurl: string;
+  getdemandebyid: string;
   
 
   constructor(private http:HttpClient) {
     this.deletedemandeurl= 'http://localhost:8080/demande/delete';
     this.getdemandeurl= 'http://localhost:8080/demande';
+    this.getdemandebyid= 'http://localhost:8080/demande/find';
     this.adddemandeurl= 'http://localhost:8080/demande/add';
     this.updatedemandeurl= 'http://localhost:8080/demande/update';
     
@@ -34,6 +36,10 @@ export class DemandeService {
     getDemandes():Observable<Demande[]>
     {
       return this.http.get<Demande[]>(this.getdemandeurl);   }
+
+      getDemandeByempId(id:any):Observable<Demande>
+    {
+      return this.http.get<Demande>(this.getdemandebyid+'/'+id); }
 
     updateDemande(demande : Demande):Observable<Demande>
     {

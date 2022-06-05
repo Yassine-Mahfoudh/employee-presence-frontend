@@ -30,18 +30,6 @@ import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.comp
 import { UserCalendarComponent } from './pages/user-calendar/user-calendar.component';
 
 const routes: Routes = [
-  //{ path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
-  // tslint:disable-next-line: max-line-length
- // { path: '', component: LayoutsComponent, loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)},
- // { path: '', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)},//, canActivate: [AuthGuard] },
-
-  //{ path: '', component:HomeComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
-  //{ path: 'home', component:HomeComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
-
- // { path: '', component:DashboardComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']}},
-  //{ path: '', component:HomeComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
-
-  //{ path: '', component: LoginComponent },
 
   { path: 'login', component: LoginComponent },
   
@@ -57,7 +45,7 @@ const routes: Routes = [
 
 
   { path: 'salle',component:SalleComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
-  { path: 'sallelist',component:SalleListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN','USER']} },
+  { path: 'sallelist',component:SalleListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN','USER','MANAGER']} },
   //{ path: 'SalleList',component:SalleListComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
 
 
@@ -68,11 +56,11 @@ const routes: Routes = [
   { path: 'projetlist',component:ProjetListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN']} },
 
   { path: 'departement',component:DepartementComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
-  { path: 'departementlist',component:DepartementListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN','USER']} },
+  { path: 'departementlist',component:DepartementListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN','USER','MANAGER']} },
  // { path: 'DepartementList',component:DepartementListComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
 
 
-  { path: 'demande',component:DemandeComponent,canActivate:[AuthGuard],data : {profils:['RH','USER']} },
+  { path: 'demande',component:DemandeComponent,canActivate:[AuthGuard],data : {profils:['RH','USER','MANAGER']} },
   //{ path: 'Demande',component:DemandeComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
 
 
@@ -81,7 +69,7 @@ const routes: Routes = [
   { path: 'userlist',component:UsersListComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
 
   { path: 'employee',component:EmployeeComponent,canActivate:[AuthGuard],data : {profils:['RH']} },
-  { path: 'employeelist',component:EmployeeListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN','USER']} },
+  { path: 'employeelist',component:EmployeeListComponent,canActivate:[AuthGuard],data : {profils:['ADMIN','USER','MANAGER']} },
 
  // { path: 'EmployeeList',component:EmployeeListComponent,canActivate:[AuthGuard],data : {profils:['USER']} },
 
