@@ -41,6 +41,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { ChatComponent } from './Chat/chat/chat.component';
 import { ChatUsersComponent } from './Chat/chat-users/chat-users.component';
 import { ChatstreamComponent } from './Chat/chatstream/chatstream.component';
+import { ConfirmDialogComponent } from './services_generiques/confirm-dialog/confirm-dialog.component';
+import { DialogErrorComponent } from './services_generiques/confirm-dialog/dialog-error/dialog-error.component';
 
 
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
@@ -73,7 +75,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     UserCalendarComponent,
     ChatComponent,
     ChatUsersComponent,
-    ChatstreamComponent
+    ChatstreamComponent,
+    ConfirmDialogComponent,
+    DialogErrorComponent
     
   ],
   imports: [

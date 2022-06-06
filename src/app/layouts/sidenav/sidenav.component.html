@@ -48,7 +48,7 @@
     <mat-icon>departement</mat-icon>Liste des departements
   </a>
 
-  <a mat-list-item *ngIf="userService.roleMatch(['MANAGER','USER'])" routerLinkActive="list-item-active" routerLink="/demande">
+  <a mat-list-item *ngIf="userService.roleMatch(['MANAGER','USER','RH'])" routerLinkActive="list-item-active" routerLink="/demande">
     <mat-icon></mat-icon>Gestion des demandes
   </a>
   <!--<a mat-list-item *ngIf="userService.roleMatch(['USER'])" routerLinkActive="list-item-active" routerLink="/DemandeList">

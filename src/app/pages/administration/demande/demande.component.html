@@ -1,12 +1,12 @@
-
+<!--employee demande-->
     <h3 style="text-align:center">Gestion des Demande</h3>
     <mat-tab-group >
-      <mat-tab label="Demande">
+      <mat-tab label="Demande" *ngIf="userService.roleMatch(['USER','MANAGER'])">
         
         <div class="container">
           <div class="row ">
               <div >
-                  <h2 class="h3 mb-4  page-title">Ajouter demande</h2>
+                  <h2 class="h3 mb-4  page-title" >Ajouter demande</h2>
                   <div class="my-4">
                       <form [formGroup]="demandeDetail" >
                         <div class="pl-lg-4">
@@ -80,7 +80,7 @@
           
       </mat-tab>
 
-      <div class="mes-demande " *ngIf="userService.roleMatch(['USER'])">
+      <div class="mes-demande " *ngIf="userService.roleMatch(['USER','MANAGER'])">
       <mat-tab label="Mes Demandes">
 
         <!--edit demande-->
@@ -90,7 +90,7 @@
           <mat-toolbar color="primary">
             <mat-toolbar-row fxLayout="row bg-color">
         
-              <span class="title-center">Mettre à jour le projet</span>
+              <span class="title-center">Mettre à jour la demande</span>
               <button
                 type="button"
                 class="d-block mr-0 ml-auto btn-close" (click)="d('Cross click')"
@@ -106,7 +106,7 @@
               <div class="row formbg-inner   ">
                 <div class="col-lg-6">
                   <h6 class="heading-small text-muted mb-4">
-                    Les informations du demande :
+                    Les informations de la demande :
                   </h6>
                   <div class="padding-bottom--24" >
                     <label for="select-title">Titre</label>
@@ -254,7 +254,7 @@
 
 
     
-
+<!--manager demande-->
 
 
 <div class="demande-en-attentes" *ngIf="userService.roleMatch(['MANAGER'])">
@@ -266,7 +266,7 @@
               <fieldset>
                 <div class="inner-form">
                   <div class="input-field">
-                    <input class="form-control" id="choices-text-preset-values" (ngModelChange)="searchDemande(key.value)" #key="ngModel" ngModel
+                    <input class="form-control" id="choices-text-preset-values" (ngModelChange)="searchDemandemanager(key.value)" #key="ngModel" ngModel
                     name="key" type="search" placeholder="Type to search..." />
                     <span class="input-icon" id="basic-addon1">
                       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -280,17 +280,19 @@
           </div>
         <ul class="responsive-table2 pad">
           <li class="table-header margt  ">
-            <div [(appSort)]="demandeList" data-order="desc" data-name="Titre" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Titre</div>
-            <div [(appSort)]="demandeList" data-order="desc" data-name="Description" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
-            <div [(appSort)]="demandeList" data-order="desc" data-name="datedebut" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Date debut</div>
-            <div [(appSort)]="demandeList" data-order="desc" data-name="datefin" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Date fin </div>        
-            <div [(appSort)]="demandeList" data-order="desc" data-name="datefin" class="col mar margl col-6 text-uppercase text-white font-weight-bolder opacity-7">Actions </div>
+           
+            <div [(appSort)]="managerdemandes" data-order="desc" data-name="Titre" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Titre</div>
+            <div [(appSort)]="managerdemandes" data-order="desc" data-name="Description" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
+            <div [(appSort)]="managerdemandes" data-order="desc" data-name="datedebut" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Date debut</div>
+            <div [(appSort)]="managerdemandes" data-order="desc" data-name="datefin" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Date fin </div>        
+            <div [(appSort)]="managerdemandes" data-order="desc" data-name="datefin" class="col mar margl col-6 text-uppercase text-white font-weight-bolder opacity-7">Actions </div>
           </li>
           
           <li class="table-row"  *ngFor="let demande of managerdemandes | paginate: { id:'listing_pagination',
           itemsPerPage:4,
           currentPage:page,
           totalItems:totalRec}">
+
             <div class="col col-2" data-label="Titre" >{{demande.title}}</div>
             <div class="col col-3" data-label="Description">{{demande.description}}</div>
             <div class="col col-4" data-label="datedebut">{{demande.datedebut}}</div>
@@ -323,6 +325,74 @@
       </mat-tab>
 </div>
 
+<!--rh demande-->
+<div class="demande-en-attentes" *ngIf="userService.roleMatch(['RH'])">
+  <mat-tab label="Demandes en attentes">
+
+    <form>
+      <div class="s004">
+        <form class="form">
+          <fieldset>
+            <div class="inner-form">
+              <div class="input-field">
+                <input class="form-control" id="choices-text-preset-values" (ngModelChange)="searchDemandemanager(key.value)" #key="ngModel" ngModel
+                name="key" type="search" placeholder="Type to search..." />
+                <span class="input-icon" id="basic-addon1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                </svg>
+                </span>
+              </div>
+            </div> 
+          </fieldset>
+        </form>
+      </div>
+    <ul class="responsive-table2 pad">
+      <li class="table-header margt  ">
+
+        <div [(appSort)]="demandeList" data-order="desc" data-name="Titre" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Titre</div>
+        <div [(appSort)]="demandeList" data-order="desc" data-name="Description" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
+        <div [(appSort)]="demandeList" data-order="desc" data-name="datedebut" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Date debut</div>
+        <div [(appSort)]="demandeList" data-order="desc" data-name="datefin" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Date fin </div>        
+        <div [(appSort)]="demandeList" data-order="desc" data-name="datefin" class="col mar margl col-6 text-uppercase text-white font-weight-bolder opacity-7">Actions </div>
+      </li>
+      
+      <li class="table-row"  *ngFor="let demande of rhdemandes | paginate: { id:'listing_pagination',
+      itemsPerPage:4,
+      currentPage:page,
+      totalItems:totalRec}">
+   
+        <div class="col col-2" data-label="Titre" >{{demande.title}}</div>
+        <div class="col col-3" data-label="Description">{{demande.description}}</div>
+        <div class="col col-4" data-label="datedebut">{{demande.datedebut}}</div>
+        <div class="col col-5" data-label="datefin">{{demande.datefin}}</div>
+        <div class="col col-6" >
+          <button class="btn button-3 bg-cb"   mat-strocked-button type="submit" 
+          (click)="AppproverDemande(demande)"  >
+           Appprover
+         </button>
+         <button  class="btn button-3 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="RefuserDemande(demande)" >
+           Refuser
+         </button>
+        </div>
+
+      </li>
+      
+    </ul>
+    
+
+    <div class="wrapper ">
+      <pagination-controls  id="listing_pagination"
+        (pageChange)="page=$event"  
+   >
+</pagination-controls>
+
+</div>
+</form>
+
+
+  </mat-tab>
+</div>
 
 
 

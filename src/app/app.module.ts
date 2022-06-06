@@ -30,6 +30,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { NgxUiLoaderModule,NgxUiLoaderConfig,SPINNER,PB_DIRECTION } from "ngx-ui-loader";
 import { FooterComponent } from './layouts/footer/footer.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { MatTooltipModule } from '@angular/material/tooltip'; 
 
 
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
@@ -79,6 +80,7 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
     MatIconModule,
     MatToolbarModule,
     MatTabsModule,
+    MatTooltipModule
 
   ],
   providers: [

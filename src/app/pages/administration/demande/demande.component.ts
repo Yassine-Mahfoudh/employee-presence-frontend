@@ -28,7 +28,7 @@ export class DemandeComponent implements OnInit {
   demandeList:Demande[] = [];
   empDemandes:Demande[] = [];
   totalRec!: string;
-  page:number=1
+  page:number=1;
   demandeById: Demande;
   trashIcon = faTrash;
   editIcon = faPenToSquare;
@@ -41,6 +41,7 @@ export class DemandeComponent implements OnInit {
   employeeList: Employee[];
   employeeList2: Employee[];
   eventobj: MyEvent=new MyEvent();
+  rhdemandes: Demande[] = [];
 
 
   constructor(private formBuilder : FormBuilder,
@@ -87,6 +88,8 @@ export class DemandeComponent implements OnInit {
     console.log(this.demandeDetail);
     this.demandeobj.id=this.demandeDetail.value.id;
     this.demandeobj.empid=this.authservice.getUser().id;
+    this.demandeobj.empprenom=this.authservice.getUserEmployee().firstname;
+    this.demandeobj.empnom=this.authservice.getUserEmployee().lastname;
     this.demandeobj.title=this.demandeDetail.value.title;
     this.demandeobj.description=this.demandeDetail.value.description;
     this.demandeobj.datedebut=this.demandeDetail.value.datedebut;
@@ -142,14 +145,54 @@ getDemandes(){
        
         if(demande.empid==employee.id)
         {
-          
 
-          this.managerdemandes.push(demande);
-        }
-      })
+       
+         
+              this.managerdemandes.push(demande);
+      }
+    })
+
 
     }
     })
+
+
+//GET MANAGER DEMANDES POUR LE RH
+    this.employeeList2.forEach(employee=>{
+    
+      for(let i in employee.listeProfils){
+        if(employee.listeProfils[i]==="RH"){
+
+       
+             this.demandeList.forEach(demande=>{
+         
+              this.employeeList2.forEach(employee1=>{
+                console.log("employee1 id:: ", employee1.id)
+                console.log("demande empid:: ", demande.empid)
+               if(employee1.id==demande.empid){  
+                console.log("employeeById:: ", employee1)
+                for(let j in employee1.listeProfils){
+                  if(employee1.listeProfils[j]==="MANAGER")
+                    {
+                 
+                this.rhdemandes.push(demande);
+                console.log("rhdemande:: ", this.rhdemandes)
+        }
+      }
+             
+
+    }
+    
+  })
+
+  })
+    }
+  }
+
+    })
+
+
+
  
 
   })
@@ -214,6 +257,23 @@ updateDemande(){
   }
   );
 
+}
+public searchDemandemanager(key: string): void {
+  console.log(key);
+  const results: Demande[] = [];
+  for (const demande of this.managerdemandes) {
+    if (demande.title.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || demande.description.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || demande.datedebut.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || demande.datefin.toLowerCase().indexOf(key.toLowerCase()) !== -1
+     ) {
+      results.push(demande);
+    }
+  }
+  this.managerdemandes = results;
+  if (results.length === 0 || !key) {
+    this.getDemandes();
+  }
 }
 
 public searchDemande(key: string): void {
@@ -296,16 +356,7 @@ RefuserDemande(demande: Demande){
        
       }
       );
-
-   
-     //// for ( let i in this.managerdemandes)
-      //{
-     ////   if (this.demandeById===this.managerdemandes[i]){
-     ////     console.log("liste de demand(i):: ",this.managerdemandes[i]);
-      ////    this.deleteDemande(this.managerdemandes[i]);
-      ////  }
-      
-     //// }
+     
      
       
     })
