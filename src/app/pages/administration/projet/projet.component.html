@@ -1,5 +1,7 @@
 
       <!-- addproject -->
+
+
       <ng-template #content let-c="close" let-d="dismiss">
   
         <mat-toolbar color="primary">
@@ -15,6 +17,7 @@
             ></button>
           </mat-toolbar-row>
         </mat-toolbar>
+        <!--
         <div class="modal-body">
         <form [formGroup]="projetDetail" >
           <div class="pl-lg-4 field">
@@ -82,7 +85,69 @@
             </mat-dialog-actions>
           </div>
         </form>
-      </div>
+        
+      -->
+
+      <mat-dialog-content class="mat-typography">
+        <form [formGroup]="projetDetail">
+          <div fxFlex fxLayout="column">
+            <div class="row "  class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              
+              <mat-label class="clr2">Nom</mat-label>
+              <input type="text" matInput formControlName="name"  class="input-name" required placeholder="nom">
+              <mat-error *ngIf="projetDetail.controls.name.touched && projetDetail.controls.name.invalid">
+                <span *ngIf="projetDetail.controls.name.errors.required">This field is necessary</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+            <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">Priorité</mat-label>
+              <input type="text" matInput formControlName="priority" class="input-priority" required >
+              <mat-error *ngIf="projetDetail.controls.priority.touched && projetDetail.controls.priority.invalid">
+                <span *ngIf="projetDetail.controls.priority.errors.required">This field is necessary</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+            <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">Description</mat-label>
+              <input type="text" matInput formControlName="description"  class="input-description" required>
+              <mat-error *ngIf="projetDetail.controls.description.touched && projetDetail.controls.description.invalid">
+                <span *ngIf="projetDetail.controls.description.errors.required">This field is necessary</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">Date de début</mat-label>
+              <input type="date" matInput formControlName="startdate"  class="input-startdate" required>
+              <mat-error *ngIf="projetDetail.controls.startdate.touched && projetDetail.controls.startdate.invalid">
+                <span *ngIf="projetDetail.controls.startdate.errors.required">This field is necessary</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">Date de fin</mat-label>
+              <input type="date" matInput formControlName="enddate"  class="input-enddate" required>
+              <mat-error *ngIf="projetDetail.controls.enddate.touched && projetDetail.controls.enddate.invalid">
+                <span *ngIf="projetDetail.controls.enddate.errors.required">This field is necessary</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          </div>
+        </form>
+      </mat-dialog-content>
+      <mat-dialog-actions class="btn-group pad-btn ">
+        <button class="btn button-2 bg-cb"  [disabled]="!projetDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')" (click)="addProjet()"  (click)="handleClear()">
+          Ajouter un projet
+        </button>
+        <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(content)" (click)="handleClear()">
+          Fermer
+        </button>
+      </mat-dialog-actions>
            
           </ng-template>
         
@@ -207,7 +272,6 @@
                   </div>
                 <ul class="responsive-table pad">
                   <li class="table-header margt">
-                    <div [(appSort)]="projetList" data-order="desc" data-name="id" class="col padt col-1 text-uppercase text-white font-weight-bolder opacity-7">Id</div>
                     <div [(appSort)]="projetList" data-order="desc" data-name="name" class="col padt col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
                     <div [(appSort)]="projetList" data-order="desc" data-name="priority" class="col padt col-3 text-uppercase text-white font-weight-bolder opacity-7">Priorité</div>
                     <div [(appSort)]="projetList" data-order="desc" data-name="description" class="col padt col-4 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
@@ -228,7 +292,6 @@
                   itemsPerPage:4,
                   currentPage:page,
                   totalItems:totalRec}">
-                    <div class="col col-1" data-label="Id">{{projet.id}}</div>
                     <div class="col col-2" data-label="Name" style="width: 100px; word-wrap:break-word;">{{projet.name}}</div>
                     <div class="col col-3" data-label="Priority">{{projet.priority}}</div>
                     <div class="col col-4" data-label="Description" style="width: 130px; word-wrap:break-word;">{{projet.description}}</div>

@@ -50,8 +50,9 @@ export class DepartementListComponent implements OnInit {
       }
     }
     this.departementList = results;
-    if (results.length === 0 || !key) {
+    if (key=='') {
       this.getDepartements();
     }
   }
+  
 }

@@ -9,7 +9,6 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Salle } from 'src/app/core/models/salle';
 import { SalleService } from 'src/app/core/services/salle.service';
-import { DeleteComponent } from 'src/app/shared/constant/delete/delete.component';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
@@ -53,9 +52,9 @@ ancienDep:any;
     this.salleDetail = this.formBuilder1.group({
       id: [''],
       type: [''],
-      num: [
+      nom: [
         null,
-        [Validators.required, Validators.pattern(GlobalConstants.numberRegex)],
+        [Validators.required],
       ],
       nbposte: [
         null,
@@ -107,7 +106,7 @@ ancienDep:any;
     console.log(this.salleDetail);
     this.salleobj.id = this.salleDetail.value.id;
     this.salleobj.type = this.salleDetail.value.type;
-    this.salleobj.num = this.salleDetail.value.num;
+    this.salleobj.nom = this.salleDetail.value.nom;
     this.salleobj.nbposte = this.salleDetail.value.nbposte;
     this.salleobj.pourcentagePres = this.salleDetail.value.pourcentagePres;
     this.salleobj.dep = this.salleDetail.value.dep;
@@ -135,7 +134,7 @@ ancienDep:any;
   editSalle(salle: Salle) {
     this.salleDetail.controls['id'].setValue(salle.id);
     this.salleDetail.controls['type'].setValue(salle.type);
-    this.salleDetail.controls['num'].setValue(salle.num);
+    this.salleDetail.controls['nom'].setValue(salle.nom);
     this.salleDetail.controls['nbposte'].setValue(salle.nbposte);
     this.salleDetail.controls['pourcentagePres'].setValue(
       salle.pourcentagePres
@@ -147,7 +146,7 @@ ancienDep:any;
   updateSalle() {
     this.salleobj.id = this.salleDetail.value.id;
     this.salleobj.type = this.salleDetail.value.type;
-    this.salleobj.num = this.salleDetail.value.num;
+    this.salleobj.nom = this.salleDetail.value.nom;
     this.salleobj.nbposte = this.salleDetail.value.nbposte;
     this.salleobj.pourcentagePres = this.salleDetail.value.pourcentagePres;
     this.salleobj.dep = this.salleDetail.value.dep;
@@ -176,7 +175,7 @@ ancienDep:any;
         'Are you sure you want to delete salle ' +
           salle.type +
           ' number : ' +
-          salle.num
+          salle.nom
       )
     ) {
       this.deleteSalle(salle);
@@ -189,14 +188,14 @@ ancienDep:any;
   this.dialog.open(DeleteComponent,dialogConfig)
 }
 */
-
+/*
   public searchSalles(key: string): void {
     console.log(key);
     const results: Salle[] = [];
     for (const salle of this.salleList) {
       if (
         salle.type.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        salle.num.toString().indexOf(key.toLowerCase()) !== -1 ||
+        salle.nom.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
         salle.nbposte.toString().indexOf(key.toLowerCase()) !== -1 ||
         salle.pourcentagePres.toString().indexOf(key.toLowerCase()) !== -1 ||
         salle.dep.toLowerCase().indexOf(key.toLowerCase()) !== -1
@@ -205,7 +204,28 @@ ancienDep:any;
       }
     }
     this.salleList = results;
-    if (results.length === 0 || !key) {
+    if (key=='') {
+      this.getSalles();
+    }
+  }*/
+
+  public searchSalles(key: string): void {
+    console.log(key);
+    const results: Salle[] = [];
+    for (const salle of this.salleList) {
+      if (
+        salle.nom.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || salle.type.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || salle.nbposte.toString().toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || salle.pourcentagePres.toString().toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || salle.dep.toString().toLowerCase().indexOf(key.toLowerCase()) !== -1
+      
+      ) {
+        results.push(salle);
+      }
+    }
+    this.salleList = results;
+    if (key=='') {
       this.getSalles();
     }
   }

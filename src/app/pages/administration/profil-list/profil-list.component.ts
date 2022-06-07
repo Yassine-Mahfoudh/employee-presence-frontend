@@ -46,7 +46,7 @@ export class ProfilListComponent implements OnInit {
       }
     }
     this.profilList = results;
-    if (results.length === 0 || !key) {
+    if (key=='') {
       this.getProfil();
     }
   }

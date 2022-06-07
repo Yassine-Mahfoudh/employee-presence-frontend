@@ -85,45 +85,37 @@
                   </fieldset>
                 </form>
               </div>
-            <ul class="responsive-table pad">
-              <li class="table-header margt">
-                <div [(appSort)]="profilList" data-order="desc" data-name="id" class="col  col-1 text-uppercase text-white font-weight-bolder opacity-7">Id</div>
-                <div [(appSort)]="profilList" data-order="desc" data-name="name" class="col  col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
-                <div [(appSort)]="profilList" data-order="desc" data-name="description" class="col  col-3 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
-                <div class="col  col-4    text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
-               <!-- <div class="col col-8 ">
-                          <span class="navbar-toggler-icon"></span>  
-                        <div  id="navbarSupportedContent">
-                          <button class="btn button-1" data-bs-toggle="modal" (click)="open(content)" ><i><fa-icon [icon]="addIcon"></fa-icon></i></button>
-                        </div>
-                       
-                </div>-->
-                
-              </li>
-              
-              <li class="table-row"  *ngFor="let profil of profilList | paginate: { id:'listing_pagination',
-              itemsPerPage:4,
-              currentPage:page,
-              totalItems:totalRec}">
-                <div class="col col-1" data-label="Id">{{profil.id}}</div>
-                <div class="col col-2" data-label="Name">{{profil.name}}</div>
-                <div class="col col-3" data-label="Description" style="width: 130px; word-wrap:break-word;">{{profil.description}}</div>
-                <div class="col  col-4" >
-                  
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xxs" data-toggle="tooltip" data-original-title="Edit profil"  (click)="editProfil(profil)" (click)="open(contentUpdate)">
-                    <i> <fa-icon [icon]="editIcon"></fa-icon> </i>
-                  </a><br>
-                  
-                  <a href="javascript:;" class=" padlr text-secondary font-weight-bold text-xxs" data-toggle="tooltip" data-original-title="delete profil"  (click)="confirmDelete(profil)" >
-                    <i><fa-icon [icon]="trashIcon"></fa-icon> </i>
-                  </a>
-                </div>
-                <div class="col  col-8" >
-                </div>
 
-              </li>
-              
-            </ul>
+              <ul class="responsive-table pad">
+                <li class="table-header margt">
+                  <div [(appSort)]="profilList" data-order="desc" data-name="name" class="col padt col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
+                  <div [(appSort)]="profilList" data-order="desc" data-name="description" class="col padt col-3 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
+                  <div class="col padt col-7  margl  text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
+                  
+                  
+                </li>
+                
+                <li class="table-row"  *ngFor="let profil of profilList | paginate: { id:'listing_pagination',
+                itemsPerPage:5,
+                currentPage:page,
+                totalItems:totalRec}">
+                <div class="col col-2" data-label="Name" >{{profil.name}}</div>
+                <div class="col col-3" data-label="description">{{profil.description}}</div>
+                  <div class="col margl col-7" >
+                    
+                    <a href="javascript:;" class="text-secondary font-weight-bold text-xxs" data-toggle="tooltip" data-original-title="Edit profil"  (click)="editProfil(profil)" (click)="open(contentUpdate)">
+                      <i> <fa-icon [icon]="editIcon"></fa-icon> </i>
+                    </a><br>
+                    
+                    <a href="javascript:;" class=" padlr text-secondary font-weight-bold text-xxs" data-toggle="tooltip" data-original-title="delete profil"  (click)="confirmDelete(profil)" >
+                      <i><fa-icon [icon]="trashIcon"></fa-icon> </i>
+                    </a>
+                  </div>
+                  
+      
+                </li>
+                
+              </ul>
             
       
             <div class="wrapper ">

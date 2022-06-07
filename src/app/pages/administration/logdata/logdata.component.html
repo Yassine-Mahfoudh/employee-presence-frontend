@@ -27,7 +27,6 @@
                   </div>
                 <ul class="responsive-table pad">
                   <li class="table-header margt  ">
-                    <div [(appSort)]="logdataList" data-order="desc" data-name="id" class="col mar col-1 text-uppercase text-white font-weight-bolder opacity-7">Id</div>
                     <div [(appSort)]="logdataList" data-order="desc" data-name="username" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom d'utilisateur</div>
                     <div [(appSort)]="logdataList" data-order="desc" data-name="action" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Action</div>
                     <div [(appSort)]="logdataList" data-order="desc" data-name="dateAction" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Date d'action</div>                    
@@ -37,7 +36,6 @@
                   itemsPerPage:4,
                   currentPage:page,
                   totalItems:totalRec}">
-                    <div class="col col-1" data-label="Id">{{Logdata.id}}</div>
                     <div class="col col-2" data-label="username" >{{Logdata.username}}</div>
                     <div class="col col-3" data-label="action">{{Logdata.action}}</div>
                     <div class="col col-4" data-label="dateAction" >{{Logdata.dateAction}}</div>

@@ -44,21 +44,24 @@ getSalle(){
   })
 }
 
+
 public searchSalles(key: string): void {
   console.log(key);
   const results: Salle[] = [];
   for (const salle of this.salleList) {
-    if (salle.type.toLowerCase().indexOf(key.toLowerCase()) !== -1
-    || salle.num.toString().indexOf(key.toLowerCase()) !== -1
-    || salle.nbposte.toString().indexOf(key.toLowerCase()) !== -1
-    || salle.pourcentagePres.toString().indexOf(key.toLowerCase()) !== -1
-    || salle.dep.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    if (
+      salle.nom.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || salle.type.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || salle.nbposte.toString().toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || salle.pourcentagePres.toString().toLowerCase().indexOf(key.toLowerCase()) !== -1
+    || salle.dep.toString().toLowerCase().indexOf(key.toLowerCase()) !== -1
+    
     ) {
       results.push(salle);
     }
   }
   this.salleList = results;
-  if (results.length === 0 || !key) {
+  if (key=='') {
     this.getSalle();
   }
 }

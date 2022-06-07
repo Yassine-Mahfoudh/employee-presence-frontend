@@ -115,7 +115,7 @@ this.changePasswordForm=this.formBuilder.group({
       {
         this.ngxService.stop();
         this.responseMessage = response?.message;
-        this.snackbarService.openSnackBar("Password updated",'');
+        this.snackbarService.openSnackBar("Mot de passe modifié",'');
       },
       (error)=>{
         this.ngxService.stop();
@@ -207,6 +207,12 @@ onSelectFile(event) {
   
      // this.authService.setUserEmployee(this.accountobj);
      let EmpId = this.authService.getUserEmployee().id;
+     this.accountobj.salle=this.authService.getUserEmployee().salle;
+     this.accountobj.project=this.authService.getUserEmployee().project;
+     this.accountobj.manager=this.authService.getUserEmployee().manager;
+console.log("EempID::",EmpId)
+     console.log("this.authService.getUserEmployee():::::",this.authService.getUserEmployee())
+console.log("accountobj:::",this.accountobj)
 
      this.employeeService.updateEmployee(this.accountobj,EmpId).subscribe(res=>{
       console.log(res);
@@ -225,7 +231,7 @@ onSelectFile(event) {
     var okToRefresh = confirm("Do you really want to update your informations?");
     if (okToRefresh)
       {
-          setTimeout("location.reload(true);",500);
+          //setTimeout("location.reload(true);",500);
           this.updateAccount();
       }
     }

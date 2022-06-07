@@ -114,10 +114,10 @@ public searchProfils(key: string): void {
     }
   }
   this.profilList = results;
-  if (results.length === 0 || !key) {
+  if (key=='') {
     this.getProfils();
   }
-}
 
+}
 
 }

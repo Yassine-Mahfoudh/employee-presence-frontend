@@ -24,12 +24,11 @@
           </div>
         <ul class="responsive-table pad">
           <li class="table-header margt  ">
-            <div [(appSort)]="projetList" data-order="desc" data-name="id" class="col mar col-1 text-uppercase text-white font-weight-bolder opacity-7">Id</div>
-            <div [(appSort)]="projetList" data-order="desc" data-name="name" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Name</div>
-            <div [(appSort)]="projetList" data-order="desc" data-name="priority" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Priority</div>
+            <div [(appSort)]="projetList" data-order="desc" data-name="name" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
+            <div [(appSort)]="projetList" data-order="desc" data-name="priority" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Priorité</div>
             <div [(appSort)]="projetList" data-order="desc" data-name="description" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
-            <div [(appSort)]="projetList" data-order="desc" data-name="startdate" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Start date</div>
-            <div [(appSort)]="projetList" data-order="desc" data-name="enddate" class="col mar col-6 text-uppercase text-white font-weight-bolder opacity-7">End date</div>
+            <div [(appSort)]="projetList" data-order="desc" data-name="startdate" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Date de début</div>
+            <div [(appSort)]="projetList" data-order="desc" data-name="enddate" class="col mar col-6 text-uppercase text-white font-weight-bolder opacity-7">Date de fin</div>
             
           </li>
           
@@ -37,7 +36,6 @@
           itemsPerPage:4,
           currentPage:page,
           totalItems:totalRec}">
-            <div class="col col-1" data-label="Id">{{projet.id}}</div>
             <div class="col col-2" data-label="Name" style="width: 100px; word-wrap:break-word;">{{projet.name}}</div>
             <div class="col col-3" data-label="Priority">{{projet.priority}}</div>
             <div class="col col-4" data-label="Description" style="width: 130px; word-wrap:break-word;">{{projet.description}}</div>

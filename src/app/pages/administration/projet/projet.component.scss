@@ -2,9 +2,16 @@ mat-dialog-actions {
 
   display: flex;
   flex-wrap: nowrap;
-width: 422px ;
-  margin-bottom: -6px;
+  width: 422px;
+  margin-bottom: 7px;
 }
+
+
+.input{
+  width: 15px !important;
+  padding-right: 1%;
+}
+
 
 h1 {
   font-size: 26px;
@@ -539,7 +546,11 @@ select {
     padding-left: 4em;
 
   }
-  
+  .pad-btn{
+    padding:0em 4em;
+  }
+
+
   .padr
   {
     margin-top: 1em;
@@ -554,8 +565,16 @@ select {
     margin-top: 1em;
    
   }
+
+
+  .mtfldwrapper {
+    padding-bottom: 1.25em !important;
+    margin: 1em 2em !important;
+  }
+
   mat-dialog-actions{
-    width: 450px;
+    width: 509px;
+    
   }
  
   .mr-0 {

@@ -24,7 +24,6 @@
           </div>
         <ul class="responsive-table pad">
           <li class="table-header margt  ">
-            <div [(appSort)]="usersList" data-order="desc" data-name="id" class="col mar col-1 text-uppercase text-white font-weight-bolder opacity-7">Id</div>
             <div [(appSort)]="usersList" data-order="desc" data-name="userName" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom d'utilisateur</div>
             <div [(appSort)]="usersList" data-order="desc" data-name="profil" class="col mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Profil</div>
             <div [(appSort)]="usersList" data-order="desc" data-name="email" class="col  mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Email</div>
@@ -34,7 +33,6 @@
           itemsPerPage:4,
           currentPage:page,
           totalItems:totalRec}">
-            <div class="col col-1" data-label="Id">{{user.id}}</div>
             <div class="col col-2" data-label="userName">{{user.userName}}</div>
             <div class="col col-3" data-label="profil"  >
              <p *ngFor="let i of user.profils" style="width: 90px; word-wrap:break-word;">{{i.name}}</p> 

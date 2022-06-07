@@ -10,7 +10,7 @@ export class Employee {
     address:string='';
     phonenumber:string='';
     photo:string='';
-    salle:number=0;
+    salle:string='';
     project:string='';
     manager:string='';
     managerid:number=0;

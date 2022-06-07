@@ -150,7 +150,7 @@ public searchProjects(key: string): void {
     }
   }
   this.projetList = results;
-  if (results.length === 0 || !key) {
+  if (key=='') {
     this.getProjets();
   }
 }
@@ -166,12 +166,7 @@ handleClear(){
   this.projetDetail.reset();
 }
 
-/*addProjectAction(){
 
-  const dialogConfig = new MatDialogConfig();
-  dialogConfig.width = "550px";
-  this.dialog.open(AddprojectformComponent,dialogConfig)
-}*/
 
 
 }

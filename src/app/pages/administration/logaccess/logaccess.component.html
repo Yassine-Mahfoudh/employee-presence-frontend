@@ -28,7 +28,6 @@
                   </div>
                 <ul class="responsive-table pad">
                   <li class="table-header margt  ">
-                    <div [(appSort)]="logaccessList" data-order="desc" data-name="id" class="col mar col-1 text-uppercase text-white font-weight-bolder opacity-7">Id</div>
                     <div [(appSort)]="logaccessList" data-order="desc" data-name="username" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom d'utilisateur</div>
                     <div [(appSort)]="logaccessList" data-order="desc" data-name="dateAuth" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Date d'authentification</div>
                     <div [(appSort)]="logaccessList" data-order="desc" data-name="codeAccess" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Code d'accés</div>                    
@@ -38,7 +37,6 @@
                   itemsPerPage:4,
                   currentPage:page,
                   totalItems:totalRec}">
-                    <div class="col col-1" data-label="Id">{{Logaccess.id}}</div>
                     <div class="col col-2" data-label="username" >{{Logaccess.username}}</div>
                     <div class="col col-3" data-label="dateAuth">{{Logaccess.dateAuth}}</div>
                     <div class="col col-4" data-label="codeAccess" >{{Logaccess.codeAccess}}</div>

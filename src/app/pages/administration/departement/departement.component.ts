@@ -37,9 +37,7 @@ export class DepartementComponent implements OnInit {
     this.getDepartements();
     this.departementDetail = this.formBuilder.group({
       id: [''],
-      name:[null,[Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
-      nbsalles:[null,[Validators.required,Validators.pattern(GlobalConstants.numberRegex)]]
-    });
+      name:[null,[Validators.required,Validators.minLength(4),Validators.pattern(GlobalConstants.nameRegex)]]    });
   }
 
   
@@ -59,7 +57,6 @@ export class DepartementComponent implements OnInit {
     console.log(this.departementDetail);
     this.departementobj.id=this.departementDetail.value.id;
     this.departementobj.name=this.departementDetail.value.name;
-    this.departementobj.nbsalles=this.departementDetail.value.nbsalles;
     this.departementService.addDepartement(this.departementobj).subscribe(res=>{
       console.log(res);
       this.getDepartements();
@@ -96,7 +93,6 @@ deleteDepartement(departement : Departement){
   updateDepartement(){
     this.departementobj.id=this.departementDetail.value.id;
     this.departementobj.name=this.departementDetail.value.name;
-    this.departementobj.nbsalles=this.departementDetail.value.nbsalles;
   this.departementService.updateDepartement(this.departementobj).subscribe(res=>{
     console.log(res);
     this.getDepartements();
@@ -121,7 +117,7 @@ public searchDepartements(key: string): void {
     }
   }
   this.departementList = results;
-  if (results.length === 0 || !key) {
+  if (key=='') {
     this.getDepartements();
   }
 }

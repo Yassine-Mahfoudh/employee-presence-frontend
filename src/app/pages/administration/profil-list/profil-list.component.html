@@ -23,7 +23,6 @@
           </div>
         <ul class="responsive-table pad">
           <li class="table-header margt  ">
-            <div [(appSort)]="profilList" data-order="desc" data-name="id" class="col mar col-1 text-uppercase text-white font-weight-bolder opacity-7">Id</div>
             <div [(appSort)]="profilList" data-order="desc" data-name="name" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Name</div>
             <div [(appSort)]="profilList" data-order="desc" data-name="description" class="col mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
 
@@ -35,7 +34,6 @@
           itemsPerPage:4,
           currentPage:page,
           totalItems:totalRec}">
-            <div class="col col-1" data-label="Id">{{profil.id}}</div>
             <div class="col col-2" data-label="Name">{{profil.name}}</div>
             <div class="col col-3" data-label="Description">{{profil.description}}</div>
 

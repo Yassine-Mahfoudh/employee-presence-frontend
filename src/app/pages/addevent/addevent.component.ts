@@ -3,10 +3,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { stringify } from 'querystring';
 import { Employee } from 'src/app/core/models/employee';
 import { MyEvent } from 'src/app/core/models/myevent';
-import { RRule } from 'src/app/core/models/rrule';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { EventService } from 'src/app/core/services/event.service';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
@@ -20,7 +18,6 @@ export class AddeventComponent implements OnInit {
 
   eventDetail!: FormGroup;
   eventobj: MyEvent = new MyEvent();
-  rruleObject : RRule = new RRule();
   eventlist:MyEvent[] = [];
   employeeList:Employee[]=[];
 

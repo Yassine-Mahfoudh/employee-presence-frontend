@@ -44,15 +44,15 @@ export class UsersListComponent implements OnInit {
     const results: User[] = [];
     for (const user of this.usersList) {
       if (user.userName.toLowerCase().indexOf(key.toLowerCase()) !== -1
-       //|| user.profil.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || user.profils.toString().toLowerCase().indexOf(key.toLowerCase()) !== -1
       || user.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || user.userPassword.toLowerCase().indexOf(key.toLowerCase()) !== -1
       ) {
         results.push(user);
+        console.log("user:::",user)
       }
     }
     this.usersList = results;
-    if (results.length === 0 || !key) {
+    if (key=='') {
       this.getUsers();
     }
   }

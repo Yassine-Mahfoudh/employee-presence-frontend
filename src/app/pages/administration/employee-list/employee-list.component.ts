@@ -69,38 +69,32 @@ getEmployees(){
    
 
   }
-
-  getStatut(employee : Employee):String{
-
-    if(this.authService.getUserEmployee().id===employee.id){
-      return "Actif"
-    }else
-    return"Inactif";
-  }
-
+ 
+ 
   public searchEmployees(key: string): void {
     console.log(key);
     const results: Employee[] = [];
-    for (const employee of this.employeeList) {
-      if (employee.firstname.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || employee.lastname.toLowerCase().indexOf(key.toLowerCase()) !== -1
+    for (const employee of this.employeeList2) {
+      if (employee.lastname.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || employee.firstname.toLowerCase().indexOf(key.toLowerCase()) !== -1
       || employee.address.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || employee.salle.toString().toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || employee.project.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || employee.role.toLowerCase().indexOf(key.toLowerCase()) !== -1
       || employee.birthdate.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || employee.phonenumber.toLowerCase().indexOf(key.toLowerCase()) !== -1
       || employee.manager.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || employee.salle.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || employee.project.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || employee.phonenumber.toString().toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || employee.listeProfils.toString().toLowerCase().indexOf(key.toLowerCase()) !== -1
 
-
+      
+      
       ) {
         results.push(employee);
       }
     }
-    this.employeeList = results;
-    if (results.length === 0 || !key) {
+    this.employeeList2 = results;
+    if (key=='') {
       this.getEmployees();
     }
   }
-
+  
 }

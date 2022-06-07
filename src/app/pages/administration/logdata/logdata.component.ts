@@ -27,11 +27,12 @@ export class LogdataComponent implements OnInit {
     })
   }
 
-  public searchLogdata(key: string): void {
+ public searchLogdata(key: string): void {
     console.log(key);
     const results: Logdata[] = [];
     for (const logdata of this.logdataList) {
-      if (logdata.username.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      if (
+        logdata.username.toLowerCase().indexOf(key.toLowerCase()) !== -1
       || logdata.action.toLowerCase().indexOf(key.toLowerCase()) !== -1
       || logdata.dateAction.toLowerCase().indexOf(key.toLowerCase()) !== -1
       ) {
@@ -39,8 +40,9 @@ export class LogdataComponent implements OnInit {
       }
     }
     this.logdataList = results;
-    if (results.length === 0 || !key) {
+    if (key=='') {
       this.getLogdata();
     }
   }
+
 }

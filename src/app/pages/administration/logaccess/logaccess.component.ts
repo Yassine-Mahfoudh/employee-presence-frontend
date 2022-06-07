@@ -35,7 +35,8 @@ export class LogaccessComponent implements OnInit {
     console.log(key);
     const results: Logaccess[] = [];
     for (const logaccess of this.logaccessList) {
-      if (logaccess.username.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      if (
+        logaccess.username.toLowerCase().indexOf(key.toLowerCase()) !== -1
       || logaccess.dateAuth.toLowerCase().indexOf(key.toLowerCase()) !== -1
       || logaccess.codeAccess.toLowerCase().indexOf(key.toLowerCase()) !== -1
       ) {
@@ -43,7 +44,7 @@ export class LogaccessComponent implements OnInit {
       }
     }
     this.logaccessList = results;
-    if (results.length === 0 || !key) {
+    if (key=='') {
       this.getLogaccess();
     }
   }
