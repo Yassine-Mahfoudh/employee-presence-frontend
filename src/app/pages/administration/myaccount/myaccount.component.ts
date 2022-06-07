@@ -205,27 +205,41 @@ onSelectFile(event) {
     this.accountobj.photo=this.accountDetail.value.photo;
     }
   
-     // this.authService.setUserEmployee(this.accountobj);
-     let EmpId = this.authService.getUserEmployee().id;
-     this.accountobj.salle=this.authService.getUserEmployee().salle;
-     this.accountobj.project=this.authService.getUserEmployee().project;
-     this.accountobj.manager=this.authService.getUserEmployee().manager;
-console.log("EempID::",EmpId)
-     console.log("this.authService.getUserEmployee():::::",this.authService.getUserEmployee())
-console.log("accountobj:::",this.accountobj)
+    let EmpId = this.authService.getUserEmployee().id;
 
+    this.employeeService.getEmployeeById(EmpId).subscribe(res=>{
+      console.log("before :::",this.accountobj)
+      this.accountobj.salle=res.salle;
+     this.accountobj.project=res.project;
+     this.accountobj.manager=res.manager;
+     this.accountobj.managerid=res.managerid;
+     console.log("after :::",this.accountobj)
      this.employeeService.updateEmployee(this.accountobj,EmpId).subscribe(res=>{
-      console.log(res);
-    }
-    );
+      console.log("resultat:::",res);
+    });
+  })
+  
+}
 
-    console.log("upaa")
 
-  }
 
-  changePassword(){
+  /*
+      this.employeeobj.managerid=res.id
+     console.log(' to update ::: ',this.employeeobj,this.employeeobj.id)
+      this.employeeService.updateEmployee(this.employeeobj,this.employeeobj.id).subscribe(ress=>{
+      
+        console.log('id manager ',ress);
+    
+        this.getEmployees();
+    
+      
+      }
+      );*/
 
-  }
+      
+
+
+
 
  confirmUpdate() {
     var okToRefresh = confirm("Do you really want to update your informations?");

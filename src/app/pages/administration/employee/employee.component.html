@@ -17,99 +17,147 @@
                       ></button>
                     </mat-toolbar-row>
                   </mat-toolbar>
-                  <div class="modal-body">
-                  <form [formGroup]="employeeDetail" >
-                    <div class="pl-lg-4 field">
-                      <div class="row formbg-inner   ">
-                        <div class="col-lg-6">
-                          <h6 class="heading-small text-muted mb-4">
-                            Les informations de l'employé :
-                          </h6>
-                          <div class="padding-bottom--24" >
-                            <label class="form-control-label"  for="input-name">Prénom</label>
-                            <input type="text" formControlName="firstname" id="input-name" class="form-control form-control-alternative "   value="" required minlength="4">
+                  <h6 class="heading-small text-muted mb-4 pad-info">
+                    Les informations de l'employé :
+                  </h6>
+                  <mat-dialog-content class="mat-typography">
+                    <form [formGroup]="employeeDetail">
+                      <div fxFlex fxLayout="column">
+                
+                        <div class="row" class="marg">
+                          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+                            <mat-label class="clr2">Nom</mat-label>
+                            <input type="text" matInput formControlName="firstname" class="input-priority" required >
+                            <mat-error  *ngIf="employeeDetail.controls.firstname.touched && employeeDetail.controls.firstname.invalid">
+                              <span *ngIf="employeeDetail.controls.firstname.errors.required"> Ce champ est obligatoire</span>
+                              <span *ngIf="employeeDetail.controls.firstname.errors.pattern"> Ce champ est invalide, il ne doit pas contenir ni des chiffres ni des caractéres spéciaux</span>
+                              <span *ngIf="employeeDetail.controls.firstname.errors.minlength"> Le nom doit comporter au moins 3 caractères</span>
+                   
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+
+                        <div class="row" class="marg">
+                          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+                            <mat-label class="clr2">Prénom</mat-label>
+                            <input type="text" matInput formControlName="lastname" class="input-priority" required >
                             <mat-error  *ngIf="employeeDetail.controls.lastname.touched && employeeDetail.controls.lastname.invalid">
                               <span *ngIf="employeeDetail.controls.lastname.errors.required"> Ce champ est obligatoire</span>
-                              <span *ngIf="employeeDetail.controls.lastname.errors.pattern"> Ce champ est invalide</span> 
-                              <span *ngIf="employeeDetail.controls.lastname.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
+                              <span *ngIf="employeeDetail.controls.lastname.errors.pattern"> Ce champ est invalide, il ne doit pas contenir ni des chiffres ni des caractéres spéciaux</span>
+                              <span *ngIf="employeeDetail.controls.lastname.errors.minlength"> Le prénom doit comporter au moins 3 caractères</span>
+                   
                             </mat-error>
-                            </div>
-                            <div class="padding-bottom--24" >
-                              <label class="form-control-label"  for="input-name">Nom</label>
-                              <input type="text" formControlName="lastname" id="input-name" class="form-control form-control-alternative "   value="" required minlength="4">
-                              <mat-error  *ngIf="employeeDetail.controls.lastname.touched && employeeDetail.controls.firstname.invalid">
-                                <span *ngIf="employeeDetail.controls.firstname.errors.required"> Ce champ est obligatoire</span>
-                                <span *ngIf="employeeDetail.controls.firstname.errors.pattern"> Ce champ est invalide</span> 
-                                <span *ngIf="employeeDetail.controls.firstname.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
-                              </mat-error>
-                              </div>
-                              <div class="padding-bottom--24">
-                                <label class="form-control-label" for="input-startdate">Date de naissance</label>
-                                <input type="text" formControlName="birthdate" id="input-startdate" class="form-control form-control-alternative" placeholder="project startdate" value="" onfocus="(this.type='date')" required>
-                                <mat-error  *ngIf="employeeDetail.controls.birthdate.touched && employeeDetail.controls.birthdate.invalid">
-                                  <span *ngIf="employeeDetail.controls.birthdate.errors.required"> Ce champ est obligatoire</span>
-                                  <span *ngIf="employeeDetail.controls.birthdate.errors.pattern"> Ce champ est invalide, le format doit être yyyy-mm-dd</span> 
-                                </mat-error>
-                              </div>
-                              <div class="padding-bottom--24">
-                                <label class="form-control-label" for="input-description">Adreese</label>
-                                <input type="text" formControlName="address" id="input-address" class="form-control form-control-alternative" placeholder="project description" value="" minlength="4" required>
-                                <mat-error  *ngIf="employeeDetail.controls.address.touched && employeeDetail.controls.address.invalid">
-                                  <span *ngIf="employeeDetail.controls.address.errors.required"> Ce champ est obligatoire</span>
-                                  <span *ngIf="employeeDetail.controls.address.errors.pattern"> Ce champ est invalide</span> 
-                                  <span *ngIf="employeeDetail.controls.address.errors.minlength"> La description doit comporter au moins 4 caractères</span>
-                                </mat-error>  
-                              </div>
-                            <div class="padding-bottom--24">
-                            <label class="form-control-label" for="input-priority">Numéro</label>
-                            <input type="text" formControlName="phonenumber" id="input-phonenumber" class="form-control form-control-alternative"  value="" required>
-                            <mat-error  *ngIf="employeeDetail.controls.phonenumber.touched && employeeDetail.controls.priority.invalid">
-                              <span *ngIf="employeeDetail.controls.phonenumber.errors.required"> Ce champ est obligatoire</span>
-                              <span *ngIf="employeeDetail.controls.phonenumber.errors.pattern"> Ce champ est invalide, il doit être un numéro</span> 
-                            </mat-error>  
-                          </div>
-                          <div class="padding-bottom--24">
-                            <label class="form-control-label" for="select-manager">Chef</label>
-                          <select formControlName="manager" id="select-manager" class="form-control form-control-alternative"  >
-                            <option value=""  selected >Sélectionnez un chef</option>
-                            <ng-container *ngFor="let employee of listComboxUsers" >
-                            <option  *ngIf="employeeDetail.controls.firstname!==employee.firstname" >{{employee.firstname}}</option>
-                          </ng-container>
-                          </select>
-                          </div>
-                          <div class="padding-bottom--24">
-                            <label class="form-control-label" for="input-project">Projet</label>
-                          <select formControlName="project" id="select-project" class="form-control form-control-alternative" value="project.name">
-                            <option value="" disabled selected hidden>Sélectionnez un project</option>
-                            <option *ngFor="let project of projectList" [value]="project.name" >{{project.name}}</option>
-                          </select>
-                          </div>
-                          <div class="padding-bottom--24">
-                            <label class="form-control-label" for="input-salle">Salle</label>
-                          <select formControlName="salle" id="select-salle" class="form-control form-control-alternative" value="salle.nom">
-                            <option value="" disabled selected hidden>Sélectionnez une salle</option>
-                            <option *ngFor="let salle of salleList" [value]="salle.name" >{{salle.nom}}</option>
-                          </select>
-                          </div>
-                            
-              
-              
+                          </mat-form-field>
                         </div>
+<!--
+                        <div class="row" class="marg">
+                          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+                            <mat-label class="clr2">Date de naissance</mat-label>
+                            <input type="text" matInput formControlName="birthdate" class="input-birthdate" required onfocus="(this.type='date')">
+                            <mat-error  *ngIf="employeeDetail.controls.birthdate.touched && employeeDetail.controls.birthdate.invalid">
+                              <span *ngIf="employeeDetail.controls.birthdate.errors.required"> Ce champ est obligatoire</span>
+                              <span *ngIf="employeeDetail.controls.birthdate.errors.pattern"> Ce champ est invalide</span>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+-->
+                        <div class="row" class="marg">
+                          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+                            <mat-label class="clr2">Date de naissance</mat-label>
+                            <input type="text" matInput formControlName="birthdate"  class="input-birthdate" required onfocus="(this.type='date')">
+                            <mat-error *ngIf="employeeDetail.controls.birthdate.touched && employeeDetail.controls.birthdate.invalid">
+                              <span *ngIf="employeeDetail.controls.birthdate.errors.required"> Ce champ est obligatoire</span>
+                              <span *ngIf="employeeDetail.controls.birthdate.errors.pattern">Ce champ est invalide</span> 
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+
+                        <div class="row" class="marg">
+                          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+                            <mat-label class="clr2">Adresse</mat-label>
+                            <input type="text" matInput formControlName="address" class="input-address" required >
+                            <mat-error  *ngIf="employeeDetail.controls.address.touched && employeeDetail.controls.address.invalid">
+                              <span *ngIf="employeeDetail.controls.address.errors.required"> Ce champ est obligatoire</span>
+                              <span *ngIf="employeeDetail.controls.address.errors.pattern"> L'adresse doit comporter au moins 4 caractères</span>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+
+                        <div class="row" class="marg">
+                          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+                            <mat-label class="clr2">Numéro</mat-label>
+                            <input type="text" matInput formControlName="phonenumber" class="input-phonenumber" required >
+                            <mat-error  *ngIf="employeeDetail.controls.phonenumber.touched && employeeDetail.controls.phonenumber.invalid">
+                              <span *ngIf="employeeDetail.controls.phonenumber.errors.required"> Ce champ est obligatoire</span>
+                              <span *ngIf="employeeDetail.controls.phonenumber.errors.pattern"> Ce champ est invalide, il doit être un numéro</span>
+                              <span *ngIf="employeeDetail.controls.phonenumber.errors.minlength"> Le numéro doit comporter 8 chiffres</span>                   
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+
+                        <div class="row "  class="marg">
+                          <mat-form-field appearance="fill" class=" mtfldwrapper">
+                            <mat-label>Chef</mat-label>
+                            <select matNativeControl required formControlName="manager" >
+                              <ng-container *ngFor="let employee of listComboxUsers" >
+                              <option  *ngIf="employeeDetail.controls.firstname!==employee.firstname" >{{employee.firstname}}</option>
+                            </ng-container>
+                            </select>
+                            <mat-error  *ngIf="employeeDetail.controls.manager.touched && employeeDetail.controls.manager.invalid">
+                              <span *ngIf="employeeDetail.controls.manager.errors.required"> Ce champ est obligatoire</span>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                      <!--
+                        <div class="padding-bottom--24">
+                          <label class="form-control-label" for="select-manager">Chef</label>
+                        <select formControlName="manager" id="select-manager" class="form-control form-control-alternative"  >
+                          <option value=""  selected >Sélectionnez un chef</option>
+                          <ng-container *ngFor="let employee of listComboxUsers" >
+                          <option  *ngIf="employeeDetail.controls.firstname!==employee.firstname" >{{employee.firstname}}</option>
+                        </ng-container>
+                        </select>
+                        </div>
+                      -->
+                
+                        <div class="row "  class="marg">
+                          <mat-form-field appearance="fill" class=" mtfldwrapper">
+                            <mat-label>Projet</mat-label>
+                            <select matNativeControl required formControlName="project" >
+                              <option *ngFor="let project of projectList" [value]="project.name" >{{project.name}}</option>
+                            </select>
+                            <mat-error  *ngIf="employeeDetail.controls.project.touched && employeeDetail.controls.project.invalid">
+                              <span *ngIf="employeeDetail.controls.project.errors.required"> Ce champ est obligatoire</span>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+
+                        <div class="row "  class="marg">
+                          <mat-form-field appearance="fill" class=" mtfldwrapper">
+                            <mat-label>Salle</mat-label>
+                            <select matNativeControl required formControlName="salle" >
+                              <option *ngFor="let salle of salleList" [value]="salle.nom" >{{salle.nom}}</option>
+                            </select>
+                            <mat-error  *ngIf="employeeDetail.controls.salle.touched && employeeDetail.controls.salle.invalid">
+                              <span *ngIf="employeeDetail.controls.salle.errors.required"> Ce champ est obligatoire</span>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                
+                     
                       </div>
-                    </div>
-                    <div>
-                      <mat-dialog-actions class="btn-group padding--14">
+                    </form>
+                  </mat-dialog-content>
+                           
+                      <mat-dialog-actions class="btn-group pad-btn">
                         <button class="btn button-2 bg-cb"  [disabled]="!employeeDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')"
                          (click)="updateEmployee()"  (click)="handleClear()">
-                          Modifier employé
+                          Modifier l'employé
                         </button>
                         <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(contentUpdate)" (click)="handleClear()">
-                          Fermer
+                          Annuler
                         </button>
                       </mat-dialog-actions>
-                    </div>
-                  </form>
-                </div>
                      
                     </ng-template>
 

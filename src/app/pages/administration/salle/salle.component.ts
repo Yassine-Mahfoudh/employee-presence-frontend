@@ -51,10 +51,10 @@ ancienDep:any;
     this.getSalles();
     this.salleDetail = this.formBuilder1.group({
       id: [''],
-      type: [''],
+      type: ['',Validators.required],
       nom: [
         null,
-        [Validators.required],
+        [Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)],
       ],
       nbposte: [
         null,

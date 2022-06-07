@@ -11,6 +11,7 @@ import { ProfilService } from 'src/app/core/services/profil.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 
 @Component({
   selector: 'app-users',
@@ -26,12 +27,14 @@ export class UsersComponent implements OnInit {
 
   userDetail: FormGroup=new FormGroup({
     id: new FormControl(null),
-    userName: new FormControl(null),
-    userPassword: new FormControl(null),
-    email: new FormControl(null),
+    userName: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
+    userPassword: new FormControl(null,[Validators.required,Validators.minLength(4),Validators.pattern(GlobalConstants.nameRegex)]),
+    email: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.emailRegex)]),
     profil: new FormControl(null),
 
   });;
+
+  
   userobj: User = new User();
   usersList:User[] = [];
   managerList:User[] = [];

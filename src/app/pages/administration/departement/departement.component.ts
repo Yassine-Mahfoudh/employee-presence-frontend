@@ -22,6 +22,8 @@ export class DepartementComponent implements OnInit {
 
   departementDetail!: FormGroup;
   departementobj: Departement = new Departement();
+  departementup: Departement = new Departement();
+
   departementList:Departement[] = [];
   totalRec!: string;
   page:number=1
@@ -90,12 +92,23 @@ deleteDepartement(departement : Departement){
   
   }
 
+
   updateDepartement(){
     this.departementobj.id=this.departementDetail.value.id;
     this.departementobj.name=this.departementDetail.value.name;
-  this.departementService.updateDepartement(this.departementobj).subscribe(res=>{
-    console.log(res);
-    this.getDepartements();
+
+    this.departementService.getDepartementById(this.departementDetail.value.id).subscribe((res) => {
+      this.departementup = res;
+      console.log("this.departementup:::",this.departementup);
+      this.departementobj.nbsalles = this.departementup.nbsalles
+      console.log("this.departementobj:::",this.departementobj);
+  
+    this.departementService.updateDepartement(this.departementobj).subscribe(res=>{
+      console.log("update:::",res);
+      this.getDepartements();
+
+    });
+    
   }
   );
 

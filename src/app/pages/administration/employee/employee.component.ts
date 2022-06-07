@@ -13,6 +13,7 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { Profil } from 'src/app/core/models/profil';
+import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 
 @Component({
   selector: 'app-employee',
@@ -63,11 +64,12 @@ theProfil:String;
 
     this.employeeDetail = this.formBuilder.group({
       id: [''],
-      lastname:[null],
-      firstname:[null],
-      birthdate:[null],
-      address:[null],
-      phonenumber:[null],
+      lastname:[null,[Validators.required,Validators.pattern(GlobalConstants.nomprenomRegex),Validators.minLength(3)]],
+      firstname:[null,[Validators.required,Validators.pattern(GlobalConstants.nomprenomRegex),Validators.minLength(3)]],
+      birthdate:[null,[Validators.required,Validators.minLength(10)]],
+
+      address:[null,[Validators.required,Validators.minLength(4)]],
+      phonenumber:[null,[Validators.required,Validators.minLength(8),Validators.maxLength(8),Validators.pattern(GlobalConstants.numberRegex)]],
       manager:[''],
       project:[''],
       salle:[''],
@@ -84,30 +86,7 @@ theProfil:String;
   }
 
  
-
-  addEmployee(){
-
-    this.employeeobj.id=this.employeeDetail.value.id;
-    this.employeeobj.lastname=this.employeeDetail.value.lastname;
-    this.employeeobj.firstname=this.employeeDetail.value.firstname;
-    this.employeeobj.birthdate=this.employeeDetail.value.birthdate;
-    this.employeeobj.address=this.employeeDetail.value.address;
-    this.employeeobj.phonenumber=this.employeeDetail.value.phonenumber;
-    this.employeeobj.project=this.employeeDetail.value.project;
-    this.employeeobj.salle=this.employeeDetail.value.salle;
-    this.employeeobj.manager=this.employeeDetail.value.manager;
-
-    this.employeeService.addEmployee(this.employeeobj).subscribe(res=>{
-      console.log(res);
-      this.getEmployees();
-      this.employeeDetail=null;
-    
-    }
-    );
-
-
-}
-
+  
 listComboxUsers : Employee[] = [];
 
 
@@ -203,6 +182,9 @@ return a;
   
 
 updateEmployee(){
+
+  console.log("this.employeeDetail.value:::",this.employeeDetail.value)
+
   this.employeeobj.id=this.employeeDetail.value.id;
   this.employeeobj.lastname=this.employeeDetail.value.lastname;
   this.employeeobj.firstname=this.employeeDetail.value.firstname;
@@ -231,18 +213,7 @@ updateEmployee(){
     }
     );
   })
-  // this.employeeobj.managerid=this.getempbyname(this.employeeobj.manager).id;
-
-  // this.employeeService.updateEmployee(this.employeeobj,this.employeeDetail.value.id).subscribe(res=>{
-    
-  //   console.log(res);
-
-  //   this.getEmployees();
-
-  
-  // }
-  // );
-
+ 
 }
 
 confirmDelete(employee: Employee) {

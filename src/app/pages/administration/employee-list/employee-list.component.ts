@@ -29,14 +29,7 @@ config.keyboard = false;
   ngOnInit(): void {
     this.getEmployees();
   }
-  /*
-  getEmployees(){
-    this.employeeService.getEmployees().subscribe(res=>{
-      this.employeeList=res;
-      console.log(this.authService.getUserEmployee())
-    })
-  }*/
-
+  
 
   listComboxUsers : Employee[] = [];
 

@@ -51,9 +51,9 @@ projetList:Projet[] = [];
       id: [''],
       name:[null,[Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
       priority:[null,[Validators.required,Validators.pattern(GlobalConstants.numberRegex)]],
-      description:[null,[Validators.required,Validators.minLength(5)]],
-      startdate:[null,[Validators.required,Validators.pattern(GlobalConstants.dateRegex),Validators.minLength(10)]],
-      enddate:[null,[Validators.required,Validators.pattern(GlobalConstants.dateRegex),Validators.minLength(10)]]
+      description:[null,[Validators.required,Validators.minLength(4)]],
+      startdate:[null,[Validators.required,Validators.minLength(10)]],
+      enddate:[null,[Validators.required,Validators.minLength(10)]]
     });
   }
 

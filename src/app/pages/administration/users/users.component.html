@@ -14,65 +14,73 @@
             ></button>
           </mat-toolbar-row>
         </mat-toolbar>
-        <div class="modal-body">
-        <form [formGroup]="userDetail" >
-          <div class="pl-lg-4 field">
-            <div class="row formbg-inner   ">
-              <div class="col-lg-6">
-                <h6 class="heading-small text-muted mb-4">
-                  Les informations de l'utilisateur :
-                </h6>
-                
-                <div class="padding-bottom--24" >
-                  <label class="form-control-label"  for="input-userName">Nom d'utilisateur</label>
-                  <input type="text" formControlName="userName" id="input-userName" class="form-control form-control-alternative "  placeholder="Le nom d'utilisateur " value="" required minlength="4">
-                  <mat-error  *ngIf="userDetail.controls.userName.touched && userDetail.controls.userName.invalid">
-                    <span *ngIf="userDetail.controls.userName.errors.required"> Ce champ est obligatoire</span>
-                    <span *ngIf="userDetail.controls.userName.errors.pattern"> Ce champ est invalide</span> 
-                    <span *ngIf="userDetail.controls.userName.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
-                  </mat-error>
-                  </div>
-                  <div class="padding-bottom--24" >
-                    <label class="form-control-label"  for="input-email">Email</label>
-                    <input type="text" formControlName="email" id="input-email" class="form-control form-control-alternative "  placeholder="L'email de l'utilisateur " value="" required minlength="4">
-                    <mat-error *ngIf="userDetail.controls.email.touched && userDetail.controls.email.invalid">
-                      <span *ngIf="userDetail.controls.email.errors.required"> Ce champ est obligatoire</span>
-                      <span *ngIf="userDetail.controls.email.errors.pattern"> Ce champ est invalide, il doit être un email</span> 
-                    </mat-error>
-                    </div>
-                    <div class="padding-bottom--24" >
-                      <label class="form-control-label"  for="input-userPassword">Mot de passe</label>
-                      <input type="text" formControlName="userPassword" id="input-userPassword" class="form-control form-control-alternative "  placeholder="Le mot de passe  " value="" required minlength="4">
-                      <mat-error  *ngIf="userDetail.controls.userPassword.touched && userDetail.controls.userPassword.invalid">
-                        <span *ngIf="userDetail.controls.userPassword.errors.required"> Ce champ est obligatoire</span>
-                        <span *ngIf="userDetail.controls.userPassword.errors.pattern"> Ce champ est invalide</span> 
-                        <span *ngIf="userDetail.controls.userPassword.errors.minlength"> Le mot de passe doit comporter au moins 4 caractères</span>
-                      </mat-error>
-                      </div>
-                      <div class="padding-bottom--24">
-                        <label class="form-control-label" for="input-profil">Profil</label>
-                      <select multiple formControlName="profil" id="select-profil" class="form-control form-control-alternative" value="profil.name">
-                        <option value="" disabled selected hidden>Sélectionnez un profil</option>
-                        <option *ngFor="let profil of profilList" [value]="profil.name" >{{profil.name}}</option>
-                      </select>
-                      </div>
-              
-    
-              </div>
+
+        <mat-dialog-content class="mat-typography">
+          <form [formGroup]="userDetail">
+            <div fxFlex fxLayout="column">
+      
+            <div class="row" class="marg">
+              <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+                <mat-label class="clr2">Nom d'utilisateur</mat-label>
+                <input type="text" matInput formControlName="userName" class="input-priority" required >
+                <mat-error  *ngIf="userDetail.controls.userName.touched && userDetail.controls.userName.invalid">
+                  <span *ngIf="userDetail.controls.userName.errors.required"> Ce champ est obligatoire</span>
+                  <span *ngIf="userDetail.controls.userName.errors.pattern"> Ce champ est invalide, il ne doit pas contenir des caractéres spéciaux</span>
+                  <span *ngIf="userDetail.controls.userName.errors.minlength"> Le nom d'utilisateur doit comporter au moins 4 caractères</span>
+                </mat-error>
+              </mat-form-field>
             </div>
-          </div>
-          <div>
-            <mat-dialog-actions class="btn-group padding--14">
+      
+              <div class="row" class="marg">
+              <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+                <mat-label class="clr2">Email</mat-label>
+                <input type="text" matInput formControlName="email" class="input-email" required >
+                <mat-error  *ngIf="userDetail.controls.email.touched && userDetail.controls.email.invalid">
+                  <span *ngIf="userDetail.controls.email.errors.required"> Ce champ est obligatoire</span>
+                  <span *ngIf="userDetail.controls.email.errors.pattern"> Ce champ est invalide, il doit être un email</span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+      
+            <div class="row" class="marg">
+              <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+                <mat-label class="clr2">Mot de passe</mat-label>
+                <input type="text" matInput formControlName="userPassword" class="input-email" required >
+                <mat-error  *ngIf="userDetail.controls.userPassword.touched && userDetail.controls.userPassword.invalid">
+                  <span *ngIf="userDetail.controls.userPassword.errors.required"> Ce champ est obligatoire</span>
+                  <span *ngIf="userDetail.controls.userPassword.errors.pattern"> Ce champ est invalide, il ne doit pas contenir des caractéres spéciaux</span>
+                  <span *ngIf="userDetail.controls.userPassword.errors.minlength"> Le mot de passe doit comporter au moins 4 caractères</span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+           
+
+            <div class="row "  class="marg">
+              <mat-form-field appearance="fill" class=" mtfldwrapper">
+                <mat-label>Profil</mat-label>
+                <mat-select  required formControlName="profil" multiple >
+                  <mat-option *ngFor="let profil of profilList" [value]="profil.name" >{{profil.name}}</mat-option>
+                </mat-select>
+                <mat-error  *ngIf="userDetail.controls.profil.touched && userDetail.controls.profil.invalid">
+                  <span *ngIf="userDetail.controls.profil.errors.required"> Ce champ est obligatoire</span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+           
+            </div>
+          </form>
+        </mat-dialog-content>
+     
+
+            <mat-dialog-actions class="btn-group pad-btn">
               <button class="btn button-2 bg-cb"  [disabled]="!userDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')" (click)="addUser()"  (click)="handleClear()">
                 Ajouter un utilisateur
               </button>
               <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(content)" (click)="handleClear()">
-                Fermer
+                Annuler
               </button>
             </mat-dialog-actions>
-          </div>
-        </form>
-      </div>
            
           </ng-template>
 
@@ -93,54 +101,66 @@
                 ></button>
               </mat-toolbar-row>
             </mat-toolbar>
-            <div class="modal-body">
-            <form [formGroup]="userDetail" >
-              <div class="pl-lg-4 field">
-                <div class="row formbg-inner   ">
-                  <div class="col-lg-6">
-                    <h6 class="heading-small text-muted mb-4">
+
+            
+                    <h6 class="heading-small text-muted mb-4 pad-info">
                       Les informations de l'utilisateur :
                     </h6>
-                    <div class="padding-bottom--24" >
-                      <label class="form-control-label"  for="input-userName">Nom d'utilisateur</label>
-                      <input type="text" formControlName="userName" id="input-userName" class="form-control form-control-alternative "  placeholder="Le nom d'utilisateur " value="" required minlength="4">
-                      <mat-error  *ngIf="userDetail.controls.userName.touched && userDetail.controls.userName.invalid">
-                        <span *ngIf="userDetail.controls.userName.errors.required"> Ce champ est obligatoire</span>
-                        <span *ngIf="userDetail.controls.userName.errors.pattern"> Ce champ est invalide</span> 
-                        <span *ngIf="userDetail.controls.userName.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
-                      </mat-error>
-                      </div>
-                      <div class="padding-bottom--24" >
-                        <label class="form-control-label"  for="input-email">Email</label>
-                        <input type="text" formControlName="email" id="input-email" class="form-control form-control-alternative "  placeholder="L'email de l'utilisateur " value="" required minlength="4">
-                        <mat-error *ngIf="userDetail.controls.email.touched && userDetail.controls.email.invalid">
-                          <span *ngIf="userDetail.controls.email.errors.required"> Ce champ est obligatoire</span>
-                          <span *ngIf="userDetail.controls.email.errors.pattern"> Ce champ est invalide, il doit être un email</span> 
-                        </mat-error>
+
+                    <mat-dialog-content class="mat-typography">
+                      <form [formGroup]="userDetail">
+                        <div fxFlex fxLayout="column">
+                  
+                        <div class="row" class="marg">
+                          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+                            <mat-label class="clr2">Nom d'utilisateur</mat-label>
+                            <input type="text" matInput formControlName="userName" class="input-priority" required >
+                            <mat-error  *ngIf="userDetail.controls.userName.touched && userDetail.controls.userName.invalid">
+                              <span *ngIf="userDetail.controls.userName.errors.required"> Ce champ est obligatoire</span>
+                              <span *ngIf="userDetail.controls.userName.errors.pattern"> Ce champ est invalide, il ne doit pas contenir des caractéres spéciaux</span>
+                              <span *ngIf="userDetail.controls.userName.errors.minlength"> Le nom d'utilisateur doit comporter au moins 4 caractères</span>
+                            </mat-error>
+                          </mat-form-field>
                         </div>
-                          <div class="padding-bottom--24">
-                            <label class="form-control-label" for="input-profil">Profil</label>
-                          <select multiple formControlName="profil" id="select-profil" class="form-control form-control-alternative" value="profil.name">
-                            <option value="" disabled selected hidden>Sélectionnez un profil</option>
-                            <option *ngFor="let profil of profilList" [value]="profil.name" >{{profil.name}}</option>
-                          </select>
-                          </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <mat-dialog-actions class="btn-group padding--14">
+                  
+                          <div class="row" class="marg">
+                          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+                            <mat-label class="clr2">Email</mat-label>
+                            <input type="text" matInput formControlName="email" class="input-email" required >
+                            <mat-error  *ngIf="userDetail.controls.email.touched && userDetail.controls.email.invalid">
+                              <span *ngIf="userDetail.controls.email.errors.required"> Ce champ est obligatoire</span>
+                              <span *ngIf="userDetail.controls.email.errors.pattern"> Ce champ est invalide, il doit être un email</span>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                       
+            
+                        <div class="row "  class="marg">
+                          <mat-form-field appearance="fill" class=" mtfldwrapper">
+                            <mat-label>Profil</mat-label>
+                            <mat-select  required formControlName="profil" multiple >
+                              <mat-option *ngFor="let profil of profilList" [value]="profil.name" >{{profil.name}}</mat-option>
+                            </mat-select>
+                            <mat-error  *ngIf="userDetail.controls.profil.touched && userDetail.controls.profil.invalid">
+                              <span *ngIf="userDetail.controls.profil.errors.required"> Ce champ est obligatoire</span>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                       
+                        </div>
+                      </form>
+                    </mat-dialog-content>
+
+                <mat-dialog-actions class="btn-group pad-btn">
                   <button class="btn button-2 bg-cb"  [disabled]="!userDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')"
                    (click)="updateUser()"  (click)="handleClear()">
-                    Modifier utilisateur
+                    Modifier l'utilisateur
                   </button>
                   <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(contentUpdate)" (click)="handleClear()">
-                    Fermer
+                    Annuler
                   </button>
                 </mat-dialog-actions>
-              </div>
-            </form>
-          </div>               
+                     
               </ng-template>
     
             <!-- getusers -->

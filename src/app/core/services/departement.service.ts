@@ -46,6 +46,9 @@ export class DepartementService {
     {
       return this.http.get<Departement>(this.getdepartementurl+ '/find/name/' + name);
     }  
-
+    getDepartementById(id : any):Observable<Departement>
+    {
+      return this.http.get<Departement>(this.getdepartementurl+ '/find/' + id);
+    }  
 
 }
