@@ -51,7 +51,7 @@ getEmployees(){
     this.employeeList=res;
     const results: any[] = [];
 
-    this.employeeList.forEach(employee=>{if(employee.lastname!='' && employee.firstname!='' && employee.address!='' && employee.phonenumber!=null && employee.birthdate!=null){
+    this.employeeList.forEach(employee=>{if(employee.lastname!='' && employee.firstname!='' && employee.address!='' && employee.phonenumber!=null && employee.birthdate!=null && employee.gender!=''){
       results.push(employee);
       this.employeeList2=results;
   

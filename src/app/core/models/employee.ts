@@ -5,7 +5,6 @@ export class Employee {
     lastname:string='';
     firstname:string='';
     role:string='';
-    status:boolean=true;
     birthdate:string='';
     address:string='';
     phonenumber:string='';
@@ -14,5 +13,6 @@ export class Employee {
     project:string='';
     manager:string='';
     managerid:number=0;
-    listeProfils:String[]=[]
+    listeProfils:String[]=[];
+    gender:string='';
 }

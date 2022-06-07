@@ -37,6 +37,10 @@ export class MyaccountComponent implements OnInit {
   public imagePath;
   imgURL: any;
   public message: string;
+  sexe:any;
+
+  seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
+
 
   //myaccount:Employee;
 
@@ -69,7 +73,8 @@ export class MyaccountComponent implements OnInit {
       bdate: [''],
       ads: [''],
       phnbr:[''],
-      photo:['']
+      photo:[''],
+      gender:['']
     });
 
     console.log(this.authService.getUserEmployee().lastname)
@@ -89,11 +94,12 @@ this.changePasswordForm=this.formBuilder.group({
   getEmployee(id : any) {
     this.employeeService.getEmployeeById(id).subscribe(res=>{
       this.account=res;
-      console.log(this.account);
+      console.log("getEmployee",this.account);
     })
   }
 
-  
+ 
+
   validateSumbit(){
     if(this.changePasswordForm.controls['newPassword'].value != this.changePasswordForm.controls['confirmPassword'].value){
       return true;
@@ -102,6 +108,20 @@ this.changePasswordForm=this.formBuilder.group({
       return false;
     }
   }
+
+  validateBirthDate(){
+    if(this.accountDetail.controls['bdate'].value.substr(0,4) > 2000){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+ 
+
+
+
+  
   handleChangePasswordSubmit(){
       var formData=this.changePasswordForm.value;
       var data = {
@@ -173,7 +193,11 @@ onSelectFile(event) {
   }
 
 
-  
+  onDataChange(event) {
+    this.sexe=event.value;
+    console.log(event.value);    
+   }
+
   updateAccount(){
     if(this.accountDetail.value.lname == ""){
       this.accountobj.lastname=this.account.lastname;
@@ -204,7 +228,9 @@ onSelectFile(event) {
     }else{
     this.accountobj.photo=this.accountDetail.value.photo;
     }
-  
+    this.accountobj.gender=this.sexe
+  console.log("sexeeeeeeeeee::::",this.sexe)
+    console.log("this.accountDetail:::",this.accountDetail.value)
     let EmpId = this.authService.getUserEmployee().id;
 
     this.employeeService.getEmployeeById(EmpId).subscribe(res=>{

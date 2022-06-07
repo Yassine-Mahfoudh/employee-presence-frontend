@@ -139,7 +139,7 @@ if(this.eventDetail.value.title==="Presentielle"){
       let dd=startrecur.substr(8,9) 
       let startr=yyyy+mm+dd
 
-
+      
      
 
      let endrecur =this.eventDetail.value.datefinrecur;

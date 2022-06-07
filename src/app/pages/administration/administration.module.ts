@@ -37,8 +37,7 @@ import { LogdataComponent } from './logdata/logdata.component'
 import { SortDirective } from 'src/app/shared/Utils/directive/sort.directive';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
-
-
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -82,7 +81,8 @@ import {MatSelectModule} from '@angular/material/select';
     FlexLayoutModule,
     MatToolbarModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule
   ]
 })
 export class AdministrationModule { }

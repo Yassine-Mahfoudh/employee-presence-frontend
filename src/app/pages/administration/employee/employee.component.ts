@@ -97,7 +97,7 @@ getEmployees(){
     this.employeeList=res;
     const results: any[] = [];
 
-    this.employeeList.forEach(employee=>{if(employee.lastname!='' && employee.firstname!='' && employee.address!='' && employee.phonenumber!=null && employee.birthdate!=null){
+    this.employeeList.forEach(employee=>{if(employee.lastname!='' && employee.firstname!='' && employee.address!='' && employee.phonenumber!=null && employee.birthdate!=null && employee.gender!=''){
       results.push(employee);
       this.employeeList2=results;
   
@@ -122,11 +122,7 @@ getEmployees(){
        })
     console.log('managerList :',this.managerList)
     });
-   
-
   }
-
-  
   
 
 getprojects(){
@@ -202,6 +198,8 @@ updateEmployee(){
     // this.employeebyname=res;
 
     this.employeeobj.managerid=res.id
+    this.employeeobj.gender=res.gender
+
    console.log(' to update ::: ',this.employeeobj,this.employeeobj.id)
     this.employeeService.updateEmployee(this.employeeobj,this.employeeobj.id).subscribe(ress=>{
     

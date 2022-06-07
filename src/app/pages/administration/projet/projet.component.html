@@ -71,13 +71,16 @@
                 <span *ngIf="projetDetail.controls.enddate.errors.required"> Ce champ est obligatoire</span>
                 <span *ngIf="projetDetail.controls.enddate.errors.pattern">Ce champ est invalide</span> 
               </mat-error>
+              <mat-hint *ngIf="validateDate()">
+                <span style="color:red;"> La date de fin doit être supérieur du date de début</span>
+              </mat-hint>
             </mat-form-field>
           </div>
           </div>
         </form>
       </mat-dialog-content>
       <mat-dialog-actions class="btn-group pad-btn ">
-        <button class="btn button-2 bg-cb"  [disabled]="!projetDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')" (click)="addProjet()"  (click)="handleClear()">
+        <button class="btn button-2 bg-cb"  [disabled]=" validateDate() || !projetDetail.valid" mat-strocked-button type="submit" (click)="c('Save click')" (click)="addProjet()"  (click)="handleClear()">
           Ajouter un projet
         </button>
         <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(content)" (click)="handleClear()">

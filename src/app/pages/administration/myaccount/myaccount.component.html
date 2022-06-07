@@ -70,20 +70,22 @@
                               <input  type="text" class="form-control" formControlName="phnbr"  id="phonenumber" placeholder="{{account.phonenumber}}" />
                           </div>
                           
-                              <div  class="col-half" >
+                              <div  class="input-group" >
                                   <label for="birthdate"><h6>Date de naissance</h6></label>
                                   <input class="input-group"  type="text" class="form-control" formControlName="bdate"  id="BirthDate" placeholder="{{account.birthdate}}" onfocus="(this.type='date')"/>
                               </div>
-                             
+                              <mat-hint *ngIf="validateBirthDate() ">
+                                <span style="color:red;"> L'année de naissance doit être inférieure à 2000</span>
+                              </mat-hint>
         
-                              <div class="col-half">
-                                <h6>Sexe</h6>
-                                <div class="input-group">
-                                  <input id="gender-male" type="radio" name="gender" value="male" disabled checked />
-                                  <label for="gender-male">Homme</label>
-                                  <input id="gender-female" type="radio" name="gender" value="female" disabled/>
-                                  <label for="gender-female">Femme</label>
-                                </div>
+                              <div class="input-group">
+                                <label id="example-radio-group-label">Sexe : </label>
+
+                                <mat-radio-group aria-label="Sexe" formCoontrolName="gender" value="{{account.gender}}" (change)="onDataChange($event)">
+                                  
+                                  <mat-radio-button class="sexe-btn" value="Homme">Homme</mat-radio-button>
+                                  <mat-radio-button  class="sexe-btn" value="Femme">Femme</mat-radio-button>
+                                </mat-radio-group>
                             </div>
                             <button (click)="confirmUpdate()" mat-raised-button class="btn btn-primary btn-block">Mettre à jour</button>
                     </form>
@@ -133,7 +135,7 @@
                 <span *ngIf="changePasswordForm.controls.confirmPassword.errors.required">This field is necessary</span>
               </mat-error>
               <mat-hint *ngIf="validateSumbit() && !(changePasswordForm.controls.confirmPassword.invalid)">
-                <span> Les entrées dans les champs "Nouveau mot de passe" et "Confirmer le nouveau mot de passe" ne sont pas identiques.</span>
+                <span style="color:red;"> Les entrées dans les champs "Nouveau mot de passe" et "Confirmer le nouveau mot de passe" ne sont pas identiques.</span>
               </mat-hint>
             </mat-form-field>
           </div>

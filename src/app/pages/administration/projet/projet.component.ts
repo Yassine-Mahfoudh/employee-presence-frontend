@@ -57,7 +57,14 @@ projetList:Projet[] = [];
     });
   }
 
-
+  validateDate(){
+    if(this.projetDetail.controls['startdate'].value > this.projetDetail.controls['enddate'].value){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
   
   open(content) {
     this.modalService.open(content);
