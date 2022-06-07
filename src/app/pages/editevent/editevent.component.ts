@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Employee } from 'src/app/core/models/employee';
 import { MyEvent } from 'src/app/core/models/myevent';
+import { RRule } from 'src/app/core/models/rrule';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { EventService } from 'src/app/core/services/event.service';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
@@ -19,6 +20,7 @@ export class EditeventComponent implements OnInit {
   
   eventDetail!: FormGroup;
   eventobj: MyEvent = new MyEvent();
+  rruleObject : RRule = new RRule();
   eventlist:MyEvent[] = [];
   employeeList:Employee[]=[];
   eventbyid: MyEvent = new MyEvent();
@@ -234,12 +236,23 @@ deleteEvent(){
   }
 
 updateEvent(){
+
+  
   this.eventobj.id=this.eventDetail.value.id;
+  this.eventobj.type=this.eventDetail.value.type;
   this.eventobj.title=this.eventDetail.value.title;
   this.eventobj.description=this.eventDetail.value.description;
   this.eventobj.start=this.eventDetail.value.datedebut;
   this.eventobj.end=this.eventDetail.value.datefin;
   this.eventobj.employee=this.eventDetail.value.employee;
+  this.eventobj.rrule=null;
+  this.eventobj.color=null;
+  this.eventobj.frequency=null;
+  this.eventobj.everyNday=null;
+  this.eventobj.weekday=null;
+  this.eventobj.everyNmonth=null;
+  this.eventobj.monthday=null;
+
   this.myeventService.updateEvent(this.eventobj).subscribe(res=>{
     console.log(res);
     this.getevents();

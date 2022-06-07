@@ -28,7 +28,7 @@ export class DemandeComponent implements OnInit {
   demandeList:Demande[] = [];
   empDemandes:Demande[] = [];
   totalRec!: string;
-  page:number=1;
+  page:number=1
   demandeById: Demande;
   trashIcon = faTrash;
   editIcon = faPenToSquare;
@@ -69,6 +69,8 @@ export class DemandeComponent implements OnInit {
       datedebut: [''],
       datefin: [''],
       empid:[''],
+      empnom:[''],
+      empprenom:[''],
       etat:['']
     });
   }
@@ -88,9 +90,11 @@ export class DemandeComponent implements OnInit {
     console.log(this.demandeDetail);
     this.demandeobj.id=this.demandeDetail.value.id;
     this.demandeobj.empid=this.authservice.getUser().id;
-    this.demandeobj.empprenom=this.authservice.getUserEmployee().firstname;
-    this.demandeobj.empnom=this.authservice.getUserEmployee().lastname;
     this.demandeobj.title=this.demandeDetail.value.title;
+    this.demandeobj.empnom=this.authservice.getUserEmployee().lastname;
+    console.log("this.authservice.getUserEmployee().firstname",this.authservice.getUserEmployee().lastname)
+    this.demandeobj.empprenom=this.authservice.getUserEmployee().firstname;
+    console.log("this.authservice.getUserEmployee().firstname",this.authservice.getUserEmployee().firstname)
     this.demandeobj.description=this.demandeDetail.value.description;
     this.demandeobj.datedebut=this.demandeDetail.value.datedebut;
     this.demandeobj.datefin=this.demandeDetail.value.datefin;
@@ -133,8 +137,7 @@ getDemandes(){
        
        
       }
-   
-      
+        
     })
 
     this.employeeList2.forEach(employee=>{
@@ -143,56 +146,14 @@ getDemandes(){
       
       this.demandeList.forEach(demande=>{
        
-        if(demande.empid==employee.id)
+        if((demande.empid==employee.id)&&(demande.etat=="En Attente"))
         {
-
-       
-         
               this.managerdemandes.push(demande);
       }
     })
 
-
     }
     })
-
-
-//GET MANAGER DEMANDES POUR LE RH
-    this.employeeList2.forEach(employee=>{
-    
-      for(let i in employee.listeProfils){
-        if(employee.listeProfils[i]==="RH"){
-
-       
-             this.demandeList.forEach(demande=>{
-         
-              this.employeeList2.forEach(employee1=>{
-                console.log("employee1 id:: ", employee1.id)
-                console.log("demande empid:: ", demande.empid)
-               if(employee1.id==demande.empid){  
-                console.log("employeeById:: ", employee1)
-                for(let j in employee1.listeProfils){
-                  if(employee1.listeProfils[j]==="MANAGER")
-                    {
-                 
-                this.rhdemandes.push(demande);
-                console.log("rhdemande:: ", this.rhdemandes)
-        }
-      }
-             
-
-    }
-    
-  })
-
-  })
-    }
-  }
-
-    })
-
-
-
  
 
   })
@@ -232,6 +193,7 @@ editDemande(demande : Demande){
   this.demandeDetail.controls['datedebut'].setValue(demande.datedebut);
   this.demandeDetail.controls['datefin'].setValue(demande.datefin);
   this.demandeDetail.controls['empid'].setValue(demande.empid);
+  this.demandeDetail.controls['etat'].setValue(demande.etat);
 }
 
 deleteDemande(demande : Demande){
@@ -251,48 +213,60 @@ updateDemande(){
   this.demandeobj.description=this.demandeDetail.value.description;
   this.demandeobj.datedebut=this.demandeDetail.value.datedebut;
   this.demandeobj.datefin=this.demandeDetail.value.datefin;
+  this.demandeobj.empid=this.demandeDetail.value.empid;
+  this.demandeobj.etat=this.demandeDetail.value.etat;
+  console.log(this.demandeobj);
   this.demandeService.updateDemande(this.demandeobj).subscribe(res=>{
     console.log(res);
-    this.empDemandes;
   }
   );
 
 }
+
+
 public searchDemandemanager(key: string): void {
   console.log(key);
   const results: Demande[] = [];
   for (const demande of this.managerdemandes) {
     if (demande.title.toLowerCase().indexOf(key.toLowerCase()) !== -1
-    || demande.description.toLowerCase().indexOf(key.toLowerCase()) !== -1
-    || demande.datedebut.toLowerCase().indexOf(key.toLowerCase()) !== -1
-    || demande.datefin.toLowerCase().indexOf(key.toLowerCase()) !== -1
-     ) {
+    || demande.empnom.toString().indexOf(key.toLowerCase()) !== -1
+    || demande.empprenom.toString().indexOf(key.toLowerCase()) !== -1
+    || demande.description.toString().indexOf(key.toLowerCase()) !== -1
+    || demande.etat.toString().indexOf(key.toLowerCase()) !== -1
+    || demande.datedebut.toString().indexOf(key.toLowerCase()) !== -1
+    || demande.datefin.toString().indexOf(key.toLowerCase()) !== -1 ) {
       results.push(demande);
     }
   }
   this.managerdemandes = results;
-  if (results.length === 0 || !key) {
-    this.getDemandes();
+  if (key=='') {
+    this.managerdemandes;
   }
 }
+
 
 public searchDemande(key: string): void {
   console.log(key);
   const results: Demande[] = [];
   for (const demande of this.demandeList) {
     if (demande.title.toLowerCase().indexOf(key.toLowerCase()) !== -1
-    || demande.description.toLowerCase().indexOf(key.toLowerCase()) !== -1
-    || demande.datedebut.toLowerCase().indexOf(key.toLowerCase()) !== -1
-    || demande.datefin.toLowerCase().indexOf(key.toLowerCase()) !== -1
-     ) {
+    || demande.empnom.toString().indexOf(key.toLowerCase()) !== -1
+    || demande.empprenom.toString().indexOf(key.toLowerCase()) !== -1
+    || demande.description.toString().indexOf(key.toLowerCase()) !== -1
+    || demande.etat.toString().indexOf(key.toLowerCase()) !== -1
+    || demande.datedebut.toString().indexOf(key.toLowerCase()) !== -1
+    || demande.datefin.toString().indexOf(key.toLowerCase()) !== -1 ) {
       results.push(demande);
     }
   }
   this.demandeList = results;
-  if (results.length === 0 || !key) {
-    this.getDemandes();
+  if (key=='') {
+    this.demandeList;
   }
 }
+
+
+
 
 AppproverDemande(demande: Demande){
 
@@ -303,9 +277,6 @@ this.eventobj.title=demande.title;
 this.eventobj.description=demande.description;
 this.eventobj.start=demande.datedebut;
 this.eventobj.end=demande.datefin;
-//console.log("demande etat1",this.demandeobj.etat)
-//this.demandeobj.etat="Acceptée";
-//console.log("demande etat2",this.demandeobj.etat)
 this.eventobj.rrule=null;
 if(demande.title==="Presentielle"){
   this.eventobj.color="#FF8B94";}
@@ -327,7 +298,7 @@ this.myeventService.addEvent(this.eventobj).subscribe(res=>{
     this.demandeById.etat="Acceptée";
     this.demandeService.updateDemande(this.demandeById).subscribe(res=>{
       console.log(res);
-      this.empDemandes;
+      this.managerdemandes=  this.managerdemandes.filter((demande) => demande.id !== this.demandeById.id)
     }
     );
    
@@ -356,7 +327,16 @@ RefuserDemande(demande: Demande){
        
       }
       );
-     
+
+   
+     //// for ( let i in this.managerdemandes)
+      //{
+     ////   if (this.demandeById===this.managerdemandes[i]){
+     ////     console.log("liste de demand(i):: ",this.managerdemandes[i]);
+      ////    this.deleteDemande(this.managerdemandes[i]);
+      ////  }
+      
+     //// }
      
       
     })
