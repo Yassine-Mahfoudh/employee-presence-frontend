@@ -27,16 +27,6 @@ export class ProjetComponent implements OnInit {
     trashIcon = faTrash;
     editIcon = faPenToSquare;
     addIcon = faPlusCircle;
-  
-
-    projetDetail: FormGroup=new FormGroup({
-      id: new FormControl(null),
-      name: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
-      description: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
-      priority: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.numberRegex)]),
-      startdate: new FormControl(null,[Validators.required,]),
-      enddate: new FormControl(null,[Validators.required, ]),
-    });
 
 
   
@@ -61,7 +51,14 @@ projetList:Projet[] = [];
     this.getProjets();
   
   }
-
+  projetDetail: FormGroup=new FormGroup({
+    id: new FormControl(null),
+    name: new FormControl(null,[Validators.required]),
+    description: new FormControl(null,[Validators.required]),
+    priority: new FormControl(null,[Validators.required]),
+    startdate: new FormControl(null,[Validators.required,]),
+    enddate: new FormControl(null,[Validators.required, ]),
+  });;
   validateDate(){
     if(this.projetDetail.controls['startdate'].value > this.projetDetail.controls['enddate'].value){
       return true;
@@ -86,9 +83,12 @@ projetList:Projet[] = [];
       disableClose: true,
   
     });
+
     dialogRef.afterClosed().subscribe((result) => {
+     
       if (!isEmpty(result)) {
- 
+
+        console.log("result:",result);
         this.projetobj.id=result.data.id;
         this.projetobj.name=result.data.name;
         this.projetobj.priority=result.data.priority;
@@ -111,15 +111,6 @@ getProjets(){
   })
 }
 
-editProjet(projet : Projet){
-  this.projetDetail.controls['id'].setValue(projet.id);
-  this.projetDetail.controls['name'].setValue(projet.name);
-  this.projetDetail.controls['priority'].setValue(projet.priority);
-  this.projetDetail.controls['description'].setValue(projet.description);
-  this.projetDetail.controls['startdate'].setValue(projet.startdate);
-  this.projetDetail.controls['enddate'].setValue(projet.enddate);
-
-}
 
 deleteProjet(projet : Projet){
 

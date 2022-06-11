@@ -17,7 +17,7 @@
         </mat-toolbar>
       
       <mat-dialog-content class="mat-typography">
-        <form [formGroup]="projetDetail">
+        <form (ngSubmit)="onSuccessAdd()" [formGroup]="projetDetail">
           <div fxFlex fxLayout="column">
             <div class="row "  class="marg">
             <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
@@ -45,7 +45,7 @@
             <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
               <mat-label class="clr2">Description</mat-label>
               <input type="text" matInput formControlName="description"  class="input-description" required>
-              <mat-error  *ngIf="projetDetail.controls.priority.touched && projetDetail.controls.description.invalid">
+              <mat-error  *ngIf="projetDetail.controls.description.touched && projetDetail.controls.description.invalid">
                 <span *ngIf="projetDetail.controls.description.errors.required"> Ce champ est obligatoire</span>
                 <span *ngIf="projetDetail.controls.description.errors.minlength"> La description doit comporter au moins 4 caractères</span>
               </mat-error>

@@ -70,9 +70,11 @@ departementup: Departement = new Departement();
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (!isEmpty(result)) {
-        console.log("result:: ",result);
-
-        this.departementService.addDepartement(result.data).subscribe(res=>{
+        console.log('result :: ', result)
+        this.departementobj.id=result.data.id;
+    this.departementobj.name=result.data.name;
+    console.log('result :: ',this.departementobj)
+        this.departementService.addDepartement(this.departementobj).subscribe(res=>{
           console.log(res);
           this.getDepartements();
         }
@@ -87,6 +89,7 @@ departementup: Departement = new Departement();
 getDepartements(){
   this.departementService.getDepartements().subscribe(res=>{
     this.departementList=res;
+    console.log("this.departementList::",this.departementList)
   })
 }
 
@@ -118,16 +121,13 @@ deleteDepartement(departement : Departement){
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (!isEmpty(result)) {
-        this.departementobj.id=this.departementDetail.value.id;
-    this.departementobj.name=this.departementDetail.value.name;
-
-    this.departementService.getDepartementById(this.departementDetail.value.id).subscribe((res) => {
+        console.log('result :: ', result)
+        this.departementobj.id=result.data.id;
+        this.departementobj.name=result.data.name;
+    this.departementService.getDepartementById(result.data.id).subscribe((res) => {
       this.departementup = res;
-      this.departementobj.nbsalles = this.departementup.nbsalles
-      console.log("this.departementobj:::",this.departementobj);
-  
+      this.departementobj.nbsalles = this.departementup.nbsalles;
     this.departementService.updateDepartement(this.departementobj).subscribe(res=>{
-      console.log("update:::",res);
       this.getDepartements();
 
     });
@@ -145,7 +145,7 @@ confirmDelete(departement: Departement){
     if (res){  
       this.departementService.deleteDepartement(departement).subscribe(res=>{
         console.log(res);
-        alert("user deleted successfully");
+        alert("departemenet supprimeé avec succéss");
         this.getDepartements();
       }
       );

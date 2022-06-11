@@ -19,13 +19,13 @@ export class EditSalleComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data,
     private departementService:DepartementService) {
       console.log('data ::: ', data)
-      this. salleDetail=new FormGroup({
+      this.salleDetail=new FormGroup({
         id: new FormControl(data.salle.id),
         type: new FormControl(data.salle.type,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
-        nom: new FormControl(data.salle.nom,[Validators.required, Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]),
+        nom: new FormControl(data.salle.nom,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
         nbposte: new FormControl(data.salle.nbposte,[Validators.required, Validators.pattern(GlobalConstants.numberRegex)]),
         pourcentagePres: new FormControl(data.salle.pourcentagePres,[Validators.required, Validators.pattern(GlobalConstants.numberRegex)]),
-        dep: new FormControl(data.salle.dep,[Validators.required, Validators.pattern(GlobalConstants.numberRegex)]),
+        dep: new FormControl(data.salle.dep,[Validators.required]),
       });
     }
 
@@ -42,10 +42,10 @@ export class EditSalleComponent implements OnInit {
     });
   }
   onSuccessAdd() {
-
+    
      if(this.salleDetail.valid){
       const data = this.salleDetail.getRawValue();
-
+  
       this.dialog.close({
         data: data,
        

@@ -43,7 +43,7 @@ export class EditEmployeeComponent implements OnInit {
       firstname: new FormControl(data.employee.firstname,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
       phonenumber: new FormControl(data.employee.phonenumber,[Validators.required,Validators.maxLength(8),Validators.pattern(GlobalConstants.numberRegex)]),
       address: new FormControl(data.employee.address,[Validators.required,Validators.minLength(4)]),
-      birthdate: new FormControl(data.employee.birthdate,[Validators.pattern(GlobalConstants.dateRegex)]),
+      birthdate: new FormControl(data.employee.birthdate),
       manager: new FormControl(data.employee.manager),
       project: new FormControl(data.employee.project),
       salle: new FormControl(data.employee.salle),
@@ -115,7 +115,7 @@ export class EditEmployeeComponent implements OnInit {
 
      if(this.employeeDetail.valid){
       const data = this.employeeDetail.getRawValue();
-
+      console.log("data :::",data)
       this.dialog.close({
         data: data,
        

@@ -35,7 +35,7 @@
           <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
             <mat-label class="clr2">Prénom</mat-label>
             <input type="text" matInput formControlName="lastname" class="input-priority" required >
-            <mat-error  *ngIff="employeeDetail.controls.lastname.touched && employeeDetail.controls.lastname.invalid">
+            <mat-error  *ngIf="employeeDetail.controls.lastname.touched && employeeDetail.controls.lastname.invalid">
               <span *ngIf="employeeDetail.controls.lastname.errors.required"> Ce champ est obligatoire</span>
               <span *ngIf="employeeDetail.controls.lastname.errors.pattern"> Ce champ est invalide, il ne doit pas contenir ni des chiffres ni des caractéres spéciaux</span>
 
@@ -83,7 +83,7 @@
             <mat-label>Chef</mat-label>
             <select matNativeControl required formControlName="manager" >
               <ng-container *ngFor="let employee of listComboxUsers" >
-                <option  hidden ></option>
+          
               <option  *ngIf="employeeDetail.controls.firstname!==employee.firstname" >{{employee.firstname}}</option>
             </ng-container>
             </select>
@@ -126,7 +126,7 @@
         margin-bottom: -24px;">
         
             <button     class="mat-raised-actions" style="background-color: #cd1b2d; color: white;" [mat-dialog-close] type="submit" >
-                {{ "Ajouter"  }}
+                {{ "Modifier"  }}
             </button>
         </div>
      

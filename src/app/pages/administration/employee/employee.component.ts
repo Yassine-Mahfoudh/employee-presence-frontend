@@ -111,7 +111,7 @@ getEmployees(){
 
      }} )
      const res2: any[] = [];
-     console.log('employeeList2 :',this.listComboxUsers)
+    
      this.employeeList2.forEach(employee=>{
       for(let i in employee.listeProfils){
         if(employee.listeProfils[i]==="MANAGER")
@@ -127,7 +127,7 @@ getEmployees(){
    
 
        })
-    console.log('managerList :',this.managerList)
+
     });
   }
   
@@ -141,7 +141,7 @@ getprojects(){
 getsalles(){
   this.salleService.getSalles().subscribe(res=>{
     this.salleList=res;
-    console.log("salleList:::",this.salleList);
+
   })
 }
 id_edit_user;
@@ -196,14 +196,22 @@ updateEmployee(employee:Employee){
   );
   dialogRef.afterClosed().subscribe((result) => {
     if (!isEmpty(result)) {
+      console.log('result ',result);
+      this.employeeobj.id=result.data.id;
+  this.employeeobj.lastname=result.data.lastname;
+  this.employeeobj.firstname=result.data.firstname;
+  this.employeeobj.birthdate=result.data.birthdate;
+  this.employeeobj.address=result.data.address;
+  this.employeeobj.phonenumber=result.data.phonenumber;
+  this.employeeobj.project=result.data.project;
+  this.employeeobj.salle=result.data.salle;
+  this.employeeobj.manager=result.data.manager;
 
-  this.employeeService.getEmployeeByName(result.data).subscribe(res=>{
-    // this.employeebyname=res;
 
+  this.employeeService.getEmployeeByName(result.data.manager).subscribe(res=>{
     this.employeeobj.managerid=res.id
     this.employeeobj.gender=res.gender
 
-   console.log(' to update ::: ',this.employeeobj,this.employeeobj.id)
     this.employeeService.updateEmployee(this.employeeobj,this.employeeobj.id).subscribe(ress=>{
     
       console.log('id manager ',ress);
@@ -211,8 +219,8 @@ updateEmployee(employee:Employee){
       this.getEmployees();
   
     
-    }
-    );  })
+    });
+    })
 
 }
 });  

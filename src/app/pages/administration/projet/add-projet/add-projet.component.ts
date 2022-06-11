@@ -20,11 +20,11 @@ export class AddProjetComponent implements OnInit {
   }
   projetDetail: FormGroup=new FormGroup({
     id: new FormControl(null),
-    name: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
-    description: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
-    priority: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.numberRegex)]),
-    startdate: new FormControl(null,[Validators.required, Validators.minLength(10)]),
-    enddate: new FormControl(null,[Validators.required, Validators.minLength(10)]),
+    name: new FormControl(null,[Validators.required]),
+    description: new FormControl(null,[Validators.required]),
+    priority: new FormControl(null,[Validators.required]),
+    startdate: new FormControl(null,[Validators.required]),
+    enddate: new FormControl(null,[Validators.required]),
   });;
 
 
@@ -35,11 +35,14 @@ export class AddProjetComponent implements OnInit {
 
      if(this.projetDetail.valid){
       const data = this.projetDetail.getRawValue();
-
+console.log("data :::: ",data)
       this.dialog.close({
         data: data,
        
       });
+    }
+    else {
+      console.log("invalide")
     }
   }
   handleClear(){

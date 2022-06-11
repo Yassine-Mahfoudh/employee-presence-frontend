@@ -79,26 +79,26 @@ ancienDep:any;
 
   increaseDepartementNbsalles(x: any) {
     this.departementService.getDepartementByName(x).subscribe((res) => {
-      console.log(res);
+
       this.departementobj = res;
       this.departementobj.nbsalles = this.departementobj.nbsalles + 1;
-      this.departementService
-        .updateDepartement(this.departementobj)
-        .subscribe((res) => {
-          console.log(res);
+
+
+      this.departementService.updateDepartement(this.departementobj).subscribe((res) => {         
+
+        this.getDepartements()
         });
     });
   }
 
   decreaseDepartementNbsalles(x: any) {
     this.departementService.getDepartementByName(x).subscribe((res) => {
-      console.log(res);
+   
       this.departementobj = res;
-      this.departementobj.nbsalles = this.departementobj.nbsalles + -1;
-      this.departementService
-        .updateDepartement(this.departementobj)
-        .subscribe((res) => {
+      this.departementobj.nbsalles = this.departementobj.nbsalles -1;
+      this.departementService.updateDepartement(this.departementobj).subscribe((res) => {
           console.log(res);
+          this.getDepartements()
         });
     });
   }
@@ -110,19 +110,19 @@ ancienDep:any;
   
     });
     dialogRef.afterClosed().subscribe((result) => {
-      if (!isEmpty(result)) {
-        console.log("user to update :: ",result);
-      
+      if (!isEmpty(result)) {    
         this.salleobj.id = result.data.id;
         this.salleobj.type =result.data.type;
         this.salleobj.nom = result.data.nom;
         this.salleobj.nbposte = result.data.nbposte;
         this.salleobj.pourcentagePres = result.data.pourcentagePres;
         this.salleobj.dep = result.data.dep;
-    
+      
+      
+        this.increaseDepartementNbsalles(this.salleobj.dep);
         this.salleService.addSalle(this.salleobj).subscribe(res => {
-          console.log("res ::",res);
-          this.increaseDepartementNbsalles(this.salleobj.dep);
+          console.log(res);
+        
           this.getSalles();
         });
       }
@@ -133,6 +133,7 @@ ancienDep:any;
   getDepartements() {
     this.departementService.getDepartements().subscribe((res) => {
       this.departementList = res;
+      console.log("listDep::", this.departementList)
     });
   }
 
@@ -166,15 +167,28 @@ ancienDep:any;
  
     });dialogRef.afterClosed().subscribe((result) => {
       if (!isEmpty(result)) {
+     console.log("result :::",result.data)
         this.salleobj.id = result.data.id;
         this.salleobj.type =result.data.type;
         this.salleobj.nom = result.data.nom;
         this.salleobj.nbposte = result.data.nbposte;
         this.salleobj.pourcentagePres = result.data.pourcentagePres;
+        console.log("  this.salleobj.dep avant affectation :: ",  this.salleobj.dep)
+
         this.salleobj.dep = result.data.dep;
+    console.log("  this.salleobj.dep apres affectation :: ",  this.salleobj.dep)
+
+    console.log("  result.data.dep :: ",  result.data.dep)
+
+        this.decreaseDepartementNbsalles(result.data.dep);
+        
+
+        
+        
+         
         this.salleService.updateSalle(this.salleobj).subscribe((res) => {
-          console.log(res);
-          this.decreaseDepartementNbsalles(this.ancienDep);
+         // console.log(res);
+         // console.log("  this.salleobj.dep 2:: ",  this.salleobj.dep)
           this.increaseDepartementNbsalles(this.salleobj.dep);
           this.getSalles();
         });

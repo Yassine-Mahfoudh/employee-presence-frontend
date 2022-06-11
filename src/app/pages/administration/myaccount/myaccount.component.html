@@ -1,8 +1,6 @@
  
  
-    <h3 style="text-align:center">Mon compte</h3>
-    <mat-tab-group >
-      <mat-tab label="Details">
+    
         <!-- <div class="container">
           <div class="row ">
               <div >
@@ -93,6 +91,10 @@
         </div>
         
         </div> -->
+
+        <h3 style="text-align:center">Mon compte</h3>
+    <mat-tab-group >
+      <mat-tab label="Details">
         <div style=" padding-top: 5%;   text-align: -webkit-center;
         ">
         <mat-card style="margin-bottom: 1%;margin-top: 1%;margin-left: 1%;margin-right: 1%;" class="example-card">
@@ -162,14 +164,79 @@
 </div>
 
   </div>
- 
-  <!-- <div mat-dialog-actions fxLayoutAlign="end end">
+</form>
+
+          <mat-card-content>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+
+    <!--****************************** Settings **************************************-->
+      <mat-tab label="Settings">
+        <mat-toolbar class="clr">
+          <mat-toolbar-row fxLayout="row">
+            <span class="title-center" >Changer le mot de passe </span>
+          </mat-toolbar-row>
+        </mat-toolbar>
+
+        <div style=" padding-top: 5%;   text-align: -webkit-center;
+        ">
+        <mat-card style="margin-bottom: 1%;margin-top: 1%;margin-left: 1%;margin-right: 1%;" class="example-card">
+         
+
+  <form  [formGroup]="changePasswordForm">
+  <div fxFlex fxLayout="column">
     
-      <button color="primary" mat-raised-button>
-        <span translate>submit</span>
-      </button>
+    <div>
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+      <mat-label style="padding-left: 2.5%;" >Mot de passe actuel</mat-label>
+      <mat-icon matPrefix>password</mat-icon>
+              <input style="padding-left: 2.5%;" type="password" matInput formControlName="oldPassword"   required >
+              <mat-error *ngIf="changePasswordForm.controls.oldPassword.touched && changePasswordForm.controls.oldPassword.invalid">
+                <span *ngIf="changePasswordForm.controls.oldPassword.errors.required">Ce champ est obligatoire</span>
+              </mat-error>
+    </mat-form-field>
+  </div>
+
+<div>
+  <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+
+  <mat-label style="padding-left: 2.5%;" >Nouveau mot de passe</mat-label>
+      <mat-icon matPrefix>password</mat-icon>
+      <input type="password" matInput formControlName="newPassword"  required >
+      <mat-error *ngIf="changePasswordForm.controls.newPassword.touched && changePasswordForm.controls.newPassword.invalid">
+        <span *ngIf="changePasswordForm.controls.newPassword.errors.required">Ce champ est obligatoire</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+
+    <mat-label style="padding-left: 2.5%;" >Confirmer le nouveau mot de passe</mat-label>
+        <mat-icon matPrefix>password</mat-icon>
+        <input type="password" matInput formControlName="confirmPassword"  required>
+  <mat-error *ngIf="changePasswordForm.controls.confirmPassword.touched && changePasswordForm.controls.confirmPassword.invalid">
+    <span *ngIf="changePasswordForm.controls.confirmPassword.errors.required">Ce champ est obligatoire</span>
+  </mat-error>
+  <mat-hint *ngIf="validateSumbit() && !(changePasswordForm.controls.confirmPassword.invalid)">
+    <span style="color:red;"> Les entrées dans les champs "Nouveau mot de passe" et "Confirmer le nouveau mot de passe" ne sont pas identiques.</span>
+  </mat-hint>
+      </mat-form-field>
+    </div>
+  
+    
+  <div mat-dialog-actions style="padding-top: 4%;" fxLayoutAlign="end end">
+
+    <button     class="mat-raised-actions" style="background-color: #cd1b2d; color: white;" (click)="handleChangePasswordSubmit()" 
+    [disabled]="validateSumbit() || !(changePasswordForm.valid && changePasswordForm.dirty)">
+        {{ "Mettre à jour"  }}
+    </button>
+</div>
+
+  </div>
  
-  </div> -->
+ 
 
 </form>
 
@@ -179,9 +246,13 @@
  
         </mat-card>
       </div>
+
+
     </mat-tab>
-      <mat-tab label="Settings">
-        
+  </mat-tab-group>
+
+
+        <!--
     <div  class="container">
       <mat-toolbar class="clr">
         <mat-toolbar-row fxLayout="row">
@@ -235,3 +306,4 @@
     </div>
       </mat-tab>
       </mat-tab-group>
+    -->

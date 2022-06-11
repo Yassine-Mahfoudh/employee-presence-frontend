@@ -4,8 +4,8 @@
  
 
   
-  <mat-toolbar color="primary">
-    <mat-toolbar-row fxLayout="row bg-color">
+  <mat-toolbar color="primary" style="width:500px !important">
+    <mat-toolbar-row fxLayout="row bg-color" >
 
       <span class="title-center">Modifier profil</span>
       <button
@@ -18,7 +18,7 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <mat-dialog-content class="mat-typography">
+  <mat-dialog-content class="mat-typography" >
     <form (ngSubmit)="onSuccessAdd()" [formGroup]="profilDetail" >
       <div fxFlex fxLayout="column">
         <div class="row "  class="marg">

@@ -17,7 +17,7 @@
       </mat-toolbar>
     
     <mat-dialog-content class="mat-typography">
-      <form [formGroup]="projetDetail">
+      <form (ngSubmit)="onSuccessAdd()" [formGroup]="projetDetail">
         <div fxFlex fxLayout="column">
           <div class="row "  class="marg">
           <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
