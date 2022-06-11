@@ -12,7 +12,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
-
+import { ConfirmDialogService } from '../dialog-confirmation/confirm-dialog.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddUserComponent } from './add-user/add-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+export function isEmpty(val: any): boolean {
+  return val === null || typeof val === 'undefined' || val.toString().trim() === '';
+}
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -44,11 +50,10 @@ export class UsersComponent implements OnInit {
   page:number=1
 
   constructor(private formBuilder : FormBuilder, private userService: UserService,  config: NgbModalConfig,
-    private modalService: NgbModal, private snackbar:SnackbarService,
+    private modalService: NgbModal, private snackbar:SnackbarService, private dialog: MatDialog,
     private profilService: ProfilService,
-    private ngxService: NgxUiLoaderService,
-
-    ) {  
+    private ngxService: NgxUiLoaderService,private confirmDialogService:ConfirmDialogService
+ ) {  
        // customize default values of modals used by this component tree
       config.backdrop = 'static';
       config.keyboard = false;}
@@ -69,26 +74,32 @@ this.getProfils();
   }
   
   addUser(){
-
-    console.log(this.userDetail);
-    console.log('this.userDetail.value.profil ::',this.userDetail.value.profil)
-    this.userobj.id=this.userDetail.value.id;
-    this.userobj.userName=this.userDetail.value.userName;
-    this.userobj.userPassword=this.userDetail.value.userPassword;
-    this.userobj.email=this.userDetail.value.email;
-    for(var prof of this.userDetail.value.profil){
+    const dialogRef = this.dialog.open(AddUserComponent, {
+      disableClose: true,
+      
+     data :{
+      profilList:this.profilList
+     },
+    
+      
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!isEmpty(result)) {
+        console.log('result :: ', result)
+  this.userobj.id=result.data.id;
+    this.userobj.userName=result.data.userName;
+    this.userobj.userPassword=result.data.userPassword;
+    this.userobj.email=result.data.email;
+    for(var prof of result.data.profil){
      let profil: Profil = new Profil();
       profil.name=prof
       this.userobj.profils.push(profil)
     }
-    console.log('user to add',this.userobj);
     this.userService.getUserName(this.userDetail.value.userName).subscribe(res=>{
-      console.log('user check ::: ',res)
       if(res.id==null){
-       
-        this.ngxService.start();
+  //      this.ngxService.start();
          this.userService.addUser(this.userobj).subscribe(res=>{
-           console.log(res);
+           console.log("rees:: ",res);
            this.ngxService.stop();
            this.getUsers();
          },
@@ -101,8 +112,12 @@ this.getProfils();
         this.snackbar.openSnackBar("Nom d'utilisateur déja utilisé","error")
       }
     })
+      }
+    });  
  
 }
+
+
   
 
 
@@ -123,43 +138,69 @@ editUser(User : User){
   this.userDetail.controls['userName'].setValue(User.userName);
   this.userDetail.controls['userPassword'].setValue(User.userPassword);
   this.userDetail.controls['email'].setValue(User.email);
+
+
+ 
+
 }
 
-deleteUser(User : User){
-
-    this.userService.deleteUser(User).subscribe(res=>{
-      console.log(res);
-      alert("user deleted successfully");
-      this.getUsers();
-    }
-    );
+confirmDelete(User: User){
+  this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+    if (res){  
+      this.userService.deleteUser(User).subscribe(res=>{
+        console.log(res);
+        alert("user deleted successfully");
+        this.getUsers();
+      }
+      );
+   } })
+  
   
   }
 
-updateUser(){
-  this.userobj.id=this.userDetail.value.id;
-  this.userobj.userName=this.userDetail.value.userName;
-  this.userobj.userPassword=this.userobj.userPassword;
-  this.userobj.email=this.userDetail.value.email;
-  for(var prof of this.userDetail.value.profil){
+updateUser(user:User){
+  
+  const dialogRef = this.dialog.open(EditUserComponent, {
+    disableClose: true,
+    
+   data :{
+    user:user,
+    profilList:this.profilList
+   },
+  
+    
+  });
+  dialogRef.afterClosed().subscribe((result) => {
+    if (!isEmpty(result)) {
+      console.log('user to update :: ',result)
+      this.userobj.id=result.data.id;
+  this.userobj.userName=result.data.userName;
+  this.userobj.userPassword=result.data.userPassword;
+  this.userobj.email=result.data.email;
+  this.userobj.profils=[]
+  for(var prof of result.data.profil){
     let profil: Profil = new Profil();
      profil.name=prof
      this.userobj.profils.push(profil)
    }
-   console.log('user to update :: ',this.userobj )
+   console.log('user  :: ',this.userobj )
      this.userService.updateUser(this.userobj).subscribe(res=>{
     console.log(res);
     this.getUsers();
   }
   );
 
+
+}
+});  
+
 }
 
-confirmDelete(User: User) {
-  if(confirm("Are you sure you want to delete this user : "+User.userName)) {
-     this.deleteUser(User);
-  }
-}
+// confirmDelete(User: User) {
+//   if(confirm("Are you sure you want to delete this user : "+User.userName)) {
+//      this.deleteUser(User);
+//   }
+// }
 
 public searchUsers(key: string): void {
   console.log(key);

@@ -1,0 +1,92 @@
+
+      <!-- addproject -->
+
+  
+        <mat-toolbar color="primary">
+          <mat-toolbar-row fxLayout="row bg-color">
+      
+            <span class="title-center">Ajouter un nouveau projet</span>
+            <button
+              type="button"
+              class="d-block mr-0 ml-auto btn-close" 
+              aria-label="Close"
+              mat-dialog-close
+              (click)="handleClear()"
+            ></button>
+          </mat-toolbar-row>
+        </mat-toolbar>
+      
+      <mat-dialog-content class="mat-typography">
+        <form [formGroup]="projetDetail">
+          <div fxFlex fxLayout="column">
+            <div class="row "  class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              
+              <mat-label class="clr2">Nom</mat-label>
+              <input type="text" matInput formControlName="name"  class="input-name" required >
+              <mat-error  *ngIf="projetDetail.controls.name.touched && projetDetail.controls.name.invalid">
+                <span *ngIf="projetDetail.controls.name.errors.required"> Ce champ est obligatoire</span>
+                <span *ngIf="projetDetail.controls.name.errors.pattern"> Ce champ est invalide, il ne doit pas contenir des caractéres spéciaux</span> 
+                <span *ngIf="projetDetail.controls.name.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+            <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">Priorité</mat-label>
+              <input type="text" matInput formControlName="priority" class="input-priority" required >
+              <mat-error  *ngIf="projetDetail.controls.priority.touched && projetDetail.controls.priority.invalid">
+                <span *ngIf="projetDetail.controls.priority.errors.required"> Ce champ est obligatoire</span>
+                <span *ngIf="projetDetail.controls.priority.errors.pattern">Ce champ est invalide, il doit être un numéro</span> 
+              </mat-error>
+            </mat-form-field>
+          </div>
+            <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">Description</mat-label>
+              <input type="text" matInput formControlName="description"  class="input-description" required>
+              <mat-error  *ngIf="projetDetail.controls.priority.touched && projetDetail.controls.description.invalid">
+                <span *ngIf="projetDetail.controls.description.errors.required"> Ce champ est obligatoire</span>
+                <span *ngIf="projetDetail.controls.description.errors.minlength"> La description doit comporter au moins 4 caractères</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">Date de début</mat-label>
+              <input type="texte" matInput formControlName="startdate"  class="input-startdate" required onfocus="(this.type='date')">
+              <mat-error  *ngIf="projetDetail.controls.startdate.touched && projetDetail.controls.startdate.invalid">
+                <span *ngIf="projetDetail.controls.startdate.errors.required"> Ce champ est obligatoire</span>
+                <span *ngIf="projetDetail.controls.startdate.errors.pattern">Ce champ est invalide</span> 
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">Date de fin</mat-label>
+              <input type="text" matInput formControlName="enddate"  class="input-enddate" required onfocus="(this.type='date')">
+              <mat-error *ngIf="projetDetail.controls.enddate.touched && projetDetail.controls.enddate.invalid">
+                <span *ngIf="projetDetail.controls.enddate.errors.required"> Ce champ est obligatoire</span>
+                <span *ngIf="projetDetail.controls.enddate.errors.pattern">Ce champ est invalide</span> 
+              </mat-error>
+              <mat-hint *ngIf="validateDate()">
+                <span style="color:red;"> La date de fin doit être supérieur du date de début</span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="end end" style=" padding: 8px 0;margin-top: 6%;
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 52px;
+      align-items: center;
+      margin-bottom: -24px;">
+      
+          <button    class="mat-raised-actions" style="background-color: #cd1b2d; color: white;" [mat-dialog-close] type="submit" >
+              {{ "Ajouter"  }}
+          </button>
+      </div>
+          </div>
+        </form>
+      </mat-dialog-content>
+
+           

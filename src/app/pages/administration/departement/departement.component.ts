@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Departement } from 'src/app/core/models/departement';
 import { DepartementService } from 'src/app/core/services/departement.service';
@@ -7,7 +7,14 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
-
+import { ConfirmDialogService } from '../dialog-confirmation/confirm-dialog.service';
+import { AddDepartementComponent } from './add-departement/add-departement.component';
+import { MatDialog } from '@angular/material/dialog';
+import { EditDepartementComponent } from './edit-departement/edit-departement.component';
+import { data } from 'jquery';
+export function isEmpty(val: any): boolean {
+  return val === null || typeof val === 'undefined' || val.toString().trim() === '';
+}
 @Component({
   selector: 'app-departement',
   templateUrl: './departement.component.html',
@@ -20,15 +27,15 @@ export class DepartementComponent implements OnInit {
     editIcon = faPenToSquare;
     addIcon = faPlusCircle;
 
-  departementDetail!: FormGroup;
-  departementobj: Departement = new Departement();
-  departementup: Departement = new Departement();
 
+departementobj: Departement = new Departement();
+departementup: Departement = new Departement();
   departementList:Departement[] = [];
   totalRec!: string;
   page:number=1
 
   constructor(private formBuilder : FormBuilder,config: NgbModalConfig,
+    private confirmDialogService:ConfirmDialogService, private dialog: MatDialog,
     private modalService: NgbModal, private departementService: DepartementService) {
         // customize default values of modals used by this component tree
   config.backdrop = 'static';
@@ -37,11 +44,13 @@ export class DepartementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDepartements();
-    this.departementDetail = this.formBuilder.group({
-      id: [''],
-      name:[null,[Validators.required,Validators.minLength(4),Validators.pattern(GlobalConstants.nameRegex)]]    });
+   
   }
 
+  departementDetail: FormGroup=new FormGroup({
+    id: new FormControl(null),
+    name: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
+  });
   
   open(content) {
     this.modalService.open(content);
@@ -55,15 +64,22 @@ export class DepartementComponent implements OnInit {
 
 
   addDepartement(){
+    const dialogRef = this.dialog.open(AddDepartementComponent, {
+      disableClose: true,
+     
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!isEmpty(result)) {
+        console.log("result:: ",result);
 
-    console.log(this.departementDetail);
-    this.departementobj.id=this.departementDetail.value.id;
-    this.departementobj.name=this.departementDetail.value.name;
-    this.departementService.addDepartement(this.departementobj).subscribe(res=>{
-      console.log(res);
-      this.getDepartements();
-    }
-    );
+        this.departementService.addDepartement(result.data).subscribe(res=>{
+          console.log(res);
+          this.getDepartements();
+        }
+        );
+      }
+    });  
+
 
 
 }
@@ -93,13 +109,20 @@ deleteDepartement(departement : Departement){
   }
 
 
-  updateDepartement(){
-    this.departementobj.id=this.departementDetail.value.id;
+  updateDepartement(departement:Departement){
+    const dialogRef = this.dialog.open(EditDepartementComponent, {
+      disableClose: true,
+     data:{
+      departement:departement,
+     }
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!isEmpty(result)) {
+        this.departementobj.id=this.departementDetail.value.id;
     this.departementobj.name=this.departementDetail.value.name;
 
     this.departementService.getDepartementById(this.departementDetail.value.id).subscribe((res) => {
       this.departementup = res;
-      console.log("this.departementup:::",this.departementup);
       this.departementobj.nbsalles = this.departementup.nbsalles
       console.log("this.departementobj:::",this.departementobj);
   
@@ -111,14 +134,26 @@ deleteDepartement(departement : Departement){
     
   }
   );
+      }
+    });  
+    
 
 }
 
-confirmDelete(departement: Departement) {
-  if(confirm("Are you sure you want to delete this profil : "+departement.name)) {
-     this.deleteDepartement(departement);
+confirmDelete(departement: Departement){
+  this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+    if (res){  
+      this.departementService.deleteDepartement(departement).subscribe(res=>{
+        console.log(res);
+        alert("user deleted successfully");
+        this.getDepartements();
+      }
+      );
+   } })
+  
+  
   }
-}
+
 
 public searchDepartements(key: string): void {
   console.log(key);

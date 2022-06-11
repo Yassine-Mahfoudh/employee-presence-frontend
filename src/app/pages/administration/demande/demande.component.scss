@@ -5,10 +5,7 @@ body {
     color: #b9b9b9;
     background-color: #e3e3e3;
   }
-  .mat-tab-body-content {
-    height: 100%;
-    overflow: hidden !important;
-}
+ 
   .container{
     max-width: 70em !important;
         padding: 1em 3em 2em 3em;
@@ -585,7 +582,7 @@ select {
   }
 
   .button-1 {
-    width: 40%;
+    width: 30%;
     border-radius: 10px;
     border-style: none;
     box-sizing: border-box;
@@ -598,7 +595,7 @@ select {
     height: 50px;
     list-style: none;
     margin-top: 1em;
-    margin-left:17em;
+    margin-left:10em;
     outline: none;
     position: relative;
     text-align: center;
@@ -627,15 +624,21 @@ select {
    
   }
   .marg {
-    margin: 1em 3em;
+    margin: 1em 20em;
    
   }
   .margt {
     margin-top: 1em;
    
   }
+  .mtfldwrapper {
+    padding-bottom: 1.25em !important;
+    margin: 1em 2em !important;
+  }
+
   mat-dialog-actions{
-    width: 450px;
+    width: 509px;
+    
   }
  
   .mr-0 {
@@ -650,7 +653,9 @@ select {
   
   .col-lg-6{
     width: 100%;
-  }body {
+
+  }
+  body {
     font-family: 'lato', sans-serif;
   }
   .page__content{
@@ -670,8 +675,34 @@ select {
     text-align: center;
     
   }
-  
+  mat-form-field-infix {
+    padding: 0.2em 0;
+    border-top: 0.84375em solid #FFFFFF;
+    background-color: #FFFFFF;
+}
  
+  .mat-type-pos{
+position: relative;
+top:6em;
+left:3em;
+
+  }
+  .mat-datedebut-pos{
+    position: relative;
+    top:-8.8em;
+    left:30em;
+    width:15em;
+      }
+      .mat-datefin-pos{
+        position: relative;
+        top:-16.2em;
+        left:50em;
+        width:15em;
+          }
+          .mat-descrption-pos{
+            position: relative;
+            top:10em;       
+              }
   
   /* Forms
      ========================================================================== */

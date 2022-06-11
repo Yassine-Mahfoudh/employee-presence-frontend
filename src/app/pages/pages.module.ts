@@ -43,6 +43,11 @@ import { ChatUsersComponent } from './Chat/chat-users/chat-users.component';
 import { ChatstreamComponent } from './Chat/chatstream/chatstream.component';
 import { ConfirmDialogComponent } from './services_generiques/confirm-dialog/confirm-dialog.component';
 import { DialogErrorComponent } from './services_generiques/confirm-dialog/dialog-error/dialog-error.component';
+import { AjoutEvenementComponent } from './ajout-evenement/ajout-evenement.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
@@ -77,7 +82,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ChatUsersComponent,
     ChatstreamComponent,
     ConfirmDialogComponent,
-    DialogErrorComponent
+    DialogErrorComponent,
+    AjoutEvenementComponent,
+    
     
   ],
   imports: [
@@ -106,7 +113,15 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
           MatFormFieldModule,
           MatInputModule,
           FlexLayoutModule,
-          FullCalendarModule
+          FullCalendarModule,
+          MatFormFieldModule,
+    MatInputModule,
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatRadioModule,
+    BrowserAnimationsModule,
 
   ]
 })

@@ -1,0 +1,95 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row bg-color">
+
+      <span class="title-center">Ajouter une nouvelle salle</span>
+      <button
+        type="button"
+        class="d-block mr-0 ml-auto btn-close" 
+        aria-label="Close"
+        mat-dialog-close
+        (click)="handleClear()"
+      ></button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-dialog-content class="mat-typography">
+    <form (ngSubmit)="onSuccessAdd()" [formGroup]="salleDetail">
+      <div fxFlex fxLayout="column">
+
+        <div class="row "  class="marg ">
+        <mat-form-field appearance="fill" class=" mtfldwrapper "  >
+          <mat-label>Type</mat-label>
+          <select matNativeControl required formControlName="type" > 
+            <option value="Salle de travail">Salle de travail</option>
+            <option value="Salle de réunion">Salle de réunion</option>
+          </select>
+          <mat-error  *ngIf="salleDetail.controls.type.touched && salleDetail.controls.type.invalid">
+            <span *ngIf="salleDetail.controls.type.errors.required"> Ce champ est obligatoire</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      
+
+      <div class="row" class="marg">
+        <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+          <mat-label class="clr2">Nom</mat-label>
+          <input type="text" matInput formControlName="nom" class="input-priority" required >
+          <mat-error  *ngIf="salleDetail.controls.nom.touched && salleDetail.controls.nom.invalid">
+            <span *ngIf="salleDetail.controls.nom.errors.required"> Ce champ est obligatoire</span>
+            <span *ngIf="salleDetail.controls.nom.errors.pattern"> Ce champ est invalide, il ne doit pas contenir des caractéres spéciaux</span>
+           
+ 
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+        <div class="row" class="marg">
+        <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+          <mat-label class="clr2">Nombre de postes</mat-label>
+          <input type="text" matInput formControlName="nbposte" class="input-priority" required >
+          <mat-error  *ngIf="salleDetail.controls.nbposte.touched && salleDetail.controls.nbposte.invalid">
+            <span *ngIf="salleDetail.controls.nbposte.errors.required"> Ce champ est obligatoire</span>
+            <span *ngIf="salleDetail.controls.nbposte.errors.pattern"> Ce champ est invalide, il doit être un numéro</span>
+ 
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row" class="marg">
+        <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+          <mat-label class="clr2">Pourcentage de présence</mat-label>
+          <input type="text" matInput formControlName="pourcentagePres" class="input-priority" required >
+          <mat-error  *ngIf="salleDetail.controls.pourcentagePres.touched && salleDetail.controls.pourcentagePres.invalid">
+            <span *ngIf="salleDetail.controls.pourcentagePres.errors.required"> Ce champ est obligatoire</span>
+            <span *ngIf="salleDetail.controls.pourcentagePres.errors.pattern"> Ce champ est invalide, il doit être un numéro</span>
+ 
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row "  class="marg">
+        <mat-form-field appearance="fill" class=" mtfldwrapper">
+          <mat-label>Département</mat-label>
+          <select matNativeControl required formControlName="dep" >
+            <option *ngFor="let departement of departementList" [value]="departement.name" >{{departement.name}}</option>
+          </select>
+          <mat-error  *ngIf="salleDetail.controls.dep.touched && salleDetail.controls.dep.invalid">
+            <span *ngIf="salleDetail.controls.dep.errors.required"> Ce champ est obligatoire</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayoutAlign="end end" style=" padding: 8px 0;margin-top: 6%;
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 52px;
+      align-items: center;
+      margin-bottom: -24px;">
+      
+          <button    class="mat-raised-actions" style="background-color: #cd1b2d; color: white;" [mat-dialog-close] type="submit" >
+              {{ "Ajouter"  }}
+          </button>
+      </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+

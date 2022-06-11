@@ -2,15 +2,18 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { faPenToSquare, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { ThirdPartyDraggable } from '@fullcalendar/interaction';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Demande } from 'src/app/core/models/demande';
 import { Employee } from 'src/app/core/models/employee';
 import { MyEvent } from 'src/app/core/models/myevent';
+import { Projet } from 'src/app/core/models/projet';
 import { User } from 'src/app/core/models/user';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { DemandeService } from 'src/app/core/services/demande.service';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { EventService } from 'src/app/core/services/event.service';
+import { ProjetService } from 'src/app/core/services/projet.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 import { AddeventComponent } from '../../addevent/addevent.component';
@@ -42,6 +45,7 @@ export class DemandeComponent implements OnInit {
   employeeList2: Employee[];
   eventobj: MyEvent=new MyEvent();
   rhdemandes: Demande[] = [];
+  projectList: Projet[]=[];
 
 
   constructor(private formBuilder : FormBuilder,
@@ -50,6 +54,7 @@ export class DemandeComponent implements OnInit {
      private authservice:AuthService,
      private employeeService:EmployeeService,
      private myeventService:EventService,
+     private projetService:ProjetService,
      config: NgbModalConfig,
       private modalService: NgbModal
      ) {
@@ -64,17 +69,28 @@ export class DemandeComponent implements OnInit {
     
     this.demandeDetail = this.formBuilder.group({
       id: [''],
-      title:[null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
-      description:[''],
-      datedebut: [''],
-      datefin: [''],
+      title:['',Validators.required],
+      description:[null,
+        [Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)],
+      ],
+      datedebut: [null,[Validators.required,Validators.minLength(10)]],
+      datefin: [null,[Validators.required,Validators.minLength(10)]],
       empid:[''],
       empnom:[''],
       empprenom:[''],
+      priorite:[''],
       etat:['']
     });
   }
-
+  validateDate(){
+    if(this.demandeDetail.controls['datedebut'].value >
+     this.demandeDetail.controls['datefin'].value){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
   open(content) {
     this.modalService.open(content);
   }
@@ -86,15 +102,25 @@ export class DemandeComponent implements OnInit {
  
 
   addDemande(){
-
+    let results: number;
     console.log(this.demandeDetail);
     this.demandeobj.id=this.demandeDetail.value.id;
     this.demandeobj.empid=this.authservice.getUser().id;
     this.demandeobj.title=this.demandeDetail.value.title;
     this.demandeobj.empnom=this.authservice.getUserEmployee().lastname;
-    console.log("this.authservice.getUserEmployee().firstname",this.authservice.getUserEmployee().lastname)
+    this.projetService.getProjets().subscribe(res=>{
+      this.projectList=res;
+     
+      this.projectList.forEach(projet=>{if (projet.name==this.authservice.getUserEmployee().project){
+        results=projet.priority;
+      }
+    })
+    
+  })
+  console.log("projet mta3 luser ::",results)
+  this.demandeobj.priorite=results;
+ 
     this.demandeobj.empprenom=this.authservice.getUserEmployee().firstname;
-    console.log("this.authservice.getUserEmployee().firstname",this.authservice.getUserEmployee().firstname)
     this.demandeobj.description=this.demandeDetail.value.description;
     this.demandeobj.datedebut=this.demandeDetail.value.datedebut;
     this.demandeobj.datefin=this.demandeDetail.value.datefin;

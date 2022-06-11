@@ -212,7 +212,7 @@ padding: 0em 2em;
 
 .page {
   color: white;
-  padding: 5 -1em;
+  padding: 0 -5em;
   background: #f1f5f9;
 }
 .page__box {
@@ -231,7 +231,7 @@ padding: 0em 2em;
 
 }
 .page__content-data {
-  top: 30%;
+  top: 50%;
   left: 50%;
   position: relative !important; 
   left:1em !important;
@@ -593,3 +593,5 @@ select {
   .col-lg-6{
     width: 100%;
   }
+
+  

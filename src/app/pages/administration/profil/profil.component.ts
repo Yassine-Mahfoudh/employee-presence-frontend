@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Profil } from 'src/app/core/models/profil';
 import { ProfilService } from 'src/app/core/services/profil.service';
@@ -7,7 +7,12 @@ import { ProfilService } from 'src/app/core/services/profil.service';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-
+import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
+import { EditProfilComponent } from './edit-profil/edit-profil.component';
+import { MatDialog } from '@angular/material/dialog';
+export function isEmpty(val: any): boolean {
+  return val === null || typeof val === 'undefined' || val.toString().trim() === '';
+}
 @Component({
   selector: 'app-profil',
   templateUrl: './profil.component.html',
@@ -19,15 +24,13 @@ export class ProfilComponent implements OnInit {
   editIcon = faPenToSquare;
   addIcon = faPlusCircle;
 
-
-  profilDetail!: FormGroup;
   profilobj: Profil = new Profil();
   profilList:Profil[] = [];
   totalRec!: string;
   page:number=1
 
   constructor(private formBuilder : FormBuilder, private profilService: ProfilService,  config: NgbModalConfig,
-    private modalService: NgbModal) {  
+    private modalService: NgbModal,private dialog: MatDialog,) {  
        // customize default values of modals used by this component tree
       config.backdrop = 'static';
       config.keyboard = false;}
@@ -35,12 +38,15 @@ export class ProfilComponent implements OnInit {
   ngOnInit(): void {
 
     this.getProfils();
-    this.profilDetail = this.formBuilder.group({
-      id: [''],
-      name:['']
-    });
   }
 
+ profilDetail:FormGroup=new FormGroup({
+    id: new FormControl(null),
+    name:new FormControl(null),
+    description: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
+  });
+
+  
   open(content) {
     this.modalService.open(content);
   }
@@ -49,19 +55,19 @@ export class ProfilComponent implements OnInit {
     this.modalService.dismissAll(content);
   }
 
-  addProfil(){
+//   addProfil(){
 
-    console.log(this.profilDetail);
-    this.profilobj.id=this.profilDetail.value.id;
-    this.profilobj.name=this.profilDetail.value.name;
-    this.profilService.addProfil(this.profilobj).subscribe(res=>{
-      console.log(res);
-      this.getProfils();
-    }
-    );
+//     console.log(this.profilDetail);
+//     this.profilobj.id=this.profilDetail.value.id;
+//     this.profilobj.name=this.profilDetail.value.name;
+//     this.profilService.addProfil(this.profilobj).subscribe(res=>{
+//       console.log(res);
+//       this.getProfils();
+//     }
+//     );
 
 
-}
+// }
 
 getProfils(){
   this.profilService.getProfils().subscribe(res=>{
@@ -69,11 +75,11 @@ getProfils(){
   })
 }
 
-editProfil(profil : Profil){
-  this.profilDetail.controls['id'].setValue(profil.id);
-  this.profilDetail.controls['name'].setValue(profil.name);
+// editProfil(profil : Profil){
+//   this.profilDetail.controls['id'].setValue(profil.id);
+//   this.profilDetail.controls['name'].setValue(profil.name);
 
-}
+// }
 
 deleteProfil(profil : Profil){
 
@@ -86,15 +92,26 @@ deleteProfil(profil : Profil){
   
   }
 
-updateProfil(){
-  this.profilobj.id=this.profilDetail.value.id;
-  this.profilobj.name=this.profilDetail.value.name;
-  this.profilService.updateProfil(this.profilobj).subscribe(res=>{
-    console.log(res);
-    this.getProfils();
-  }
-  );
+updateProfil(profil:Profil){
+  const dialogRef = this.dialog.open(EditProfilComponent, {
+    disableClose: true,
+   data:{
+    profil:profil,
+   }
+  });
 
+  dialogRef.afterClosed().subscribe((result) => {
+    if (!isEmpty(result)) {
+     this.profilobj.id=result.data.id;
+      this.profilobj.description=result.data.description;
+      this.profilService.updateProfil(this.profilobj).subscribe(res=>{
+        console.log(res);
+        this.getProfils();
+      }
+      );
+    
+    }
+  });  
 }
 
 confirmDelete(profil: Profil) {

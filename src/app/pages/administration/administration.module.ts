@@ -38,6 +38,27 @@ import { SortDirective } from 'src/app/shared/Utils/directive/sort.directive';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
+import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component';
+import { AddUserComponent } from './users/add-user/add-user.component';
+import { TextFieldComponent } from './text-field/text-field.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { AddDepartementComponent } from './departement/add-departement/add-departement.component';
+import { EditDepartementComponent } from './departement/edit-departement/edit-departement.component';
+import { AddSalleComponent } from './salle/add-salle/add-salle.component';
+import { EditSalleComponent } from './salle/edit-salle/edit-salle.component';
+import { AddProjetComponent } from './projet/add-projet/add-projet.component';
+import { EditProjetComponent } from './projet/edit-projet/edit-projet.component';
+import { EditEmployeeComponent } from './employee/edit-employee/edit-employee.component';
+import { EditProfilComponent } from './profil/edit-profil/edit-profil.component';
+import { MatCardModule } from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { UploadImagesComponent } from './upload-images/upload-images.component';
+
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -58,6 +79,20 @@ import {MatRadioModule} from '@angular/material/radio';
     MyaccountComponent,
     LogdataComponent,
     SortDirective,
+    DialogConfirmationComponent,
+    AddUserComponent,
+    TextFieldComponent,
+    EditUserComponent,
+    AddDepartementComponent,
+    EditDepartementComponent,
+    AddSalleComponent,
+    EditSalleComponent,
+    AddProjetComponent,
+    EditProjetComponent,
+
+    EditEmployeeComponent,
+     EditProfilComponent,
+     UploadImagesComponent
  
   ],
   imports: [
@@ -82,7 +117,15 @@ import {MatRadioModule} from '@angular/material/radio';
     MatToolbarModule,
     MatDialogModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
+    MatButtonModule,
+    MatProgressBarModule,
+    MatListModule
+
   ]
 })
 export class AdministrationModule { }

@@ -15,7 +15,7 @@
       ></button>
     </mat-toolbar-row>
   </mat-toolbar>
-  <div class="modal-body">
+  <mat-dialog-content class="mat-typography">
     <form [formGroup]="eventDetail" >
       <div class="pl-lg-4 field">
         <div class="row formbg-inner ">
@@ -156,7 +156,7 @@
 
                 <!--selectionner le type de frequence -->
   
-               <div class="form-group padding-bottom--24">
+               <div class="form-group ">
               <label for="frequence-select">Frequence</label>
               <select id = "frequence-select" formControlName="frequency" style="width:50%" class="form-control form-control-alternative " 
               name="status-select" (change)="eventFrequence(this.eventDetail.controls.frequency.value)">
@@ -314,5 +314,5 @@
         </mat-dialog-actions>
       </div>
     </form>
-  </div>
+  </mat-dialog-content>
   

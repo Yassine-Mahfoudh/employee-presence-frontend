@@ -15,6 +15,12 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 import { Departement } from 'src/app/core/models/departement';
 import { DepartementService } from 'src/app/core/services/departement.service';
+import { AddSalleComponent } from './add-salle/add-salle.component';
+import { EditSalleComponent } from './edit-salle/edit-salle.component';
+import { ConfirmDialogService } from '../dialog-confirmation/confirm-dialog.service';
+export function isEmpty(val: any): boolean {
+  return val === null || typeof val === 'undefined' || val.toString().trim() === '';
+}
 @Component({
   selector: 'app-salle',
   templateUrl: './salle.component.html',
@@ -25,7 +31,16 @@ export class SalleComponent implements OnInit {
   editIcon = faPenToSquare;
   addIcon = faPlusCircle;
 
-  salleDetail!: FormGroup;
+
+  salleDetail: FormGroup=new FormGroup({
+    id: new FormControl(null),
+    type: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
+    nom: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
+    nbposte: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.numberRegex)]),
+    pourcentagePres: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.numberRegex)]),
+    dep: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.numberRegex)]),
+  });
+
   salleobj: Salle = new Salle();
   departementobj: Departement = new Departement();
   salleList: Salle[] = [];
@@ -33,11 +48,13 @@ export class SalleComponent implements OnInit {
   totalRec!: string;
   page: number = 1;
 ancienDep:any;
+
   constructor(
     private formBuilder1: FormBuilder,
     private salleService: SalleService,
     config: NgbModalConfig,
     private modalService: NgbModal,
+    private confirmDialogService:ConfirmDialogService,
     private dialog: MatDialog,
     private departementService: DepartementService
   ) {
@@ -49,23 +66,7 @@ ancienDep:any;
   ngOnInit(): void {
     this.getDepartements();
     this.getSalles();
-    this.salleDetail = this.formBuilder1.group({
-      id: [''],
-      type: ['',Validators.required],
-      nom: [
-        null,
-        [Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)],
-      ],
-      nbposte: [
-        null,
-        [Validators.required, Validators.pattern(GlobalConstants.numberRegex)],
-      ],
-      pourcentagePres: [
-        null,
-        [Validators.required, Validators.pattern(GlobalConstants.numberRegex)],
-      ],
-      dep: [''],
-    });
+    
   }
 
   open(content) {
@@ -103,20 +104,30 @@ ancienDep:any;
   }
 
   addSalle() {
-    console.log(this.salleDetail);
-    this.salleobj.id = this.salleDetail.value.id;
-    this.salleobj.type = this.salleDetail.value.type;
-    this.salleobj.nom = this.salleDetail.value.nom;
-    this.salleobj.nbposte = this.salleDetail.value.nbposte;
-    this.salleobj.pourcentagePres = this.salleDetail.value.pourcentagePres;
-    this.salleobj.dep = this.salleDetail.value.dep;
 
-
-    this.salleService.addSalle(this.salleobj).subscribe((res) => {
-      console.log(res);
-      this.increaseDepartementNbsalles(this.salleobj.dep);
-      this.getSalles();
+    const dialogRef = this.dialog.open(AddSalleComponent, {
+      disableClose: true,
+  
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!isEmpty(result)) {
+        console.log("user to update :: ",result);
+      
+        this.salleobj.id = result.data.id;
+        this.salleobj.type =result.data.type;
+        this.salleobj.nom = result.data.nom;
+        this.salleobj.nbposte = result.data.nbposte;
+        this.salleobj.pourcentagePres = result.data.pourcentagePres;
+        this.salleobj.dep = result.data.dep;
+    
+        this.salleService.addSalle(this.salleobj).subscribe(res => {
+          console.log("res ::",res);
+          this.increaseDepartementNbsalles(this.salleobj.dep);
+          this.getSalles();
+        });
+      }
+    });  
+    
   }
 
   getDepartements() {
@@ -143,19 +154,33 @@ ancienDep:any;
     this.ancienDep=salle.dep;
   }
 
-  updateSalle() {
-    this.salleobj.id = this.salleDetail.value.id;
-    this.salleobj.type = this.salleDetail.value.type;
-    this.salleobj.nom = this.salleDetail.value.nom;
-    this.salleobj.nbposte = this.salleDetail.value.nbposte;
-    this.salleobj.pourcentagePres = this.salleDetail.value.pourcentagePres;
-    this.salleobj.dep = this.salleDetail.value.dep;
-    this.salleService.updateSalle(this.salleobj).subscribe((res) => {
-      console.log(res);
-      this.decreaseDepartementNbsalles(this.ancienDep);
-      this.increaseDepartementNbsalles(this.salleobj.dep);
-      this.getSalles();
-    });
+  updateSalle(salle:Salle) {
+  
+
+    const dialogRef = this.dialog.open(EditSalleComponent, {
+      disableClose: true,
+
+      data:{
+        salle:salle,
+      },
+ 
+    });dialogRef.afterClosed().subscribe((result) => {
+      if (!isEmpty(result)) {
+        this.salleobj.id = result.data.id;
+        this.salleobj.type =result.data.type;
+        this.salleobj.nom = result.data.nom;
+        this.salleobj.nbposte = result.data.nbposte;
+        this.salleobj.pourcentagePres = result.data.pourcentagePres;
+        this.salleobj.dep = result.data.dep;
+        this.salleService.updateSalle(this.salleobj).subscribe((res) => {
+          console.log(res);
+          this.decreaseDepartementNbsalles(this.ancienDep);
+          this.increaseDepartementNbsalles(this.salleobj.dep);
+          this.getSalles();
+        });
+      }
+    });  
+    
   }
 
   deleteSalle(salle: Salle) {
@@ -168,19 +193,20 @@ ancienDep:any;
   }
 
   
-
-  confirmDelete(salle: Salle) {
-    if (
-      confirm(
-        'Are you sure you want to delete salle ' +
-          salle.type +
-          ' number : ' +
-          salle.nom
-      )
-    ) {
-      this.deleteSalle(salle);
+  confirmDelete(salle: Salle){
+    this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+      if (res){  
+        this.salleService.deleteSalle(salle).subscribe(res=>{
+          console.log(res);
+          alert("user deleted successfully");
+          this.getDepartements();
+        }
+        );
+     } })
+    
+    
     }
-  }
+
   /*ConfirmDelete(){
 
   const dialogConfig = new MatDialogConfig();

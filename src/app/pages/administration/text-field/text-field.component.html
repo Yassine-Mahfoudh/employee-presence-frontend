@@ -1,0 +1,20 @@
+<mat-form-field [appearance]="appearance">
+    <mat-label>{{ label
+        }}<span *ngIf="required(control) && !insideEditableTable" style="color: red">*</span></mat-label>
+
+    <div *ngIf="!isWithAutocomplete">
+        <input  [attr.disabled]="true" [maxlength]="max" style="color: black"
+               [ngStyle]="{'text-align':isMontant ? 'right' : '', 'padding-right':isMontant ? '1%' : '' }"
+            
+               [formControl]="control" [max]="max" [min]="min" [type]="type" [value]="value"
+            
+              
+               autocomplete="off" matInput
+               (blur)="format(control.value)"/>
+    </div>
+  
+
+
+    <ng-content></ng-content>
+    
+</mat-form-field>

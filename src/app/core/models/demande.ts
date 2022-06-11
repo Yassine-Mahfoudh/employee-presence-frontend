@@ -7,5 +7,6 @@ export class Demande {
     empnom:string='';
     empprenom:string='';
     empid:number=0;
+    priorite:number=0;
     etat:string='';
 }

@@ -1,0 +1,25 @@
+<div >
+    <h1 style="font-size: 80%;margin: 0 0 20px;
+    display: block;font: 500 20px/32px Roboto;
+    letter-spacing: normal;">{{ title  }}</h1>
+    <div mat-dialog-content>
+        <div style="color: red">{{ descriptionObjection }}</div>
+        {{ description  }}
+
+    </div>
+
+
+    <div fxLayoutAlign="end end" style=" padding: 8px 0;margin-top: 6%;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 52px;
+    align-items: center;
+    margin-bottom: -24px;">
+        <button style="margin-right: 2%;"   class="mat-raised-actions" [mat-dialog-close] (click)="respond(false)">
+            {{ "Annuler"  }}
+        </button>
+        <button     class="mat-raised-actions" style="background-color: #cd1b2d; color: white;" [mat-dialog-close] (click)="respond(true)">
+            {{ "Approuver"  }}
+        </button>
+    </div>
+</div>

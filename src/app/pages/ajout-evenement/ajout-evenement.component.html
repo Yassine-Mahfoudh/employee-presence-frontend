@@ -1,0 +1,271 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row bg-color">
+
+      <span class="title-center">Ajouter un nouveau événement</span>
+      <button
+        type="button"
+        class="d-block mr-0 ml-auto btn-close" 
+        aria-label="Close"
+        mat-dialog-close
+        (click)="handleClear()"
+      ></button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-dialog-content class="mat-typography">
+    <form (ngSubmit)="onSuccessAdd()"  [formGroup]="eventDetail">
+      <div fxFlex fxLayout="column">
+
+        <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">Type d'événement</mat-label>
+            
+            <mat-select placeholder="Periodic table" 
+            formControlName="eventtype" >
+    
+            
+              <mat-option value="Presentielle">Static</mat-option>
+              <mat-option value="à distance">Recursive</mat-option>
+             
+            
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+      <div class="row" class="marg">
+        <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+          <mat-label class="clr2">Titre</mat-label>
+        
+        <mat-select placeholder="Periodic table" 
+        formControlName="title" >
+
+        
+          <mat-option value="Presentielle">Presentielle</mat-option>
+          <mat-option value="à distance">à distance</mat-option>
+          <mat-option value="congé">congé</mat-option>
+        
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+         <div >
+        <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+          <mat-label class="clr2">Description</mat-label>
+          <input type="text" matInput formControlName="description" class="input-email" required >
+     
+        </mat-form-field>
+      </div>
+     
+      <div>
+        <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+          <mat-label class="clr2">Date debut</mat-label>
+          <input
+          type="text"
+          matInput
+          class="form-control form-control-alternative"
+          formControlName="datedebut"
+          id="input-datedebut"
+          placeholder="event datedebut"
+          required  onfocus="(this.type='date')"/>
+        </mat-form-field>
+      </div>
+       
+      <div class="row" class="marg">
+        <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+          <mat-label class="clr2">Date fin</mat-label>
+          <input
+          type="text"
+          matInput
+          class="form-control form-control-alternative"
+          formControlName="datefin"
+          id="input-datefin"
+          placeholder="event datefin"
+          required  onfocus="(this.type='date')"/>
+       
+        </mat-form-field>
+      </div>
+
+      <div class="row" class="marg">
+        <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+          <mat-label class="clr2">Employées invoqués</mat-label>
+          <mat-select
+          formControlName="employee"
+          multiple>
+          
+       
+          <mat-option 
+            *ngFor="let employee of employeeList"
+            [value]="employee.firstname"
+          >
+            {{ employee.firstname }}
+          </mat-option >
+        
+        </mat-select>
+       
+        </mat-form-field>
+      </div>
+ <!--événement recursive -->
+ <!--selectionner le type de frequence -->
+ <div *ngIf="this.eventDetail.value.eventtype=='à distance'" class="row" class="marg">
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+      <mat-label class="clr2">Frequence</mat-label>
+    
+    <mat-select placeholder="Periodic table" 
+    formControlName="frequency" >
+
+    
+      <mat-option value="WEEKLY">chaque semaine</mat-option>
+      <mat-option value="MONTHLY">chaque mois</mat-option>
+     
+    
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <mat-card *ngIf="this.eventDetail.value.frequency=='WEEKLY' && this.eventDetail.value.eventtype=='à distance'" class="example-card" style="box-shadow: 0px 2px 1px -1px rgb(3 4 6), 0px 1px 1px 0px rgb(0 0 0 / 56%), 0px 1px 3px 0px rgb(0 0 0 / 44%);">
+    <mat-card-title>Fréquence par semaine :</mat-card-title>
+   
+    <mat-card-content>
+        <div >
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">Nombre de semaines</mat-label>
+              <input type="text" matInput formControlName="everyNday" required >
+         
+            </mat-form-field>
+          </div>
+        <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">Jours de la semaine</mat-label>
+            
+            <mat-select placeholder="Periodic table" 
+            formControlName="weekday" >
+        
+            
+              <mat-option value="MO">Lundi</mat-option>
+              <mat-option value="TU">Mardi</mat-option>
+              <mat-option value="WE">Mercreedi</mat-option>
+              <mat-option value="TH">Jeudi</mat-option>
+              <mat-option value="FR">venderedi</mat-option>
+              <mat-option value="SA">Samedi</mat-option>
+              <mat-option value="SU">dimanche</mat-option>
+            
+              </mat-select>
+            </mat-form-field>
+          </div>
+    </mat-card-content>
+  
+  </mat-card>
+  <mat-card *ngIf="this.eventDetail.value.frequency=='MONTHLY' && this.eventDetail.value.eventtype=='à distance'" class="example-card" style="box-shadow: 0px 2px 1px -1px rgb(3 4 6), 0px 1px 1px 0px rgb(0 0 0 / 56%), 0px 1px 3px 0px rgb(0 0 0 / 44%);">
+    <mat-card-title>Fréquence par mois :</mat-card-title>
+   
+    <mat-card-content>
+        <div >
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">Nombre de mois</mat-label>
+              <input type="text" matInput formControlName="everyNmonth" required >
+         
+            </mat-form-field>
+          </div>
+        
+        <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">N° du jour</mat-label>
+            
+            <mat-select placeholder="Periodic table" 
+            formControlName="monthday" >
+        
+            <mat-option value="1" selected>1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5">5</mat-option>
+            <mat-option value="6">6</mat-option>
+            <mat-option value="7">7</mat-option>
+            <mat-option value="8">8</mat-option>
+            <mat-option value="9">9</mat-option>
+            <mat-option value="10">10</mat-option>
+            <mat-option value="11">11</mat-option>
+            <mat-option value="12">12</mat-option>
+            <mat-option value="13">13</mat-option>
+            <mat-option value="14">14</mat-option>
+            <mat-option value="15">15</mat-option>
+            <mat-option value="16">16</mat-option>
+            <mat-option value="17">17</mat-option>
+            <mat-option value="18">18</mat-option>
+            <mat-option value="19">19</mat-option>
+            <mat-option value="20">20</mat-option>
+            <mat-option value="21">21</mat-option>
+            <mat-option value="22">22</mat-option>
+            <mat-option value="23">23</mat-option>
+            <mat-option value="24">24</mat-option>
+            <mat-option value="25">25</mat-option>
+            <mat-option value="26">26</mat-option>
+            <mat-option value="27">27</mat-option>
+            <mat-option value="28">28</mat-option>
+            <mat-option value="29">29</mat-option>
+            <mat-option value="30">30</mat-option>
+            <mat-option value="31">31</mat-option>
+            
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+          <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">Le jour</mat-label>
+            
+            <mat-select placeholder="Periodic table" 
+            formControlName="monthday" >
+        
+            <mat-option value="1" selected>fisrt</mat-option>
+            <mat-option value="2">second</mat-option>
+            <mat-option value="3">third</mat-option>
+            <mat-option value="4">fourth</mat-option>
+            <mat-option value="5">last</mat-option>
+          
+            
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="row" class="marg">
+            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+              <mat-label class="clr2">jour de la semaine</mat-label>
+            
+            <mat-select placeholder="Periodic table" 
+            formControlName="monthday" >
+        
+            <mat-option value="SU" selected>dimanche</mat-option>
+            <mat-option value="MO">lundi</mat-option>
+            <mat-option value="Tu">mardi</mat-option>
+            <mat-option value="WE">mercredi</mat-option>
+            <mat-option value="TH">jeudi</mat-option>
+            <mat-option value="FR">venderedi</mat-option>
+            <mat-option value="SA">samedi</mat-option>
+            <mat-option value="SU,MO,TU,WE,TH,FR,SA">jour</mat-option>
+            <mat-option value="MO,TU,WE,TH,FR">jour de travail</mat-option>
+            <mat-option value="SU,SA">week-end</mat-option>
+            
+            
+              </mat-select>
+            </mat-form-field>
+          </div>
+    </mat-card-content>
+  
+  </mat-card>
+  <div fxLayoutAlign="end end" style=" padding: 8px 0;margin-top: 6%;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 52px;
+  align-items: center;
+  ">
+  
+      <button     class="mat-raised-actions" style="background-color: #cd1b2d; color: white;" [mat-dialog-close] type="submit" >
+          {{ "Ajouter"  }}
+      </button>
+  </div>
+      </div>
+     
+    </form>
+
+  
+  </mat-dialog-content>

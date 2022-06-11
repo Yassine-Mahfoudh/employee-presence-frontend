@@ -10,7 +10,12 @@ import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SortDirective } from 'src/app/shared/Utils/directive/sort.directive';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import { AddProjetComponent } from './add-projet/add-projet.component';
+import { EditProjetComponent } from './edit-projet/edit-projet.component';
+import { ConfirmDialogService } from '../dialog-confirmation/confirm-dialog.service';
+export function isEmpty(val: any): boolean {
+  return val === null || typeof val === 'undefined' || val.toString().trim() === '';
+}
 
 @Component({
   selector: 'app-projet',
@@ -24,10 +29,17 @@ export class ProjetComponent implements OnInit {
     addIcon = faPlusCircle;
   
 
-    
+    projetDetail: FormGroup=new FormGroup({
+      id: new FormControl(null),
+      name: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
+      description: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
+      priority: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.numberRegex)]),
+      startdate: new FormControl(null,[Validators.required,]),
+      enddate: new FormControl(null,[Validators.required, ]),
+    });
 
 
-  projetDetail!: FormGroup;
+  
   projetobj: Projet = new Projet();
 projetList:Projet[] = [];
   totalRec!: string;
@@ -38,7 +50,7 @@ projetList:Projet[] = [];
      config: NgbModalConfig,
       private modalService: NgbModal,
       private dialog:MatDialog,
-
+      private confirmDialogService:ConfirmDialogService
      ) {
         // customize default values of modals used by this component tree
  config.backdrop = 'static';
@@ -47,14 +59,7 @@ projetList:Projet[] = [];
 
   ngOnInit(): void {
     this.getProjets();
-    this.projetDetail = this.formBuilder2.group({
-      id: [''],
-      name:[null,[Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
-      priority:[null,[Validators.required,Validators.pattern(GlobalConstants.numberRegex)]],
-      description:[null,[Validators.required,Validators.minLength(4)]],
-      startdate:[null,[Validators.required,Validators.minLength(10)]],
-      enddate:[null,[Validators.required,Validators.minLength(10)]]
-    });
+  
   }
 
   validateDate(){
@@ -77,23 +82,27 @@ projetList:Projet[] = [];
  
 
   addProjet(){
-
-    console.log(this.projetDetail);
-    this.projetobj.id=this.projetDetail.value.id;
-    this.projetobj.name=this.projetDetail.value.name;
-    this.projetobj.priority=this.projetDetail.value.priority;
-    this.projetobj.description=this.projetDetail.value.description;
-    this.projetobj.startdate=this.projetDetail.value.startdate;
-    this.projetobj.enddate=this.projetDetail.value.enddate;
-    console.log(this.projetobj);
-    this.projetService.addProjet(this.projetobj).subscribe(res=>{
-      console.log(res);
-      this.getProjets();
-    },
-    (error: HttpErrorResponse) => {
-      console.log(error.message);
-    }
-    );
+    const dialogRef = this.dialog.open(AddProjetComponent, {
+      disableClose: true,
+  
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!isEmpty(result)) {
+ 
+        this.projetobj.id=result.data.id;
+        this.projetobj.name=result.data.name;
+        this.projetobj.priority=result.data.priority;
+        this.projetobj.description=result.data.description;
+        this.projetobj.startdate=result.data.startdate;
+        this.projetobj.enddate=result.data.enddate;
+        this.projetService.addProjet(this.projetobj).subscribe(res=>{
+          console.log(res);
+          this.getProjets();
+        }
+        );
+      }
+    });  
+    
 }
 
 getProjets(){
@@ -126,22 +135,35 @@ deleteProjet(projet : Projet){
   
   }
 
-updateProjet(){
-  this.projetobj.id=this.projetDetail.value.id;
-  this.projetobj.name=this.projetDetail.value.name;
-  this.projetobj.priority=this.projetDetail.value.priority;
-  this.projetobj.description=this.projetDetail.value.description;
-  this.projetobj.startdate=this.projetDetail.value.startdate;
-  this.projetobj.enddate=this.projetDetail.value.enddate;
-  this.projetService.updateProjet(this.projetobj).subscribe(res=>{
-    console.log(res);
-    this.getProjets();
-  },
-  (error: HttpErrorResponse) => {
-    alert(error.message);
-  }
-  
-  );
+updateProjet(projet:Projet){
+  const dialogRef = this.dialog.open(EditProjetComponent, {
+    disableClose: true,
+    data:{
+projet: projet,
+    }
+
+  });
+  dialogRef.afterClosed().subscribe((result) => {
+    if (!isEmpty(result)) {
+      this.projetobj.id=result.data.id;
+        this.projetobj.name=result.data.name;
+        this.projetobj.priority=result.data.priority;
+        this.projetobj.description=result.data.description;
+        this.projetobj.startdate=result.data.startdate;
+        this.projetobj.enddate=result.data.enddate;
+      this.projetService.updateProjet(this.projetobj).subscribe(res=>{
+        console.log(res);
+        this.getProjets();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+      
+      );
+    }
+  });  
+
+ 
 
 }
 public searchProjects(key: string): void {
@@ -162,12 +184,20 @@ public searchProjects(key: string): void {
   }
 }
 
-
-confirmDelete(projet: Projet) {
-  if(confirm("Are you sure you want to delete projet "+projet.name)) {
-     this.deleteProjet(projet);
+confirmDelete(projet: Projet){
+  this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+    if (res){  
+      this.projetService.deleteProjet(projet).subscribe(res=>{
+        console.log(res);
+        alert("projet supprimeé avec succès");
+       this.getProjets();
+      }
+      );
+   } })
+  
+  
   }
-}
+
 
 handleClear(){
   this.projetDetail.reset();

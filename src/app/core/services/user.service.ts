@@ -33,11 +33,6 @@ export class UserService {
 
 
 
-
-
-
-
-
   constructor(private httpclient: HttpClient,
     private authService:AuthService) {
 

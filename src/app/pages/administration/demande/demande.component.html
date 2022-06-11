@@ -1,84 +1,175 @@
-<!--employee demande-->
-    <h3 style="text-align:center">Gestion des Demande</h3>
-    <mat-tab-group >
-      <mat-tab label="Demande">
+
+<!-- addsalle -->
+<mat-tab-group >
+  <mat-tab label="Demande" style="width: 100%;" >
+<!--
+    <mat-dialog-content class="mat-typography">
+      <form [formGroup]="demandeDetail">
+        <div fxFlex fxLayout="column" class="marg">
+  
+          <div class="row "  class="mat-type-pos ">
+          <mat-form-field appearance="fill" class=" mtfldwrapper "  >
+            <mat-label>type</mat-label>
+            <select matNativeControl required formControlName="title" > 
+              <option value="Presentielle">Presentielle</option>
+              <option value="a distance">à distance</option>
+            </select>
+            <mat-error  *ngIf="demandeDetail.controls.title.touched && demandeDetail.controls.title.invalid">
+              <span *ngIf="demandeDetail.controls.title.errors.required"> Ce champ est obligatoire</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
         
-        <div class="container">
-          <div class="row ">
-              <div >
-                  <h2 class="h3 mb-4  page-title">Ajouter demande</h2>
-                  <div class="my-4">
-                      <form [formGroup]="demandeDetail" >
-                        <div class="pl-lg-4">
-                          <div class="row">
-                            <div class="col-lg-6">
-                              <div class="form-group">
-            
-                                  <div class="form-group marg padding-bottom--24">
-                                    <label for="select-title">Titre</label>
-                                    <select
-                                      formControlName="title"
-                                      id="select-title" style="width: 50%;"
-                                      class="form-control form-control-alternative">
-                                      <optgroup label="Type d'événement">
-                                      <option value="" selected hidden>Choisissez un titre</option>
-                                      <option value="Presentielle">Presentielle</option>
-                                      <option value="à distance">à distance</option>
-                                      <option value="congé">congé</option>
-                                    </optgroup>
-                                    </select>
-                                  </div>
-                      
-                                 <div class="padding-bottom--24 marg" >
-                                    <label  for="input-Description">Description </label>
-                                    <input type="text" matInput formControlName="description" style="width: 50%;" class="form-control form-control-alternative" id="input-Description" placeholder=" Description du l'evenement" required>
-                                  </div>
-                      
-                                  <div class="padding-bottom--24 marg">
-                                    <label for="input-datedebut">Date debut</label>
-                                    <input
-                                      type="text"
-                                      matInput
-                                      class="form-control form-control-alternative" style="width: 50%;"
-                                      formControlName="datedebut"
-                                      id="input-datedebut"
-                                      placeholder="event datedebut"
-                                      required  onfocus="(this.type='date')"/>
-                                  </div>
-                                  <div class="padding-bottom--24 marg">
-                                    <label for="input-datefin">Date fin</label>
-                                    <input
-                                      type="text"
-                                      matInput
-                                      class="form-control  form-control-alternative" style="width: 50%;"
-                                      formControlName="datefin"
-                                      id="input-datefin"
-                                      placeholder="event datefin"
-                                      required  onfocus="(this.type='date')"/>
-                                   
-                                  </div>
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <mat-dialog-actions class="btn-group ">
-                            <button class=" button-1 bg-cb"   mat-strocked-button type="submit" 
-                             (click)="addDemande()"  (click)="handleClear()">
-                             adddemande
-                            </button>
-                          </mat-dialog-actions>
-                  </div>
-                      </form>  
-                </div>
-              </div>
-          </div>
-          
-          </div>
+  
+        <div class="row" class=" mat-descrption-pos">
+          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+            <mat-label class="clr2">Description</mat-label>
+            <input type="text" matInput formControlName="description" class="input-priority" required >
+            <mat-error  *ngIf="demandeDetail.controls.description.touched && demandeDetail.controls.description.invalid" >
+              <span *ngIf="demandeDetail.controls.description.errors.required"> Ce champ est obligatoire</span>
+              <span *ngIf="demandeDetail.controls.description.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
+   
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+          <div class="row" class="mat-datedebut-pos">
+          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+            <mat-label class="clr2">Date debut</mat-label>
+            <input type="text" matInput formControlName="datedebut" class="input-priority" required onfocus="(this.type='date')">
+            <mat-error  *ngIf="demandeDetail.controls.datedebut.touched && demandeDetail.controls.datedebut.invalid" >
+              <span *ngIf="demandeDetail.controls.datedebut.errors.required"> Ce champ est obligatoire</span>
+              <span *ngIf="demandeDetail.controls.datedebut.errors.pattern">Ce champ est invalide</span> 
+            </mat-error>
+
+           
+          </mat-form-field>
+        </div>
+  
+        <div class="row" class="mat-datefin-pos">
+          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+            <mat-label class="clr2">Date fin</mat-label>
+            <input type="text" matInput formControlName="datefin" class="input-priority" required onfocus="(this.type='date')">
+            <mat-error *ngIf="demandeDetail.controls.datefin.touched && demandeDetail.controls.datefin.invalid" >
+              <span *ngIf="demandeDetail.controls.datefin.errors.required"> Ce champ est obligatoire</span>
+              <span *ngIf="demandeDetail.controls.datefin.errors.pattern">Ce champ est invalide</span> 
+            </mat-error>
+              <mat-hint *ngIf="validateDate()">
+              <span style="color:red;"> La date de fin doit être supérieur du date de début</span>
+            </mat-hint>
+   
+           
+          </mat-form-field>
+        </div>
+  
+        <mat-dialog-actions class="btn-group ">
+          <button class=" button-1 bg-cb"   mat-strocked-button type="submit" 
+           (click)="addDemande()"  (click)="handleClear()">
+           adddemande
+          </button>
+        </mat-dialog-actions>
+       
+        </div>
+      </form>
+
+    </mat-dialog-content >
+
+</mat-tab>
+-->
+
+<div style=" padding-top: 5%;   text-align: -webkit-center;
+        ">
+        <mat-card style="margin-bottom: 1%;margin-top: 1%;margin-left: 1%;margin-right: 1%;" class="example-card">
+         
+          <form [formGroup]="demandeDetail">
+            <div fxFlex fxLayout="column">
+    <div>
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+      <mat-label style="padding-left: 2.5%;">type</mat-label>
+            <select style="padding-left: 2.5%;" matNativeControl required formControlName="title" > 
+              <option value="Presentielle">Presentielle</option>
+              <option value="a distance">à distance</option>
+            </select>
+            <mat-error  *ngIf="demandeDetail.controls.title.touched && demandeDetail.controls.title.invalid">
+              <span *ngIf="demandeDetail.controls.title.errors.required"> Ce champ est obligatoire</span>
+            </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div >
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+      <mat-label style="padding-left: 2.5%;"> Description </mat-label>
+            <input style="padding-left: 2.5%;" type="text" matInput formControlName="description" class="input-priority" required >
+            <mat-error  *ngIf="demandeDetail.controls.description.touched && demandeDetail.controls.description.invalid" >
+              <span *ngIf="demandeDetail.controls.description.errors.required"> Ce champ est obligatoire</span>
+              <span *ngIf="demandeDetail.controls.description.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
+            </mat-error>
+    </mat-form-field>
+  </div>
+
+ 
+  <div>
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+      <mat-label style="padding-left: 2.5%;"> Choisir Date de début</mat-label>
+      <mat-icon matPrefix>today</mat-icon>
+      <input type="text" matInput formControlName="datedebut" class="input-priority" required onfocus="(this.type='date')">
+      <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint>
+      <mat-error  *ngIf="demandeDetail.controls.datedebut.touched && demandeDetail.controls.datedebut.invalid" >
+        <span *ngIf="demandeDetail.controls.datedebut.errors.required"> Ce champ est obligatoire</span>
+        <span *ngIf="demandeDetail.controls.datedebut.errors.pattern">Ce champ est invalide</span> 
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+      <mat-label style="padding-left: 2.5%;"> Choisir Date de fin</mat-label>
+      <mat-icon matPrefix>today</mat-icon>
+      <input type="text" matInput formControlName="datefin" class="input-priority" required onfocus="(this.type='date')">
+      <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint>
+      <mat-error *ngIf="demandeDetail.controls.datefin.touched && demandeDetail.controls.datefin.invalid" >
+        <span *ngIf="demandeDetail.controls.datefin.errors.required"> Ce champ est obligatoire</span>
+        <span *ngIf="demandeDetail.controls.datefin.errors.pattern">Ce champ est invalide</span> 
+      </mat-error>
+        <mat-hint *ngIf="validateDate()">
+        <span style="color:red;"> La date de fin doit être supérieur du date de début</span>
+      </mat-hint>
+    </mat-form-field>
+  </div>
+
+  
+  <div mat-dialog-actions style="padding-top: 4%;" fxLayoutAlign="end end">
+
+    <button     class="mat-raised-actions" style="background-color: #cd1b2d; color: white;" type="submit"  (click)="addDemande()"  (click)="handleClear()" >
+        {{ "Ajouter demande"  }}
+    </button>
+</div>
+
+  </div>
+ 
+  <!-- <div mat-dialog-actions fxLayoutAlign="end end">
+    
+      <button color="primary" mat-raised-button>
+        <span translate>submit</span>
+      </button>
+ 
+  </div> -->
+
+</form>
+
+          <mat-card-content>
+           
+          </mat-card-content>
+ 
+        </mat-card>
+      </div>
+    </mat-tab>
 
 
-          
-      </mat-tab>
+
+
+
+
 
       <div class="mes-demande " *ngIf="!userService.roleMatch(['ADMIN'])">
       <mat-tab label="Mes Demandes">
@@ -90,7 +181,7 @@
           <mat-toolbar color="primary">
             <mat-toolbar-row fxLayout="row bg-color">
         
-              <span class="title-center">Mettre à jour le projet</span>
+              <span class="title-center">Mettre à jour la demande</span>
               <button
                 type="button"
                 class="d-block mr-0 ml-auto btn-close" (click)="d('Cross click')"
@@ -281,13 +372,14 @@
           </div>
         <ul class="responsive-table2 pad">
           <li class="table-header margt  ">
-            <div [(appSort)]="demandeList" data-order="desc" data-name="empnom" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
-            <div [(appSort)]="demandeList" data-order="desc" data-name="empprenom" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Prenom</div>
+            <div [(appSort)]="managerdemandes" data-order="desc" data-name="empnom" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
+            <div [(appSort)]="managerdemandes" data-order="desc" data-name="empprenom" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Prenom</div>
+            <div [(appSort)]="managerdemandes" data-order="desc" data-name="piriorite" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Piriorite de projet</div>
             <div [(appSort)]="managerdemandes" data-order="desc" data-name="Titre" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Titre</div>
             <div [(appSort)]="managerdemandes" data-order="desc" data-name="Description" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
             <div [(appSort)]="managerdemandes" data-order="desc" data-name="datedebut" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Date debut</div>
             <div [(appSort)]="managerdemandes" data-order="desc" data-name="datefin" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Date fin </div>        
-            <div [(appSort)]="managerdemandes" data-order="desc" data-name="datefin" class="col mar margl col-6 text-uppercase text-white font-weight-bolder opacity-7">Actions </div>
+            <div [(appSort)]="managerdemandes" data-order="desc"  class="col mar margl col-6 text-uppercase text-white font-weight-bolder opacity-7">Actions </div>
           </li>
           
           <li class="table-row"  *ngFor="let demande of managerdemandes | paginate: { id:'listing_pagination',
@@ -296,6 +388,7 @@
           totalItems:totalRec}">
           <div class="col col-1" data-label="datefin">{{demande.empnom}}</div>
           <div class="col col-2" data-label="datefin">{{demande.empprenom}}</div>
+          <div class="col col-2" data-label="datefin">{{demande.piriorite}}</div>
             <div class="col col-3" data-label="Titre" >{{demande.title}}</div>
             <div class="col col-4" data-label="Description">{{demande.description}}</div>
             <div class="col col-5" data-label="datedebut">{{demande.datedebut}}</div>

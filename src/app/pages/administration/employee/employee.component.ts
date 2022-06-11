@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Employee } from 'src/app/core/models/employee';
 import { Projet } from 'src/app/core/models/projet';
@@ -14,7 +14,13 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { Profil } from 'src/app/core/models/profil';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
-
+import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
+import { MatDialog } from '@angular/material/dialog';
+import { SnackbarService } from 'src/app/shared/service/snackbar.service';
+import { ConfirmDialogService } from '../dialog-confirmation/confirm-dialog.service';
+export function isEmpty(val: any): boolean {
+  return val === null || typeof val === 'undefined' || val.toString().trim() === '';
+}
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -26,7 +32,18 @@ export class EmployeeComponent implements OnInit {
   editIcon = faPenToSquare;
   addIcon = faPlusCircle;
 
-  employeeDetail!: FormGroup;
+
+  employeeDetail: FormGroup=new FormGroup({
+    id: new FormControl(null),
+    lastname: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
+    firstname: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
+    phonenumber: new FormControl(null,[Validators.required,Validators.maxLength(8),Validators.pattern(GlobalConstants.numberRegex)]),
+    address: new FormControl(null,[Validators.required,Validators.minLength(4)]),
+    manager: new FormControl(null),
+    project: new FormControl(null),
+    salle: new FormControl(null),
+
+  });;
   employeeobj: Employee = new Employee();
   employeeList:Employee[] = [];
   employeeList2:Employee[] = [];
@@ -49,7 +66,8 @@ theProfil:String;
      config: NgbModalConfig,
       private modalService: NgbModal,
       private authService:AuthService,
-      private userService:UserService
+      private userService:UserService,
+     private snackbar:SnackbarService, private dialog: MatDialog,private confirmDialogService:ConfirmDialogService
      ) {
         // customize default values of modals used by this component tree
  config.backdrop = 'static';
@@ -62,18 +80,7 @@ theProfil:String;
     this.getsalles();
   
 
-    this.employeeDetail = this.formBuilder.group({
-      id: [''],
-      lastname:[null,[Validators.required,Validators.pattern(GlobalConstants.nomprenomRegex),Validators.minLength(3)]],
-      firstname:[null,[Validators.required,Validators.pattern(GlobalConstants.nomprenomRegex),Validators.minLength(3)]],
-      birthdate:[null,[Validators.required,Validators.minLength(10)]],
-
-      address:[null,[Validators.required,Validators.minLength(4)]],
-      phonenumber:[null,[Validators.required,Validators.minLength(8),Validators.maxLength(8),Validators.pattern(GlobalConstants.numberRegex)]],
-      manager:[''],
-      project:[''],
-      salle:[''],
-    });
+    
    
   }
 
@@ -177,24 +184,20 @@ return a;
   }
   
 
-updateEmployee(){
+updateEmployee(employee:Employee){
+  const dialogRef = this.dialog.open(EditEmployeeComponent, {
+    disableClose: true,
+    height: '700px',
+    
+    data:{
+      employee:employee
+    }
+  },
+  );
+  dialogRef.afterClosed().subscribe((result) => {
+    if (!isEmpty(result)) {
 
-  console.log("this.employeeDetail.value:::",this.employeeDetail.value)
-
-  this.employeeobj.id=this.employeeDetail.value.id;
-  this.employeeobj.lastname=this.employeeDetail.value.lastname;
-  this.employeeobj.firstname=this.employeeDetail.value.firstname;
-  this.employeeobj.birthdate=this.employeeDetail.value.birthdate;
-  this.employeeobj.address=this.employeeDetail.value.address;
-  this.employeeobj.phonenumber=this.employeeDetail.value.phonenumber;
-  this.employeeobj.project=this.employeeDetail.value.project;
-  this.employeeobj.salle=this.employeeDetail.value.salle;
-  this.employeeobj.manager=this.employeeDetail.value.manager;
-
-  
-  
-
-  this.employeeService.getEmployeeByName(this.employeeobj.manager).subscribe(res=>{
+  this.employeeService.getEmployeeByName(result.data).subscribe(res=>{
     // this.employeebyname=res;
 
     this.employeeobj.managerid=res.id
@@ -209,16 +212,26 @@ updateEmployee(){
   
     
     }
-    );
-  })
+    );  })
+
+}
+});  
  
 }
-
-confirmDelete(employee: Employee) {
-  if(confirm("Are you sure you want to delete employee "+employee.lastname+' '+employee.firstname)) {
-     this.deleteEmployee(employee);
+confirmDelete(employee: Employee){
+  this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+    if (res){  
+      this.employeeService.deleteEmployee(employee).subscribe(res=>{
+        console.log(res);
+        alert("user deleted successfully");
+        this.getEmployees();
+      }
+      );
+   } })
+  
+  
   }
-}
+
 
 getStatut(employee : Employee):String{
 

@@ -1,0 +1,19 @@
+::ng-deep.mat-form-field-appearance-outline.mat-form-field-disabled .mat-form-field-outline {
+
+    color: rgba(0, 0, 0, 0.06);
+    background-color: #f7f7f7;
+}
+
+::ng-deep .mat-tooltip {
+    /* your own custom styles here */
+    /* e.g. */
+    color: #c0392b !important;
+    background-color: white !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    border-radius: 30px !important;
+    border: 2px solid #c0392b !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+

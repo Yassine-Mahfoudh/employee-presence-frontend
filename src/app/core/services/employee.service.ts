@@ -40,7 +40,7 @@ export class EmployeeService {
     {
       return this.http.get<Employee[]>(this.getemployeeurl);   
     }
-   s
+   
 getEmployeeById(id: number) {
   return this.http.get<Employee>(this.getemployeebyidurl + '/' + id);
 }
@@ -52,5 +52,9 @@ getEmployeeByName(firstname: String){
     updateEmployee(employee : Employee, id :any):Observable<Employee>
     {
       return this.http.put<Employee>(this.updateemployeeurl+'/'+id,employee);   
+    }
+
+    createData(formData:FormData):Observable<any>{
+      return this.http.post(`${this.getemployeeurl}`,formData)
     }
 }

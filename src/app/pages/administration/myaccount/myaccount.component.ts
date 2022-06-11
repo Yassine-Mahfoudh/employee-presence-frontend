@@ -39,7 +39,6 @@ export class MyaccountComponent implements OnInit {
   public message: string;
   sexe:any;
 
-  seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
 
 
   //myaccount:Employee;
@@ -276,6 +275,8 @@ onSelectFile(event) {
       }
     }
 
-  
+    modif(){
+      console.log('this.accountDetail :: ',this.accountDetail)
+    }
 }  
 
