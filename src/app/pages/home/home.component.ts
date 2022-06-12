@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
     
     customButtons: {
       AddNewEvent: { 
-        text : 'Add new event',
+        text : 'Ajouter évènement ',
         click : (arg) =>{ const dialogRef= this.dialog.open(AjoutEvenementComponent,
           {data:{dateDebut:formatDate(new Date(),'yyyy-MM-dd','en') }
           ,width:'550px',height: '700px', 

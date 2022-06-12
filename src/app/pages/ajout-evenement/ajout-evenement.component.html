@@ -19,16 +19,14 @@
         <div class="row" class="marg">
             <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
               <mat-label class="clr2">Type d'événement</mat-label>
-            
             <mat-select placeholder="Periodic table" 
-            formControlName="eventtype" >
-    
-            
-              <mat-option value="Static">Static</mat-option>
+            formControlName="eventtype" required> 
+              <mat-option value="Static"  >Static</mat-option>
               <mat-option value="Recursive">Recursive</mat-option>
-             
-            
               </mat-select>
+              <mat-error  *ngIf="eventDetail.controls.eventtype.touched && eventDetail.controls.eventtype.invalid">
+                <span *ngIf="eventDetail.controls.eventtype.errors.required"> Ce champ est obligatoire</span>
+              </mat-error>
             </mat-form-field>
           </div>
 
@@ -37,7 +35,7 @@
           <mat-label class="clr2">Titre</mat-label>
         
         <mat-select placeholder="Periodic table" 
-        formControlName="title" >
+        formControlName="title" required >
 
         
         <mat-option 
@@ -47,6 +45,9 @@
       </mat-option >
 
           </mat-select>
+          <mat-error  *ngIf="eventDetail.controls.title.touched && eventDetail.controls.title.invalid">
+            <span *ngIf="eventDetail.controls.title.errors.required"> Ce champ est obligatoire</span>
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -54,7 +55,10 @@
         <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
           <mat-label class="clr2">Description</mat-label>
           <input type="text" matInput formControlName="description" class="input-email" required >
-     
+          <mat-error  *ngIf="eventDetail.controls.description.touched && eventDetail.controls.description.invalid">
+            <span *ngIf="eventDetail.controls.description.errors.required"> Ce champ est obligatoire</span>
+            <span *ngIf="eventDetail.controls.description.errors.minlength"> La description doit comporter au moins 4 caractères</span>
+          </mat-error>
         </mat-form-field>
       </div>
      
@@ -69,6 +73,9 @@
           id="input-datedebut"
           placeholder="event datedebut"
           required  onfocus="(this.type='date')"/>
+          <mat-error  *ngIf="eventDetail.controls.datedebut.touched && eventDetail.controls.datedebut.invalid">
+            <span *ngIf="eventDetail.controls.datedebut.errors.required"> Ce champ est obligatoire</span>
+          </mat-error>
         </mat-form-field>
       </div>
        
@@ -83,20 +90,27 @@
           id="input-datefin"
           placeholder="event datefin"
           required  onfocus="(this.type='date')"/>
-       
+          <mat-error  *ngIf="eventDetail.controls.datefin.touched && eventDetail.controls.datefin.invalid">
+            <span *ngIf="eventDetail.controls.datefin.errors.required"> Ce champ est obligatoire</span>
+          </mat-error>
+          <mat-hint *ngIf="validateDate()">
+            <span style="color:red;"> La date de fin doit être supérieur du date de début</span>
+          </mat-hint>
         </mat-form-field>
       </div>
 
       <div class="row" class="marg">
         <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
           <mat-label class="clr2">Employées invoqués</mat-label>
-          <mat-select formControlName="employee" multiple>
+          <mat-select formControlName="employee" multiple required>
           <mat-option 
             *ngFor="let employee of employeeList"
             [value]="employee.firstname" >
             {{ employee.firstname }}
           </mat-option >
-        
+          <mat-error  *ngIf="eventDetail.controls.employee.touched && eventDetail.controls.employee.invalid">
+            <span *ngIf="eventDetail.controls.datefin.errors.required"> Ce champ est obligatoire</span>
+          </mat-error>
         </mat-select>
        
         </mat-form-field>

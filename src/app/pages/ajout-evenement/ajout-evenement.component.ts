@@ -5,7 +5,6 @@ import { Employee } from 'src/app/core/models/employee';
 import { Typedemande } from 'src/app/core/models/typedemande';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { TypedemandeService } from 'src/app/core/services/typedemande.service';
-import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 
 @Component({
   selector: 'app-ajout-evenement',
@@ -24,14 +23,14 @@ export class AjoutEvenementComponent implements OnInit {
 
     this.eventDetail=new FormGroup({
       id: new FormControl(null),
-      title: new FormControl(null),
-      description: new FormControl(null),
-      datedebut: new FormControl(data.dateDebut),
-      datefin: new FormControl(data.dateDebut),
-      employee: new FormControl(null),
+      title: new FormControl(null,[Validators.required]),
+      description: new FormControl(null,[Validators.required,Validators.minLength(4)]),
+      datedebut: new FormControl(data.dateDebut,[Validators.minLength(10)]),
+      datefin: new FormControl(data.dateDebut,[Validators.required,Validators.minLength(10)]),
+      employee: new FormControl(null,[Validators.required]),
       employeeid: new FormControl(null),
-      datedebutrecur: new FormControl(null),
-      datefinrecur: new FormControl(null),
+      datedebutrecur: new FormControl(null,[Validators.minLength(10)]),
+      datefinrecur: new FormControl(null,[Validators.minLength(10)]),
       frequency: new FormControl(null),
       everyNday: new FormControl(null),
       weekday: new FormControl(null),
@@ -40,7 +39,7 @@ export class AjoutEvenementComponent implements OnInit {
       daypos: new FormControl(null),
       byday: new FormControl(null),
       onday: new FormControl(null),
-      eventtype: new FormControl(null),
+      eventtype: new FormControl(null,[Validators.required]),
     });    }
   ngOnInit(): void {
    
@@ -53,14 +52,14 @@ export class AjoutEvenementComponent implements OnInit {
   }
 
   onSuccessAdd() {
-    if(this.eventDetail.valid){
+    if(this.eventDetail.valid && !this.validateDate()){
       const data = this.eventDetail.getRawValue();
 
       this.dialog.close({
         data: data,
        
       });
-    }
+    }else this.eventDetail.markAllAsTouched()
  }
  handleClear(){
    this.eventDetail.reset();
@@ -80,5 +79,13 @@ gettypeevent(){
   })
 }
 
+ validateDate(){
+  if(this.eventDetail.controls['datedebut'].value > this.eventDetail.controls['datefin'].value){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
 
 }

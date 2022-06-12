@@ -57,7 +57,6 @@
               <input type="texte" matInput formControlName="startdate"  class="input-startdate" required onfocus="(this.type='date')">
               <mat-error  *ngIf="projetDetail.controls.startdate.touched && projetDetail.controls.startdate.invalid">
                 <span *ngIf="projetDetail.controls.startdate.errors.required"> Ce champ est obligatoire</span>
-                <span *ngIf="projetDetail.controls.startdate.errors.pattern">Ce champ est invalide</span> 
               </mat-error>
             </mat-form-field>
           </div>
@@ -67,7 +66,6 @@
               <input type="text" matInput formControlName="enddate"  class="input-enddate" required onfocus="(this.type='date')">
               <mat-error *ngIf="projetDetail.controls.enddate.touched && projetDetail.controls.enddate.invalid">
                 <span *ngIf="projetDetail.controls.enddate.errors.required"> Ce champ est obligatoire</span>
-                <span *ngIf="projetDetail.controls.enddate.errors.pattern">Ce champ est invalide</span> 
               </mat-error>
               <mat-hint *ngIf="validateDate()">
                 <span style="color:red;"> La date de fin doit être supérieur du date de début</span>
