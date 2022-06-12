@@ -18,6 +18,7 @@ import { DepartementService } from 'src/app/core/services/departement.service';
 import { AddSalleComponent } from './add-salle/add-salle.component';
 import { EditSalleComponent } from './edit-salle/edit-salle.component';
 import { ConfirmDialogService } from '../dialog-confirmation/confirm-dialog.service';
+import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 export function isEmpty(val: any): boolean {
   return val === null || typeof val === 'undefined' || val.toString().trim() === '';
 }
@@ -56,7 +57,8 @@ ancienDep:any;
     private modalService: NgbModal,
     private confirmDialogService:ConfirmDialogService,
     private dialog: MatDialog,
-    private departementService: DepartementService
+    private departementService: DepartementService,
+    private snackbar:SnackbarService
   ) {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';
@@ -121,6 +123,7 @@ ancienDep:any;
       
         this.increaseDepartementNbsalles(this.salleobj.dep);
         this.salleService.addSalle(this.salleobj).subscribe(res => {
+          this.snackbar.openSnackBar("Nouvelle salle ajoutée","")
           console.log(res);
         
           this.getSalles();
@@ -187,6 +190,7 @@ ancienDep:any;
         
          
         this.salleService.updateSalle(this.salleobj).subscribe((res) => {
+          this.snackbar.openSnackBar("Salle modifiée","")
          // console.log(res);
          // console.log("  this.salleobj.dep 2:: ",  this.salleobj.dep)
           this.increaseDepartementNbsalles(this.salleobj.dep);
@@ -197,22 +201,23 @@ ancienDep:any;
     
   }
 
-  deleteSalle(salle: Salle) {
+ /* deleteSalle(salle: Salle) {
     this.salleService.deleteSalle(salle).subscribe((res) => {
       console.log(res);
-      alert('salle deleted successfully');
+      this.snackbar.openSnackBar("Salle suprimée","")
       this.getSalles();
       this.decreaseDepartementNbsalles(salle.dep)
     });
-  }
+  }*/
 
   
   confirmDelete(salle: Salle){
     this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
       if (res){  
         this.salleService.deleteSalle(salle).subscribe(res=>{
+          this.decreaseDepartementNbsalles(salle.dep)
           console.log(res);
-          alert("user deleted successfully");
+          this.snackbar.openSnackBar("Salle suprimée","")
           this.getDepartements();
         }
         );
@@ -221,33 +226,7 @@ ancienDep:any;
     
     }
 
-  /*ConfirmDelete(){
-
-  const dialogConfig = new MatDialogConfig();
-  dialogConfig.width = "550px";
-  this.dialog.open(DeleteComponent,dialogConfig)
-}
-*/
-/*
-  public searchSalles(key: string): void {
-    console.log(key);
-    const results: Salle[] = [];
-    for (const salle of this.salleList) {
-      if (
-        salle.type.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        salle.nom.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        salle.nbposte.toString().indexOf(key.toLowerCase()) !== -1 ||
-        salle.pourcentagePres.toString().indexOf(key.toLowerCase()) !== -1 ||
-        salle.dep.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      ) {
-        results.push(salle);
-      }
-    }
-    this.salleList = results;
-    if (key=='') {
-      this.getSalles();
-    }
-  }*/
+  
 
   public searchSalles(key: string): void {
     console.log(key);

@@ -13,6 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AddProjetComponent } from './add-projet/add-projet.component';
 import { EditProjetComponent } from './edit-projet/edit-projet.component';
 import { ConfirmDialogService } from '../dialog-confirmation/confirm-dialog.service';
+import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 export function isEmpty(val: any): boolean {
   return val === null || typeof val === 'undefined' || val.toString().trim() === '';
 }
@@ -40,7 +41,9 @@ projetList:Projet[] = [];
      config: NgbModalConfig,
       private modalService: NgbModal,
       private dialog:MatDialog,
-      private confirmDialogService:ConfirmDialogService
+      private confirmDialogService:ConfirmDialogService,
+      private snackbar:SnackbarService
+
      ) {
         // customize default values of modals used by this component tree
  config.backdrop = 'static';
@@ -96,6 +99,8 @@ projetList:Projet[] = [];
         this.projetobj.startdate=result.data.startdate;
         this.projetobj.enddate=result.data.enddate;
         this.projetService.addProjet(this.projetobj).subscribe(res=>{
+          this.snackbar.openSnackBar("Projet ajouté","")
+
           console.log(res);
           this.getProjets();
         }
@@ -110,21 +115,6 @@ getProjets(){
     this.projetList=res.sort();
   })
 }
-
-
-deleteProjet(projet : Projet){
-
-    this.projetService.deleteProjet(projet).subscribe(res=>{
-      console.log(res);
-      alert("projet deleted successfully");
-      this.getProjets();
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
-  
-  }
 
 updateProjet(projet:Projet){
   const dialogRef = this.dialog.open(EditProjetComponent, {
@@ -143,6 +133,7 @@ projet: projet,
         this.projetobj.startdate=result.data.startdate;
         this.projetobj.enddate=result.data.enddate;
       this.projetService.updateProjet(this.projetobj).subscribe(res=>{
+        this.snackbar.openSnackBar("Projet modifié","")
         console.log(res);
         this.getProjets();
       },
@@ -180,7 +171,7 @@ confirmDelete(projet: Projet){
     if (res){  
       this.projetService.deleteProjet(projet).subscribe(res=>{
         console.log(res);
-        alert("projet supprimeé avec succès");
+        this.snackbar.openSnackBar("Projet supprimée","")
        this.getProjets();
       }
       );

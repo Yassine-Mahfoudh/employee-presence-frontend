@@ -45,16 +45,27 @@ export class AddSalleComponent implements OnInit {
   }
   onSuccessAdd() {
 
-     if(this.salleDetail.valid){
+     if(this.salleDetail.valid && !this.validatePourcentage()){
       const data = this.salleDetail.getRawValue();
 
       this.dialog.close({
         data: data,
        
       });
-    }
+    }    else this.salleDetail.markAllAsTouched()
+
   }
   handleClear(){
     this.salleDetail.reset();
   }
+
+  validatePourcentage(){
+    if(this.salleDetail.controls['pourcentagePres'].value > 100){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
 }

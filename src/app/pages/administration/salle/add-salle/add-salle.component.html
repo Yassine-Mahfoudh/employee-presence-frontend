@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row fxLayout="row bg-color">
 
-      <span class="title-center">Ajouter une nouvelle salle</span>
+      <span class="title-center">Ajouter une salle</span>
       <button
         type="button"
         class="d-block mr-0 ml-auto btn-close" 
@@ -62,8 +62,10 @@
           <mat-error  *ngIf="salleDetail.controls.pourcentagePres.touched && salleDetail.controls.pourcentagePres.invalid">
             <span *ngIf="salleDetail.controls.pourcentagePres.errors.required"> Ce champ est obligatoire</span>
             <span *ngIf="salleDetail.controls.pourcentagePres.errors.pattern"> Ce champ est invalide, il doit être un numéro</span>
- 
           </mat-error>
+          <mat-hint *ngIf="validatePourcentage()">
+            <span style="color:red;"> Le pourcentage de présence ne doit pas dépasser 100%</span>
+          </mat-hint>
         </mat-form-field>
       </div>
 
@@ -85,7 +87,7 @@
       align-items: center;
       margin-bottom: -24px;">
       
-          <button    class="mat-raised-actions" style="background-color: #cd1b2d; color: white;" [mat-dialog-close] type="submit" >
+          <button    class="mat-raised-actions" style="background-color: #cd1b2d; color: white;"  type="submit" >
               {{ "Ajouter"  }}
           </button>
       </div>

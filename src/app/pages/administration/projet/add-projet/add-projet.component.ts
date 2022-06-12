@@ -20,11 +20,11 @@ export class AddProjetComponent implements OnInit {
   }
   projetDetail: FormGroup=new FormGroup({
     id: new FormControl(null),
-    name: new FormControl(null,[Validators.required]),
-    description: new FormControl(null,[Validators.required]),
-    priority: new FormControl(null,[Validators.required]),
-    startdate: new FormControl(null,[Validators.required]),
-    enddate: new FormControl(null,[Validators.required]),
+    name: new FormControl(null,[Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]),
+    description: new FormControl(null,[Validators.required,Validators.minLength(4)]),
+    priority: new FormControl(null,[Validators.required,Validators.pattern(GlobalConstants.numberRegex)]),
+    startdate: new FormControl(null,[Validators.required,Validators.minLength(10)]),
+    enddate: new FormControl(null,[Validators.required,Validators.minLength(10)]),
   });;
 
 
@@ -33,7 +33,7 @@ export class AddProjetComponent implements OnInit {
   }
   onSuccessAdd() {
 
-     if(this.projetDetail.valid){
+     if(this.projetDetail.valid && !this.validateDate()){
       const data = this.projetDetail.getRawValue();
 console.log("data :::: ",data)
       this.dialog.close({
@@ -41,9 +41,8 @@ console.log("data :::: ",data)
        
       });
     }
-    else {
-      console.log("invalide")
-    }
+    else this.projetDetail.markAllAsTouched()
+
   }
   handleClear(){
     this.projetDetail.reset();
@@ -57,5 +56,7 @@ console.log("data :::: ",data)
     }
   }
   
+  
+
 
 }

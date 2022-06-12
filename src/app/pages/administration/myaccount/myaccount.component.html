@@ -101,13 +101,13 @@
          
           <app-upload-images></app-upload-images>
 
-<form (ngSubmit)="modif()" [formGroup]="accountDetail">
+<form (ngSubmit)="updateAccount()" [formGroup]="accountDetail">
   <div fxFlex fxLayout="column">
     <div>
     <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
       <mat-label style="padding-left: 2.5%;"> Prénom </mat-label>
       <mat-icon matPrefix>people</mat-icon>
-      <input style="padding-left: 2.5%;" matInput formControlName="fname" type="text" />
+      <input style="padding-left: 2.5%;" matInput formControlName="fname" type="text"  />
     </mat-form-field>
   </div>
 
@@ -150,9 +150,9 @@
     <mat-icon  matPrefix>accessibility_new</mat-icon>
       <mat-label style="padding-left: 2.5%;"> Sexe :    </mat-label>
       
-    <mat-radio-group formControlName="gender">
-      <mat-radio-button style="padding-left:2%" value="auto">Homme</mat-radio-button>
-      <mat-radio-button style="padding-left:2%" value="always">Femme</mat-radio-button>
+    <mat-radio-group formControlName="gender" (change)="onDataChange($event)">
+      <mat-radio-button style="padding-left:2%" value="Homme">Homme</mat-radio-button>
+      <mat-radio-button style="padding-left:2%" value="Femme">Femme</mat-radio-button>
     </mat-radio-group>
  
   </div>

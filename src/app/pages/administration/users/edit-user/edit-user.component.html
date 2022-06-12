@@ -38,19 +38,6 @@
           </mat-error>
         </mat-form-field>
       </div>
-
-      <div class="row" class="marg">
-        <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
-          <mat-label class="clr2">Mot de passe</mat-label>
-          <input type="text" matInput formControlName="userPassword" class="input-email" required >
-          <mat-error  *ngIf="userDetail.controls.userPassword.touched && userDetail.controls.userPassword.invalid">
-            <span *ngIf="userDetail.controls.userPassword.errors.required"> Ce champ est obligatoire</span>
-            <span *ngIf="userDetail.controls.userPassword.errors.pattern"> Ce champ est invalide, il ne doit pas contenir des caractéres spéciaux</span>
-            <span *ngIf="userDetail.controls.userPassword.errors.minlength"> Le mot de passe doit comporter au moins 4 caractères</span>
-          </mat-error>
-        </mat-form-field>
-      </div>
-
      
 
       <div class="row "  class="marg">

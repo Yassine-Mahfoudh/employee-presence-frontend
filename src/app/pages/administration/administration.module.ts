@@ -59,6 +59,7 @@ import { UploadImagesComponent } from './upload-images/upload-images.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatListModule } from '@angular/material/list';
+import { MonEquipeComponent } from './mon-equipe/mon-equipe.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,7 @@ import { MatListModule } from '@angular/material/list';
     EditSalleComponent,
     AddProjetComponent,
     EditProjetComponent,
-
+MonEquipeComponent,
     EditEmployeeComponent,
      EditProfilComponent,
      UploadImagesComponent

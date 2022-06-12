@@ -9,6 +9,7 @@ import { EmployeeService } from 'src/app/core/services/employee.service';
 import { ProjetService } from 'src/app/core/services/projet.service';
 import { SalleService } from 'src/app/core/services/salle.service';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
+import { ConfirmDialogService } from '../../dialog-confirmation/confirm-dialog.service';
 
 @Component({
   selector: 'app-edit-employee',
@@ -30,7 +31,8 @@ export class EditEmployeeComponent implements OnInit {
   managerList: Employee[] = [];
   id_edit_user: any;
 
-  constructor(private dialog: MatDialogRef<EditEmployeeComponent,
+  constructor(private confirmDialogService:ConfirmDialogService,
+    private dialog: MatDialogRef<EditEmployeeComponent,
      { data: any }>,
     @Inject(MAT_DIALOG_DATA) data,
    private employeeService:EmployeeService,
@@ -41,7 +43,7 @@ export class EditEmployeeComponent implements OnInit {
       id: new FormControl(data.employee.id),
       lastname: new FormControl(data.employee.lastname,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
       firstname: new FormControl(data.employee.firstname,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
-      phonenumber: new FormControl(data.employee.phonenumber,[Validators.required,Validators.maxLength(8),Validators.pattern(GlobalConstants.numberRegex)]),
+      phonenumber: new FormControl(data.employee.phonenumber,[Validators.required,Validators.maxLength(8),Validators.minLength(8),Validators.pattern(GlobalConstants.numberRegex)]),
       address: new FormControl(data.employee.address,[Validators.required,Validators.minLength(4)]),
       birthdate: new FormControl(data.employee.birthdate),
       manager: new FormControl(data.employee.manager),
@@ -72,7 +74,6 @@ export class EditEmployeeComponent implements OnInit {
   getsalles(){
     this.salleService.getSalles().subscribe(res=>{
       this.salleList=res;
-      console.log("salleList:::",this.salleList);
     })
   }
 
@@ -90,7 +91,6 @@ export class EditEmployeeComponent implements OnInit {
   
        }} )
        const res2: any[] = [];
-       console.log('employeeList2 :',this.listComboxUsers)
        this.employeeList2.forEach(employee=>{
         for(let i in employee.listeProfils){
           if(employee.listeProfils[i]==="MANAGER")
@@ -98,30 +98,43 @@ export class EditEmployeeComponent implements OnInit {
          res2.push(employee);
          this.managerList= res2;
          this.listComboxUsers=res2
-  
          this.listComboxUsers= this.listComboxUsers.filter((user) => user.id !== this.id_edit_user)
+         console.log(" this.listComboxUsers:::", this.listComboxUsers)
        }
        }
   
      
   
          })
-      console.log('managerList :',this.managerList)
       });
     }
 
 
   onSuccessAdd() {
 
-     if(this.employeeDetail.valid){
-      const data = this.employeeDetail.getRawValue();
-      console.log("data :::",data)
-      this.dialog.close({
-        data: data,
-       
-      });
+    this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+      if (res){  
+        if(this.employeeDetail.valid && !this.validateBirthDate()){
+          const data = this.employeeDetail.getRawValue();
+          this.dialog.close({
+            data: data,
+           
+          });
+        }else this.employeeDetail.markAllAsTouched()
+
+        
+     } })
+  }
+
+  validateBirthDate(){
+    if(this.employeeDetail.controls['birthdate'].value.substr(0,4) > 2000){
+      return true;
+    }
+    else{
+      return false;
     }
   }
+
   handleClear(){
     this.employeeDetail.reset();
   }

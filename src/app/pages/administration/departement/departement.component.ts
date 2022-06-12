@@ -12,6 +12,7 @@ import { AddDepartementComponent } from './add-departement/add-departement.compo
 import { MatDialog } from '@angular/material/dialog';
 import { EditDepartementComponent } from './edit-departement/edit-departement.component';
 import { data } from 'jquery';
+import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 export function isEmpty(val: any): boolean {
   return val === null || typeof val === 'undefined' || val.toString().trim() === '';
 }
@@ -36,7 +37,9 @@ departementup: Departement = new Departement();
 
   constructor(private formBuilder : FormBuilder,config: NgbModalConfig,
     private confirmDialogService:ConfirmDialogService, private dialog: MatDialog,
-    private modalService: NgbModal, private departementService: DepartementService) {
+    private modalService: NgbModal, private departementService: DepartementService,
+    private snackbar:SnackbarService
+    ) {
         // customize default values of modals used by this component tree
   config.backdrop = 'static';
   config.keyboard = false;
@@ -76,6 +79,7 @@ departementup: Departement = new Departement();
     console.log('result :: ',this.departementobj)
         this.departementService.addDepartement(this.departementobj).subscribe(res=>{
           console.log(res);
+          this.snackbar.openSnackBar("Nouveau departement ajouté","")
           this.getDepartements();
         }
         );
@@ -93,23 +97,16 @@ getDepartements(){
   })
 }
 
+/*
 editDepartement(departement : Departement){
   this.departementDetail.controls['id'].setValue(departement.id);
   this.departementDetail.controls['name'].setValue(departement.name);
   this.departementDetail.controls['nbsalles'].setValue(departement.nbsalles);
 
 }
+*/
 
-deleteDepartement(departement : Departement){
 
-    this.departementService.deleteDepartement(departement).subscribe(res=>{
-      console.log(res);
-      alert("profil deleted successfully");
-      this.getDepartements();
-    }
-    );
-  
-  }
 
 
   updateDepartement(departement:Departement){
@@ -128,6 +125,7 @@ deleteDepartement(departement : Departement){
       this.departementup = res;
       this.departementobj.nbsalles = this.departementup.nbsalles;
     this.departementService.updateDepartement(this.departementobj).subscribe(res=>{
+      this.snackbar.openSnackBar("Departement modifié","")
       this.getDepartements();
 
     });
@@ -145,7 +143,7 @@ confirmDelete(departement: Departement){
     if (res){  
       this.departementService.deleteDepartement(departement).subscribe(res=>{
         console.log(res);
-        alert("departemenet supprimeé avec succéss");
+        this.snackbar.openSnackBar("Departement supprimé","")
         this.getDepartements();
       }
       );

@@ -34,7 +34,9 @@ export class AddDepartementComponent implements OnInit {
         data: data,
        
       });
-    }
+    } 
+    else this.departementDetail.markAllAsTouched()
+
   }
   handleClear(){
     this.departementDetail.reset();

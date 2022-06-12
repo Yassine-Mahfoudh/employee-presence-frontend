@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
+import { ConfirmDialogService } from '../../dialog-confirmation/confirm-dialog.service';
 import { AddProjetComponent } from '../add-projet/add-projet.component';
 
 @Component({
@@ -13,7 +14,7 @@ export class EditProjetComponent implements OnInit {
   
 
 
-  constructor(    private dialog: MatDialogRef<EditProjetComponent, { data: any }>,
+  constructor( private confirmDialogService:ConfirmDialogService,   private dialog: MatDialogRef<EditProjetComponent, { data: any }>,
     @Inject(MAT_DIALOG_DATA) data,) { 
       this.projetDetail=new FormGroup({
         id: new FormControl(data.projet.id),
@@ -35,14 +36,19 @@ export class EditProjetComponent implements OnInit {
   }
   onSuccessAdd() {
 
-     if(this.projetDetail.valid){
-      const data = this.projetDetail.getRawValue();
+    this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+      if (res){  
+        if(this.projetDetail.valid && !this.validateDate()){
+          const data = this.projetDetail.getRawValue();
 
-      this.dialog.close({
-        data: data,
-       
-      });
-    }
+          this.dialog.close({
+            data: data,
+          });
+          
+        }else this.projetDetail.markAllAsTouched()
+        
+     } })
+     
   }
   handleClear(){
     this.projetDetail.reset();

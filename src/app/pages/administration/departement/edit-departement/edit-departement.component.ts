@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
-import { AddDepartementComponent } from '../add-departement/add-departement.component';
+import { ConfirmDialogService } from '../../dialog-confirmation/confirm-dialog.service';
 
 @Component({
   selector: 'app-edit-departement',
@@ -12,7 +12,7 @@ import { AddDepartementComponent } from '../add-departement/add-departement.comp
 export class EditDepartementComponent implements OnInit {
 
  
-  constructor(private dialog: MatDialogRef<EditDepartementComponent, { data: any }>,
+  constructor(private confirmDialogService:ConfirmDialogService,private dialog: MatDialogRef<EditDepartementComponent, { data: any }>,
     @Inject(MAT_DIALOG_DATA) data) {
       this.departementDetail=new FormGroup({
         id: new FormControl(data.departement.id),
@@ -29,17 +29,30 @@ export class EditDepartementComponent implements OnInit {
     return this.departementDetail.controls[key] as FormControl;
   }
 
+
+
+    
+
   onSuccessAdd() {
 
-     if(this.departementDetail.valid){
-      const data = this.departementDetail.getRawValue();
+    this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+      if (res){  
+        if(this.departementDetail.valid){
+          const data = this.departementDetail.getRawValue();
+    
+          this.dialog.close({
+            data: data,
+           
+          });
+        }        else this.departementDetail.markAllAsTouched()
 
-      this.dialog.close({
-        data: data,
-       
-      });
-    }
+        
+     } })
+
+     
   }
+
+
   handleClear(){
     this.departementDetail.reset();
   }

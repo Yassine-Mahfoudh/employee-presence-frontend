@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Departement } from 'src/app/core/models/departement';
 import { DepartementService } from 'src/app/core/services/departement.service';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
+import { ConfirmDialogService } from '../../dialog-confirmation/confirm-dialog.service';
 
 @Component({
   selector: 'app-edit-salle',
@@ -15,7 +16,7 @@ export class EditSalleComponent implements OnInit {
   departementList: Departement[] = [];
   departementobj: Departement = new Departement();
  
-  constructor(private dialog: MatDialogRef<EditSalleComponent, { data: any }>,
+  constructor(private confirmDialogService:ConfirmDialogService,private dialog: MatDialogRef<EditSalleComponent, { data: any }>,
     @Inject(MAT_DIALOG_DATA) data,
     private departementService:DepartementService) {
       console.log('data ::: ', data)
@@ -43,15 +44,29 @@ export class EditSalleComponent implements OnInit {
   }
   onSuccessAdd() {
     
-     if(this.salleDetail.valid){
-      const data = this.salleDetail.getRawValue();
-  
-      this.dialog.close({
-        data: data,
-       
-      });
+    this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+      if (res){  
+        if(this.salleDetail.valid && !this.validatePourcentage()){
+          const data = this.salleDetail.getRawValue();
+      
+          this.dialog.close({
+            data: data,
+           
+          });
+        }else this.salleDetail.markAllAsTouched()
+        
+     } })     
+  }
+
+  validatePourcentage(){
+    if(this.salleDetail.controls['pourcentagePres'].value > 100){
+      return true;
+    }
+    else{
+      return false;
     }
   }
+
   handleClear(){
     this.salleDetail.reset();
   }

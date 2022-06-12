@@ -11,6 +11,7 @@ import { EmployeeComponent } from './pages/administration/employee/employee.comp
 
 import { LogaccessComponent } from './pages/administration/logaccess/logaccess.component';
 import { LogdataComponent } from './pages/administration/logdata/logdata.component';
+import { MonEquipeComponent } from './pages/administration/mon-equipe/mon-equipe.component';
 import { MyaccountComponent } from './pages/administration/myaccount/myaccount.component';
 import { ProfilListComponent } from './pages/administration/profil-list/profil-list.component';
 import { ProfilComponent } from './pages/administration/profil/profil.component';
@@ -79,12 +80,11 @@ const routes: Routes = [
 
   { path: 'myAccount',component:MyaccountComponent },
 
-
   { path: 'addevent',component:AddeventComponent },
 
   { path: 'editevent',component:EditeventComponent },
 
-  { path: 'chat',component:ChatComponent }
+  { path: 'monequipe',component:MonEquipeComponent,canActivate:[AuthGuard],data : {profils:['MANAGER']} },
 
 
   

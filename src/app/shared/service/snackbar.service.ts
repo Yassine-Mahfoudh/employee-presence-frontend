@@ -12,14 +12,14 @@ export class SnackbarService {
       this.snackbar.open(message, '', {
         horizontalPosition: 'center',
         verticalPosition: 'bottom',
-        duration: 2000,
+        duration: 5000,
         panelClass: ['black-snackbar'],
       });
     } else {
       this.snackbar.open(message, '', {
         horizontalPosition: 'center',
         verticalPosition: 'top',
-        duration: 2000,
+        duration: 5000,
         panelClass: ['green-snackbar'],
       });
     }

@@ -51,6 +51,9 @@
             <mat-error *ngIf="employeeDetail.controls.birthdate.touched && employeeDetail.controls.birthdate.invalid">
               <span *ngIf="employeeDetail.controls.birthdate.errors.required"> Ce champ est obligatoire</span>
               <span *ngIf="employeeDetail.controls.birthdate.errors.pattern">Ce champ est invalide</span> 
+              <mat-hint *ngIf="validateBirthDate() ">
+                <span style="color:red;"> L'année de naissance doit être inférieure à 2000</span>
+              </mat-hint>
             </mat-error>
           </mat-form-field>
         </div>
@@ -73,7 +76,7 @@
             <mat-error  *ngIf="employeeDetail.controls.phonenumber.touched && employeeDetail.controls.phonenumber.invalid">
               <span *ngIf="employeeDetail.controls.phonenumber.errors.required"> Ce champ est obligatoire</span>
               <span *ngIf="employeeDetail.controls.phonenumber.errors.pattern"> Ce champ est invalide, il doit être un numéro</span>
-              <span *ngIf="employeeDetail.controls.phonenumber.errors.minlength"> Le numéro doit comporter 8 chiffres</span>                   
+              <span *ngIf="employeeDetail.controls.phonenumber.errors.minlength && employeeDetail.controls.phonenumber.errors.maxlength"> Le numéro doit comporter 8 chiffres</span>                   
             </mat-error>
           </mat-form-field>
         </div>
@@ -125,7 +128,7 @@
         align-items: center;
         margin-bottom: -24px;">
         
-            <button     class="mat-raised-actions" style="background-color: #cd1b2d; color: white;" [mat-dialog-close] type="submit" >
+            <button     class="mat-raised-actions" style="background-color: #cd1b2d; color: white;"  type="submit" >
                 {{ "Modifier"  }}
             </button>
         </div>

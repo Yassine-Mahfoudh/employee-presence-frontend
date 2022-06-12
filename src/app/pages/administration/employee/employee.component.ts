@@ -32,18 +32,6 @@ export class EmployeeComponent implements OnInit {
   editIcon = faPenToSquare;
   addIcon = faPlusCircle;
 
-
-  employeeDetail: FormGroup=new FormGroup({
-    id: new FormControl(null),
-    lastname: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
-    firstname: new FormControl(null,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
-    phonenumber: new FormControl(null,[Validators.required,Validators.maxLength(8),Validators.pattern(GlobalConstants.numberRegex)]),
-    address: new FormControl(null,[Validators.required,Validators.minLength(4)]),
-    manager: new FormControl(null),
-    project: new FormControl(null),
-    salle: new FormControl(null),
-
-  });;
   employeeobj: Employee = new Employee();
   employeeList:Employee[] = [];
   employeeList2:Employee[] = [];
@@ -59,7 +47,7 @@ theProfil:String;
   employeebyname: Employee =new Employee();
   managerList: Employee[] = [];
 
-  constructor(private formBuilder : FormBuilder,
+  constructor(
      private employeeService: EmployeeService,
      private projetService: ProjetService,
      private salleService: SalleService,
@@ -78,25 +66,14 @@ theProfil:String;
     this.getEmployees();
     this.getprojects();
     this.getsalles();
-  
-
-    
    
   }
 
-  open(content) {
-    this.modalService.open(content);
-  }
 
-  close(content) {
-    this.modalService.dismissAll(content);
-  }
 
  
   
 listComboxUsers : Employee[] = [];
-
-
 
 
 getEmployees(){
@@ -145,6 +122,7 @@ getsalles(){
   })
 }
 id_edit_user;
+/*
 editEmployee(employee : Employee){
   this.id_edit_user=employee.id
   this.employeeDetail.controls['id'].setValue(employee.id);
@@ -159,17 +137,8 @@ editEmployee(employee : Employee){
 
   this.getEmployees();
 }
+*/
 
-deleteEmployee(employee : Employee){
-
-    this.employeeService.deleteEmployee(employee).subscribe(res=>{
-      console.log(res);
-      alert("employee deleted successfully");
-      this.getEmployees();
-    }
-    );
-  
-  }
 
   //get employee by name
   getempbyname(name:string){
@@ -196,7 +165,8 @@ updateEmployee(employee:Employee){
   );
   dialogRef.afterClosed().subscribe((result) => {
     if (!isEmpty(result)) {
-      console.log('result ',result);
+      console.log("helooooo::::",result)
+
       this.employeeobj.id=result.data.id;
   this.employeeobj.lastname=result.data.lastname;
   this.employeeobj.firstname=result.data.firstname;
@@ -206,14 +176,21 @@ updateEmployee(employee:Employee){
   this.employeeobj.project=result.data.project;
   this.employeeobj.salle=result.data.salle;
   this.employeeobj.manager=result.data.manager;
+      console.log(" this.employeeobj:::: before1", this.employeeobj)
 
 
   this.employeeService.getEmployeeByName(result.data.manager).subscribe(res=>{
     this.employeeobj.managerid=res.id
     this.employeeobj.gender=res.gender
 
+    console.log(" this.employeeobj:::: before2", this.employeeobj)
+
+
     this.employeeService.updateEmployee(this.employeeobj,this.employeeobj.id).subscribe(ress=>{
-    
+      console.log(" this.employeeobj:::: after", this.employeeobj)
+
+      this.snackbar.openSnackBar("Employé modifié","")
+
       console.log('id manager ',ress);
   
       this.getEmployees();
@@ -227,27 +204,25 @@ updateEmployee(employee:Employee){
  
 }
 confirmDelete(employee: Employee){
+  console.log("salut")
   this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
     if (res){  
       this.employeeService.deleteEmployee(employee).subscribe(res=>{
+        this.snackbar.openSnackBar("Employé supprimé","")
         console.log(res);
-        alert("user deleted successfully");
         this.getEmployees();
       }
       );
-   } })
-  
+   } },
+   (error)=>{
+     this.snackbar.openSnackBar( "Il faut que l'utilisateur être supprimé pour supprimer son compte employé","error");
+     console.log(error);
+   }
+   
+   )
   
   }
 
-
-getStatut(employee : Employee):String{
-
-  if(this.authService.getUserEmployee().id===employee.id){
-    return "Actif"
-  }else
-  return"Inactif";
-}
 
 
 
@@ -275,11 +250,6 @@ public searchEmployees(key: string): void {
   if (key=='') {
     this.getEmployees();
   }
-}
-
-
-handleClear(){
-  this.employeeDetail.reset();
 }
 
 getUser(id:any):String{

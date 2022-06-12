@@ -24,9 +24,9 @@
           </div>
         <ul class="responsive-table pad">
           <li class="table-header margt  ">
-            <div [(appSort)]="usersList" data-order="desc" data-name="userName" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom d'utilisateur</div>
-            <div [(appSort)]="usersList" data-order="desc" data-name="profil" class="col mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Profil</div>
-            <div [(appSort)]="usersList" data-order="desc" data-name="email" class="col  mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Email</div>
+            <div [(appSort)]="usersList" data-order="desc" data-name="userName" class="col mar padt col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom d'utilisateur</div>
+            <div [(appSort)]="usersList" data-order="desc" data-name="profil" class="col mar padt col-3 text-uppercase text-white font-weight-bolder opacity-7">Profil</div>
+            <div [(appSort)]="usersList" data-order="desc" data-name="email" class="col  mar padt col-4 text-uppercase text-white font-weight-bolder opacity-7">Email</div>
           </li>
           
           <li class="table-row"  *ngFor="let user of usersList | paginate: { id:'listing_pagination',
@@ -35,9 +35,9 @@
           totalItems:totalRec}">
             <div class="col col-2" data-label="userName">{{user.userName}}</div>
             <div class="col col-3" data-label="profil"  >
-             <p *ngFor="let i of user.profils" style="width: 90px; word-wrap:break-word;">{{i.name}}</p> 
+             <p *ngFor="let i of user.profils" >{{i.name}}</p> 
             </div>
-            <div class="col col-4" data-label="email">{{user.email}}</div>
+            <div class="col col-4" data-label="email" style="width: 100px; word-wrap:break-word;">{{user.email}}</div>
           </li>
           
         </ul>

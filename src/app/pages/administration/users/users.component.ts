@@ -97,8 +97,9 @@ this.getProfils();
     }
     this.userService.getUserName(this.userDetail.value.userName).subscribe(res=>{
       if(res.id==null){
-  //      this.ngxService.start();
+        this.ngxService.start();
          this.userService.addUser(this.userobj).subscribe(res=>{
+          this.snackbar.openSnackBar("Un email est envoyé au nouveau utilisateur contenant ses informations de connexion","")
            console.log("rees:: ",res);
            this.ngxService.stop();
            this.getUsers();
@@ -149,7 +150,7 @@ confirmDelete(User: User){
     if (res){  
       this.userService.deleteUser(User).subscribe(res=>{
         console.log(res);
-        alert("user deleted successfully");
+       this.snackbar.openSnackBar("Utilisateur supprimé","")
         this.getUsers();
       }
       );
@@ -158,6 +159,22 @@ confirmDelete(User: User){
   
   }
 
+  /*
+  confirmUpdate(User: User){
+    this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+      if (res){  
+        this.userService.deleteUser(User).subscribe(res=>{
+          console.log(res);
+         // alert("user deleted successfully");
+         this.snackbar.openSnackBar("Utilisateur supprimé","")
+          this.getUsers();
+        }
+        );
+     } })
+    
+    
+    }
+*/
 updateUser(user:User){
   
   const dialogRef = this.dialog.open(EditUserComponent, {
@@ -185,6 +202,7 @@ updateUser(user:User){
    }
    console.log('user  :: ',this.userobj )
      this.userService.updateUser(this.userobj).subscribe(res=>{
+      this.snackbar.openSnackBar("Utilisateur modifié","")
     console.log(res);
     this.getUsers();
   }

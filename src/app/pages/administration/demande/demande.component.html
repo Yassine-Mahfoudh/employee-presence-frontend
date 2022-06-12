@@ -88,7 +88,9 @@
       <mat-label style="padding-left: 2.5%;">type</mat-label>
             <select style="padding-left: 2.5%;" matNativeControl required formControlName="title" > 
               <option value="Presentielle">Presentielle</option>
-              <option value="a distance">à distance</option>
+              <option value="A distance">A distance</option>
+              <option value="congé">Congé</option>
+
             </select>
             <mat-error  *ngIf="demandeDetail.controls.title.touched && demandeDetail.controls.title.invalid">
               <span *ngIf="demandeDetail.controls.title.errors.required"> Ce champ est obligatoire</span>

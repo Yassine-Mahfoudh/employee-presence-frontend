@@ -1,3 +1,19 @@
+mat-dialog-actions {
+
+  display: flex;
+  flex-wrap: nowrap;
+  width: 422px;
+  margin-bottom: 7px;
+}
+
+.pad-info{
+  padding: 0 2em;
+}
+
+.input{
+  width: 15px !important;
+  padding-right: 1%;
+}
 
 
 h1 {
@@ -19,7 +35,7 @@ width:95%;
 }
 
 .modal-content{
-  width:120%;
+  width:150%;
 }
 .modal-body{
 padding: 0em 2em;
@@ -98,43 +114,21 @@ padding: 0em 2em;
     background-color: #ffffff;
     box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
   }
-  .col-1 {
-    flex-basis: 3%;
-    padding-top: 1em;
-  }
+
   .col-2 {
-    flex-basis: 15%;
+    flex-basis: 18%;
     padding-top: 1em;
 }
   .col-3 {
-    flex-basis: 17%;
+    flex-basis: 15%;
     padding-top: 1em;
   }
   .col-4 {
-    flex-basis: 18%;
+    flex-basis: 12%;
     margin-left: 0.2em;
     padding-top: 1em;
   }
-  .col-5 {
-    flex-basis: 12%;
-    margin-left: 3em;
-    padding-top: 1em;
-
-  }
-  .col-6 {
-    flex-basis: 10%;
-    margin-left: 3em;
-    padding-top: 1em;
-  }
   
-  .col-7 {
-    flex-basis:9%;
-    margin-right: 1em;
-    padding-top: 1em;
-  }
-  .col-8 {
-    flex-basis:12%;
-  }
   .text-secondary {
     color: #7b809a !important;
   }
@@ -222,7 +216,9 @@ padding: 0em 2em;
   left:1em !important;
   top:1em !important;
 }
-
+.padt{
+  padding-top:2em !important; 
+}
 .pad{
 padding-left:2em;
 padding-right:2em;
@@ -232,9 +228,7 @@ padding-right:2em;
   padding-left:2em;
 }
 
-.padt{
-  padding-top:2em !important; 
-}
+
 .padr{
   padding-right:2em;
 
@@ -408,7 +402,7 @@ select {
   .s004 .form .inner-form .input-field {
 
     display: flex;
-    padding-top: 5em;
+ 
     padding-left: 10em;
     padding-right: 10em;
       content: attr(data-label);
@@ -416,7 +410,6 @@ select {
       text-align: center;
   }
 }
-
 
 
 
@@ -519,7 +512,7 @@ select {
     height: 50px;
     list-style: none;
     margin: 1em;
-    margin-left:0em;
+    margin-left:0.5em;
     outline: none;
     position: relative;
     text-align: center;
@@ -535,7 +528,11 @@ select {
     padding-left: 4em;
 
   }
-  
+  .pad-btn{
+    padding:0em 4em;
+  }
+
+
   .padr
   {
     margin-top: 1em;
@@ -550,10 +547,18 @@ select {
     margin-top: 1em;
    
   }
-  mat-dialog-actions{
-    width: 450px;
+
+
+  .mtfldwrapper {
+    padding-bottom: 1.25em !important;
+    margin: 1em 2em !important;
   }
- 
+
+  mat-dialog-actions{
+    width: 509px;
+    
+  }
+
   .mr-0 {
     margin-right: 0;
   }
