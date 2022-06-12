@@ -24,8 +24,8 @@
             formControlName="eventtype" >
     
             
-              <mat-option value="Presentielle">Static</mat-option>
-              <mat-option value="à distance">Recursive</mat-option>
+              <mat-option value="Static">Static</mat-option>
+              <mat-option value="Recursive">Recursive</mat-option>
              
             
               </mat-select>
@@ -40,10 +40,12 @@
         formControlName="title" >
 
         
-          <mat-option value="Presentielle">Presentielle</mat-option>
-          <mat-option value="à distance">à distance</mat-option>
-          <mat-option value="congé">congé</mat-option>
-        
+        <mat-option 
+        *ngFor="let typedemande of TypeList"
+        [value]="typedemande.type">
+        {{ typedemande.type }}
+      </mat-option >
+
           </mat-select>
         </mat-form-field>
       </div>
@@ -88,15 +90,10 @@
       <div class="row" class="marg">
         <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
           <mat-label class="clr2">Employées invoqués</mat-label>
-          <mat-select
-          formControlName="employee"
-          multiple>
-          
-       
+          <mat-select formControlName="employee" multiple>
           <mat-option 
             *ngFor="let employee of employeeList"
-            [value]="employee.firstname"
-          >
+            [value]="employee.firstname" >
             {{ employee.firstname }}
           </mat-option >
         
@@ -106,7 +103,7 @@
       </div>
  <!--événement recursive -->
  <!--selectionner le type de frequence -->
- <div *ngIf="this.eventDetail.value.eventtype=='à distance'" class="row" class="marg">
+ <div *ngIf="this.eventDetail.value.eventtype=='Recursive'" class="row" class="marg">
     <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
       <mat-label class="clr2">Frequence</mat-label>
     
@@ -121,7 +118,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <mat-card *ngIf="this.eventDetail.value.frequency=='WEEKLY' && this.eventDetail.value.eventtype=='à distance'" class="example-card" style="box-shadow: 0px 2px 1px -1px rgb(3 4 6), 0px 1px 1px 0px rgb(0 0 0 / 56%), 0px 1px 3px 0px rgb(0 0 0 / 44%);">
+  <mat-card *ngIf="this.eventDetail.value.frequency=='WEEKLY' && this.eventDetail.value.eventtype=='Recursive'" class="example-card" style="box-shadow: 0px 2px 1px -1px rgb(3 4 6), 0px 1px 1px 0px rgb(0 0 0 / 56%), 0px 1px 3px 0px rgb(0 0 0 / 44%);">
     <mat-card-title>Fréquence par semaine :</mat-card-title>
    
     <mat-card-content>
@@ -137,7 +134,7 @@
               <mat-label class="clr2">Jours de la semaine</mat-label>
             
             <mat-select placeholder="Periodic table" 
-            formControlName="weekday" >
+            formControlName="weekday" multiple>
         
             
               <mat-option value="MO">Lundi</mat-option>
@@ -154,7 +151,7 @@
     </mat-card-content>
   
   </mat-card>
-  <mat-card *ngIf="this.eventDetail.value.frequency=='MONTHLY' && this.eventDetail.value.eventtype=='à distance'" class="example-card" style="box-shadow: 0px 2px 1px -1px rgb(3 4 6), 0px 1px 1px 0px rgb(0 0 0 / 56%), 0px 1px 3px 0px rgb(0 0 0 / 44%);">
+  <mat-card *ngIf="this.eventDetail.value.frequency=='MONTHLY' && this.eventDetail.value.eventtype=='Recursive'" class="example-card" style="box-shadow: 0px 2px 1px -1px rgb(3 4 6), 0px 1px 1px 0px rgb(0 0 0 / 56%), 0px 1px 3px 0px rgb(0 0 0 / 44%);">
     <mat-card-title>Fréquence par mois :</mat-card-title>
    
     <mat-card-content>

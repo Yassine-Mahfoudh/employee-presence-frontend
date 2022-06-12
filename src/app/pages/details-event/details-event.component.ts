@@ -31,7 +31,7 @@ export class DetailsEventComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.geteventbyid();
+
   }
  
   closeModal() {
@@ -46,30 +46,7 @@ export class DetailsEventComponent implements OnInit {
     this.modalService.dismissAll(content);
   }
 
-  geteventbyid(){
-    this.myeventService.getEventById(this.id).subscribe(res=>{
-      this.eventbyid=res; 
-    console.log("this event by id::: ", this.eventbyid)  
-    if(this.eventbyid.type=="Static"){
-      
-      console.log("event static");
-       ( document.querySelector<HTMLElement>(".event-static")).style.display= "block";
-       (document.querySelector<HTMLElement>(".event-reccursive")).style.display= "none";}
-       else if (this.eventbyid.type == "Recursive"){
-
-        console.log("event Recursive");
-         ( document.querySelector<HTMLElement>(".event-reccursive")).style.display= "block";
-          (document.querySelector<HTMLElement>(".event-static")).style.display= "none";}
-          
-          if (this.eventbyid.frequency=="WEEKLY"){
-            this.frequence="Semaine";
-           
-          } else if (this.eventbyid.frequency == "MONTHLY"){
-            this.frequence="Mois";
-          }
-})
-
-    }
+  
 
    
     

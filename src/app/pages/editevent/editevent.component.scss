@@ -1,46 +1,461 @@
+.example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+mat-dialog-actions {
+
+  display: flex;
+  flex-wrap: nowrap;
+  width: 422px;
+  margin-bottom: 7px;
+}
+
+.pad-info{
+  padding: 0 2em;
+}
+
+.input{
+  width: 15px !important;
+  padding-right: 1%;
+}
+
+
 h1 {
   font-size: 26px;
-  margin: 20px 150px;
+  margin: 20px 120px;
   text-align: center;
   font-family: 'lato', sans-serif;
   color:#FFFFFF;
 }
-h1 {
-      letter-spacing: -1px;
-  }
-  .clr{
-    color:'#FFFFFF'
-  }
-
-  .mat-dialog-container {
-    display: block;
-    padding: 24px;
-    border-radius: 4px;
-    box-sizing: border-box;
-    overflow: auto;
-    outline: 0;
-    width: 100%;
-    height: 100%;
-    min-height: inherit;
-    max-height: inherit;
-}
 
 .mat-toolbar.mat-primary {
-    background: #3f51b5;
-    color: #fff;
-    border-radius: 10px;
+  background: #3f51b5;
+  color: #fff;
+  border-radius: 10px;
+width:95%;
+  margin: 1em 0.5em ;
+
+  
 }
+
+.modal-content{
+  width:150%;
+}
+.modal-body{
+padding: 0em 2em;
+
+}
+
+
+
+.responsive-table {
+  li {
+    border-radius: 20px;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+
+
+  }
+
+  @media only screen  and (max-width: 1400px) {
+    .button-1 {
+      padding-left: 4em;
+    }
+    
+  }
+  
+ 
+
+  
+  /* CSS */
+  .button-1 {
+    background-color: #007ba7;
+    border-radius: 15px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 55px;
+    list-style: none;
+    margin: 0.2em;
+    outline: none;
+    padding: 0px 25px;
+    scroll-margin-right: 6em;
+    position: relative;
+    top: -1em;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    
+  }
+   
+
+  .button-1:hover,
+  .button-1:focus {
+    background-color: #007ba7 ;
+  }
+  
+
+  .table-header {
+    background-image: linear-gradient(195deg, #7fd3ed 0%, #5469d4 100%);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    
+  }
+  .table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  }
+  .col-1 {
+    flex-basis: 3%;
+    padding-top: 1em;
+  }
+  .col-2 {
+    flex-basis: 15%;
+    padding-top: 1em;
+}
+  .col-3 {
+    flex-basis: 10%;
+    padding-top: 1em;
+  }
+  .col-4 {
+    flex-basis: 18%;
+    margin-left: 0.2em;
+    padding-top: 1em;
+  }
+  .col-5 {
+    flex-basis: 12%;
+    margin-left: 3em;
+    padding-top: 1em;
+  }
+  .col-6 {
+    flex-basis: 10%;
+    margin-left: 3em;
+    padding-top: 1em;
+  }
+  
+  .col-7 {
+    flex-basis:9%;
+    margin-right: 1em;
+    padding-top: 1em;
+  }
+  .col-8 {
+    flex-basis:12%;
+  }
+  .text-secondary {
+    color: #7b809a !important;
+  }
+  .text-white {
+    color: #ffffff !important;
+  }
+  .text-uppercase {
+    text-transform: uppercase !important;
+  }
+  .opacity-7 {
+    opacity: 0.7 !important;
+  }
+  .text-xxs {
+    font-size: 1rem !important;
+  }
+  .font-weight-bold {
+    font-weight: 400 !important;
+  }
+  
+  .font-weight-bolder {
+    font-weight: 700 !important;
+  }
+  
+  
+  
+  @media all and (max-width: 965px) {
+    
+    .table-header {
+      display: none;
+    }
+    .table-row{
+      
+    }
+    li {
+      display: block;
+    }
+    .col {
+     
+      flex-basis: 100%;
+      max-width:160em;
+      
+    }
+    .col {
+      display: flex;
+      padding: 1px 0;
+      &:before {
+        color: #6C7A89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.phrase{
+    max-width: 40em; max-width: 100ch;
+}
+
+.page {
+  color: white;
+  padding: 5 -1em;
+  background: #f1f5f9;
+}
+.page__box {
+  min-height: 100px;
+  background: #b0dfe5;
+  margin: 0 -1rem;
+  font-size: 45px;
+  padding: 1em !important;
+}
+.page__content {
+  min-height: calc(100vh - 188px);
+  border-radius: 10px;
+  margin-top: -3rem;
+  background: white;
+  color: black;
+
+}
+.page__content-data {
+  top: 30%;
+  left: 50%;
+  position: relative !important; 
+  left:1em !important;
+  top:1em !important;
+}
+.padt{
+  padding-top:2em !important; 
+}
+.pad{
+padding-left:2em;
+padding-right:2em;
+}
+
+.padl{
+  padding-left:2em;
+}
+
+
+.padr{
+  padding-right:2em;
+
+ 
+}
+
+
+.margl{
+  margin-left: 3em;
+}
+
+.margr{
+  margin-right: 3em;
+}
+
+.pg{
+color: #0dcaf0;
+}
+
+
+
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ 
+ h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  max-inline-size: 15ch;
+}*/
+
+@media (max-width: 650px) {
+  .twelve {
+  margin-right: 6em !important;
+  }
+}
+
+div .twelve {
+  position: relative;
+  width: 90%;
+  max-width: 350px;
+  padding: 2em;
+  margin: 2em auto;
+}
+
+h1:before,
+h1:after {
+  background-color: #b0dfe5;
+  
+}
+
+.twelve h1 {
+  font-size:40px;
+   font-weight:700; 
+   letter-spacing:1px;
+    text-transform:uppercase;
+   width:300px;
+    text-align:center; 
+   margin:auto; 
+   white-space:nowrap;
+    padding-bottom:20px;
+    color:#5469d4 ;
+}
+.twelve h1:before {
+    background-color: #b0dfe5;
+    content: '';
+    display: block;
+    height: 8px;
+    width: 80px;
+    margin-bottom: 10px;
+}
+.twelve h1:after {
+    background-color: #b0dfe5;
+    content: '';
+    display: block;
+  position:absolute; right:0; bottom:0;
+    height: 8px;
+    width: 80px;
+    margin-bottom: 0.8em;
+}
+
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers (opinionated).
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+
+/**
+ * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+
+
+
+.s004 .form {
+  width: 100%;
+ 
+}
+
+
+.s004 .form .inner-form {
+  width: 100%;
+  margin-bottom:10px;
+}
+
+.s004 .form .inner-form .input-field {
+  display: flex;
+  padding: 1em 20em;
+  padding-top: 5em;
+    content: attr(data-label);
+    flex-basis: 50%;
+    text-align: center;
+  
+
+}
+
+
+
+.input-icon {
+ background-color: #ffffff;
+ margin: 0.2em 0.5em;
+}
+ .input-icon:after {
+
+  transition: all 0.35s ease-in-out;
+}
+.s004 .form .inner-form .input-field .btn-search svg {
+  fill: #333;
+  width: 30px;
+  height: 30px;
+  transition: all .2s ease-out, color .2s ease-out;
+}
+
+.s004 .form .inner-form .input-field .btn-search:hover, .s004 .form .inner-form .input-field .btn-search:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+@media all and (max-width: 965px) {
+    
+  .s004 .form .inner-form .input-field {
+
+    display: flex;
+ 
+    padding-left: 10em;
+    padding-right: 10em;
+      content: attr(data-label);
+      flex-basis: 50%;
+      text-align: center;
+  }
+}
+
+
+
 .input{
   width: 100%;
 }
 
-h6{
-  width: 100%;
-}  
 .field  {
   font-size: 16px;
   line-height: 28px;
-  padding: 8px 22px;
+  padding: 10px 20px;
   width: 100%;
   padding-left: 1em;
   min-height: 44px;
@@ -55,213 +470,13 @@ h6{
               rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
               rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
               rgba(0, 0, 0, 0) 0px 0px 0px 0px;
-             
 }
-.number-field  {
-  display: block;
-  position: relative;
-  left: 18.5em;
-  top: -5.7em;
-  font-size: 16px;
-  line-height: 28px;
-  padding: 1px 0px;
-  width: 15% !important;
-  padding-left: 1em;
-  min-height: 38px;
-  border: unset;
-  border-radius: 4px;
-  outline-color: rgb(84 105 212 / 0.5);
-  background-color: rgb(255, 255, 255);
-  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-              rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
-              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-              rgba(0, 0, 0, 0) 0px 0px 0px 0px;
-             
-}
-
-.label-pos{
-  position: relative;
-  top: -3.9em;
-  left: 15em;
-  font-size: 95%;
-}
-
-.label2-pos{
-  position: relative;
-  top: -6em;
-}
-.label3-pos{
-  position: relative;
-  top: -4.5em;
-  left: 2em;
-
-}
-.label4-pos{
-  position: relative;
-  top: -5.4em;
-  left: 2em;
-}
-
-.span-pos{
-  position: relative;
-  top: -8.6em;
-  left: 26em;
-  font-size: 90%;
-}
-.span3-pos{
-  position: relative;
-  top: -8.6em;
-  left: 26em;
-  font-size: 90%;
-}
-.span2-pos{
-  position: relative;
-  top: -22.6em;
-  left: 26em;
-  font-size: 80%;
-}
-
-.select-pos{
-  display: block;
-  position: relative;
-  top: -6.6em;
-  left:7em;
-  width:35%;
-}
-
-.select2-pos{
-  display: block;
-  position: relative;
-  top: -10.5em;
-  left: 7em;
-  width: 35%;
-
-}
-
-.select3-pos{
-  display: block;
-  position: relative;
-  top: -14.5em;
-  left: 18em;
-  width: 35%;
-
-}
-.select4-pos{
-
-  position: relative;
-  top: -6.6em;
-
-
-}
-
-
-
-/* Customize the label (the container) */
-.contain {
-  display: block;
-  position: relative;
-    top: -3em;
-    left: 1em;
-    width: 30%;
-  padding-left: 20px;
-  margin-bottom: 6px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* radio buttons */
-
-/* Hide the browser's default radio button */
-.contain input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-/* Create a custom radio button */
-.checkmark {
-  position: absolute;
-  top: 39.5em;
-  left: 2em;
-  height: 20px;
-  width: 25px;
-  background-color: #eee;
-  border-radius: 50%;
-}
-.checkmark2 {
-  position: absolute;
-  top: 44.5em;
-  left: 2em;
-  height: 20px;
-  width: 25px;
-  background-color: #eee;
-  border-radius: 50%;
-}
-
-/* On mouse-over, add a grey background color */
-.contain:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-/* When the radio button is checked, add a blue background */
-.contain input:checked ~ .checkmark {
-  background-color: #2196F3;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.contain input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the indicator (dot/circle) */
-.contain .checkmark:after {
-  top: 6px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
-}
-
-
-
-
-/* select options */
-
-.add-static-event{
-  display:none;
-}
-.add-recursive-event{
-  display:none;
-}
-
-
-.monthly-frequence{
-  display:none;
-}
-
-.weekly-frequence{
-  display:none;
-}
-
 
 /* padding */
+
+.padding--14{
+  padding: 14px;
+}
 
 .padding-top--64 {
   padding-top: 64px;
@@ -276,7 +491,7 @@ h6{
   padding-bottom: 24px;
 }
 .padding-horizontal--48 {
-  padding: 20px;
+  padding: 24px;
 }
 .padding-bottom--15 {
   padding-bottom: 15px;
@@ -297,6 +512,8 @@ h6{
   box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
 }
 
+/* buttons */
+
 .bg-cr{
   background-color: #DC143C;
 }
@@ -316,7 +533,8 @@ h6{
   }
 
   .button-2 {
-    margin: 2.5em;
+    margin: 1em;
+    width: 50%;
     border-radius: 10px;
     border-style: none;
     box-sizing: border-box;
@@ -328,8 +546,8 @@ h6{
     font-weight: 500;
     height: 50px;
     list-style: none;
-    margin: 0.5em;
-    margin-left:2em;
+    margin: 1em;
+    margin-left:0.5em;
     outline: none;
     position: relative;
     text-align: center;
@@ -345,13 +563,17 @@ h6{
     padding-left: 4em;
 
   }
-  
+  .pad-btn{
+    padding:0em 4em;
+  }
+
+
   .padr
   {
     margin-top: 1em;
     margin-bottom: 1em;
   }
-  //pagination
+  
   .wrapper {
     padding-bottom: 5px;
    
@@ -360,8 +582,16 @@ h6{
     margin-top: 1em;
    
   }
+
+
+  .mtfldwrapper {
+    padding-bottom: 1.25em !important;
+    margin: 1em 2em !important;
+  }
+
   mat-dialog-actions{
-    width: 450px;
+    width: 509px;
+    
   }
  
   .mr-0 {
@@ -377,164 +607,42 @@ h6{
   .col-lg-6{
     width: 100%;
   }
+  .mat-raised-actions {
   
-
-//buttons
-.rrule-generator__weekday-btn {
-  background: #fafafa;
-  min-height: 40px;
-  color: #666;
-  font-size: 14px;
-  line-height: 17px;
-  padding-left: 14px;
-  padding-right: 14px;
-  border: 1px solid #ccc;
-  flex-grow: 0!important;
-  display: block;
-  position: relative;
-  top: -6.5em;
-
-
-}
-.btn-group>.btn-group:not(:last-child)>.btn, .btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:not(:first-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.btn-group>.btn-group:not(:first-child), .btn-group>.btn:not(:first-child) {
-  margin-left: -1px;
-}
-.btn:not(:disabled):not(.disabled) {
-  cursor: pointer;
-}
-.btn-group-vertical>.btn, .btn-group>.btn {
-  position: relative;
-  flex: 1 1 auto;
-}
-[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
-  cursor: pointer;
-}
-.rrule-generator__weekday-btn--active {
-  background-color: #eaeaea;
-  color: #444;
-}
-.rrule-generator__weekday-btn {
-  background: #fafafa;
-  min-height: 40px;
-  color: #666;
-  font-size: 14px;
-  line-height: 17px;
-  padding-left: 14px;
-  padding-right: 14px;
-  border: 1px solid #ccc;
-  flex-grow: 0!important;
-}
-.btn-2 {
-  font-size: 14px;
-  color: #5c6876;
-  font-weight: 500;
-}
-.btn-2 {
-  display: inline-block;
-  font-weight: 400;
-  color: #212529;
-  text-align: center;
-  vertical-align: middle;
-  user-select: none;
-  background-color: transparent;
-  border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.25rem;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-[type=button], [type=reset], [type=submit], button {
-    -webkit-appearance: button;
-}
-button, select {
-    text-transform: none;
-}
-button, input {
-    overflow: visible;
-}
-button, input, optgroup, select, textarea {
-    margin: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-}
-button {
-    border-radius: 0;
-}
-*, :after, :before {
-    box-sizing: border-box;
-}
-
-.button {
-    appearance: auto;
-    writing-mode: horizontal-tb !important;
-  /*  font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    font-weight: ;
-    font-stretch: ;
-    font-size: ;
-    font-family: ;*/
-    text-rendering: auto;
-    color: buttontext;
-    letter-spacing: normal;
-    word-spacing: normal;
-    line-height: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    display: inline-block;
-    text-align: center;
-    align-items: flex-start;
-    cursor: default;
-    box-sizing: border-box;
-    background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
-    margin: 0em;
-    padding: 1px 6px;
-    border-width: 2px;
-    border-style: outset;
-    border-color: buttonborder;
-    border-image: initial;
-}
-.rrule-generator {
-    font-size: 14px;
-}
-
-.rrule-generator .btn-group {
-  flex-wrap: wrap;
-}
-.btn-group, .btn-group-vertical {
-  position: relative;
-  display: inline-flex;
-  vertical-align: middle;
-}
-.col-auto {
-  flex: 0 0 auto;
-  width: auto;
-  max-width: 100%;
-}
-//test
-.rrule-generator {
-  font-size: 14px;
+      box-sizing: border-box;
+      position: relative;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      -webkit-tap-highlight-color: transparent;
+      display: inline-block;
+      white-space: nowrap;
+      text-decoration: none;
+      vertical-align: baseline;
+      text-align: center;
+      margin: 0;
+      min-width: 64px;
+      line-height: 36px;
+      padding: 0 16px;
+      border-radius: 4px;
+      overflow: visible;
+      transform: translate3d(0, 0, 0);
+      transition: background 400ms cubic-bezier(0.25, 0.8, 0.25, 1),box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
   
-}
-.toolbox {
-  box-shadow: 0 2px 6px 0 rgb(0 0 0 / 11%);
-  font-family: Plus Jakarta Display;
-  padding: 39px;
-  margin: 20px 0 0;
-  background-color: #fff;
-  border-radius: 8px;
-}
+  }
+  .mat-dialog-content {
+      display: inherit;
+      margin: 0 -24px;
+      padding: 0 24px;
+      max-height: 65vh;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+  }
+  example-card {
+      max-width: 400px;
+      margin-bottom: 8px;
+    }

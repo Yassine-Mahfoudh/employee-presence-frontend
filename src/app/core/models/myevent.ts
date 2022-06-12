@@ -10,9 +10,6 @@ export class MyEvent {
     color:string='';
     type:string='';
     frequency:string='';
-    everyNday:number=0;
-    weekday:string='';
-    everyNmonth:number=0;
-    monthday:string='';
+employeeid:number=0;
 }
 
