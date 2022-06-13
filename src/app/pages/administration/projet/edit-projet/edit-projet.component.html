@@ -1,11 +1,11 @@
 
-      <!-- addproject -->
+      <!-- editproject -->
 
   
       <mat-toolbar color="primary">
         <mat-toolbar-row fxLayout="row bg-color">
     
-          <span class="title-center">Ajouter un nouveau projet</span>
+          <span class="title-center">Modifier le projet</span>
           <button
             type="button"
             class="d-block mr-0 ml-auto btn-close" 
@@ -51,29 +51,39 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="row" class="marg">
+
+        <div>
           <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
-            <mat-label class="clr2">Date de début</mat-label>
-            <input type="texte" matInput formControlName="startdate"  class="input-startdate" required onfocus="(this.type='date')">
-            <mat-error  *ngIf="projetDetail.controls.startdate.touched && projetDetail.controls.startdate.invalid">
-              <span *ngIf="projetDetail.controls.startdate.errors.required"> Ce champ est obligatoire</span>
-              <span *ngIf="projetDetail.controls.startdate.errors.pattern">Ce champ est invalide</span> 
-            </mat-error>
-          </mat-form-field>
+            <mat-label style="padding-left: 2.5%;">Date de début</mat-label>
+            <mat-icon matPrefix>today</mat-icon>
+            <input #date1 formControlName="startdate" matInput [matDatepicker]="picker">
+            <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          <mat-error  *ngIf="projetDetail.controls.startdate.touched && projetDetail.controls.startdate.invalid">
+            <span *ngIf="projetDetail.controls.startdate.errors.required"> Ce champ est obligatoire</span>
+          </mat-error>
+        </mat-form-field>
+
         </div>
-        <div class="row" class="marg">
+
+        <div>
           <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
-            <mat-label class="clr2">Date de fin</mat-label>
-            <input type="text" matInput formControlName="enddate"  class="input-enddate" required onfocus="(this.type='date')">
+            <mat-label style="padding-left: 2.5%;">Date de fin</mat-label>
+            <mat-icon matPrefix>today</mat-icon>
+            <input [min]="this.projetDetail.value.startdate" formControlName="enddate" matInput [matDatepicker]="picker1">
+             <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint> 
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
             <mat-error *ngIf="projetDetail.controls.enddate.touched && projetDetail.controls.enddate.invalid">
               <span *ngIf="projetDetail.controls.enddate.errors.required"> Ce champ est obligatoire</span>
-              <span *ngIf="projetDetail.controls.enddate.errors.pattern">Ce champ est invalide</span> 
             </mat-error>
-            <mat-hint *ngIf="validateDate()">
-              <span style="color:red;"> La date de fin doit être supérieur du date de début</span>
-            </mat-hint>
-          </mat-form-field>
+            
+        </mat-form-field>
+
         </div>
+
+        
         <div fxLayoutAlign="end end" style=" padding: 8px 0;margin-top: 6%;
       display: flex;
       flex-wrap: wrap;

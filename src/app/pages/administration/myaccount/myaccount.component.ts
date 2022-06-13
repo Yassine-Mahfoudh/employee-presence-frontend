@@ -41,6 +41,9 @@ export class MyaccountComponent implements OnInit {
   public message: string;
   sexe:any;
 
+  maxDate = new Date(2000, 0, 1);
+
+  minDate = new Date(1962, 0, 1);
 
 
   //myaccount:Employee;

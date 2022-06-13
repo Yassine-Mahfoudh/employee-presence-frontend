@@ -31,6 +31,10 @@ export class EditEmployeeComponent implements OnInit {
   managerList: Employee[] = [];
   id_edit_user: any;
 profils_user_to_update=[]
+
+maxDate = new Date(2000, 0, 1);
+minDate = new Date(1962, 0, 1);
+
   constructor(private confirmDialogService:ConfirmDialogService,
     private dialog: MatDialogRef<EditEmployeeComponent,
      { data: any }>,

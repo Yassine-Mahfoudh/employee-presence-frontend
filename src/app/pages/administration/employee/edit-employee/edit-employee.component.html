@@ -44,20 +44,20 @@
           </mat-form-field>
         </div>
 
-        <div class="row" class="marg">
+        <div>
           <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
-            <mat-label class="clr2">Date de naissance</mat-label>
-            <input type="text" matInput formControlName="birthdate"  class="input-birthdate" required onfocus="(this.type='date')"/>
+            <mat-label style="padding-left: 2.5%;">Date de naissance</mat-label>
+            <mat-icon matPrefix>today</mat-icon>
+            <input #date1 [min]="minDate" [max]="maxDate" formControlName="birthdate" matInput [matDatepicker]="picker">
+            <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
             <mat-error *ngIf="employeeDetail.controls.birthdate.touched && employeeDetail.controls.birthdate.invalid">
               <span *ngIf="employeeDetail.controls.birthdate.errors.required"> Ce champ est obligatoire</span>
-              <span *ngIf="employeeDetail.controls.birthdate.errors.pattern">Ce champ est invalide</span> 
-              <mat-hint *ngIf="validateBirthDate() ">
-                <span style="color:red;"> L'année de naissance doit être inférieure à 2000</span>
-              </mat-hint>
             </mat-error>
-          </mat-form-field>
+        </mat-form-field>
         </div>
-
+        
         <div class="row" class="marg">
           <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
             <mat-label class="clr2">Adresse</mat-label>

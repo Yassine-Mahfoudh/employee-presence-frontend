@@ -11,7 +11,7 @@ import { AddSalleComponent } from '../../salle/add-salle/add-salle.component';
 })
 export class AddProjetComponent implements OnInit {
 
-
+minDate=new Date();
 
   constructor(    private dialog: MatDialogRef<AddProjetComponent, { data: any }>,
     @Inject(MAT_DIALOG_DATA) data,) { }
