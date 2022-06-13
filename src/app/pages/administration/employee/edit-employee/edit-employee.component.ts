@@ -30,7 +30,7 @@ export class EditEmployeeComponent implements OnInit {
   listComboxUsers : Employee[] = [];
   managerList: Employee[] = [];
   id_edit_user: any;
-
+profils_user_to_update=[]
   constructor(private confirmDialogService:ConfirmDialogService,
     private dialog: MatDialogRef<EditEmployeeComponent,
      { data: any }>,
@@ -38,7 +38,8 @@ export class EditEmployeeComponent implements OnInit {
    private employeeService:EmployeeService,
    private projetService:ProjetService,
    private salleService:SalleService) { 
-
+console.log('data :',data)
+this.profils_user_to_update=data.employee['listeProfils']
     this.employeeDetail=new FormGroup({
       id: new FormControl(data.employee.id),
       lastname: new FormControl(data.employee.lastname,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
@@ -93,13 +94,18 @@ export class EditEmployeeComponent implements OnInit {
        const res2: any[] = [];
        this.employeeList2.forEach(employee=>{
         for(let i in employee.listeProfils){
-          if(employee.listeProfils[i]==="MANAGER")
+          if(employee.listeProfils[i].includes("MANAGER"))
           {
-         res2.push(employee);
-         this.managerList= res2;
-         this.listComboxUsers=res2
-         this.listComboxUsers= this.listComboxUsers.filter((user) => user.id !== this.id_edit_user)
-         console.log(" this.listComboxUsers:::", this.listComboxUsers)
+            console.log('this.employeeDetail.controls : ',this.employeeDetail.controls['id'].value)
+            if(employee.id!=this.employeeDetail.controls['id'].value)
+            {
+              res2.push(employee);
+              this.managerList= res2;
+              this.listComboxUsers=res2
+              this.listComboxUsers= this.listComboxUsers.filter((user) => user.id !== this.id_edit_user)
+              console.log(" this.listComboxUsers:::", this.listComboxUsers)
+            }
+        
        }
        }
   
@@ -111,19 +117,23 @@ export class EditEmployeeComponent implements OnInit {
 
 
   onSuccessAdd() {
-
+    if(this.employeeDetail.valid && !this.validateBirthDate()){
     this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
       if (res){  
-        if(this.employeeDetail.valid && !this.validateBirthDate()){
+       
           const data = this.employeeDetail.getRawValue();
           this.dialog.close({
             data: data,
            
           });
-        }else this.employeeDetail.markAllAsTouched()
+        
+       
 
         
      } })
+    }
+    else 
+    this.employeeDetail.markAllAsTouched()
   }
 
   validateBirthDate(){

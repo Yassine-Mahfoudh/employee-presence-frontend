@@ -42,14 +42,12 @@ padding: 0em 2em;
 
 }
 
-li {
-  text-align: start !important;
-}
+
 
 .responsive-table {
   li {
     border-radius: 20px;
-    padding: 7px 60px;
+    padding: 20px 60px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
@@ -124,7 +122,6 @@ li {
   .col-3 {
     flex-basis: 9%;
     padding-top: 1em;
-    margin-left: 1%;
   }
   .col-4 {
     flex-basis: 20%;

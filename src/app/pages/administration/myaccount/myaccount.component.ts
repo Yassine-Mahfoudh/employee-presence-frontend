@@ -8,6 +8,8 @@ import { EmployeeService } from 'src/app/core/services/employee.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
 import { SnackbarService } from 'src/app/shared/service/snackbar.service';
+import { ToastService } from '../../service-toast/toast.service';
+import { ConfirmDialogService } from '../dialog-confirmation/confirm-dialog.service';
 
 declare var $: any;
 
@@ -53,6 +55,8 @@ export class MyaccountComponent implements OnInit {
     private userService:UserService,
     private ngxService:NgxUiLoaderService,
     private snackbarService:SnackbarService
+    ,private confirmDialogService:ConfirmDialogService,
+    private toast: ToastService,
     ) {
 
        // customize default values of modals used by this component tree
@@ -60,11 +64,11 @@ export class MyaccountComponent implements OnInit {
        config.keyboard = false;
        
      }
-
+     EmpId
   ngOnInit() {
     
     console.log(this.imgURL);
-    let EmpId = this.authService.getUserEmployee().id;
+    this.EmpId = this.authService.getUserEmployee().id;
    
     this.accountDetail = this.formBuilder.group({
       lname: [''],
@@ -86,13 +90,65 @@ this.changePasswordForm=this.formBuilder.group({
   confirmPassword:[null,[Validators.required]],
 })
 
-  this.getEmployee(EmpId);
+  this.getEmployee(this.EmpId);
 
   }
 
   getEmployee(id : any) {
     this.employeeService.getEmployeeById(id).subscribe(res=>{
       this.account=res;
+        if(this.disabled==false){  
+      if(res.firstname!="" && res.firstname!=null){  
+          
+        this.accountDetail = this.formBuilder.group({
+          lname: {value:res.lastname , disabled: true},
+          fname: {value:res.firstname, disabled: true},
+          bdate: {value:res.birthdate, disabled: true},
+          ads: {value:res.address, disabled: true},
+          phnbr:{value:res.phonenumber, disabled: true},
+          photo:{value:'', disabled: true},
+          gender:{value:res.gender, disabled: true}
+        });
+      }
+      else {
+        this.accountDetail = this.formBuilder.group({
+          lname: {value:'', disabled: true},
+          fname: {value:'', disabled: true},
+          bdate: {value:'', disabled: true},
+          ads: {value:'', disabled: true},
+          phnbr:{value:'', disabled: true},
+          photo:{value:'', disabled: true},
+          gender:{value:'', disabled: true}
+        });
+      }
+      }
+      else {
+        if(res.firstname!="" && res.firstname!=null){  
+          
+          this.accountDetail = this.formBuilder.group({
+            lname: {value:res.lastname , disabled: false},
+            fname: {value:res.firstname, disabled: false},
+            bdate: {value:res.birthdate, disabled: false},
+            ads: {value:res.address, disabled: false},
+            phnbr:{value:res.phonenumber, disabled: false},
+            photo:{value:'', disabled: false},
+            gender:{value:res.gender, disabled: false}
+          });
+        }
+        else {
+          this.accountDetail = this.formBuilder.group({
+            lname: {value:'', disabled: false},
+            fname: {value:'', disabled: false},
+            bdate: {value:'', disabled: false},
+            ads: {value:'', disabled: false},
+            phnbr:{value:'', disabled: false},
+            photo:{value:'', disabled: false},
+            gender:{value:'', disabled: false}
+          });
+        }
+      }
+     
+    // }
       console.log("getEmployee",this.account);
     })
   }
@@ -241,6 +297,10 @@ onSelectFile(event) {
      console.log("after :::",this.accountobj)
      this.employeeService.updateEmployee(this.accountobj,EmpId).subscribe(res=>{
       console.log("resultat:::",res);
+      this.toast.success("Compte modifié avec succès");
+      this.disabled=false
+      this.getEmployee(EmpId)
+      
     });
   })
   
@@ -263,16 +323,28 @@ onSelectFile(event) {
 
       
 
+mettre(){
+  this.disabled=true
+  this.getEmployee(this.EmpId)
+}
 
-
+disabled= false
+annuler(){
+this.disabled=false
+this.getEmployee(this.EmpId)
+}
 
  confirmUpdate() {
-    var okToRefresh = confirm("Do you really want to update your informations?");
-    if (okToRefresh)
-      {
-          //setTimeout("location.reload(true);",500);
+    // var okToRefresh = confirm("Do you really want to update your informations?");
+    // if (okToRefresh)
+    //   {
+         
+    //       this.updateAccount();
+    //   }
+      this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+        if (res){ 
           this.updateAccount();
-      }
+        } })
     }
 
     modif(){

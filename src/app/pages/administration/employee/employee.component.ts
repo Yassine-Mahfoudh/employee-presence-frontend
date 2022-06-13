@@ -156,7 +156,8 @@ return a;
 updateEmployee(employee:Employee){
   const dialogRef = this.dialog.open(EditEmployeeComponent, {
     disableClose: true,
-    height: '700px',
+    height: '600px',
+    width:'500px',
     
     data:{
       employee:employee
@@ -164,6 +165,7 @@ updateEmployee(employee:Employee){
   },
   );
   dialogRef.afterClosed().subscribe((result) => {
+    console.log('res :: ', result)
     if (!isEmpty(result)) {
       console.log("helooooo::::",result)
 

@@ -1,6 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { faPenToSquare, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ThirdPartyDraggable } from '@fullcalendar/interaction';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -8,17 +9,23 @@ import { Demande } from 'src/app/core/models/demande';
 import { Employee } from 'src/app/core/models/employee';
 import { MyEvent } from 'src/app/core/models/myevent';
 import { Projet } from 'src/app/core/models/projet';
+import { Typedemande } from 'src/app/core/models/typedemande';
 import { User } from 'src/app/core/models/user';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { DemandeService } from 'src/app/core/services/demande.service';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { EventService } from 'src/app/core/services/event.service';
 import { ProjetService } from 'src/app/core/services/projet.service';
+import { TypedemandeService } from 'src/app/core/services/typedemande.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
-import { AddeventComponent } from '../../addevent/addevent.component';
+import { SnackbarService } from 'src/app/shared/service/snackbar.service';
+import { ConfirmDialogService } from '../dialog-confirmation/confirm-dialog.service';
 import { EmployeeListComponent } from '../employee-list/employee-list.component';
-
+import { EditDemandeComponent } from './edit-demande/edit-demande.component';
+export function isEmpty(val: any): boolean {
+  return val === null || typeof val === 'undefined' || val.toString().trim() === '';
+}
 @Component({
   selector: 'app-demande',
   templateUrl: './demande.component.html',
@@ -26,7 +33,7 @@ import { EmployeeListComponent } from '../employee-list/employee-list.component'
 })
 export class DemandeComponent implements OnInit {
 
-  demandeDetail!: FormGroup;
+
   demandeobj: Demande = new Demande();
   demandeList:Demande[] = [];
   empDemandes:Demande[] = [];
@@ -46,7 +53,19 @@ export class DemandeComponent implements OnInit {
   eventobj: MyEvent=new MyEvent();
   rhdemandes: Demande[] = [];
   projectList: Projet[]=[];
-
+   results: number;
+  demandeDetail:FormGroup=new FormGroup({
+    id: new FormControl(null),
+    title: new FormControl(null),
+    description: new FormControl(null),
+    datedebut: new FormControl(null),
+    datefin: new FormControl(null),
+    empnom: new FormControl(null),
+    empprenom: new FormControl(null),
+    empid: new FormControl(null),
+    priorite: new FormControl(null),
+    etat: new FormControl(null)
+  });
 
   constructor(private formBuilder : FormBuilder,
      private demandeService: DemandeService,
@@ -55,8 +74,12 @@ export class DemandeComponent implements OnInit {
      private employeeService:EmployeeService,
      private myeventService:EventService,
      private projetService:ProjetService,
+     private confirmDialogService:ConfirmDialogService,
      config: NgbModalConfig,
-      private modalService: NgbModal
+     private dialog: MatDialog,
+      private modalService: NgbModal,
+      private snackbar:SnackbarService,
+      private typedemandeService:TypedemandeService
      ) {
         // customize default values of modals used by this component tree
  config.backdrop = 'static';
@@ -66,21 +89,8 @@ export class DemandeComponent implements OnInit {
   ngOnInit(): void {
   
     this.getDemandes();
-    
-    this.demandeDetail = this.formBuilder.group({
-      id: [''],
-      title:['',Validators.required],
-      description:[null,
-        [Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)],
-      ],
-      datedebut: [null,[Validators.required,Validators.minLength(10)]],
-      datefin: [null,[Validators.required,Validators.minLength(10)]],
-      empid:[''],
-      empnom:[''],
-      empprenom:[''],
-      priorite:[''],
-      etat:['']
-    });
+    this.gettypeevent();
+   // this.getprojetpriority();
   }
   validateDate(){
     if(this.demandeDetail.controls['datedebut'].value >
@@ -99,34 +109,54 @@ export class DemandeComponent implements OnInit {
     this.modalService.dismissAll(content);
   }
 
- 
+  TypeList:Typedemande[]=[];
+  gettypeevent(){
+    this.typedemandeService.getTypeDemandes().subscribe(res=>{
+      this.TypeList=res;
+      console.log("evet type::", this.TypeList);
+    })
+  }
 
+ /* getprojetpriority()
+  {
+
+    this.projetService.getProjets().subscribe(res=>{
+      this.projectList=res;
+
+      this.projectList.forEach(projet=>{
+        this.employeeService.getEmployeeById(this.authservice.getUser().id).subscribe(res=>{
+
+        if (projet.name==res.project){
+          console.log("projet.priority ::",projet.priority)
+             this.results=projet.priority;
+              console.log("results1 ::", this.results)
+            }
+          })
+
+        })
+})
+
+
+  }*/
   addDemande(){
-    let results: number;
+  
     console.log(this.demandeDetail);
     this.demandeobj.id=this.demandeDetail.value.id;
     this.demandeobj.empid=this.authservice.getUser().id;
     this.demandeobj.title=this.demandeDetail.value.title;
     this.demandeobj.empnom=this.authservice.getUserEmployee().lastname;
-    this.projetService.getProjets().subscribe(res=>{
-      this.projectList=res;
-     
-      this.projectList.forEach(projet=>{if (projet.name==this.authservice.getUserEmployee().project){
-        results=projet.priority;
-      }
-    })
-    
-  })
-  console.log("projet mta3 luser ::",results)
-  this.demandeobj.priorite=results;
- 
+
+
+   
+    console.log("results 2::", this.results)
+    //this.demandeobj.priorite= this.results;
     this.demandeobj.empprenom=this.authservice.getUserEmployee().firstname;
     this.demandeobj.description=this.demandeDetail.value.description;
     this.demandeobj.datedebut=this.demandeDetail.value.datedebut;
     this.demandeobj.datefin=this.demandeDetail.value.datefin;
     this.demandeobj.etat="En Attente";
     this.demandeService.addDemande(this.demandeobj).subscribe(res=>{
-      console.log(res);
+      console.log("demande!:::",res);
       this.empDemandes;
     }
     );
@@ -233,19 +263,36 @@ deleteDemande(demande : Demande){
   
   }
 
-updateDemande(){
-  this.demandeobj.id=this.demandeDetail.value.id;
-  this.demandeobj.title=this.demandeDetail.value.title;
-  this.demandeobj.description=this.demandeDetail.value.description;
-  this.demandeobj.datedebut=this.demandeDetail.value.datedebut;
-  this.demandeobj.datefin=this.demandeDetail.value.datefin;
-  this.demandeobj.empid=this.demandeDetail.value.empid;
-  this.demandeobj.etat=this.demandeDetail.value.etat;
-  console.log(this.demandeobj);
+updateDemande(demande:Demande){
+  
+  const dialogRef = this.dialog.open(EditDemandeComponent, {
+    disableClose: true,
+   data:{
+    demande:demande,
+   }
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    if (!isEmpty(result)) {
+      console.log('result ::::: ', result)
+      this.demandeobj.id=result.data.id;
+  this.demandeobj.title=result.data.title;
+  this.demandeobj.description=result.data.description;
+  this.demandeobj.datedebut=result.data.datedebut;
+  this.demandeobj.datefin=result.data.datefin;
+  this.demandeobj.empid=result.data.empid;
+  this.demandeobj.etat=result.data.etat;
+
   this.demandeService.updateDemande(this.demandeobj).subscribe(res=>{
-    console.log(res);
-  }
-  );
+    this.snackbar.openSnackBar("Demnde modifié","")
+    console.log("this.demandeobjupdate:::",this.demandeobj)
+    this.getDemandes()
+ 
+  });
+  
+
+    }
+  });  
 
 }
 
@@ -369,11 +416,22 @@ RefuserDemande(demande: Demande){
     
   }
   
-confirmDelete(demande: Demande) {
-  if(confirm("Are you sure you want to delete demande: "+demande.title)) {
-     this.deleteDemande(demande);
+
+
+
+confirmDelete(demande: Demande){
+  this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+    if (res){  
+      this.demandeService.deleteDemande(demande).subscribe(res=>{
+        console.log(res);
+        this.snackbar.openSnackBar("Demande supprimé","")
+       
+      }
+      );
+   } })
+  
+  
   }
-}
 
 handleClear(){
   this.demandeDetail.reset();

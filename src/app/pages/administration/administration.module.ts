@@ -60,6 +60,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatListModule } from '@angular/material/list';
 import { MonEquipeComponent } from './mon-equipe/mon-equipe.component';
+import { EditDemandeComponent } from './demande/edit-demande/edit-demande.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { MonEquipeComponent } from './mon-equipe/mon-equipe.component';
 MonEquipeComponent,
     EditEmployeeComponent,
      EditProfilComponent,
+     EditDemandeComponent,
      UploadImagesComponent
  
   ],

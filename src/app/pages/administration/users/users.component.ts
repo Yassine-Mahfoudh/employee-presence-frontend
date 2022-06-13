@@ -221,6 +221,7 @@ updateUser(user:User){
 // }
 
 public searchUsers(key: string): void {
+  console.log('hi')
   console.log(key);
   const results: User[] = [];
   for (const user of this.usersList) {
@@ -230,6 +231,23 @@ public searchUsers(key: string): void {
     ) {
       results.push(user);
     }
+    console.log('user.profils',user.profils)
+    if(user.profils.length>0){
+      for (const prof of user.profils){
+        
+          if(prof.name.toLowerCase().indexOf(key.toLowerCase()) !== -1)
+          {
+            let exits = false
+            results.filter(us=>{
+              if(us.id==user.id)
+              exits=true
+            })
+            if(exits==false)
+            results.push(user);
+          }
+          
+      }
+     }
   }
   this.usersList = results;
   if (key=='') {
