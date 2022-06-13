@@ -41,6 +41,7 @@ export class AjoutEvenementComponent implements OnInit {
       byday: new FormControl(null),
       onday: new FormControl(null),
       eventtype: new FormControl(null),
+      periode:new FormControl(data.periode),
     });    }
   ngOnInit(): void {
    
@@ -60,7 +61,7 @@ export class AjoutEvenementComponent implements OnInit {
         data: data,
        
       });
-    }
+    }    else this.eventDetail.markAllAsTouched()
  }
  handleClear(){
    this.eventDetail.reset();
@@ -82,7 +83,8 @@ onDataChange(event) {
   this.periode=true
 
   console.log(event.value);    
- }
+return this.periode
+}
 gettypeevent(){
   this.typedemandeService.getTypeDemandes().subscribe(res=>{
     this.TypeList=res;

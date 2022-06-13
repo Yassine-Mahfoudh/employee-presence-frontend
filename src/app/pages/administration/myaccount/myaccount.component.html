@@ -1,7 +1,96 @@
  
  
     
- 
+        <!-- <div class="container">
+          <div class="row ">
+              <div >
+                  <h2 class="h3 mb-4 page-title">Profile</h2>
+                  <div class="my-4">
+                      <form [formGroup]="accountDetail" >
+                          <div class="row ">
+                              <div class="col-md-3 text-center mb-5">
+                                
+                              <br/>
+                              <img [src]="imgURL" class="rounded-circle avatar-xl" height="200" *ngIf="imgURL">
+                              </div>
+                              <div >
+                                <input type="file" name="photo" id="photo" class="img-input" accept="image/*" (change)="onSelectFile($event)">
+            
+                            </div>
+                              <div class="col">
+                                 
+                                  <div class="row mb-4">
+                                      <div class="col-md-7">
+                                          <p class="text-muted">
+                                            {{account.address}} 
+                                          </p>
+                                      </div>
+                                      <div class="col">
+                                        <div class="row ">
+                                          <div class="col-md-7">
+                                              <h5 class="mb-1">{{account.lastname}} {{account.firstname}}</h5>
+                                              <p class="small mb-3"><span class="badge badge-dark"></span></p>
+                                          </div>
+                                      </div>
+                                          <p class="small mb-0 text-muted">Date de naissance :{{account.birthdate}}</p>
+                                          <p class="small mb-0 text-muted">Téléphone : (+216){{account.phonenumber}}</p>
+                                          <p class="small mb-0 text-muted">Sexe : male</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <hr class="my-4" />
+                          <div class="row">
+                              <div class="input-group" class="input-group-icon">
+                                  <label for="firstname"><h6>Prénom</h6></label>
+                                  <div class="input-icon"><i class="fa fa-user"></i></div>
+                                  <input  type="text" formControlName="fname" id="firstname" class="form-control" placeholder="{{account.firstname}}"  />
+                              </div>
+                              
+                              <div class="input-group" class="input-group-icon">
+                                  <label for="lastname"><h6>Nom</h6></label>
+                                  <div class="input-icon"><i class="fa fa-user"></i></div>
+                                  <input type="text" formControlName="lname" id="lastname" class="form-control" placeholder="{{account.lastname}}" />
+                                
+                              </div>
+                          </div>
+                          <div class="input-group" class="input-group-icon">
+                            <label for="address"><h6>Adresse</h6></label>
+                            <div class="input-icon"><mat-icon>location_city</mat-icon></div>
+                            
+                            <input  type="text" class="form-control" formControlName="ads" id="address" placeholder="{{account.address}}" />
+                        </div>
+                          <div class="input-group" class="input-group-icon">
+                              <label for="phonenumber"><h6>Numéro de téléphone</h6></label>
+                              <div class="input-icon"><mat-icon> local_phone</mat-icon></div>
+                              
+                              <input  type="text" class="form-control" formControlName="phnbr"  id="phonenumber" placeholder="{{account.phonenumber}}" />
+                          </div>
+                          
+                              <div  class="input-group" >
+                                  <label for="birthdate"><h6>Date de naissance</h6></label>
+                                  <input class="input-group"  type="text" class="form-control" formControlName="bdate"  id="BirthDate" placeholder="{{account.birthdate}}" onfocus="(this.type='date')"/>
+                              </div>
+                              <mat-hint *ngIf="validateBirthDate() ">
+                                <span style="color:red;"> L'année de naissance doit être inférieure à 2000</span>
+                              </mat-hint>
+        
+                              <div class="input-group">
+                                <label id="example-radio-group-label">Sexe : </label>
+
+                                <mat-radio-group aria-label="Sexe" formCoontrolName="gender" value="{{account.gender}}" (change)="onDataChange($event)">
+                                  
+                                  <mat-radio-button class="sexe-btn" value="Homme">Homme</mat-radio-button>
+                                  <mat-radio-button  class="sexe-btn" value="Femme">Femme</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <button (click)="confirmUpdate()" mat-raised-button class="btn btn-primary btn-block">Mettre à jour</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        </div> -->
 
         <h3 style="text-align:center">Mon compte</h3>
     <mat-tab-group >
@@ -18,11 +107,7 @@
     <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
       <mat-label style="padding-left: 2.5%;"> Prénom </mat-label>
       <mat-icon matPrefix>people</mat-icon>
-      <input style="padding-left: 2.5%;" matInput formControlName="lname" type="text"  />
-      <mat-error  *ngIf="accountDetail.controls.lname.touched && accountDetail.controls.lname.invalid">
-        <span *ngIf="accountDetail.controls.lname.errors.required"> Ce champ est obligatoire</span>
-        <span *ngIf="accountDetail.controls.lname.errors.pattern"> Ce champ est invalide, il ne doit pas contenir ni des chiffres ni des caractéres spéciaux</span>
-      </mat-error>
+      <input style="padding-left: 2.5%;" matInput formControlName="fname" type="text"  />
     </mat-form-field>
   </div>
 
@@ -30,11 +115,7 @@
     <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
       <mat-label style="padding-left: 2.5%;"> Nom </mat-label>
       <mat-icon matPrefix>people</mat-icon>
-      <input style="padding-left: 2.5%;" matInput formControlName="fname" type="text" />
-      <mat-error  *ngIf="accountDetail.controls.fname.touched && accountDetail.controls.fname.invalid">
-        <span *ngIf="accountDetail.controls.fname.errors.required"> Ce champ est obligatoire</span>
-        <span *ngIf="accountDetail.controls.fname.errors.pattern"> Ce champ est invalide, il ne doit pas contenir ni des chiffres ni des caractéres spéciaux</span>
-      </mat-error>
+      <input style="padding-left: 2.5%;" matInput formControlName="lname" type="text" />
     </mat-form-field>
   </div>
 
@@ -43,10 +124,6 @@
       <mat-label style="padding-left: 2.5%;"> Adresse </mat-label>
       <mat-icon matPrefix>location_city</mat-icon>
       <input style="padding-left: 2.5%;" matInput formControlName="ads" type="text" />
-      <mat-error  *ngIf="accountDetail.controls.ads.touched && accountDetail.controls.ads.invalid">
-        <span *ngIf="accountDetail.controls.ads.errors.required"> Ce champ est obligatoire</span>
-        <span *ngIf="accountDetail.controls.ads.errors.pattern"> L'adresse doit comporter au moins 4 caractères</span>
-      </mat-error>
     </mat-form-field>
   </div>
 
@@ -55,11 +132,6 @@
       <mat-label style="padding-left: 2.5%;"> Numéro de téléphone </mat-label>
       <mat-icon matPrefix>local_phone</mat-icon>
       <input style="padding-left: 2.5%;" matInput formControlName="phnbr" type="text" />
-      <mat-error  *ngIf=" accountDetail.controls.phnbr.invalid">
-        <span *ngIf="accountDetail.controls.phnbr.errors.required"> Ce champ est obligatoire</span>
-        <span *ngIf="accountDetail.controls.phnbr.errors.pattern"> Ce champ est invalide, il doit être un numéro</span>
-        <span *ngIf="accountDetail.controls.phnbr.errors.minlength && accountDetail.controls.phnbr.errors.maxlength"> Le numéro doit comporter 8 chiffres</span>                   
-      </mat-error>
     </mat-form-field>
   </div>
 
@@ -71,9 +143,6 @@
       <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-      <!--<mat-hint *ngIf="validateBirthDate() ">
-        <span style="color:red;"> L'année de naissance doit être inférieure à 2000</span>
-      </mat-hint>-->
     </mat-form-field>
   </div>
 
@@ -85,9 +154,7 @@
       <mat-radio-button [disabled]="!disabled" style="padding-left:2%" value="Homme">Homme</mat-radio-button>
       <mat-radio-button  [disabled]="!disabled" style="padding-left:2%" value="Femme">Femme</mat-radio-button>
     </mat-radio-group>
-    <mat-error  *ngIf="accountDetail.controls.gender.touched && accountDetail.controls.gender.invalid">
-      <span *ngIf="accountDetail.controls.gender.errors.required"> Ce champ est obligatoire</span>
-    </mat-error>
+ 
   </div>
   <div mat-dialog-actions style="padding-top: 4%; margin-bottom: 3%;" fxLayoutAlign="end end">
 

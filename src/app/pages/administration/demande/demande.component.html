@@ -2,7 +2,80 @@
 <!-- addsalle -->
 <mat-tab-group >
   <mat-tab label="Demande" style="width: 100%;" >
+<!--
+    <mat-dialog-content class="mat-typography">
+      <form [formGroup]="demandeDetail">
+        <div fxFlex fxLayout="column" class="marg">
+  
+          <div class="row "  class="mat-type-pos ">
+          <mat-form-field appearance="fill" class=" mtfldwrapper "  >
+            <mat-label>type</mat-label>
+            <select matNativeControl required formControlName="title" > 
+              <option value="Presentielle">Presentielle</option>
+              <option value="a distance">à distance</option>
+            </select>
+            <mat-error  *ngIf="demandeDetail.controls.title.touched && demandeDetail.controls.title.invalid">
+              <span *ngIf="demandeDetail.controls.title.errors.required"> Ce champ est obligatoire</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        
+  
+        <div class="row" class=" mat-descrption-pos">
+          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+            <mat-label class="clr2">Description</mat-label>
+            <input type="text" matInput formControlName="description" class="input-priority" required >
+            <mat-error  *ngIf="demandeDetail.controls.description.touched && demandeDetail.controls.description.invalid" >
+              <span *ngIf="demandeDetail.controls.description.errors.required"> Ce champ est obligatoire</span>
+              <span *ngIf="demandeDetail.controls.description.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
+   
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+          <div class="row" class="mat-datedebut-pos">
+          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+            <mat-label class="clr2">Date debut</mat-label>
+            <input type="text" matInput formControlName="datedebut" class="input-priority" required onfocus="(this.type='date')">
+            <mat-error  *ngIf="demandeDetail.controls.datedebut.touched && demandeDetail.controls.datedebut.invalid" >
+              <span *ngIf="demandeDetail.controls.datedebut.errors.required"> Ce champ est obligatoire</span>
+              <span *ngIf="demandeDetail.controls.datedebut.errors.pattern">Ce champ est invalide</span> 
+            </mat-error>
 
+           
+          </mat-form-field>
+        </div>
+  
+        <div class="row" class="mat-datefin-pos">
+          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+            <mat-label class="clr2">Date fin</mat-label>
+            <input type="text" matInput formControlName="datefin" class="input-priority" required onfocus="(this.type='date')">
+            <mat-error *ngIf="demandeDetail.controls.datefin.touched && demandeDetail.controls.datefin.invalid" >
+              <span *ngIf="demandeDetail.controls.datefin.errors.required"> Ce champ est obligatoire</span>
+              <span *ngIf="demandeDetail.controls.datefin.errors.pattern">Ce champ est invalide</span> 
+            </mat-error>
+              <mat-hint *ngIf="validateDate()">
+              <span style="color:red;"> La date de fin doit être supérieur du date de début</span>
+            </mat-hint>
+   
+           
+          </mat-form-field>
+        </div>
+  
+        <mat-dialog-actions class="btn-group ">
+          <button class=" button-1 bg-cb"   mat-strocked-button type="submit" 
+           (click)="addDemande()"  (click)="handleClear()">
+           adddemande
+          </button>
+        </mat-dialog-actions>
+       
+        </div>
+      </form>
+
+    </mat-dialog-content >
+
+</mat-tab>
+-->
 
 <div style=" padding-top: 5%;   text-align: -webkit-center;
         ">
@@ -13,18 +86,12 @@
     <div>
     <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
       <mat-label style="padding-left: 2.5%;">type</mat-label>
-              
-      <mat-select placeholder="Periodic table" 
-      formControlName="title" >
+            <select style="padding-left: 2.5%;" matNativeControl required formControlName="title" > 
+              <option value="Presentielle">Presentielle</option>
+              <option value="A distance">A distance</option>
+              <option value="congé">Congé</option>
 
-      
-      <mat-option 
-      *ngFor="let typedemande of TypeList"
-      [value]="typedemande.type">
-      {{ typedemande.type }}
-    </mat-option >
-
-        </mat-select>
+            </select>
             <mat-error  *ngIf="demandeDetail.controls.title.touched && demandeDetail.controls.title.invalid">
               <span *ngIf="demandeDetail.controls.title.errors.required"> Ce champ est obligatoire</span>
             </mat-error>
@@ -101,10 +168,100 @@
     </mat-tab>
 
 
+
+
+
+
+
       <div class="mes-demande " *ngIf="!userService.roleMatch(['ADMIN'])">
       <mat-tab label="Mes Demandes">
 
-  
+        <!--edit demande-->
+
+ <ng-template #contentUpdate let-c="close" let-d="dismiss">
+      
+          <mat-toolbar color="primary">
+            <mat-toolbar-row fxLayout="row bg-color">
+        
+              <span class="title-center">Mettre à jour la demande</span>
+              <button
+                type="button"
+                class="d-block mr-0 ml-auto btn-close" (click)="d('Cross click')"
+                aria-label="Close"
+                mat-dialog-close
+                (click)="handleClear()"
+              ></button>
+            </mat-toolbar-row>
+          </mat-toolbar>
+          <div class="modal-body">
+          <form [formGroup]="demandeDetail" >
+            <div class="pl-lg-4 field">
+              <div class="row formbg-inner   ">
+                <div class="col-lg-6">
+                  <h6 class="heading-small text-muted mb-4">
+                    Les informations du demande :
+                  </h6>
+                  <div class="padding-bottom--24" >
+                    <label for="select-title">Titre</label>
+                                    <select
+                                      formControlName="title"
+                                      id="select-title"
+                                      class="form-control form-control-alternative">
+                                      <optgroup label="Type d'événement">
+                                      <option value="" selected hidden>Choisissez un titre</option>
+                                      <option value="Presentielle">Presentielle</option>
+                                      <option value="à distance">à distance</option>
+                                      <option value="congé">congé</option>
+                                    </optgroup>
+                                    </select>
+                      </div>
+        
+                      <div class="padding-bottom--24">
+                        <label  for="input-Description">Description </label>
+                        <input type="text" matInput formControlName="description"  class="form-control form-control-alternative" id="input-Description" placeholder=" Description du l'evenement" required>
+                    </div>
+                    <div class="padding-bottom--24" >
+                      <label for="input-datedebut">Date debut</label>
+                                    <input
+                                      type="text"
+                                      matInput
+                                      class="form-control form-control-alternative"
+                                      formControlName="datedebut"
+                                      id="input-datedebut"
+                                      placeholder="event datedebut"
+                                      required  onfocus="(this.type='date')"/>
+                        </div>
+                        <div class="padding-bottom--24" >
+                    <label class="form-control-label"  for="input-name">datefin</label>
+                    <label for="input-datefin">Date fin</label>
+                    <input
+                      type="text"
+                      matInput
+                      class="form-control form-control-alternative"
+                      formControlName="datefin"
+                      id="input-datefin"
+                      placeholder="event datefin"
+                      required  onfocus="(this.type='date')"/>
+                   
+                      </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <mat-dialog-actions class="btn-group padding--14">
+                <button class="btn button-2 bg-cb"   mat-strocked-button type="submit" (click)="c('Save click')"
+                 (click)="updateDemande()"  (click)="handleClear()">
+                  modifier demande
+                </button>
+                <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(contentUpdate)" (click)="handleClear()">
+                  Fermer
+                </button>
+              </mat-dialog-actions>
+            </div>
+          </form>
+        </div>
+             
+            </ng-template>
     
 
    <!--mes demandes-->
@@ -151,7 +308,7 @@
               <div  *ngIf="demande.etat=='En Attente' ">
             <div class=" margl " >
           
-                <a href="javascript:;" class="" data-toggle="tooltip" data-original-title="Edit demande"  (click)="updateDemande(demande)" >
+                <a href="javascript:;" class="" data-toggle="tooltip" data-original-title="Edit demande"  (click)="editDemande(demande)" (click)="open(contentUpdate)">
                   <i> <fa-icon [icon]="editIcon"></fa-icon> </i>
                 </a><br>
                 
@@ -160,7 +317,7 @@
                 </a>
               </div>
             </div>
-            <div  *ngIf="demande.etat!=='En Attente' ">
+            <div  *ngIf="demande.etat=='Refuseé' ">
               <div class=" margl " >
                   <a href="javascript:;" class="" data-toggle="tooltip" data-original-title="delete demande"  (click)="confirmDelete(demande)" >
                     <i><fa-icon [icon]="trashIcon"></fa-icon> </i>
@@ -233,7 +390,7 @@
           totalItems:totalRec}">
           <div class="col col-1" data-label="datefin">{{demande.empnom}}</div>
           <div class="col col-2" data-label="datefin">{{demande.empprenom}}</div>
-          <div class="col col-2" data-label="datefin">{{demande.priorite}}</div>
+          <div class="col col-2" data-label="datefin">{{demande.piriorite}}</div>
             <div class="col col-3" data-label="Titre" >{{demande.title}}</div>
             <div class="col col-4" data-label="Description">{{demande.description}}</div>
             <div class="col col-5" data-label="datedebut">{{demande.datedebut}}</div>

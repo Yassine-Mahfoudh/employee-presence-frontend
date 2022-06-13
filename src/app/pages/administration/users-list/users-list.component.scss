@@ -19,11 +19,14 @@ h1 {
   
 }
 
+li{
+  text-align: left;
+}
 
 .responsive-table {
   li {
     border-radius: 20px;
-    padding: 20px 60px;
+    padding: 10px 60px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
@@ -96,16 +99,14 @@ h1 {
   }
   
   .col-2 {
-    flex-basis: 11%;
+    flex-basis: 14%;
 }
   .col-3 {
     flex-basis: 20%;
-    margin-left: 0.2em;
 
   }
   .col-4 {
     flex-basis: 25%;
-    margin-left: 0.2em;
   }
  
   

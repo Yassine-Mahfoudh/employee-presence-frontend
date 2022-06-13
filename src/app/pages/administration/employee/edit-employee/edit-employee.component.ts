@@ -42,8 +42,8 @@ console.log('data :',data)
 this.profils_user_to_update=data.employee['listeProfils']
     this.employeeDetail=new FormGroup({
       id: new FormControl(data.employee.id),
-      lastname: new FormControl(data.employee.lastname,[Validators.required, Validators.pattern(GlobalConstants.nomprenomRegex)]),
-      firstname: new FormControl(data.employee.firstname,[Validators.required, Validators.pattern(GlobalConstants.nomprenomRegex)]),
+      lastname: new FormControl(data.employee.lastname,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
+      firstname: new FormControl(data.employee.firstname,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
       phonenumber: new FormControl(data.employee.phonenumber,[Validators.required,Validators.maxLength(8),Validators.minLength(8),Validators.pattern(GlobalConstants.numberRegex)]),
       address: new FormControl(data.employee.address,[Validators.required,Validators.minLength(4)]),
       birthdate: new FormControl(data.employee.birthdate),

@@ -71,13 +71,13 @@ export class MyaccountComponent implements OnInit {
     this.EmpId = this.authService.getUserEmployee().id;
    
     this.accountDetail = this.formBuilder.group({
-      lname: ['',[Validators.required, Validators.pattern(GlobalConstants.nomprenomRegex)]],
-      fname: ['',[Validators.required, Validators.pattern(GlobalConstants.nomprenomRegex)]],
-      bdate: ['',[Validators.required]],
-      ads: ['',[Validators.required,Validators.minLength(4)]],
-      phnbr:['',[Validators.required,Validators.maxLength(8),Validators.minLength(8),Validators.pattern(GlobalConstants.numberRegex)]],
+      lname: [''],
+      fname: [''],
+      bdate: [''],
+      ads: [''],
+      phnbr:[''],
       photo:[''],
-      gender:['',[Validators.required]]
+      gender:['']
     });
 
     console.log(this.authService.getUserEmployee().lastname)

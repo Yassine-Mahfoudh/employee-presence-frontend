@@ -19,11 +19,15 @@ h1 {
   
 }
 
+ li{
+    text-align: left;
+  }
+
 
 .responsive-table {
   li {
     border-radius: 20px;
-    padding: 20px 60px;
+    padding: 10px 60px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;

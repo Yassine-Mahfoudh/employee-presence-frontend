@@ -52,12 +52,11 @@
             </mat-form-field>
           </div>
 
-<!--
           <div>
             <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
               <mat-label style="padding-left: 2.5%;">Date de début</mat-label>
               <mat-icon matPrefix>today</mat-icon>
-              <input formControlName="startdate" matInput [matDatepicker]="picker">
+              <input #date1 formControlName="startdate" matInput [matDatepicker]="picker">
               <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
@@ -73,10 +72,10 @@
             <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
               <mat-label style="padding-left: 2.5%;">Date de fin</mat-label>
               <mat-icon matPrefix>today</mat-icon>
-              <input formControlName="enddate" matInput [matDatepicker]="picker">
-              <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker2></mat-datepicker>
+              <input [min]="this.projetDetail.value.startdate" formControlName="enddate" matInput [matDatepicker]="picker1">
+              <!-- <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint> -->
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
               <mat-error *ngIf="projetDetail.controls.enddate.touched && projetDetail.controls.enddate.invalid">
                 <span *ngIf="projetDetail.controls.enddate.errors.required"> Ce champ est obligatoire</span>
                 <span *ngIf="projetDetail.controls.enddate.errors.pattern">Ce champ est invalide</span> 
@@ -87,9 +86,8 @@
           </mat-form-field>
 
           </div>
-        -->
-
-          <div class="row" class="marg">
+   
+          <!-- <div class="row" class="marg">
             <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
               <mat-label class="clr2">Date de début</mat-label>
               <input type="texte" matInput formControlName="startdate"  class="input-startdate" required onfocus="(this.type='date')">
@@ -111,7 +109,7 @@
                 <span style="color:red;"> La date de fin doit être supérieur du date de début</span>
               </mat-hint>
             </mat-form-field>
-          </div>
+          </div> -->
           <div fxLayoutAlign="end end" style=" padding: 8px 0;margin-top: 6%;
       display: flex;
       flex-wrap: wrap;

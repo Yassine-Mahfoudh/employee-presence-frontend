@@ -19,9 +19,14 @@ export class EditDemandeComponent implements OnInit {
     this.demandeDetail=new FormGroup({
       id: new FormControl(data.demande.id),
       title: new FormControl(data.demande.title,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
-      description: new FormControl(data.demande.description,[Validators.required]),
-      datedebut: new FormControl(data.demande.datedebut,[Validators.required]),
-      datefin: new FormControl(data.demande.datefin,[Validators.required]),
+      description: new FormControl(data.demande.description),
+      datedebut: new FormControl(data.demande.datedebut),
+      datefin: new FormControl(data.demande.datefin),
+      empnom: new FormControl(data.demande.empnom),
+      empprenom: new FormControl(data.demande.empprenom),
+      empid: new FormControl(data.demande.empid),
+      priorite: new FormControl(data.demande.priorite),
+      etat: new FormControl(data.demande.etat)
     });
    }
 
