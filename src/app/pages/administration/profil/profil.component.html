@@ -33,9 +33,10 @@
 
               <ul class="responsive-table pad">
                 <li class="table-header margt">
-                  <div [(appSort)]="profilList" data-order="desc" data-name="name" class="col mar padt col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
-                  <div [(appSort)]="profilList" data-order="desc" data-name="description" class="col mar padt col-3 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
-                  <div class="col padt col-4  margl  text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
+                  <div [(appSort)]="profilList" data-order="desc" data-name="name" class="col mar  col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
+                  <div [(appSort)]="profilList" data-order="desc" data-name="description" class="col mar  col-3 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
+
+                  <div class="col  col-4  margl  text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
                   
                   
                 </li>
@@ -52,9 +53,6 @@
                       <i> <fa-icon [icon]="editIcon"></fa-icon> </i>
                     </a><br>
                     
-                    <a href="javascript:;" class=" padlr text-secondary font-weight-bold text-xxs" data-toggle="tooltip" data-original-title="delete profil"  (click)="confirmDelete(profil)" >
-                      <i><fa-icon [icon]="trashIcon"></fa-icon> </i>
-                    </a>
                   </div>
                   
       

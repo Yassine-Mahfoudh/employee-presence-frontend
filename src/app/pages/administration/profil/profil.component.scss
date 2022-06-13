@@ -42,12 +42,15 @@ padding: 0em 2em;
 
 }
 
-
+  
+li{
+  text-align: left;
+}
 
 .responsive-table {
   li {
     border-radius: 20px;
-    padding: 20px 60px;
+    padding: 10px 60px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
@@ -117,16 +120,13 @@ padding: 0em 2em;
 
   .col-2 {
     flex-basis: 18%;
-    padding-top: 1em;
 }
   .col-3 {
     flex-basis: 15%;
-    padding-top: 1em;
   }
   .col-4 {
     flex-basis: 12%;
-    margin-left: 0.2em;
-    padding-top: 1em;
+ 
   }
   
   .text-secondary {
@@ -543,10 +543,12 @@ select {
     padding-bottom: 5px;
    
   }
+
   .margt {
     margin-top: 1em;
    
   }
+ 
 
 
   .mtfldwrapper {

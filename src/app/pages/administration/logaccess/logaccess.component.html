@@ -27,7 +27,7 @@
                   <li class="table-header margt  ">
                     <div [(appSort)]="logaccessList" data-order="desc" data-name="username" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom d'utilisateur</div>
                     <div [(appSort)]="logaccessList" data-order="desc" data-name="dateAuth" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Date d'authentification</div>
-                    <div [(appSort)]="logaccessList" data-order="desc" data-name="codeAccess" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Code d'accés</div>                    
+                    <div [(appSort)]="logaccessList" data-order="desc" data-name="codeAccess" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Résultat</div>                    
                   </li>
                   
                   <li class="table-row"  *ngFor="let Logaccess of logaccessList | paginate: { id:'listing_pagination',

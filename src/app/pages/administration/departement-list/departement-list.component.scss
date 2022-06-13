@@ -19,11 +19,14 @@ body {
     
   }
   
-  
+  li{
+    text-align: left;
+  }
+
   .responsive-table {
     li {
       border-radius: 20px;
-      padding: 20px 60px;
+      padding: 10px 60px;
       display: flex;
       justify-content: space-between;
       margin-bottom: 30px;
@@ -101,7 +104,8 @@ body {
       flex-basis: 35%;
   }
   .col-3 {
-    flex-basis: 80%;
+    flex-basis: 20%;
+    margin-left: 10% ;
 }
     .text-secondary {
       color: #7b809a !important;

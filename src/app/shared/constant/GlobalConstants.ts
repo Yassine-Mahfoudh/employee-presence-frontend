@@ -4,7 +4,7 @@ export class GlobalConstants{
 
     //Regex
     public static nameRegex="[a-zA-ZÀ-ÿ0-9 ]*";
-    public static nomprenomRegex="[a-zA-Z]*";
+    public static nomprenomRegex="[a-zA-Z ]*";
     public static emailRegex="[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}";
     public static numberRegex="^[0-9]*";
     public static textRegex="/^[a-zA-ZÀ-ÿ-.*-|/0-9 ]*$/";

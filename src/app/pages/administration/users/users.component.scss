@@ -42,12 +42,14 @@ padding: 0em 2em;
 
 }
 
-
+li{
+  text-align: left;
+}
 
 .responsive-table {
   li {
     border-radius: 20px;
-    padding: 20px 60px;
+    padding: 10px 60px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
@@ -58,7 +60,7 @@ padding: 0em 2em;
 
   @media only screen  and (max-width: 1400px) {
     .button-1 {
-      padding-left: 4em;
+      padding-left: 1em;
     }
     
   }
@@ -117,26 +119,22 @@ padding: 0em 2em;
  
   .col-2 {
     flex-basis: 16%;
-    padding-top: 1em;
 }
   .col-3 {
-    flex-basis: 10%;
-    padding-top: 1em;
+    flex-basis: 14%;
+    margin-left: 1%;
+
   }
   .col-4 {
-    flex-basis: 23%;
-    margin-left: 0.2em;
-    padding-top: 1em;
+    flex-basis: 26%;
+    margin-left: 1%;
   }
   .col-5 {
     flex-basis: 11%;
-    margin-left: 3em;
-    padding-top: 1em;
+    margin-left: 1%;
   }
   .col-6 {
-    flex-basis: 9%;
-    margin-left: 3em;
-    padding-top: 1em;
+    flex-basis: 5%;
   }
   
   
