@@ -18,7 +18,11 @@
     <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
       <mat-label style="padding-left: 2.5%;"> Prénom </mat-label>
       <mat-icon matPrefix>people</mat-icon>
-      <input style="padding-left: 2.5%;" matInput formControlName="fname" type="text"  />
+      <input style="padding-left: 2.5%;" matInput formControlName="lname" type="text"  />
+      <mat-error  *ngIf="accountDetail.controls.lname.touched && accountDetail.controls.lname.invalid">
+        <span *ngIf="accountDetail.controls.lname.errors.required"> Ce champ est obligatoire</span>
+        <span *ngIf="accountDetail.controls.lname.errors.pattern"> Ce champ est invalide, il ne doit pas contenir ni des chiffres ni des caractéres spéciaux</span>
+      </mat-error>
     </mat-form-field>
   </div>
 
@@ -26,7 +30,11 @@
     <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
       <mat-label style="padding-left: 2.5%;"> Nom </mat-label>
       <mat-icon matPrefix>people</mat-icon>
-      <input style="padding-left: 2.5%;" matInput formControlName="lname" type="text" />
+      <input style="padding-left: 2.5%;" matInput formControlName="fname" type="text" />
+      <mat-error  *ngIf="accountDetail.controls.fname.touched && accountDetail.controls.fname.invalid">
+        <span *ngIf="accountDetail.controls.fname.errors.required"> Ce champ est obligatoire</span>
+        <span *ngIf="accountDetail.controls.fname.errors.pattern"> Ce champ est invalide, il ne doit pas contenir ni des chiffres ni des caractéres spéciaux</span>
+      </mat-error>
     </mat-form-field>
   </div>
 
@@ -35,6 +43,10 @@
       <mat-label style="padding-left: 2.5%;"> Adresse </mat-label>
       <mat-icon matPrefix>location_city</mat-icon>
       <input style="padding-left: 2.5%;" matInput formControlName="ads" type="text" />
+      <mat-error  *ngIf="accountDetail.controls.ads.touched && accountDetail.controls.ads.invalid">
+        <span *ngIf="accountDetail.controls.ads.errors.required"> Ce champ est obligatoire</span>
+        <span *ngIf="accountDetail.controls.ads.errors.pattern"> L'adresse doit comporter au moins 4 caractères</span>
+      </mat-error>
     </mat-form-field>
   </div>
 
@@ -43,6 +55,11 @@
       <mat-label style="padding-left: 2.5%;"> Numéro de téléphone </mat-label>
       <mat-icon matPrefix>local_phone</mat-icon>
       <input style="padding-left: 2.5%;" matInput formControlName="phnbr" type="text" />
+      <mat-error  *ngIf=" accountDetail.controls.phnbr.invalid">
+        <span *ngIf="accountDetail.controls.phnbr.errors.required"> Ce champ est obligatoire</span>
+        <span *ngIf="accountDetail.controls.phnbr.errors.pattern"> Ce champ est invalide, il doit être un numéro</span>
+        <span *ngIf="accountDetail.controls.phnbr.errors.minlength && accountDetail.controls.phnbr.errors.maxlength"> Le numéro doit comporter 8 chiffres</span>                   
+      </mat-error>
     </mat-form-field>
   </div>
 
@@ -68,7 +85,9 @@
       <mat-radio-button [disabled]="!disabled" style="padding-left:2%" value="Homme">Homme</mat-radio-button>
       <mat-radio-button  [disabled]="!disabled" style="padding-left:2%" value="Femme">Femme</mat-radio-button>
     </mat-radio-group>
- 
+    <mat-error  *ngIf="accountDetail.controls.gender.touched && accountDetail.controls.gender.invalid">
+      <span *ngIf="accountDetail.controls.gender.errors.required"> Ce champ est obligatoire</span>
+    </mat-error>
   </div>
   <div mat-dialog-actions style="padding-top: 4%; margin-bottom: 3%;" fxLayoutAlign="end end">
 

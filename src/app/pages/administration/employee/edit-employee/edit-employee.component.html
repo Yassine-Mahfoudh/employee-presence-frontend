@@ -18,18 +18,6 @@
     <form (ngSubmit)="onSuccessAdd()" [formGroup]="employeeDetail">
       <div fxFlex fxLayout="column">
 
-        <div class="row" class="marg">
-          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
-            <mat-label class="clr2">Nom</mat-label>
-            <input type="text" matInput formControlName="firstname" class="input-priority" required >
-            <mat-error  *ngIf="employeeDetail.controls.firstname.touched && employeeDetail.controls.firstname.invalid">
-              <span *ngIf="employeeDetail.controls.firstname.errors.required"> Ce champ est obligatoire</span>
-              <span *ngIf="employeeDetail.controls.firstname.errors.pattern"> Ce champ est invalide, il ne doit pas contenir ni des chiffres ni des caractéres spéciaux</span>
-        
-   
-            </mat-error>
-          </mat-form-field>
-        </div>
 
         <div class="row" class="marg">
           <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
@@ -38,11 +26,23 @@
             <mat-error  *ngIf="employeeDetail.controls.lastname.touched && employeeDetail.controls.lastname.invalid">
               <span *ngIf="employeeDetail.controls.lastname.errors.required"> Ce champ est obligatoire</span>
               <span *ngIf="employeeDetail.controls.lastname.errors.pattern"> Ce champ est invalide, il ne doit pas contenir ni des chiffres ni des caractéres spéciaux</span>
-
-   
             </mat-error>
           </mat-form-field>
         </div>
+
+        <div class="row" class="marg">
+          
+          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+            <mat-label class="clr2">Nom</mat-label>
+            <input type="text" matInput formControlName="firstname" class="input-priority" required >
+            <mat-error  *ngIf="employeeDetail.controls.firstname.touched && employeeDetail.controls.firstname.invalid">
+              <span *ngIf="employeeDetail.controls.firstname.errors.required"> Ce champ est obligatoire</span>
+              <span *ngIf="employeeDetail.controls.firstname.errors.pattern"> Ce champ est invalide, il ne doit pas contenir ni des chiffres ni des caractéres spéciaux</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        
 
         <div class="row" class="marg">
           <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
@@ -104,12 +104,12 @@
         <div class="row "  class="marg">
           <mat-form-field appearance="fill" class=" mtfldwrapper">
             <mat-label>Chef</mat-label>
-            <select matNativeControl required formControlName="manager" >
+            <mat-select  required formControlName="manager"  >
               <ng-container *ngFor="let employee of listComboxUsers" >
-          
-              <option  *ngIf="employeeDetail.controls.firstname!==employee.firstname" >{{employee.firstname}}</option>
+
+              <mat-option *ngIf="employeeDetail.controls.firstname!==employee.firstname" [value]="employee.firstname" >{{employee.firstname}}</mat-option>
             </ng-container>
-            </select>
+            </mat-select>
             <mat-error  *ngIf="employeeDetail.controls.manager.touched && employeeDetail.controls.manager.invalid">
               <span *ngIf="employeeDetail.controls.manager.errors.required"> Ce champ est obligatoire</span>
             </mat-error>
@@ -121,9 +121,9 @@
         <div class="row "  class="marg">
           <mat-form-field appearance="fill" class=" mtfldwrapper">
             <mat-label>Projet</mat-label>
-            <select matNativeControl required formControlName="project" >
-              <option *ngFor="let project of projectList" [value]="project.name" >{{project.name}}</option>
-            </select>
+            <mat-select  required formControlName="project"  >
+              <mat-option *ngFor="let project of projectList" [value]="project.name" >{{project.name}}</mat-option>
+            </mat-select>
             <mat-error  *ngIf="employeeDetail.controls.project.touched && employeeDetail.controls.project.invalid">
               <span *ngIf="employeeDetail.controls.project.errors.required"> Ce champ est obligatoire</span>
             </mat-error>
@@ -133,14 +133,16 @@
         <div class="row "  class="marg">
           <mat-form-field appearance="fill" class=" mtfldwrapper">
             <mat-label>Salle</mat-label>
-            <select matNativeControl required formControlName="salle" >
-              <option *ngFor="let salle of salleList" [value]="salle.nom" >{{salle.nom}}</option>
-            </select>
+            <mat-select  required formControlName="salle"  >
+              <mat-option *ngFor="let salle of salleList" [value]="salle.nom" >{{salle.nom}}</mat-option>
+            </mat-select>
             <mat-error  *ngIf="employeeDetail.controls.salle.touched && employeeDetail.controls.salle.invalid">
               <span *ngIf="employeeDetail.controls.salle.errors.required"> Ce champ est obligatoire</span>
             </mat-error>
           </mat-form-field>
         </div>
+
+        
         <div fxLayoutAlign="end end" style=" padding: 8px 0;margin-top: 6%;
         display: flex;
         flex-wrap: wrap;

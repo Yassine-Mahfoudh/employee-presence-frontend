@@ -16,18 +16,24 @@
     <form (ngSubmit)="onSuccessAdd()" [formGroup]="salleDetail">
       <div fxFlex fxLayout="column">
 
-        <div class="row "  class="marg ">
-        <mat-form-field appearance="fill" class=" mtfldwrapper "  >
-          <mat-label>Type</mat-label>
-          <select matNativeControl required formControlName="type" > 
-            <option value="Salle de travail">Salle de travail</option>
-            <option value="Salle de réunion">Salle de réunion</option>
-          </select>
-          <mat-error  *ngIf="salleDetail.controls.type.touched && salleDetail.controls.type.invalid">
-            <span *ngIf="salleDetail.controls.type.errors.required"> Ce champ est obligatoire</span>
-          </mat-error>
-        </mat-form-field>
-      </div>
+
+
+        <div class="row "  class="marg">
+          <mat-form-field appearance="fill" class=" mtfldwrapper">
+            <mat-label>Type</mat-label>
+            <mat-select  required formControlName="type"  >
+              <mat-option value="Salle de travail">Salle de travail</mat-option>
+              <mat-option value="Salle de réunion">Salle de réunion</mat-option>
+            </mat-select>
+            <mat-error  *ngIf="salleDetail.controls.type.touched && salleDetail.controls.type.invalid">
+              <span *ngIf="salleDetail.controls.type.errors.required"> Ce champ est obligatoire</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+        
       
 
       <div class="row" class="marg">
@@ -72,14 +78,15 @@
       <div class="row "  class="marg">
         <mat-form-field appearance="fill" class=" mtfldwrapper">
           <mat-label>Département</mat-label>
-          <select matNativeControl required formControlName="dep" >
-            <option *ngFor="let departement of departementList" [value]="departement.name" >{{departement.name}}</option>
-          </select>
+          <mat-select  required formControlName="dep"  >
+            <mat-option *ngFor="let departement of departementList" [value]="departement.name" >{{departement.name}}</mat-option>
+          </mat-select>
           <mat-error  *ngIf="salleDetail.controls.dep.touched && salleDetail.controls.dep.invalid">
             <span *ngIf="salleDetail.controls.dep.errors.required"> Ce champ est obligatoire</span>
           </mat-error>
         </mat-form-field>
       </div>
+
       <div fxLayoutAlign="end end" style=" padding: 8px 0;margin-top: 6%;
       display: flex;
       flex-wrap: wrap;
