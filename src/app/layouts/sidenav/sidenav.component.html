@@ -5,11 +5,11 @@
   <mat-divider ></mat-divider>
 
   <a mat-list-item *ngIf="userService.roleMatch(['RH'])" routerLinkActive="list-item-active" routerLink="/home">
-    <mat-icon>calendar</mat-icon> Accueil
+    <mat-icon>calendar_today</mat-icon> Calendrier
   </a>
 
   <a mat-list-item *ngIf="userService.roleMatch(['USER','MANAGER'])" routerLinkActive="list-item-active" routerLink="/user-calendar">
-    <mat-icon>calendar</mat-icon> Calendrier
+    <mat-icon>calendar_today</mat-icon> Calendrier
   </a>
   
   <a mat-list-item *ngIf="userService.roleMatch(['ADMIN'])" routerLinkActive="list-item-active" routerLink="/dashboard">
