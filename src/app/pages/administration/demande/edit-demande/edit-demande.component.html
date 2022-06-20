@@ -1,89 +1,88 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row fxLayout="row bg-color">
+  <mat-toolbar-row fxLayout="row bg-color">
 
-      <span class="title-center">Modifier demande</span>
-      <button
-        type="button"
-        class="d-block mr-0 ml-auto btn-close" 
-        aria-label="Close"
-        mat-dialog-close
-        (click)="handleClear()"
-      ></button>
-    </mat-toolbar-row>
-  </mat-toolbar>
+    <span class="title-center">Modifier demande</span>
+    <button
+      type="button"
+      class="d-block mr-0 ml-auto btn-close" 
+      aria-label="Close"
+      mat-dialog-close
+      (click)="handleClear()"
+    ></button>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-  <mat-dialog-content class="mat-typography">
-    <form (ngSubmit)="onSuccessUpdate()" [formGroup]="demandeDetail" >
-      <div fxFlex fxLayout="column">
-       
-          <div class="row" class="marg">
-            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
-              <mat-label class="clr2">type</mat-label>
-            
-            <mat-select placeholder="Periodic table" 
-            formControlName="title" >
-    
-            
-            <mat-option 
-            *ngFor="let typedemande of TypeList"
-            [value]="typedemande.type">
-            {{ typedemande.type }}
-          </mat-option >
-    
-              </mat-select>
-            </mat-form-field>
-          </div>
-    
-          <div >
-            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
-              <mat-label style="padding-left: 2.5%;"> Description </mat-label>
-                    <input style="padding-left: 2.5%;" type="text" matInput formControlName="description" class="input-priority" required >
-                    <mat-error  *ngIf="demandeDetail.controls.description.touched && demandeDetail.controls.description.invalid" >
-                      <span *ngIf="demandeDetail.controls.description.errors.required"> Ce champ est obligatoire</span>
-                      <span *ngIf="demandeDetail.controls.description.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
-                    </mat-error>
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
-              <mat-label style="padding-left: 2.5%;"> Choisir Date de début</mat-label>
-              <mat-icon matPrefix>today</mat-icon>
-              <input type="text" matInput formControlName="datedebut" class="input-priority" required onfocus="(this.type='date')">
-              <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint>
-              <mat-error  *ngIf="demandeDetail.controls.datedebut.touched && demandeDetail.controls.datedebut.invalid" >
-                <span *ngIf="demandeDetail.controls.datedebut.errors.required"> Ce champ est obligatoire</span>
-                <span *ngIf="demandeDetail.controls.datedebut.errors.pattern">Ce champ est invalide</span> 
-              </mat-error>
-            </mat-form-field>
-          </div>
-        
-          <div>
-            <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
-              <mat-label style="padding-left: 2.5%;"> Choisir Date de fin</mat-label>
-              <mat-icon matPrefix>today</mat-icon>
-              <input type="text" matInput formControlName="datefin" class="input-priority" required onfocus="(this.type='date')">
-              <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint>
-              <mat-error *ngIf="demandeDetail.controls.datefin.touched && demandeDetail.controls.datefin.invalid" >
-                <span *ngIf="demandeDetail.controls.datefin.errors.required"> Ce champ est obligatoire</span>
-                <span *ngIf="demandeDetail.controls.datefin.errors.pattern">Ce champ est invalide</span> 
-              </mat-error>
-                <mat-hint *ngIf="validateDate()">
-                <span style="color:red;"> La date de fin doit être supérieur du date de début</span>
-              </mat-hint>
-            </mat-form-field>
-          </div>
-      <div fxLayoutAlign="end end" style=" padding: 8px 0;margin-top: 6%;
-      display: flex;
-      flex-wrap: wrap;
-      min-height: 52px;
-      align-items: center;
-      margin-bottom: -24px;">
+<mat-dialog-content class="mat-typography">
+  <form (ngSubmit)="onSuccessUpdate()" [formGroup]="demandeDetail" >
+    <div fxFlex fxLayout="column">
+     
+        <div class="row" class="marg">
+          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+            <mat-label class="clr2">type</mat-label>
+          
+          <mat-select placeholder="Periodic table" 
+          formControlName="title" >
+  
+          
+          <mat-option 
+          *ngFor="let typedemande of TypeList"
+          [value]="typedemande.type">
+          {{ typedemande.type }}
+        </mat-option >
+  
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div >
+          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+            <mat-label style="padding-left: 2.5%;"> Description </mat-label>
+                  <input style="padding-left: 2.5%;" type="text" matInput formControlName="description" class="input-priority" required >
+                  <mat-error  *ngIf="demandeDetail.controls.description.touched && demandeDetail.controls.description.invalid" >
+                    <span *ngIf="demandeDetail.controls.description.errors.required"> Ce champ est obligatoire</span>
+                    <span *ngIf="demandeDetail.controls.description.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
+                  </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+            <mat-label style="padding-left: 2.5%;"> Choisir Date de début</mat-label>
+            <mat-icon matPrefix>today</mat-icon>
+            <input type="text" matInput formControlName="datedebut" class="input-priority" required onfocus="(this.type='date')">
+            <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint>
+            <mat-error  *ngIf="demandeDetail.controls.datedebut.touched && demandeDetail.controls.datedebut.invalid" >
+              <span *ngIf="demandeDetail.controls.datedebut.errors.required"> Ce champ est obligatoire</span>
+              <span *ngIf="demandeDetail.controls.datedebut.errors.pattern">Ce champ est invalide</span> 
+            </mat-error>
+          </mat-form-field>
+        </div>
       
-          <button    class="mat-raised-actions" style="background-color: #cd1b2d; color: white;"  type="submit" >
-              {{ "Modifier"  }}
-          </button>
-      </div>
-      </div>
-    </form>
-  </mat-dialog-content>
-
+        <div>
+          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+            <mat-label style="padding-left: 2.5%;"> Choisir Date de fin</mat-label>
+            <mat-icon matPrefix>today</mat-icon>
+            <input type="text" matInput formControlName="datefin" class="input-priority" required onfocus="(this.type='date')">
+            <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint>
+            <mat-error *ngIf="demandeDetail.controls.datefin.touched && demandeDetail.controls.datefin.invalid" >
+              <span *ngIf="demandeDetail.controls.datefin.errors.required"> Ce champ est obligatoire</span>
+              <span *ngIf="demandeDetail.controls.datefin.errors.pattern">Ce champ est invalide</span> 
+            </mat-error>
+              <mat-hint *ngIf="validateDate()">
+              <span style="color:red;"> La date de fin doit être supérieur du date de début</span>
+            </mat-hint>
+          </mat-form-field>
+        </div>
+    <div fxLayoutAlign="end end" style=" padding: 8px 0;margin-top: 6%;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 52px;
+    align-items: center;
+    margin-bottom: -24px;">
+    
+        <button    class="btn bg-cb" style=" color: white;"  type="submit" >
+            {{ "Modifier"  }}
+        </button>
+    </div>
+    </div>
+  </form>
+</mat-dialog-content>

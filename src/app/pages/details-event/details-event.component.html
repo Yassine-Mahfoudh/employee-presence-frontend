@@ -1,29 +1,31 @@
-<div id="modal-content-wrapper" >
-  <header id="modal-header">
-      <h1 id="modal-title">Event Details</h1>
-  </header>
-  <div class="event-static">
-  <ul >
-      <li>Titre : {{eventbyid.title}}</li>
-      <li> Description : {{eventbyid.description}}</li>
-      <li>Date Debut : {{eventbyid.start}}</li>
-      <li>Date fin : {{eventbyid.end}}</li>
-      <li>Employees invoqués : {{eventbyid.employee}}</li>
-      
-  </ul></div>
-  <div class="event-reccursive">
-  <ul >
-    <li>Titre : {{eventbyid.title}}</li>
-    <li>Description : {{eventbyid.description}}</li>
-    <li>Date Debut : {{eventbyid.start}}</li>
-    <li>Date fin: {{eventbyid.end}}</li>
-    <li>Type : {{eventbyid.type}}</li>
 
-   
-    
-</ul>
+<div id="modal-content-wrapper" >
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row bg-color">
+  
+      <span class="title-center"> Les détailles de l'évènement</span>
+      <button
+        type="button"
+        class="d-block mr-0 ml-auto btn-close" 
+        aria-label="Close"
+        mat-dialog-close
+        (click)="handleClear()"
+      ></button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-dialog-content class="mat-typography">
+    <form   [formGroup]="eventDetails" >
+      <div class="event-static" class="form-group" >
+  <ul >
+      <li><h2>Title:</h2><h4>{{this.event.title}}</h4> </li>
+      <li><h2>Description:</h2><h4>{{event.description}}</h4>  </li>
+      <li><h2>Date de début:</h2><h4>{{this.event.start}}</h4> </li>
+      <li><h2>Date de fin:</h2><h4>{{this.event.end}}</h4>  </li>
+      <li><h2>Employés invoqués:</h2><ul *ngFor="let i of this.eventemployeelist"><li><h3>{{i}}</h3></li></ul>  </li>
+  </ul>
+
 </div>
-  <footer id="modal-footer">
-      <button mat-raised-button id="modal-close-button" (click)="closeModal()">Close</button>
-  </footer>
+
+</form>
+</mat-dialog-content>
 </div>

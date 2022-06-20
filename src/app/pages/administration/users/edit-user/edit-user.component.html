@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row fxLayout="row bg-color">
 
-      <span class="title-center">Ajouter un nouveau utilisateur</span>
+      <span class="title-center">Modifier l'utilisateur</span>
       <button
         type="button"
         class="d-block mr-0 ml-auto btn-close" 
@@ -13,7 +13,7 @@
   </mat-toolbar>
 
   <mat-dialog-content class="mat-typography">
-    <form (ngSubmit)="onSuccessUpdate()"  [formGroup]="userDetail">
+    <form (ngSubmit)="onSuccessUpdate()"  [formGroup]="userDetail" style=" width: 30em !important">
       <div fxFlex fxLayout="column">
 
       <div class="row" class="marg">
@@ -58,7 +58,7 @@
       align-items: center;
       margin-bottom: -24px;">
       
-          <button     class="mat-raised-actions" style="background-color: #cd1b2d; color: white;"  type="submit" >
+          <button      class="btn bg-cb" style=" color: white;"  type="submit" >
               {{ "Modifier"  }}
           </button>
       </div>

@@ -11,6 +11,9 @@
     width: 200px;
   }
 }
+
+
+
 .mat-divider {
   border-top-width: 2px;
   border-color: white;
@@ -19,6 +22,7 @@
   color: white !important;
   font-size: 0.8rem;
   height: 44px !important;
+  padding: 1em 0px !important;
   margin-bottom: 4px;
   &:hover {
     color: #f2f5f7 !important;
@@ -43,9 +47,9 @@
   color: #f2f5f7 !important;
   ::ng-deep {
     .mat-list-item-content {
-      background: #b6d0e7 !important;
+      background: #6ea9dd !important;
       &:hover {
-        background: #b6d0e7 !important;
+        background: #6ea9dd !important;
       }
     }
   }

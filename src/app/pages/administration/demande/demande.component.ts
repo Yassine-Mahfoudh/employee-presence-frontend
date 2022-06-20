@@ -1,6 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { faPenToSquare, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ThirdPartyDraggable } from '@fullcalendar/interaction';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,9 +17,12 @@ import { EventService } from 'src/app/core/services/event.service';
 import { ProjetService } from 'src/app/core/services/projet.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { GlobalConstants } from 'src/app/shared/constant/GlobalConstants';
-import { AddeventComponent } from '../../addevent/addevent.component';
-import { EmployeeListComponent } from '../employee-list/employee-list.component';
-
+import { SnackbarService } from 'src/app/shared/service/snackbar.service';
+import { ConfirmDialogService } from '../dialog-confirmation/confirm-dialog.service';
+import { EditDemandeComponent } from './edit-demande/edit-demande.component';
+export function isEmpty(val: any): boolean {
+  return val === null || typeof val === 'undefined' || val.toString().trim() === '';
+}
 @Component({
   selector: 'app-demande',
   templateUrl: './demande.component.html',
@@ -56,7 +60,10 @@ export class DemandeComponent implements OnInit {
      private myeventService:EventService,
      private projetService:ProjetService,
      config: NgbModalConfig,
-      private modalService: NgbModal
+     private confirmDialogService:ConfirmDialogService,
+     private snackbar:SnackbarService,
+      private modalService: NgbModal,
+      private dialog: MatDialog,
      ) {
         // customize default values of modals used by this component tree
  config.backdrop = 'static';
@@ -71,8 +78,7 @@ export class DemandeComponent implements OnInit {
       id: [''],
       title:['',Validators.required],
       description:[null,
-        [Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)],
-      ],
+        [Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]],
       datedebut: [null,[Validators.required,Validators.minLength(10)]],
       datefin: [null,[Validators.required,Validators.minLength(10)]],
       empid:[''],
@@ -126,8 +132,9 @@ export class DemandeComponent implements OnInit {
     this.demandeobj.datefin=this.demandeDetail.value.datefin;
     this.demandeobj.etat="En Attente";
     this.demandeService.addDemande(this.demandeobj).subscribe(res=>{
+      this.snackbar.openSnackBar("Demande modifié","")
       console.log(res);
-      this.empDemandes;
+      this.getDemandes();
     }
     );
 
@@ -212,40 +219,36 @@ getDemandeById(){
 
 
 
-editDemande(demande : Demande){
-  this.demandeDetail.controls['id'].setValue(demande.id);
-  this.demandeDetail.controls['title'].setValue(demande.title);
-  this.demandeDetail.controls['description'].setValue(demande.description);
-  this.demandeDetail.controls['datedebut'].setValue(demande.datedebut);
-  this.demandeDetail.controls['datefin'].setValue(demande.datefin);
-  this.demandeDetail.controls['empid'].setValue(demande.empid);
-  this.demandeDetail.controls['etat'].setValue(demande.etat);
-}
-
-deleteDemande(demande : Demande){
-
-    this.demandeService.deleteDemande(demande).subscribe(res=>{
-      console.log(res);
-      alert("demande deleted successfully");
-      this.empDemandes;
-    }
-    );
   
-  }
 
-updateDemande(){
-  this.demandeobj.id=this.demandeDetail.value.id;
-  this.demandeobj.title=this.demandeDetail.value.title;
-  this.demandeobj.description=this.demandeDetail.value.description;
-  this.demandeobj.datedebut=this.demandeDetail.value.datedebut;
-  this.demandeobj.datefin=this.demandeDetail.value.datefin;
-  this.demandeobj.empid=this.demandeDetail.value.empid;
-  this.demandeobj.etat=this.demandeDetail.value.etat;
-  console.log(this.demandeobj);
-  this.demandeService.updateDemande(this.demandeobj).subscribe(res=>{
-    console.log(res);
-  }
-  );
+
+updateDemande(demande:Demande){
+  const dialogRef = this.dialog.open(EditDemandeComponent, {
+    disableClose: true,
+   data:{
+    demande:demande,
+   }
+  });
+  
+  dialogRef.afterClosed().subscribe((result) => {
+    if (!isEmpty(result)) {
+
+      this.demandeobj.id=result.data.id;
+      this.demandeobj.title=result.data.title;
+      this.demandeobj.description=result.data.description;
+      this.demandeobj.datedebut=result.data.datedebut;
+      this.demandeobj.datefin=result.data.datefin;
+      this.demandeobj.empid=result.data.empid;
+      this.demandeobj.etat=result.data.etat;
+      console.log(this.demandeobj);
+      this.demandeService.updateDemande(this.demandeobj).subscribe(res=>{
+        this.snackbar.openSnackBar("Demande modifié","")
+        console.log(res);
+      }
+      );
+    }
+  });  
+
 
 }
 
@@ -291,12 +294,27 @@ public searchDemande(key: string): void {
   }
 }
 
+confirmDelete(demande: Demande){
+  this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+    if (res){  
+   this.demandeService.deleteDemande(demande).subscribe(res=>{
+        console.log(res);
+        this.getDemandes();
+        this.snackbar.openSnackBar("demande supprimé","")
+        
+      }
+      );
+   } 
 
+})
+  
+  }
 
 
 AppproverDemande(demande: Demande){
 
-
+  this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+    if (res){  
 this.eventobj.type="Static";
 this.eventobj.id=demande.id;
 this.eventobj.title=demande.title;
@@ -325,55 +343,59 @@ this.myeventService.addEvent(this.eventobj).subscribe(res=>{
     this.demandeService.updateDemande(this.demandeById).subscribe(res=>{
       console.log(res);
       this.managerdemandes=  this.managerdemandes.filter((demande) => demande.id !== this.demandeById.id)
+      this.getDemandes();
+        this.snackbar.openSnackBar("demande apprové","")
     }
     );
    
   })
   
-  console.log(res);
   
 }
-)
+)});
 
-});
+
+
+}
+ })
+
+
 }
 
-RefuserDemande(demande: Demande){
+confirmApprover(demande: Demande){
+ 
+     this.AppproverDemande(demande);
+  
+  
+  }
 
   
 
-    this.demandeService.getDemandeByempId(demande.id).subscribe(res=>{
-      this.demandeById=res;
-      this.demandeById.etat="Refuseé";
-      this.demandeService.updateDemande(this.demandeById).subscribe(res=>{
-        console.log(res);
-     
-        this.managerdemandes=  this.managerdemandes.filter((demande) => demande.id !== this.demandeById.id)
-        console.log("managerdemande",   this.managerdemandes)
-       
-      }
-      );
 
-   
-     //// for ( let i in this.managerdemandes)
-      //{
-     ////   if (this.demandeById===this.managerdemandes[i]){
-     ////     console.log("liste de demand(i):: ",this.managerdemandes[i]);
-      ////    this.deleteDemande(this.managerdemandes[i]);
-      ////  }
-      
-     //// }
-     
-      
-    })
+  RefuserDemande(demande: Demande){
+    this.confirmDialogService.confirm('Confirmation','Voulez-vous confirmer cette opération ?').subscribe((res) => {
+      if (res){  
+        this.demandeService.getDemandeByempId(demande.id).subscribe(res=>{
+          this.demandeById=res;
+          this.demandeById.etat="Refuseé";
+          this.demandeService.updateDemande(this.demandeById).subscribe(res=>{
+            console.log(res);
+         
+            this.managerdemandes=  this.managerdemandes.filter((demande) => demande.id !== this.demandeById.id)
+
+            this.getDemandes();
+            this.snackbar.openSnackBar("demande Refuseé","")
+          }
+          ); })
+     } })
     
-  }
-  
-confirmDelete(demande: Demande) {
-  if(confirm("Are you sure you want to delete demande: "+demande.title)) {
-     this.deleteDemande(demande);
-  }
-}
+    }
+
+
+
+
+
+
 
 handleClear(){
   this.demandeDetail.reset();

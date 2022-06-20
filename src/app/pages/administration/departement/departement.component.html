@@ -47,7 +47,7 @@
           </li>
           
           <li class="table-row"  *ngFor="let departement of departementList | paginate: { id:'listing_pagination',
-          itemsPerPage:5,
+          itemsPerPage:4,
           currentPage:page,
           totalItems:totalRec}">
           <div class="col col-2" data-label="Name" >{{departement.name}}</div>
@@ -73,6 +73,8 @@
         <div class="wrapper">
           <pagination-controls  id="listing_pagination"
             (pageChange)="page=$event"  
+            previousLabel="Précédent"
+    nextLabel="Suivant"
        >
   </pagination-controls>
     

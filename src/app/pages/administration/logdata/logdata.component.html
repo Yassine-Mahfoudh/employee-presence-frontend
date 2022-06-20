@@ -2,7 +2,7 @@
   
          <!-- getLogdata -->
          <div style="text-align: -webkit-center;" class="container-fluid page">
-          <div class="d-flex page__box p-3 mt-2">Consultation des historiques d'utilisation</div>
+          <div class="d-flex page__box p-3 mt-2">Historique d'utilisation</div>
           <div style="width: 82%;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        margin-top: 1%;" class="page__content shadow p-3 ">
           <div class="page__content-data position-absolute text-center">    
 
@@ -33,7 +33,7 @@
                   </li>
                   
                   <li class="table-row"  *ngFor="let Logdata of logdataList | paginate: { id:'listing_pagination',
-                  itemsPerPage:4,
+                  itemsPerPage:5,
                   currentPage:page,
                   totalItems:totalRec}">
                     <div class="col col-2" data-label="username" >{{Logdata.username}}</div>
@@ -41,9 +41,11 @@
                     <div class="col col-4" data-label="dateAction" >{{Logdata.dateAction}}</div>
                   </li>
                 </ul>
-                <div class="wrapper ">
+                <div class="wrapper">
                   <pagination-controls  id="listing_pagination"
                     (pageChange)="page=$event"  
+                    previousLabel="Précédent"
+            nextLabel="Suivant"
                >
           </pagination-controls>
             

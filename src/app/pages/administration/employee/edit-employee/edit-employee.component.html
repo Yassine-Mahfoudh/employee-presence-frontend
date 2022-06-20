@@ -14,7 +14,7 @@
   <h6 class="heading-small text-muted mb-4 pad-info">
     Les informations de l'employé :
   </h6>
-  <mat-dialog-content class="mat-typography" style="overflow: autod ;">
+  <mat-dialog-content class="mat-typography" style="overflow: autod ;" style=" width: 30em !important">
     <form (ngSubmit)="onSuccessAdd()" [formGroup]="employeeDetail">
       <div fxFlex fxLayout="column">
 
@@ -86,7 +86,7 @@
             <mat-label>Chef</mat-label>
             <select matNativeControl required formControlName="manager" >
               <ng-container *ngFor="let employee of listComboxUsers" >
-          
+          <option></option>
               <option  *ngIf="employeeDetail.controls.firstname!==employee.firstname" >{{employee.firstname}}</option>
             </ng-container>
             </select>
@@ -128,7 +128,7 @@
         align-items: center;
         margin-bottom: -24px;">
         
-            <button     class="mat-raised-actions" style="background-color: #cd1b2d; color: white;"  type="submit" >
+            <button    class="btn bg-cb" style=" color: white;" type="submit" >
                 {{ "Modifier"  }}
             </button>
         </div>

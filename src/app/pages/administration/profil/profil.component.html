@@ -42,7 +42,7 @@
                 </li>
                 
                 <li class="table-row"  *ngFor="let profil of profilList | paginate: { id:'listing_pagination',
-                itemsPerPage:5,
+                itemsPerPage:4,
                 currentPage:page,
                 totalItems:totalRec}">
                 <div class="col col-2" data-label="Name" >{{profil.name}}</div>
@@ -61,11 +61,14 @@
               </ul>
             
       
-            <div class="wrapper ">
-              <pagination-controls  id="listing_pagination"
-                (pageChange)="page=$event"  
-           >
-      </pagination-controls>
+
+              <div class="wrapper">
+                <pagination-controls  id="listing_pagination"
+                  (pageChange)="page=$event"  
+                  previousLabel="Précédent"
+          nextLabel="Suivant"
+             >
+        </pagination-controls>
         
     </div>
         </form>

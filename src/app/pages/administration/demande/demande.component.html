@@ -1,84 +1,9 @@
 
-<!-- addsalle -->
+<!-- adddema,de -->
 <mat-tab-group >
-  <mat-tab label="Demande" style="width: 100%;" >
-<!--
-    <mat-dialog-content class="mat-typography">
-      <form [formGroup]="demandeDetail">
-        <div fxFlex fxLayout="column" class="marg">
-  
-          <div class="row "  class="mat-type-pos ">
-          <mat-form-field appearance="fill" class=" mtfldwrapper "  >
-            <mat-label>type</mat-label>
-            <select matNativeControl required formControlName="title" > 
-              <option value="Presentielle">Presentielle</option>
-              <option value="a distance">à distance</option>
-            </select>
-            <mat-error  *ngIf="demandeDetail.controls.title.touched && demandeDetail.controls.title.invalid">
-              <span *ngIf="demandeDetail.controls.title.errors.required"> Ce champ est obligatoire</span>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        
-  
-        <div class="row" class=" mat-descrption-pos">
-          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
-            <mat-label class="clr2">Description</mat-label>
-            <input type="text" matInput formControlName="description" class="input-priority" required >
-            <mat-error  *ngIf="demandeDetail.controls.description.touched && demandeDetail.controls.description.invalid" >
-              <span *ngIf="demandeDetail.controls.description.errors.required"> Ce champ est obligatoire</span>
-              <span *ngIf="demandeDetail.controls.description.errors.minlength"> Le nom doit comporter au moins 4 caractères</span>
-   
-            </mat-error>
-          </mat-form-field>
-        </div>
-  
-          <div class="row" class="mat-datedebut-pos">
-          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
-            <mat-label class="clr2">Date debut</mat-label>
-            <input type="text" matInput formControlName="datedebut" class="input-priority" required onfocus="(this.type='date')">
-            <mat-error  *ngIf="demandeDetail.controls.datedebut.touched && demandeDetail.controls.datedebut.invalid" >
-              <span *ngIf="demandeDetail.controls.datedebut.errors.required"> Ce champ est obligatoire</span>
-              <span *ngIf="demandeDetail.controls.datedebut.errors.pattern">Ce champ est invalide</span> 
-            </mat-error>
+  <mat-tab label="Créer demande" style="width: 100%;" >
 
-           
-          </mat-form-field>
-        </div>
-  
-        <div class="row" class="mat-datefin-pos">
-          <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
-            <mat-label class="clr2">Date fin</mat-label>
-            <input type="text" matInput formControlName="datefin" class="input-priority" required onfocus="(this.type='date')">
-            <mat-error *ngIf="demandeDetail.controls.datefin.touched && demandeDetail.controls.datefin.invalid" >
-              <span *ngIf="demandeDetail.controls.datefin.errors.required"> Ce champ est obligatoire</span>
-              <span *ngIf="demandeDetail.controls.datefin.errors.pattern">Ce champ est invalide</span> 
-            </mat-error>
-              <mat-hint *ngIf="validateDate()">
-              <span style="color:red;"> La date de fin doit être supérieur du date de début</span>
-            </mat-hint>
-   
-           
-          </mat-form-field>
-        </div>
-  
-        <mat-dialog-actions class="btn-group ">
-          <button class=" button-1 bg-cb"   mat-strocked-button type="submit" 
-           (click)="addDemande()"  (click)="handleClear()">
-           adddemande
-          </button>
-        </mat-dialog-actions>
-       
-        </div>
-      </form>
-
-    </mat-dialog-content >
-
-</mat-tab>
--->
-
-<div style=" padding-top: 5%;   text-align: -webkit-center;
-        ">
+<div style=" padding-top: 5%;   text-align: -webkit-center;">
         <mat-card style="margin-bottom: 1%;margin-top: 1%;margin-left: 1%;margin-right: 1%;" class="example-card">
          
           <form [formGroup]="demandeDetail">
@@ -142,7 +67,7 @@
   
   <div mat-dialog-actions style="padding-top: 4%;" fxLayoutAlign="end end">
 
-    <button     class="mat-raised-actions" style="background-color: #cd1b2d; color: white;" type="submit"  (click)="addDemande()"  (click)="handleClear()" >
+    <button     class="btn bg-cb" style=" color: white;" type="submit"  (click)="addDemande()"  (click)="handleClear()" >
         {{ "Ajouter demande"  }}
     </button>
 </div>
@@ -158,157 +83,66 @@
   </div> -->
 
 </form>
-
-          <mat-card-content>
-           
-          </mat-card-content>
- 
         </mat-card>
       </div>
     </mat-tab>
 
 
-
+   <!--mes demandes-->
 
 
 
 
       <div class="mes-demande " *ngIf="!userService.roleMatch(['ADMIN'])">
-      <mat-tab label="Mes Demandes">
+      <mat-tab label="Mes demandes">
 
-        <!--edit demande-->
+     
 
- <ng-template #contentUpdate let-c="close" let-d="dismiss">
-      
-          <mat-toolbar color="primary">
-            <mat-toolbar-row fxLayout="row bg-color">
-        
-              <span class="title-center">Mettre à jour la demande</span>
-              <button
-                type="button"
-                class="d-block mr-0 ml-auto btn-close" (click)="d('Cross click')"
-                aria-label="Close"
-                mat-dialog-close
-                (click)="handleClear()"
-              ></button>
-            </mat-toolbar-row>
-          </mat-toolbar>
-          <div class="modal-body">
-          <form [formGroup]="demandeDetail" >
-            <div class="pl-lg-4 field">
-              <div class="row formbg-inner   ">
-                <div class="col-lg-6">
-                  <h6 class="heading-small text-muted mb-4">
-                    Les informations du demande :
-                  </h6>
-                  <div class="padding-bottom--24" >
-                    <label for="select-title">Titre</label>
-                                    <select
-                                      formControlName="title"
-                                      id="select-title"
-                                      class="form-control form-control-alternative">
-                                      <optgroup label="Type d'événement">
-                                      <option value="" selected hidden>Choisissez un titre</option>
-                                      <option value="Presentielle">Presentielle</option>
-                                      <option value="à distance">à distance</option>
-                                      <option value="congé">congé</option>
-                                    </optgroup>
-                                    </select>
-                      </div>
-        
-                      <div class="padding-bottom--24">
-                        <label  for="input-Description">Description </label>
-                        <input type="text" matInput formControlName="description"  class="form-control form-control-alternative" id="input-Description" placeholder=" Description du l'evenement" required>
-                    </div>
-                    <div class="padding-bottom--24" >
-                      <label for="input-datedebut">Date debut</label>
-                                    <input
-                                      type="text"
-                                      matInput
-                                      class="form-control form-control-alternative"
-                                      formControlName="datedebut"
-                                      id="input-datedebut"
-                                      placeholder="event datedebut"
-                                      required  onfocus="(this.type='date')"/>
-                        </div>
-                        <div class="padding-bottom--24" >
-                    <label class="form-control-label"  for="input-name">datefin</label>
-                    <label for="input-datefin">Date fin</label>
-                    <input
-                      type="text"
-                      matInput
-                      class="form-control form-control-alternative"
-                      formControlName="datefin"
-                      id="input-datefin"
-                      placeholder="event datefin"
-                      required  onfocus="(this.type='date')"/>
-                   
-                      </div>
+
+
+
+   
+       <form>
+        <div class="s004">
+          <form class="form">
+            <fieldset>
+              <div class="inner-form">
+                <div class="input-field">
+                  <input class="form-control" id="choices-text-preset-values" (ngModelChange)="searchDemande(key.value)" #key="ngModel" ngModel
+                  name="key" type="search" placeholder="Type to search..." />
+                  <span class="input-icon" id="basic-addon1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                  </svg>
+                  </span>
                 </div>
-              </div>
-            </div>
-            <div>
-              <mat-dialog-actions class="btn-group padding--14">
-                <button class="btn button-2 bg-cb"   mat-strocked-button type="submit" (click)="c('Save click')"
-                 (click)="updateDemande()"  (click)="handleClear()">
-                  modifier demande
-                </button>
-                <button  class="btn button-2 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="close(contentUpdate)" (click)="handleClear()">
-                  Fermer
-                </button>
-              </mat-dialog-actions>
-            </div>
+              </div> 
+            </fieldset>
           </form>
         </div>
-             
-            </ng-template>
-    
-
-   <!--mes demandes-->
-
-        <form>
-          <div class="s004">
-            <form class="form">
-              <fieldset>
-                <div class="inner-form">
-                  <div class="input-field">
-                    <input class="form-control" id="choices-text-preset-values" (ngModelChange)="searchDemande(key.value)" #key="ngModel" ngModel
-                    name="key" type="search" placeholder="Type to search..." />
-                    <span class="input-icon" id="basic-addon1">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                    </svg>
-                    </span>
-                  </div>
-                </div> 
-              </fieldset>
-            </form>
-          </div>
-        <ul class="responsive-table pad">
-          <li class="table-header margt  ">
-          <div [(appSort)]="demandeList" data-order="desc" data-name="Titre" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Titre</div>
-            <div [(appSort)]="demandeList" data-order="desc" data-name="Description" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
-            <div [(appSort)]="demandeList" data-order="desc" data-name="datedebut" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Date debut</div>
-            <div [(appSort)]="demandeList" data-order="desc" data-name="datefin" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Date fin </div>
-            <div [(appSort)]="demandeList" data-order="desc" data-name="datefin" class="col mar col-6 text-uppercase text-white font-weight-bolder opacity-7">Etat </div>         
-            <div [(appSort)]="demandeList" data-order="desc" data-name="datefin" class="col mar col-7 text-uppercase text-white font-weight-bolder opacity-7">Actions </div>
-          </li>
-          
-          <li class="table-row"  *ngFor="let demande of empDemandes | paginate: { id:'listing_pagination',
-          itemsPerPage:4,
-          currentPage:page,
-          totalItems:totalRec}">
-
-            <div class="col col-2" data-label="Titre" >{{demande.title}}</div>
-            <div class="col col-3" data-label="Description">{{demande.description}}</div>
-            <div class="col col-4" data-label="datedebut">{{demande.datedebut}}</div>
-            <div class="col col-5" data-label="datefin">{{demande.datefin}}</div>
-            <div class="col col-6" data-label="datefin">{{demande.etat}}</div>
-            <div class="col col-7">
-              <div  *ngIf="demande.etat=='En Attente' ">
+      <ul class="responsive-table pad">
+        <li class="table-header margt  ">
+          <div [(appSort)]="empDemandes" data-order="desc" data-name="name" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Titre</div>
+          <div [(appSort)]="empDemandes" data-order="desc" data-name="description" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
+          <div [(appSort)]="empDemandes" data-order="desc" data-name="startdate" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Date debut</div>
+          <div [(appSort)]="empDemandes" data-order="desc" data-name="enddate" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Date fin</div>
+          <div [(appSort)]="empDemandes" data-order="desc" data-name="etat" class="col mar col-6 text-uppercase text-white font-weight-bolder opacity-7">Etat</div>
+          <div [(appSort)]="empDemandes" data-order="desc"  class="col mar col-7 text-uppercase text-white font-weight-bolder opacity-7">Actions</div>
+        </li>
+        
+        <li class="table-row"  *ngFor="let demande of empDemandes | paginate: { id:'listing_pagination',
+        itemsPerPage:4,
+        currentPage:page,
+        totalItems:totalRec}">
+          <div class="col col-2" data-label="Titre" style="width: 100px; word-wrap:break-word;">{{demande.title}}</div>
+          <div class="col col-3" data-label="Description">{{demande.description}}</div>
+          <div class="col col-4" data-label="datedebut" style="width: 130px; word-wrap:break-word;">{{demande.datedebut}}</div>
+          <div class="col col-5" data-label="datefin">{{demande.datefin}}</div>
+          <div class="col col-6" data-label="etat">{{demande.etat}}</div>
+          <div  *ngIf="demande.etat=='En Attente' ">
             <div class=" margl " >
           
-                <a href="javascript:;" class="" data-toggle="tooltip" data-original-title="Edit demande"  (click)="editDemande(demande)" (click)="open(contentUpdate)">
+                <a href="javascript:;" class="" data-toggle="tooltip" data-original-title="Edit demande"  (click)="updateDemande(demande)" >
                   <i> <fa-icon [icon]="editIcon"></fa-icon> </i>
                 </a><br>
                 
@@ -317,7 +151,7 @@
                 </a>
               </div>
             </div>
-            <div  *ngIf="demande.etat=='Refuseé' ">
+            <div  *ngIf="demande.etat!=='En Attente' ">
               <div class=" margl " >
                   <a href="javascript:;" class="" data-toggle="tooltip" data-original-title="delete demande"  (click)="confirmDelete(demande)" >
                     <i><fa-icon [icon]="trashIcon"></fa-icon> </i>
@@ -325,20 +159,22 @@
                 </div>
               </div>
 
-            </div>
-          </li>
-          
-        </ul>
+        </li>
         
+      </ul>
+      
+
+      <div class="wrapper">
+        <pagination-controls  id="listing_pagination"
+          (pageChange)="page=$event"  
+          previousLabel="Précédent"
+  nextLabel="Suivant"
+     >
+</pagination-controls>
   
-        <div class="wrapper ">
-          <pagination-controls  id="listing_pagination"
-            (pageChange)="page=$event"  
-       >
-  </pagination-controls>
-    
 </div>
-    </form>
+  </form>
+ 
 
       </mat-tab>
     </div>
@@ -350,95 +186,75 @@
     
 <!--manager demande-->
 
-
 <div class="demande-en-attentes" *ngIf="userService.roleMatch(['MANAGER'])">
-      <mat-tab label="Demandes en attentes">
+  <mat-tab label="Demandes en attentes">
 
-        <form>
-          <div class="s004">
-            <form class="form">
-              <fieldset>
-                <div class="inner-form">
-                  <div class="input-field">
-                    <input class="form-control" id="choices-text-preset-values" (ngModelChange)="searchDemandemanager(key.value)" #key="ngModel" ngModel
-                    name="key" type="search" placeholder="Type to search..." />
-                    <span class="input-icon" id="basic-addon1">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                    </svg>
-                    </span>
-                  </div>
-                </div> 
-              </fieldset>
-            </form>
+<form>
+  <div class="s004">
+    <form class="form">
+      <fieldset>
+        <div class="inner-form">
+          <div class="input-field">
+            <input class="form-control" id="choices-text-preset-values" (ngModelChange)="searchDemande(key.value)" #key="ngModel" ngModel
+            name="key" type="search" placeholder="Type to search..." />
+            <span class="input-icon" id="basic-addon1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+            </svg>
+            </span>
           </div>
-        <ul class="responsive-table2 pad">
-          <li class="table-header margt  ">
-            <div [(appSort)]="managerdemandes" data-order="desc" data-name="empnom" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
-            <div [(appSort)]="managerdemandes" data-order="desc" data-name="empprenom" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Prenom</div>
-            <div [(appSort)]="managerdemandes" data-order="desc" data-name="piriorite" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Piriorite de projet</div>
-            <div [(appSort)]="managerdemandes" data-order="desc" data-name="Titre" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Titre</div>
-            <div [(appSort)]="managerdemandes" data-order="desc" data-name="Description" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
-            <div [(appSort)]="managerdemandes" data-order="desc" data-name="datedebut" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Date debut</div>
-            <div [(appSort)]="managerdemandes" data-order="desc" data-name="datefin" class="col mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Date fin </div>        
-            <div [(appSort)]="managerdemandes" data-order="desc"  class="col mar margl col-6 text-uppercase text-white font-weight-bolder opacity-7">Actions </div>
-          </li>
-          
-          <li class="table-row"  *ngFor="let demande of managerdemandes | paginate: { id:'listing_pagination',
+        </div> 
+      </fieldset>
+    </form>
+  </div>
+<ul class="responsive-table2 pad">
+  <li class="table-header margt  ">
+    <div [(appSort)]="managerdemandes" data-order="desc" data-name="empnom" class="col mar col-2 text-uppercase text-white font-weight-bolder opacity-7">Nom</div>
+    <div [(appSort)]="managerdemandes" data-order="desc" data-name="empprenom" class="col  mar col-3 text-uppercase text-white font-weight-bolder opacity-7">Prenom</div>
+    <div [(appSort)]="managerdemandes" data-order="desc" data-name="Titre" class="col mar col-4 text-uppercase text-white font-weight-bolder opacity-7">Titre</div>
+    <div [(appSort)]="managerdemandes" data-order="desc" data-name="Description" class="col  mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Description</div>
+    <div [(appSort)]="managerdemandes" data-order="desc" data-name="datedebut" class="col mar col-6 text-uppercase text-white font-weight-bolder opacity-7">Date debut</div>
+    <div [(appSort)]="managerdemandes" data-order="desc" data-name="datefin" class="col mar col-7 text-uppercase text-white font-weight-bolder opacity-7">Date fin </div>        
+    <div [(appSort)]="managerdemandes" data-order="desc"  class="col mar margl col-6 text-uppercase text-white font-weight-bolder opacity-7">Actions </div>
+  </li>
+  
+            <li class="table-row"  *ngFor="let demande of managerdemandes | paginate: { id:'listing_pagination',
           itemsPerPage:4,
           currentPage:page,
           totalItems:totalRec}">
-          <div class="col col-1" data-label="datefin">{{demande.empnom}}</div>
-          <div class="col col-2" data-label="datefin">{{demande.empprenom}}</div>
-          <div class="col col-2" data-label="datefin">{{demande.piriorite}}</div>
-            <div class="col col-3" data-label="Titre" >{{demande.title}}</div>
-            <div class="col col-4" data-label="Description">{{demande.description}}</div>
-            <div class="col col-5" data-label="datedebut">{{demande.datedebut}}</div>
-            <div class="col col-6" data-label="datefin">{{demande.datefin}}</div>
-            <div class="col col-7" >
-              <button class="btn button-3 bg-cb"   mat-strocked-button type="submit" 
-              (click)="AppproverDemande(demande)"  >
+          <div class="col col-2" data-label="empnom">{{demande.empnom}}</div>
+          <div class="col col-3" data-label="empprenom">{{demande.empprenom}}</div>
+            <div class="col col-4" data-label="Titre" >{{demande.title}}</div>
+            <div class="col col-5" data-label="Description">{{demande.description}}</div>
+            <div class="col col-6" data-label="datedebut">{{demande.datedebut}}</div>
+            <div class="col col-7" data-label="datefin">{{demande.datefin}}</div>
+            <div class="col col-8" >
+              <button class="btn  bg-cb"  style=" color: #fff; margin: 1em;"  mat-strocked-button type="submit" (click)="AppproverDemande(demande)"  >
                Appprover
              </button>
-             <button  class="btn button-3 bg-cr"  mat-stroked-button  mat-dialog-close  (click)="RefuserDemande(demande)" >
+             <button  class="btn  bg-cr"  style=" color: #fff;margin: 1em;" mat-stroked-button  mat-dialog-close  (click)="RefuserDemande(demande)" >
                Refuser
              </button>
             </div>
 
           </li>
-          
-        </ul>
-        
-  
-        <div class="wrapper ">
-          <pagination-controls  id="listing_pagination"
-            (pageChange)="page=$event"  
-       >
-  </pagination-controls>
-    
+</ul>
+
+
+<div class="wrapper ">
+  <pagination-controls  id="listing_pagination"
+    (pageChange)="page=$event"  >
+</pagination-controls>
+
 </div>
-    </form>
+</form>
 
 
-      </mat-tab>
+</mat-tab>
 </div>
 
 
 
-
-      <mat-tab label="grid test">
-      <mat-grid-list  cols="3" rowHeight="200px" *ngFor="let demande of demandeList ">
-	
- 
-      
-    
-        <mat-grid-tile><table><tr>{{demande.title}}</tr><tr>{{demande.description}}</tr>
-          <tr>{{demande.datedebut}}</tr><tr>{{demande.datefin}}</tr></table></mat-grid-tile>
-
-  
-        </mat-grid-list>
-
-      </mat-tab>
     </mat-tab-group>
 
 

@@ -31,7 +31,7 @@
                   <div [(appSort)]="salleList" data-order="desc" data-name="pourcentagePres" class="col padt mar col-5 text-uppercase text-white font-weight-bolder opacity-7">Pourcentage de présence </div>            
                   <div [(appSort)]="salleList" data-order="desc" data-name="dep" class="col mar padt col-6 text-uppercase text-white font-weight-bolder opacity-7">Département </div>            
 
-                <div class="col  col-7 padt margl  text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
+                <div class="col  col-7 padt   text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
                 <div class="col col-8 ">
                           <span class="navbar-toggler-icon"></span>  
                         <div  id="navbarSupportedContent">
@@ -67,12 +67,14 @@
             </ul>
             
       
-            <div class="wrapper ">
+    
+            <div class="wrapper">
               <pagination-controls  id="listing_pagination"
                 (pageChange)="page=$event"  
+                previousLabel="Précédent"
+        nextLabel="Suivant"
            >
       </pagination-controls>
-        
     </div>
         </form>
        

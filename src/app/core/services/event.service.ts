@@ -3,6 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MyEvent } from '../models/myevent';
 
+export class StatEvent{
+  event_start:string;
+        event_end: string;
+    id_salle: number;
+        dep_id: number;
+        event_title:string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +21,7 @@ export class EventService {
   addEventsurl: string;
   deleteEventsurl: string;
   updateEventsurl: string;
+  getStatEventsurl: string;
 
 
   constructor(private http:HttpClient) { 
@@ -24,6 +32,8 @@ export class EventService {
     this.addEventsurl= 'http://localhost:8080/events/add';
     this.deleteEventsurl= 'http://localhost:8080/events/delete';
     this.updateEventsurl= 'http://localhost:8080/events/update';
+    this.getStatEventsurl= 'http://localhost:8080/events/stat';
+
   }
   getEvents():Observable<MyEvent[]>
   {
@@ -48,4 +58,8 @@ export class EventService {
     return this.http.put<MyEvent>(this.updateEventsurl+'/'+event.id,event);   
   }
 
+
+  getStat(stat : StatEvent):Observable<number>{
+    return this.http.post<number>(this.getStatEventsurl,stat);
+   }
 }

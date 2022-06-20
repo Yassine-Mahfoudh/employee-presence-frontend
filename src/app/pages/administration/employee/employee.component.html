@@ -1,6 +1,6 @@
 
     <div style="text-align: -webkit-center;" class="container-fluid page">
-      <div class="d-flex page__box p-3 mt-2">Gestion des employés</div>
+      <div class="d-flex page__box p-3 mt-2" >Gestion des employés</div>
       <div style="width: 82%;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        margin-top: 1%;" class="page__content shadow p-3 ">
       <div class="page__content-data position-absolute text-center">    
      
@@ -31,7 +31,7 @@
                 <div [(appSort)]="employeeList2" data-order="desc" data-name="project" class="col  mar col-6 text-uppercase text-white font-weight-bolder opacity-7">Projet</div>
                 <div [(appSort)]="employeeList2" data-order="desc" data-name="workroom" class="col mar col-7 text-uppercase text-white font-weight-bolder opacity-7">Salle</div>
                 <div [(appSort)]="employeeList2" data-order="desc" data-name="manager" class="col mar col-8 text-uppercase text-white font-weight-bolder opacity-7">Chef</div>
-                <div class="col  col-9  margl  text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
+                <div class="col  col-9  mar  text-uppercase text-white font-weight-bolder opacity-7"> Actions</div>
                 
                 
               </li>
@@ -64,10 +64,12 @@
               
             </ul>
             
-      
-            <div class="wrapper ">
+
+            <div >
               <pagination-controls  id="listing_pagination"
                 (pageChange)="page=$event"  
+                previousLabel="Précédent"
+        nextLabel="Suivant"
            >
       </pagination-controls>
         

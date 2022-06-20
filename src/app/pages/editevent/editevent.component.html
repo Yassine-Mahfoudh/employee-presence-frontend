@@ -133,7 +133,7 @@
             <mat-label class="clr2">Jours de la semaine</mat-label>
           
           <mat-select placeholder="Periodic table" 
-          formControlName="weekday" >
+          formControlName="weekday" multiple>
       
           
             <mat-option value="MO">Lundi</mat-option>
@@ -253,9 +253,11 @@ display: flex;
 flex-wrap: wrap;
 min-height: 52px;
 align-items: center;
-">
+"> <button     class="btn bg-cr" style=" color: white;" [mat-dialog-close] (click)="confirmDelete(this.eventDetail.value)" >
+  {{ "Supprimer"  }}
+</button>
 
-    <button     class="mat-raised-actions" style="background-color: #cd1b2d; color: white;" [mat-dialog-close] type="submit" >
+    <button     class="btn bg-cb" style=" color: white;" [mat-dialog-close]   type="submit">
         {{ "Modifier"  }}
     </button>
 </div>

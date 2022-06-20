@@ -71,14 +71,14 @@
                   </li>
                   
                 </ul>
-                
-          
-                <div class="wrapper ">
-                  <pagination-controls  id="listing_pagination"
-                    (pageChange)="page=$event"  
-               >
-          </pagination-controls>
-            
+
+          <div class="wrapper">
+            <pagination-controls  id="listing_pagination"
+              (pageChange)="page=$event"  
+              previousLabel="Précédent"
+      nextLabel="Suivant"
+         >
+    </pagination-controls>
         </div>
             </form>
            

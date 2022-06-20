@@ -60,6 +60,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatListModule } from '@angular/material/list';
 import { MonEquipeComponent } from './mon-equipe/mon-equipe.component';
+import { EditDemandeComponent } from './demande/edit-demande/edit-demande.component';
+import { MatPaginatorIntl } from '@angular/material/paginator/paginator-intl';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,7 @@ import { MonEquipeComponent } from './mon-equipe/mon-equipe.component';
     EditDepartementComponent,
     AddSalleComponent,
     EditSalleComponent,
+    EditDemandeComponent,
     AddProjetComponent,
     EditProjetComponent,
 MonEquipeComponent,

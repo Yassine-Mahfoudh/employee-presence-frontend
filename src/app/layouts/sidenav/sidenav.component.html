@@ -1,6 +1,6 @@
 <mat-nav-list >
   <div class="logo py-4">
-    <img src="./assets/logo.png" alt="Company Logo" />
+    <img src="./assets/st2i.png" alt="Company Logo" />
   </div>
   <mat-divider ></mat-divider>
 
@@ -16,29 +16,22 @@
     <mat-icon>dashboard</mat-icon> Tableau de bord
   </a>
 
-
- 
-  
-  
- 
-
-
-  <a mat-list-item *ngIf="userService.roleMatch(['MANAGER','USER','RH'])" routerLinkActive="list-item-active" routerLink="/demande">
-    <mat-icon></mat-icon>Gestion des demandes
-  </a>
-
- 
-  
   <a mat-list-item *ngIf="userService.roleMatch(['RH'])" routerLinkActive="list-item-active" routerLink="/employee">
-    <mat-icon>people</mat-icon>Gestion des employee
+    <mat-icon>people</mat-icon>Gestion des employés
   </a>
   <a mat-list-item *ngIf="userService.roleMatch(['ADMIN','USER','MANAGER'])" routerLinkActive="list-item-active" routerLink="/employeelist">
-    <mat-icon>people</mat-icon>Liste des employees
+    <mat-icon>people</mat-icon>Liste des employés
   </a>
   <a mat-list-item *ngIf="userService.roleMatch(['MANAGER'])" routerLinkActive="list-item-active" routerLink="/monequipe">
     <mat-icon>people</mat-icon>Mon équipe
   </a>
 
+
+  <a mat-list-item *ngIf="userService.roleMatch(['MANAGER','USER','RH'])" routerLinkActive="list-item-active" routerLink="/demande">
+  	<mat-icon>assignment</mat-icon>Gestion des demandes
+  </a>
+
+  
   <a mat-list-item *ngIf="userService.roleMatch(['RH'])" routerLinkActive="list-item-active" routerLink="/salle">
     <!--<img class="png-icon" src="../../../assets/bureau.png" style="width: 24px; height: 24px;"/>Gestion des salles-->
     <mat-icon>meeting_room</mat-icon>Gestion des salles
@@ -48,17 +41,17 @@
 </a>
 
 <a mat-list-item *ngIf="userService.roleMatch(['RH'])" routerLinkActive="list-item-active" routerLink="/departement">
-  <mat-icon>domain</mat-icon>Gestion des departement
+  <mat-icon>domain</mat-icon>Gestion des département
 </a>
 <a mat-list-item *ngIf="userService.roleMatch(['ADMIN','USER','MANAGER'])" routerLinkActive="list-item-active" routerLink="/departementlist">
-  <mat-icon>domain</mat-icon>Liste des departements
+  <mat-icon>domain</mat-icon>Liste des départements
 </a>
 
 <a mat-list-item *ngIf="userService.roleMatch(['RH'])" routerLinkActive="list-item-active" routerLink="/projet">
-  <mat-icon>assignment</mat-icon>Gestion des projets
+  <mat-icon>work</mat-icon>Gestion des projets
 </a>
 <a mat-list-item *ngIf="userService.roleMatch(['ADMIN'])" routerLinkActive="list-item-active" routerLink="/projetlist">
-  <mat-icon>assignment</mat-icon>Liste des projets
+  <mat-icon>work</mat-icon>Liste des projets
 </a>
 
 

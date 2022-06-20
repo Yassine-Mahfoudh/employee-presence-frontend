@@ -47,6 +47,7 @@ import { AjoutEvenementComponent } from './ajout-evenement/ajout-evenement.compo
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DetailsEventComponent } from './details-event/details-event.component';
 
 
 
@@ -84,7 +85,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ConfirmDialogComponent,
     DialogErrorComponent,
     AjoutEvenementComponent,
-    
+    DetailsEventComponent,
     
   ],
   imports: [

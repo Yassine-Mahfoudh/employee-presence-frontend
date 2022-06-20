@@ -19,13 +19,13 @@
   </mat-toolbar>
 
   <mat-dialog-content class="mat-typography" >
-    <form (ngSubmit)="onSuccessAdd()" [formGroup]="profilDetail" >
+    <form (ngSubmit)="onSuccessAdd()" [formGroup]="profilDetail" style=" width: 30em !important">
       <div fxFlex fxLayout="column">
         <div class="row "  class="marg">
         <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
           
           <mat-label class="clr2">Description</mat-label>
-          <input type="text" matInput formControlName="description"  class="input-description" required >
+          <textarea type="text" matInput formControlName="description"  class="input-description" required ></textarea>
           <mat-error  *ngIf="profilDetail.controls.description.touched && profilDetail.controls.description.invalid">
             <span *ngIf="profilDetail.controls.description.errors.required"> Ce champ est obligatoire</span>
             <span *ngIf="profilDetail.controls.description.errors.pattern"> Ce champ est invalide, il ne doit pas contenir des caractéres spéciaux</span> 
@@ -39,7 +39,7 @@
       align-items: center;
       margin-bottom: -24px;">
       
-          <button    class="mat-raised-actions" style="background-color: #cd1b2d; color: white;" [mat-dialog-close] type="submit" >
+          <button     class="btn bg-cb" style=" color: white;" [mat-dialog-close] type="submit" >
               {{ "Modifier"  }}
           </button>
       </div>

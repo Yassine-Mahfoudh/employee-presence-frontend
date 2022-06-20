@@ -23,8 +23,8 @@ minDate=new Date();
     name: new FormControl(null,[Validators.required,Validators.pattern(GlobalConstants.nameRegex),Validators.minLength(4)]),
     description: new FormControl(null,[Validators.required,Validators.minLength(4)]),
     priority: new FormControl(null,[Validators.required,Validators.pattern(GlobalConstants.numberRegex)]),
-    startdate: new FormControl(null,[Validators.required,Validators.minLength(10)]),
-    enddate: new FormControl(null,[Validators.required,Validators.minLength(10)]),
+    startdate: new FormControl(null),
+    enddate: new FormControl(null),
   });;
 
 
@@ -35,7 +35,7 @@ minDate=new Date();
 
      if(this.projetDetail.valid && !this.validateDate()){
       const data = this.projetDetail.getRawValue();
-console.log("data :::: ",data)
+      console.log("data :::: ",data)
       this.dialog.close({
         data: data,
        

@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit {
                 this.eventobj.color="#FF8B94";
           
                 }
-                else if(result.data.title==="à distance"){
+                else if(result.data.title==="À distance"){
                   this.eventobj.color="#8D7BE0";
            
                   }
@@ -114,7 +114,7 @@ export class HomeComponent implements OnInit {
                         this.eventobj.color="#FF8B94";
                   
                         }
-                        else if(result.data.title==="à distance"){
+                        else if(result.data.title==="À distance"){
                           this.eventobj.color="#8D7BE0";
                    
                           }
@@ -208,7 +208,7 @@ export class HomeComponent implements OnInit {
             this.eventobj.color="#FF8B94";
       
             }
-            else if(result.data.title==="à distance"){
+            else if(result.data.title==="À distance"){
               this.eventobj.color="#8D7BE0";
        
               }
@@ -232,7 +232,7 @@ export class HomeComponent implements OnInit {
                     this.eventobj.color="#FF8B94";
               
                     }
-                    else if(result.data.title==="à distance"){
+                    else if(result.data.title==="À distance"){
                       this.eventobj.color="#8D7BE0";
                
                       }
@@ -314,7 +314,7 @@ export class HomeComponent implements OnInit {
             this.eventobj.color="#FF8B94";
       
             }
-            else if(result.data.title==="à distance"){
+            else if(result.data.title==="À distance"){
               this.eventobj.color="#8D7BE0";
        
               }
@@ -337,7 +337,7 @@ export class HomeComponent implements OnInit {
                     this.eventobj.color="#FF8B94";
               
                     }
-                    else if(result.data.title==="à distance"){
+                    else if(result.data.title==="À distance"){
                       this.eventobj.color="#8D7BE0";
                
                       }

@@ -31,6 +31,17 @@ import { NgxUiLoaderModule,NgxUiLoaderConfig,SPINNER,PB_DIRECTION } from "ngx-ui
 import { FooterComponent } from './layouts/footer/footer.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatTooltipModule } from '@angular/material/tooltip'; 
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LbdChartComponent } from './layouts/lbd-chart/lbd-chart.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 const ngxUiLoaderConfig:NgxUiLoaderConfig = {
@@ -55,6 +66,7 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
     SidenavComponent,
     ForbiddenComponent,
     FooterComponent,
+    LbdChartComponent,
     
   ],
   imports: [
@@ -68,7 +80,8 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
     PagesModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     MatGridListModule ,
-
+    FormsModule,
+    ReactiveFormsModule,
         // * MATERIAL IMPORTS
     MatSidenavModule,
     MatToolbarModule,
@@ -80,7 +93,20 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig = {
     MatIconModule,
     MatToolbarModule,
     MatTabsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FontAwesomeModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    
+    
 
   ],
   providers: [

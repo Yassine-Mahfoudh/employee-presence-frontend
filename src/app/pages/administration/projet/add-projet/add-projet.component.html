@@ -17,7 +17,7 @@
         </mat-toolbar>
       
       <mat-dialog-content class="mat-typography">
-        <form (ngSubmit)="onSuccessAdd()" [formGroup]="projetDetail">
+        <form (ngSubmit)="onSuccessAdd()" [formGroup]="projetDetail"  style=" width: 30em !important">
           <div fxFlex fxLayout="column">
             <div class="row "  class="marg">
             <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
@@ -114,7 +114,7 @@
       align-items: center;
       margin-bottom: -24px;">
       
-          <button    class="mat-raised-actions" style="background-color: #cd1b2d; color: white;"  type="submit" >
+          <button    class="btn bg-cb" style=" color: white;" type="submit" >
               {{ "Ajouter"  }}
           </button>
       </div>

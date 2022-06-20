@@ -18,7 +18,7 @@ export class EditDemandeComponent implements OnInit {
 
     this.demandeDetail=new FormGroup({
       id: new FormControl(data.demande.id),
-      title: new FormControl(data.demande.title,[Validators.required, Validators.pattern(GlobalConstants.nameRegex)]),
+      title: new FormControl(data.demande.title),
       description: new FormControl(data.demande.description),
       datedebut: new FormControl(data.demande.datedebut),
       datefin: new FormControl(data.demande.datefin),
@@ -28,11 +28,13 @@ export class EditDemandeComponent implements OnInit {
       priorite: new FormControl(data.demande.priorite),
       etat: new FormControl(data.demande.etat)
     });
+
    }
 
   ngOnInit(): void {
     this.gettypeevent();
   }
+
   demandeDetail: FormGroup
   validateDate(){
     if(this.demandeDetail.controls['datedebut'].value >

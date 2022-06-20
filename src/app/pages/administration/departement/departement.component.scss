@@ -121,9 +121,11 @@ li{
   }
   .col-2 {
     flex-basis: 25%;
+    padding-top: 1em;
 }
   .col-3 {
     flex-basis: 15%;
+    padding-top: 1em;
   }
   .col-4 {
     flex-basis: 18%;
@@ -213,7 +215,7 @@ li{
   background: #b0dfe5;
   margin: 0 -1rem;
   font-size: 45px;
-  padding: 1em !important;
+  padding: 0.5em !important;
 }
 .page__content {
   min-height: calc(100vh - 188px);
@@ -381,7 +383,7 @@ select {
 .s004 .form .inner-form .input-field {
   display: flex;
   padding: 1em 20em;
-  padding-top: 5em;
+  padding-top: 1em;
     content: attr(data-label);
     flex-basis: 50%;
     text-align: center;
