@@ -1,28 +1,60 @@
-# Appcrud
+# Employee Presence – Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.13.
+Frontend de l'application web de planification de la présence des employés, développée durant mon stage chez **ST2i** (février – juillet 2022). Cette application permet aux administrateurs, RH et employés de gérer efficacement les plannings de présence, les demandes et les événements liés au lieu de travail.
 
-## Development server
+##  Objectifs
+- Faciliter la gestion des jours en télétravail, congés et présentiel
+- Offrir une interface personnalisée selon le rôle de l’utilisateur (employé, supérieur, RH, admin)
+- Centraliser les demandes, événements, et statistiques de présence
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+##  Interfaces principales
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+-  Interface d’authentification
+  Formulaire de connexion sécurisé avec gestion de sessions.
+  
+![image](https://github.com/user-attachments/assets/acf6b177-86b7-4dbf-a162-1c3da596902f)
 
-## Build
+-  Page d’accueil administrateur (dashboard)
+  Accès aux modules de gestion : utilisateurs, projets, départements, etc.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![image](https://github.com/user-attachments/assets/f6a283c4-0608-4b12-aeee-771c669f3d07)
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+-  Validation des demandes (supérieur hiérarchique)
+  Interface dédiée à la consultation et validation des demandes d’absence ou de télétravail.
+  
+![image](https://github.com/user-attachments/assets/f2590c44-34d7-467e-bc1d-ce010c8bf229)
 
-## Running end-to-end tests
+-  Calendrier RH
+  Vue calendrier regroupant les présences, congés et télétravail des employés.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+![image](https://github.com/user-attachments/assets/19a46bed-c097-48c0-8b92-7ee7ebc9a6d2)
 
-## Further help
+-  Ajout d’événement (Responsable RH)
+  Formulaire pour créer ou modifier des événements de planning (présentiel, congé, etc.)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# MyappUI
+![image](https://github.com/user-attachments/assets/1736cf02-b637-4e41-a2f8-430669bc7a98)
+
+---
+
+##  Stack technique
+- **Angular** (front-end principal)
+- **TypeScript**
+- **HTML/CSS**
+- **API REST** pour la communication avec le back-end Spring Boot
+
+---
+
+##  Lancer le projet localement
+
+```bash
+git clone https://github.com/ton-utilisateur/employee-presence-frontend
+cd employee-presence-frontend
+npm install
+ng serve
+```
+
+## Auteur
+Yassine Mahfoudh
