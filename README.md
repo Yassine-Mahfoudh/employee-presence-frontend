@@ -50,7 +50,7 @@ Frontend de l'application web de planification de la présence des employés, d�
 ##  Lancer le projet localement
 
 ```bash
-git clone https://github.com/ton-utilisateur/employee-presence-frontend
+git clone https://github.com/Yassine-Mahfoudh/employee-presence-frontend.git
 cd employee-presence-frontend
 npm install
 ng serve
